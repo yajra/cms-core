@@ -23,7 +23,7 @@ use Yajra\Acl\AclServiceProvider;
 use Yajra\Datatables\DatatablesServiceProvider;
 use Yajra\Oci8\Oci8ServiceProvider;
 
-class AdministratorServiceProvider extends ServiceProvider
+class CoreServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
