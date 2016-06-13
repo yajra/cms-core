@@ -1,4 +1,4 @@
-# yajracms
+# YajraCMS - Core Module (WIP)
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -7,10 +7,8 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-**Note:** Replace ```Arjay Angeles``` ```yajra``` ```http://yajrabox.com``` ```aqangeles@gmail.com``` ```yajra``` ```yajracms``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
-
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+YajraCMS is a Joomla! inspired CMS built with Laravel PHP Framework.
+This is the core module of YajraCMS and should be used along with the YajraCMS Platform.
 
 ## Install
 
@@ -22,9 +20,13 @@ $ composer require yajra/yajracms
 
 ## Usage
 
+Just register `Yajra\CMS\Providers\CoreServiceProvider::class` on your providers.
+
 ``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+public function register()
+{
+    $this->app->register(\Yajra\CMS\Providers\CoreServiceProvider::class);
+}
 ```
 
 ## Change log
