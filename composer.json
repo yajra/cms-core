@@ -1,9 +1,11 @@
 {
     "name": "yajra/yajracms",
-    "description": ":package_description",
+    "description": "Core module of YajraCMS.",
     "keywords": [
-        "yajra",
-        "yajracms"
+        "yajracms",
+        "laravel",
+        "core",
+        "module"
     ],
     "homepage": "https://github.com/yajra/yajracms",
     "license": "MIT",
