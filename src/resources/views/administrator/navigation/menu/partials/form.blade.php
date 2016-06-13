@@ -2,22 +2,22 @@
 <div class="nav-tabs-custom" style="margin-top: 30px">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#menu-details" data-toggle="tab">
-            <i class="fa fa-info"></i> {{trans('menu.tab.details')}}</a>
+            <i class="fa fa-info"></i> {{trans('cms::menu.tab.details')}}</a>
         </li>
         <li><a href="#link-type" data-toggle="tab">
-            <i class="fa fa-code-fork"></i> {{trans('menu.tab.link')}}</a>
+            <i class="fa fa-code-fork"></i> {{trans('cms::menu.tab.link')}}</a>
         </li>
         <li><a href="#page-display" data-toggle="tab">
-            <i class="fa fa-sign-out"></i> {{trans('menu.tab.display')}}</a>
+            <i class="fa fa-sign-out"></i> {{trans('cms::menu.tab.display')}}</a>
         </li>
         <li><a href="#metadata" data-toggle="tab">
-            <i class="fa fa-reorder"></i> {{trans('menu.tab.metadata')}}</a>
+            <i class="fa fa-reorder"></i> {{trans('cms::menu.tab.metadata')}}</a>
         </li>
         <li><a href="#menu-permissions" data-toggle="tab">
-            <i class="fa fa-lock"></i> {{trans('menu.tab.permission')}}</a>
+            <i class="fa fa-lock"></i> {{trans('cms::menu.tab.permission')}}</a>
         </li>
         <li><a href="#widgets" data-toggle="tab">
-            <i class="fa fa-plug"></i> {{trans('menu.tab.widget')}}</a>
+            <i class="fa fa-plug"></i> {{trans('cms::menu.tab.widget')}}</a>
         </li>
     </ul>
     <div class="tab-content">
@@ -47,11 +47,11 @@
                     <div class="col-md-6">
                         <div class="form-group {!! $errors->has('authorization') ? 'has-error' : '' !!}">
                             <label class="form-label-style" for="authorization">
-                                {{trans('menu.field.authorization')}}
+                                {{trans('cms::menu.field.authorization')}}
                                 @tooltip('menu.tooltip.authorization')
                             </label>
 
-                            {{ form()->select('authorization', ['can' => trans('menu.authorization.can'), 'canAtLeast' => trans('menu.authorization.canAtLeast')], null, ['class' => 'form-control']) }}
+                            {{ form()->select('authorization', ['can' => trans('cms::menu.authorization.can'), 'canAtLeast' => trans('cms::menu.authorization.canAtLeast')], null, ['class' => 'form-control']) }}
                             {!! $errors->first('authorization', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>

@@ -5,7 +5,7 @@
 @stop
 
 @section('page-title')
-    @pageHeader('menu.index.title', '['.$navigation->title.' '.trans('menu.index.description').']', 'menu.index.icon')
+    @pageHeader('cms::menu.index.title', '['.$navigation->title.' '.trans('cms::menu.index.description').']', 'cms::menu.index.icon')
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
             <h3 class="box-title">
                 <a href="/administrator/navigation" style="font-size: 15px">
                     <i class="fa fa-arrow-circle-left"></i>&nbsp;
-                    {{trans('menu.index.back')}}
+                    {{trans('cms::menu.index.back')}}
                 </a>
             </h3>
             <div class="box-tools pull-right">

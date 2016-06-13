@@ -26,7 +26,7 @@
 @endpush
 
 @section('page-title')
-    @pageHeader('menu.edit.title', '['.$navigation->title.' '.trans('menu.edit.description').']', 'menu.edit.icon')
+    @pageHeader('cms::menu.edit.title', '['.$navigation->title.' '.trans('cms::menu.edit.description').']', 'cms::menu.edit.icon')
 @stop
 
 @section('content')

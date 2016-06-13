@@ -7,7 +7,7 @@
 @stop
 
 @section('page-title')
-    @pageHeader('menu.create.title', '['.$navigation->title.' '.trans('menu.create.description').']', 'menu.create.icon')
+    @pageHeader('cms::menu.create.title', '['.$navigation->title.' '.trans('cms::menu.create.description').']', 'cms::menu.create.icon')
 @stop
 
 @section('content')
