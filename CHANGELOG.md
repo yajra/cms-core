@@ -1,6 +1,6 @@
 # Changelog
 
-All Notable changes to `yajracms` will be documented in this file
+All Notable changes to `cms-core` will be documented in this file
 
 ## NEXT - YYYY-MM-DD
 

@@ -1,5 +1,5 @@
 {
-    "name": "yajra/yajracms",
+    "name": "yajra/cms-core",
     "description": "Core module of YajraCMS.",
     "keywords": [
         "yajracms",
@@ -7,7 +7,7 @@
         "core",
         "module"
     ],
-    "homepage": "https://github.com/yajra/yajracms",
+    "homepage": "https://github.com/yajra/cms-core",
     "license": "MIT",
     "authors": [
         {

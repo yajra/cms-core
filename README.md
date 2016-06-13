@@ -15,7 +15,7 @@ This is the core module of YajraCMS and should be used along with the YajraCMS P
 Via Composer
 
 ``` bash
-$ composer require yajra/yajracms
+$ composer require yajra/cms-core
 ```
 
 ## Usage
@@ -56,17 +56,17 @@ If you discover any security related issues, please email aqangeles@gmail.com in
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/yajra/yajracms.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/yajra/cms-core.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/yajra/yajracms/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/yajra/yajracms.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/yajra/yajracms.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/yajra/yajracms.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/yajra/cms-core/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/yajra/cms-core.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/yajra/cms-core.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/yajra/cms-core.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/yajra/yajracms
-[link-travis]: https://travis-ci.org/yajra/yajracms
-[link-scrutinizer]: https://scrutinizer-ci.com/g/yajra/yajracms/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/yajra/yajracms
-[link-downloads]: https://packagist.org/packages/yajra/yajracms
+[link-packagist]: https://packagist.org/packages/yajra/cms-core
+[link-travis]: https://travis-ci.org/yajra/cms-core
+[link-scrutinizer]: https://scrutinizer-ci.com/g/yajra/cms-core/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/yajra/cms-core
+[link-downloads]: https://packagist.org/packages/yajra/cms-core
 [link-author]: https://github.com/yajra
 [link-contributors]: ../../contributors
