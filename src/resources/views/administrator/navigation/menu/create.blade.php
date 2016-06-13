@@ -3,7 +3,7 @@
 @section('body', 'sidebar-collapse')
 
 @section('title')
-{{trans('navigation.create.title')}} | @parent
+{{trans('cms::navigation.create.title')}} | @parent
 @stop
 
 @section('page-title')

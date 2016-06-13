@@ -65,7 +65,7 @@ class NavigationController extends Controller
         $navigation->fill($request->all());
         $navigation->published = $request->get('published', false);
         $navigation->save();
-        flash()->success(trans('navigation.store.success'));
+        flash()->success(trans('cms::navigation.store.success'));
 
         return redirect()->route('administrator.navigation.index');
     }
@@ -98,7 +98,7 @@ class NavigationController extends Controller
         $navigation->fill($request->all());
         $navigation->published = $request->get('published', false);
         $navigation->save();
-        flash()->success(trans('navigation.update.success'));
+        flash()->success(trans('cms::navigation.update.success'));
 
         return redirect()->route('administrator.navigation.index');
     }
@@ -114,7 +114,7 @@ class NavigationController extends Controller
     {
         $navigation->delete();
 
-        return $this->notifySuccess(trans('navigation.destroy.success'));
+        return $this->notifySuccess(trans('cms::navigation.destroy.success'));
     }
 
     /**
@@ -128,7 +128,7 @@ class NavigationController extends Controller
         $navigation->togglePublishedState();
 
         return $this->notifySuccess(sprintf(
-            trans('navigation.update.publish'),
+            trans('cms::navigation.update.publish'),
             $navigation->published ? 'published' : 'unpublished'
         ));
     }

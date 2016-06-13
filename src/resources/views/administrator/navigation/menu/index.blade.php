@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('title')
-{{trans('navigation.index.title')}} | @parent
+{{trans('cms::navigation.index.title')}} | @parent
 @stop
 
 @section('page-title')
