@@ -1,13 +1,13 @@
 @extends('admin::layouts.master')
 
 @section('title')
-{{trans('article.create.title')}} | @parent
+{{trans('cms::article.create.title')}} | @parent
 @stop
 
 @section('body', 'sidebar-collapse')
 
 @section('page-title')
-    @pageHeader('article.create.title', 'article.create.description', 'article.create.icon')
+    @pageHeader('cms::article.create.title', 'cms::article.create.description', 'cms::article.create.icon')
 @stop
 
 @section('content')

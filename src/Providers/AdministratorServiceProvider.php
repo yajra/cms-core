@@ -35,6 +35,12 @@ class AdministratorServiceProvider extends ServiceProvider
         $this->bootCustomValidations();
         $this->bootCustomBladeDirectives();
 
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
+
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang/vendor/cms'),
+        ]);
+
         if (config('app.debug') && config('app.debugbar')) {
             $this->app->registerDeferredProvider(DebugbarServiceProvider::class);
         }

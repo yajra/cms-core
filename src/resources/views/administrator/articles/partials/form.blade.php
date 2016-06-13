@@ -2,20 +2,20 @@
     <div class="col-md-8">
         <div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
             <label class="form-label-style block" for="title">
-                {{trans('article.field.title')}}
+                {{trans('cms::article.field.title')}}
                 @tooltip('article.tooltip.title')
             </label>
-            {!! form()->input('text', 'title', null, ['id'=>'title','class'=>'form-control','placeholder'=>trans('article.field.title_placeholder')]) !!}
+            {!! form()->input('text', 'title', null, ['id'=>'title','class'=>'form-control','placeholder'=>trans('cms::article.field.title_placeholder')]) !!}
             {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group {!! $errors->has('alias') ? 'has-error' : '' !!}">
             <label class="form-label-style block" for="alias">
-                {{trans('article.field.alias')}}
+                {{trans('cms::article.field.alias')}}
                 @tooltip('article.tooltip.alias')
             </label>
-            {!! form()->input('text', 'alias', null, ['id'=>'alias','class'=>'form-control','placeholder'=>trans('article.field.alias_placeholder')]) !!}
+            {!! form()->input('text', 'alias', null, ['id'=>'alias','class'=>'form-control','placeholder'=>trans('cms::article.field.alias_placeholder')]) !!}
             {!! $errors->first('alias', '<span class="help-block">:message</span>') !!}
         </div>
     </div>
@@ -24,11 +24,11 @@
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#article-content" data-toggle="tab">
-                <i class="fa fa-info"></i> {{trans('article.tab.content')}}</a></li>
+                <i class="fa fa-info"></i> {{trans('cms::article.tab.content')}}</a></li>
         <li><a href="#article-publishing" data-toggle="tab">
-                <i class="fa fa-briefcase"></i> {{trans('article.tab.publishing')}}</a></li>
+                <i class="fa fa-briefcase"></i> {{trans('cms::article.tab.publishing')}}</a></li>
         <li><a href="#article-permission" data-toggle="tab">
-                <i class="fa fa-lock"></i> {{trans('article.tab.permission')}}</a></li>
+                <i class="fa fa-lock"></i> {{trans('cms::article.tab.permission')}}</a></li>
     </ul>
     <div class="tab-content">
         <div class="active tab-pane" id="article-content">
@@ -42,11 +42,11 @@
                 <div class="row">
                     <div class="form-group {!! $errors->has('authorization') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="authorization">
-                            {{trans('article.field.authorization')}}
+                            {{trans('cms::article.field.authorization')}}
                             @tooltip('article.tooltip.authorization')
                         </label>
 
-                        {{ form()->select('authorization', ['can' => trans('article.authorization.can'), 'canAtLeast' => trans('article.authorization.canAtLeast')], null, ['class' => 'form-control']) }}
+                        {{ form()->select('authorization', ['can' => trans('cms::article.authorization.can'), 'canAtLeast' => trans('cms::article.authorization.canAtLeast')], null, ['class' => 'form-control']) }}
                         {!! $errors->first('authorization', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>

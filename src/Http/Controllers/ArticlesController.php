@@ -63,7 +63,7 @@ class ArticlesController extends Controller
         $article->authenticated = $request->get('authenticated', false);
         $article->save();
         $article->permissions()->sync($request->get('permissions', []));
-        flash()->success(trans('article.store.success'));
+        flash()->success(trans('cms::article.store.success'));
 
         return redirect()->route('administrator.articles.index');
     }
@@ -94,7 +94,7 @@ class ArticlesController extends Controller
         $article->authenticated = $request->get('authenticated', false);
         $article->save();
         $article->permissions()->sync($request->get('permissions', []));
-        flash()->success(trans('article.update.success'));
+        flash()->success(trans('cms::article.update.success'));
 
         return redirect()->route('administrator.articles.index');
     }
@@ -110,7 +110,7 @@ class ArticlesController extends Controller
     {
         $article->delete();
 
-        return $this->notifySuccess(trans('article.destroy.success'));
+        return $this->notifySuccess(trans('cms::article.destroy.success'));
     }
 
     /**
