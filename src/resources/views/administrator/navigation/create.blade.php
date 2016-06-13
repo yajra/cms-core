@@ -24,10 +24,10 @@
                 </div>
                 <div class="box-footer">
                     <a href="/administrator/navigation" class="btn btn-warning text-bold text-uppercase">
-                        {{trans('button.cancel')}}
+                        {{trans('cms::button.cancel')}}
                     </a>
                     <button type="submit" class="btn btn-primary text-bold text-uppercase">
-                        <i class="fa fa-check"></i> {{trans('button.save')}}
+                        <i class="fa fa-check"></i> {{trans('cms::button.save')}}
                     </button>
                 </div>
             </div>

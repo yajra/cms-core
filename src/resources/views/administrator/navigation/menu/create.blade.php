@@ -16,11 +16,11 @@
         <div class="box-body">
             <a href="{{ route('administrator.navigation.menu.index', $navigation->id) }}"
                class="btn btn-warning text-bold text-uppercase">
-                {{trans('button.cancel')}}
+                {{trans('cms::button.cancel')}}
             </a>
             <button type="submit" class="btn btn-primary text-bold text-uppercase">
                 <i class="fa fa-check"></i>
-                {{trans('button.save')}}
+                {{trans('cms::button.save')}}
             </button>
         </div>
     </div>

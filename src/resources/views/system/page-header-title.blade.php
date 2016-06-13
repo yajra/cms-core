@@ -4,7 +4,7 @@
     <small>{{trans($description)}}</small>
         <span class="pull-right">
             <a href="{{ URL::previous() }}" class="page-title-back-href text-uppercase">
-                <i class="fa fa-arrow-circle-left"></i> {{trans('button.back')}}
+                <i class="fa fa-arrow-circle-left"></i> {{trans('cms::button.back')}}
             </a>
         </span>
 </div>

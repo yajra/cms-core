@@ -14,8 +14,8 @@
     {!! form()->model($article, ['url' => route('administrator.articles.update', $article->id), 'method' => 'PUT']) !!}
     <div class="box box-primary">
         <div class="box-body">
-            <a href="{{ route('administrator.articles.index') }}" class="btn btn-warning text-bold">{{trans('button.cancel')}}</a>
-            <button type="submit" class="btn btn-primary text-bold">{{trans('button.update')}}</button>
+            <a href="{{ route('administrator.articles.index') }}" class="btn btn-warning text-bold">{{trans('cms::button.cancel')}}</a>
+            <button type="submit" class="btn btn-primary text-bold">{{trans('cms::button.update')}}</button>
         </div>
     </div>
 
