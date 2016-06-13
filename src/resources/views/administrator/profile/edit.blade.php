@@ -9,11 +9,11 @@
 @endpush
 
 @section('title')
-    {{trans('profile.edit.title')}} | @parent
+    {{trans('cms::profile.edit.title')}} | @parent
 @stop
 
 @section('page-title')
-    @pageHeader('profile.edit.page-title', 'profile.edit.page-desc', 'fa fa-user')
+    @pageHeader('cms::profile.edit.page-title', 'cms::profile.edit.page-desc', 'fa fa-user')
 @stop
 
 @section('content')

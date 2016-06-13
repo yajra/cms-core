@@ -41,7 +41,7 @@ class ProfileController extends Controller
 
         $profile->save();
 
-        flash()->success(trans('profile.alert.success'));
+        flash()->success(trans('cms::profile.alert.success'));
 
         return redirect()->route('administrator.profile.edit');
     }
