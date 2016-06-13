@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
-            <label class="form-label-style" for="title">{{trans('categories.form.fields.title')}}</label>
+            <label class="form-label-style" for="title">{{trans('cms::categories.form.fields.title')}}</label>
             {!! form()->input('text', 'title', null, ['id'=>'title','class'=>'form-control','placeholder'=>'Enter title here']) !!}
             {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group {!! $errors->has('alias') ? 'has-error' : '' !!}">
-            <label class="form-label-style" for="alias">{{trans('categories.form.fields.alias')}}</label>
+            <label class="form-label-style" for="alias">{{trans('cms::categories.form.fields.alias')}}</label>
             {!! form()->input('text', 'alias', null, ['id'=>'alias','class'=>'form-control','placeholder'=>'Enter alias here']) !!}
             {!! $errors->first('alias', '<span class="help-block">:message</span>') !!}
         </div>
@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group {!! $errors->has('parent_id') ? 'has-error' : '' !!}">
-            <label class="form-label-style" for="parent_id">{{trans('categories.form.fields.parent_name')}}</label>
+            <label class="form-label-style" for="parent_id">{{trans('cms::categories.form.fields.parent_name')}}</label>
             {!! form()->select('parent_id', $category->getParentsList(), null,['class' => 'select2 form-control']) !!}
             {!! $errors->first('params', '<span class="help-block">:message</span>') !!}
         </div>
@@ -37,7 +37,7 @@
 <div class="row">
     <div class="col-md-2">
         <div class="form-group {!! $errors->has('published') ? 'has-error' : '' !!}">
-            <label class="form-label-style" for="published">{{trans('categories.form.fields.published')}}</label>
+            <label class="form-label-style" for="published">{{trans('cms::categories.form.fields.published')}}</label>
             <br>
             {!! form()->checkbox('published', $value = 1, $checked = null, ['name' =>'published','id'=>'published','class'=>'form-control bootstrap-checkbox']) !!}
             {!! $errors->first('published', '<span class="help-block">:message</span>') !!}
@@ -45,7 +45,7 @@
     </div>
     <div class="col-md-2">
         <div class="form-group {!! $errors->has('authenticated') ? 'has-error' : '' !!}">
-            <label class="form-label-style" for="authenticated">{{trans('categories.form.fields.auth')}}
+            <label class="form-label-style" for="authenticated">{{trans('cms::categories.form.fields.auth')}}
                 @tooltip('Requires authentication to access the category.')
             </label>
             <br>

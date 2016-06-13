@@ -1,11 +1,11 @@
 @extends('admin::layouts.master')
 
 @section('title')
-    {{trans('categories.index.title')}}| @parent
+    {{trans('cms::categories.index.title')}}| @parent
 @stop
 
 @section('page-title')
-    @pageHeader('categories.index.page-title', 'categories.index.page-desc', 'fa fa-file-text')
+    @pageHeader('cms::categories.index.page-title', 'cms::categories.index.page-desc', 'fa fa-file-text')
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-list"></i>&nbsp;
-                {{trans('categories.index.box-title')}}
+                {{trans('cms::categories.index.box-title')}}
             </h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
