@@ -36,7 +36,7 @@
         "spatie/laravel-fractal": "^1.7",
         "barryvdh/laravel-snappy": "0.2.*",
         "guzzlehttp/guzzle": "^6.1",
-        "baum/baum": "dev-master",
+        "baum/baum": "^1.1.2",
         "laracasts/presenter": "^0.2.1",
         "arrilot/laravel-widgets": "^3.3",
         "intervention/image": "^2.3",
