@@ -175,7 +175,7 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => 'administrator',
             'prefix'     => 'administrator',
         ], function ($router) {
-            require base_path('administrator/Http/routes.php');
+            require __DIR__ .'/../Http/routes.php';
         });
     }
 }

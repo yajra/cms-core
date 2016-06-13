@@ -15,8 +15,8 @@ class ThemeViewFinderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app['view']->setFinder($this->app['theme.view.finder']);
-        $this->app['view']->addLocation(base_path('administrator/resources/views'));
-        $this->loadViewsFrom(base_path('administrator/resources/theme'), 'admin');
+        $this->app['view']->addLocation(__DIR__.'/../resources/views');
+        $this->loadViewsFrom(__DIR__.'/../resources/theme', 'admin');
     }
 
     /**
