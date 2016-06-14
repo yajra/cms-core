@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('title')
-    Lookup Registry | @parent
+    {{trans('cms::lookup.index.title')}} | @parent
 @stop
 
 @push('styles')
@@ -12,7 +12,7 @@
 @endpush
 
 @section('page-title')
-    @pageHeader('Lookup Registry', 'Register your lookups here.', 'fa fa-folder-open')
+    @pageHeader(trans('cms::lookup.index.title'), trans('cms::lookup.index.description'), trans('cms::lookup.index.icon'))
 @stop
 
 @section('content')
@@ -20,33 +20,33 @@
         <div class="col-md-3">
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <p class="text-muted text-center text-uppercase">Lookup Filters</p>
+                    <p class="text-muted text-center text-uppercase">{{trans('cms::lookup.index.filters')}}</p>
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter">
-                                <i class="fa fa-list"></i>&nbsp;All Types
+                                <i class="fa fa-list"></i>&nbsp;{{trans('cms::lookup.field.all_types')}}
                             </a>
                         </li>
                         <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter" data-type="widgets.types">
-                                <i class="fa fa-filter"></i>&nbsp;Widget Types
+                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_types')}}
                             </a>
                         </li>
-                        @foreach(\Yajra\CMS\Entities\Lookup::type('widgets.types')->get() as $widget)
+                        @foreach(\App\Administrator\Entities\Lookup::type('widgets.types')->get() as $widget)
                         <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter" data-type="widgets.{{$widget->key}}.templates">
-                                <i class="fa fa-filter"></i>&nbsp;Widget Templates <span class="label label-info">{{ $widget->value }}</span>
+                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_template')}} <span class="label label-info">{{ $widget->value }}</span>
                             </a>
                         </li>
                         @endforeach
                         <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter" data-type="widgets.positions">
-                                <i class="fa fa-filter"></i>&nbsp;Widget Positions
+                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_position')}}
                             </a>
                         </li>
                         <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter" data-type="menu.types">
-                                <i class="fa fa-filter"></i>&nbsp;Menu Types
+                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.menu_types')}}
                             </a>
                         </li>
                     </ul>
@@ -58,7 +58,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">
                         <i class="fa fa-list"></i>&nbsp;
-                        Registered Lookups
+                        {{trans('cms::lookup.index.lookup')}}
                     </h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
