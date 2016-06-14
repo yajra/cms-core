@@ -95,6 +95,7 @@
             this.fetchTemplates();
 
             CKEDITOR.replace('body', {
+                allowedContent: true,
                 filebrowserBrowseUrl: '/administrator/media/browse',
                 filebrowserImageBrowseUrl: '/administrator/media/browse/images'
             });

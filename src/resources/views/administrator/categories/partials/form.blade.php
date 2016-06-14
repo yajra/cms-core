@@ -63,6 +63,7 @@
 <script>
     $(function () {
         CKEDITOR.replace('description', {
+            allowedContent: true,
             filebrowserBrowseUrl: '/administrator/media/browse',
             filebrowserImageBrowseUrl: '/administrator/media/browse/images'
         });
