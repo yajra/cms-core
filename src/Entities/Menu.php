@@ -172,4 +172,14 @@ class Menu extends Node
     {
         return $this->belongsToMany(Widget::class, 'widget_menu')->withoutGlobalScope('menu_assignment');
     }
+
+    /**
+     * Check if the menu is currently selected/active.
+     *
+     * @return bool
+     */
+    public function isActive()
+    {
+        return request()->getRequestUri() === '/' . $this->present()->url();
+    }
 }

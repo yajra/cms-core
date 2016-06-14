@@ -33,7 +33,7 @@ class DynamicMenusBuilder
                     $navigation->menus->each(function (Menu $menu) use ($builder) {
                         $widgets = $menu->getConnection()->table('widget_menu');
 
-                        if (request()->getRequestUri() === '/' . $menu->present()->url()) {
+                        if ($menu->isActive()) {
                             $widgets->whereIn('menu_id', [0, $menu->id]);
                         } else {
                             $widgets->where('menu_id', 0);
