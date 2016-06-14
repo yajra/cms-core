@@ -26,13 +26,13 @@ class GenerateAdminMenu
                 if ($navs->count()) {
                     $nav = $menu->add('Navigation', '#')->icon('sitemap')
                                 ->data('permission', 'navigation.view');
+                    $nav->add('Manage', route('administrator.navigation.index'))
+                        ->icon('cogs')
+                        ->data([
+                            'permission' => 'navigation.view',
+                            'append'     => route('administrator.navigation.create'),
+                        ]);
                     $navs->each(function ($item) use ($nav) {
-                        $nav->add('Manage', route('administrator.navigation.index'))
-                            ->icon('cogs')
-                            ->data([
-                                'permission' => 'navigation.view',
-                                'append'     => route('administrator.navigation.create'),
-                            ]);
                         $nav->add($item->title, route('administrator.navigation.menu.index', $item->id))
                             ->icon('link')
                             ->data([
