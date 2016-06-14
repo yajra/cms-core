@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @section('title', config('site.name') . ' | Login to Administrator Panel')
+    @section('title', config('site.name') . ' | ' . trans('cms::auth.title'))
     @section('keywords', config('site.keywords'))
     @section('author', config('site.author'))
     @section('description', config('site.description'))
@@ -21,8 +21,8 @@
                 <div class="col-sm-6 col-sm-offset-3 form-box">
                     <div class="form-top">
                         <div class="form-top-left">
-                            <h3>Login to Administrator Panel</h3>
-                            <p>Enter your email and password to log on:</p>
+                            <h3>{{trans('cms::auth.title')}}</h3>
+                            <p>{{trans('cms::auth.form.title')}}</p>
                         </div>
                         <div class="form-top-right">
                             <i class="fa fa-lock"></i>
@@ -32,25 +32,35 @@
                         <form method="post" class="login-form" role="form">
                             {!! csrf_field() !!}
                             <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                                <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
+                                <input type="email"
+                                       name="email"
+                                       value="{{ old('email') }}"
+                                       class="form-control"
+                                       placeholder="{{trans('cms::auth.placeholder.email')}}">
                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                 {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                <input type="password"
+                                       name="password"
+                                       class="form-control"
+                                       placeholder="{{trans('cms::auth.placeholder.password')}}">
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                 {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                                        <input type="checkbox" name="remember"> {{trans('cms::auth.form.remember')}}
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                            <button type="submit"
+                                    class="btn btn-primary btn-block btn-flat">
+                                {{trans('cms::auth.form.sign-in')}}
+                            </button>
                         </form>
-                        <a href="{{ url('/password/reset') }}" class="pull-right">I forgot my password</a><br>
+                        <a href="{{ url('/password/reset') }}" class="pull-right">{{trans('cms::auth.form.forgot')}}</a><br>
                     </div>
                 </div>
             </div>
