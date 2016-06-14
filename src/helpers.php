@@ -117,6 +117,22 @@ if (! function_exists('form')) {
     }
 }
 
+if (! function_exists('theme_asset')) {
+    /**
+     * Get theme public path.
+     *
+     * @param string $path
+     * @param bool $secure
+     * @return string
+     */
+    function theme_asset($path = '', $secure = false)
+    {
+        $path = $path ? DIRECTORY_SEPARATOR . $path : $path;
+
+        return asset('themes' . DIRECTORY_SEPARATOR . config('site.template', 'default') . $path, $secure);
+    }
+}
+
 if (! function_exists('bytesToHuman')) {
     /**
      * Convert bytes to a human readable presentation.
