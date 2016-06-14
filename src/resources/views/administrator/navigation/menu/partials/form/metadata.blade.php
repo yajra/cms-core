@@ -8,7 +8,8 @@
             {!! form()->textarea('parameters[meta_description]', $menu->fluentParameters()->meta_description, ['id'=>'parameters[meta_description]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.meta_description_placeholder')]) !!}
             {!! $errors->first('parameters[meta_description]', '<span class="help-block">:message</span>') !!}
         </div>
-
+    </div>
+    <div class="col-md-6">
         <div class="form-group {!! $errors->has('parameters[meta_keywords]') ? 'has-error' : '' !!}">
             <label class="form-label-style block" for="parameters[meta_keywords]">
                 {{trans('cms::menu.field.meta_keywords')}}

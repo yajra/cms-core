@@ -50,6 +50,11 @@ return [
         'authorization'    => 'Menu authorization will only apply if at least one permission was selected.',
         'meta_description' => 'An optional paragraph to be used as description of the page.',
         'meta_keywords'    => 'An optional comma separated list of keywords.',
+        'page_title'       => 'Optional text for the Browse Page Title.',
+        'page_heading'     => 'Optional alternative text for Page Heading.',
+        'page_class'       => 'Optional CSS class to add on page.',
+        'link_title'       => 'Optional custom description for the title attribute of the menu hyperlink.',
+        'link_style'       => 'Optional custom style to apply to the menu hyperlink.',
     ],
 
     'field' => [
@@ -61,11 +66,20 @@ return [
         'meta_description_placeholder' => '',
         'meta_keywords'                => 'Meta Keywords',
         'meta_keywords_placeholder'    => '',
+        'page_title'                   => 'Page Title',
+        'page_title_placeholder'       => '',
+        'page_heading'                 => 'Page Heading',
+        'page_heading_placeholder'     => '',
+        'page_class'                   => 'Page Class',
+        'page_class_placeholder'       => '',
+        'link_title'                   => 'Link Title Attribute',
+        'link_title_placeholder'       => '',
+        'link_style'                   => 'Link CSS Style',
+        'link_style_placeholder'       => '',
     ],
 
     'tab' => [
         'details'    => 'Menu Details',
-        'link'       => 'Link Type',
         'display'    => 'Page Display',
         'metadata'   => 'Metadata',
         'permission' => 'Menu Permissions',

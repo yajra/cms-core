@@ -4,9 +4,6 @@
         <li class="active"><a href="#menu-details" data-toggle="tab">
             <i class="fa fa-info"></i> {{trans('cms::menu.tab.details')}}</a>
         </li>
-        <li><a href="#link-type" data-toggle="tab">
-            <i class="fa fa-code-fork"></i> {{trans('cms::menu.tab.link')}}</a>
-        </li>
         <li><a href="#page-display" data-toggle="tab">
             <i class="fa fa-sign-out"></i> {{trans('cms::menu.tab.display')}}</a>
         </li>
@@ -24,11 +21,6 @@
         <div class="active tab-pane" id="menu-details">
             <div class="content no-padding">
                 @include('administrator.navigation.menu.partials.form.details')
-            </div>
-        </div>
-        <div class="tab-pane" id="link-type">
-            <div class="content no-padding">
-                @include('administrator.navigation.menu.partials.form.link')
             </div>
         </div>
         <div class="tab-pane" id="page-display">
