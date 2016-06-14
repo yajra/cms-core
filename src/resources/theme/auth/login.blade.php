@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    @include('system.headers.meta')
     @section('title', config('site.name') . ' | ' . trans('cms::auth.title'))
     @section('keywords', config('site.keywords'))
     @section('author', config('site.author'))
     @section('description', config('site.description'))
-    @include('system.headers.header')
     @include('system.headers.libraries')
     @include('system.headers.plugins')
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link href="{{ asset('themes/admin-lte/plugins/iCheck/square/blue.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/login.css') }}" rel="stylesheet" type="text/css"/>
     @stack('styles')
 </head>
@@ -70,16 +69,9 @@
 
 @include('system.scripts.libraries')
 @include('system.scripts.plugins')
-<script src="{{ asset('themes/admin-lte/plugins/iCheck/icheck.min.js') }}"></script>
 <script src="{{ asset('js/jquery.backstretch.min.js') }}"></script>
 <script>
     $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
-        });
-
         $.backstretch([
             "/img/backgrounds/2.jpg",
             "/img/backgrounds/3.jpg",
