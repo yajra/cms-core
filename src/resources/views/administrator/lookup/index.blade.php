@@ -32,7 +32,7 @@
                                 <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_types')}}
                             </a>
                         </li>
-                        @foreach(\App\Administrator\Entities\Lookup::type('widgets.types')->get() as $widget)
+                        @foreach($widgets as $widget)
                         <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter" data-type="widgets.{{$widget->key}}.templates">
                                 <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_template')}} <span class="label label-info">{{ $widget->value }}</span>

@@ -2,12 +2,12 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Yajra\CMS\DataTables\LookupDataTable;
-use Yajra\CMS\Entities\Lookup;
-use Yajra\CMS\Http\Requests\LookupFormRequest;
 use App\Http\Requests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Yajra\CMS\DataTables\LookupDataTable;
+use Yajra\CMS\Entities\Lookup;
+use Yajra\CMS\Http\Requests\LookupFormRequest;
 
 class LookupController extends Controller
 {
@@ -34,7 +34,9 @@ class LookupController extends Controller
      */
     public function index(LookupDataTable $dataTable)
     {
-        return $dataTable->render('administrator.lookup.index');
+        $widgets = Lookup::type('widgets.types')->get();
+
+        return $dataTable->render('administrator.lookup.index', compact('widgets'));
     }
 
     /**
