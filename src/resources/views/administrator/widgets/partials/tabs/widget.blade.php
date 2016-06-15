@@ -9,7 +9,9 @@
                             @tooltip('cms::widget.tooltip.type')
                         </label>
                         <select name="type" class="form-control" v-model="widget.type" @change="fetchTemplates">
-                            <option v-for="type in types" v-bind:value="type.key">@{{ type.value }}</option>
+                            @foreach(app('widgets')->all() as $type)
+                            <option value="{{$type->name}}">{{$type->description}}</option>
+                            @endforeach
                         </select>
                         {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
                     </div>
@@ -21,7 +23,8 @@
                             @tooltip('cms::widget.tooltip.template')
                         </label>
                         <select name="template" class="form-control" v-model="widget.template">
-                            <option v-for="template in templates" v-bind:value="template.key">@{{ template.value }}</option>
+                            <option v-for="template in templates"
+                                    v-bind:value="template.key">@{{ template.value }}</option>
                         </select>
                         {!! $errors->first('template', '<span class="help-block">:message</span>') !!}
                     </div>

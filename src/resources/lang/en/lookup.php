@@ -53,9 +53,7 @@ return [
 
     'field' => [
         'all_types'       => 'All Types',
-        'widget_types'    => 'Widget Types',
-        'widget_template' => 'Widget Templates',
-        'widget_position' => 'Widget Positions',
+        'widget_position' => 'Widget Theme Positions',
         'menu_types'      => 'Menu Types',
     ],
 

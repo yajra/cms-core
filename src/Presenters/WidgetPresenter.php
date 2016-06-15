@@ -28,6 +28,6 @@ class WidgetPresenter extends Presenter
         /** @var Repository $repository */
         $repository = app('widgets');
 
-        return $repository->findOrFail($this->entity->type)->getClass();
+        return $repository->findOrFail($this->entity->type)->class;
     }
 }

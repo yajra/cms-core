@@ -27,18 +27,7 @@
                                 <i class="fa fa-list"></i>&nbsp;{{trans('cms::lookup.field.all_types')}}
                             </a>
                         </li>
-                        <li class="list-group-item list-group-padding">
-                            <a href="#" class="btn-filter" data-type="widgets.types">
-                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_types')}}
-                            </a>
-                        </li>
-                        @foreach($widgets as $widget)
-                        <li class="list-group-item list-group-padding">
-                            <a href="#" class="btn-filter" data-type="widgets.{{$widget->key}}.templates">
-                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_template')}} <span class="label label-info">{{ $widget->value }}</span>
-                            </a>
-                        </li>
-                        @endforeach
+
                         <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter" data-type="widgets.positions">
                                 <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_position')}}

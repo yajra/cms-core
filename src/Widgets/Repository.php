@@ -2,6 +2,8 @@
 
 namespace Yajra\CMS\Widgets;
 
+use Illuminate\Support\Collection;
+
 class Repository
 {
     /**
@@ -37,5 +39,15 @@ class Repository
         }
 
         throw new NotFoundException('Widget not found!');
+    }
+
+    /**
+     * Get all registered widgets.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function all()
+    {
+        return new Collection($this->widgets);
     }
 }

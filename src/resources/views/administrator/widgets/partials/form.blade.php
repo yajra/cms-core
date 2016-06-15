@@ -80,19 +80,15 @@
         },
         methods: {
             fetchTemplates: function () {
-                $.getJSON('/administrator/lookup/search/widgets.' + this.widget.type + '.templates', {selected: this.widget.type}, function (json) {
+                $.blockUI();
+                $.getJSON('/administrator/widgets/' + this.widget.type + '/templates', {}, function (json) {
                     this.templates = json.data;
                     this.widget.type = json.selected;
+                    $.unblockUI();
                 }.bind(this))
             }
         },
         ready: function () {
-            $.blockUI();
-            $.getJSON('/administrator/lookup/search/widgets.types', {}, function (json) {
-                this.types = json.data;
-                $.unblockUI();
-            }.bind(this));
-
             this.fetchTemplates();
 
             CKEDITOR.replace('body', {

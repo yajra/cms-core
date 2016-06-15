@@ -5,6 +5,7 @@ namespace Yajra\CMS\Http\Controllers;
 use Yajra\CMS\DataTables\WidgetsDataTable;
 use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Http\Requests\WidgetFormRequest;
+use Yajra\CMS\Widgets\Repository;
 
 class WidgetsController extends Controller
 {
@@ -18,11 +19,19 @@ class WidgetsController extends Controller
     ];
 
     /**
-     * WidgetsController constructor.
+     * @var \Yajra\CMS\Widgets\Repository
      */
-    public function __construct()
+    protected $repository;
+
+    /**
+     * WidgetsController constructor.
+     *
+     * @param \Yajra\CMS\Widgets\Repository $repository
+     */
+    public function __construct(Repository $repository)
     {
         $this->authorizePermissionResource('widget');
+        $this->repository = $repository;
     }
 
     /**
@@ -140,5 +149,26 @@ class WidgetsController extends Controller
                 'task' => $widget->published ? 'published' : 'unpublished',
             ])
         );
+    }
+
+    /**
+     * Get all widget types.
+     *
+     * @param string $type
+     * @return string
+     */
+    public function templates($type)
+    {
+        $data = [];
+        foreach ($this->repository->all()->where('name', $type) as $widget) {
+            foreach ($widget->templates as $key => $value) {
+                $data[] = ['key' => $key, 'value' => $value];
+            }
+        }
+
+        return response()->json([
+            'selected' => $type,
+            'data'     => $data,
+        ], 200);
     }
 }

@@ -9,28 +9,28 @@ class Widget
      *
      * @var string
      */
-    protected $name;
+    public $name;
 
     /**
      * FQCN of the widget.
      *
      * @var string
      */
-    protected $class;
+    public $class;
 
     /**
      * Lists of blade templates.
      *
      * @var array
      */
-    protected $templates = [];
+    public $templates = [];
 
     /**
      * Widget description.
      *
      * @var string
      */
-    protected $description;
+    public $description;
 
     /**
      * Widget constructor.
@@ -46,45 +46,5 @@ class Widget
         $this->description = $description;
         $this->class       = $classPath;
         $this->templates   = $templates;
-    }
-
-    /**
-     * Get widget name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Get widget FQCN.
-     *
-     * @return string
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
-
-    /**
-     * Get widget templates.
-     *
-     * @return array
-     */
-    public function getTemplates()
-    {
-        return $this->templates;
-    }
-
-    /**
-     * Get widget description.
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 }
