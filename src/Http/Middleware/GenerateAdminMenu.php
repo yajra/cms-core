@@ -2,10 +2,10 @@
 
 namespace Yajra\CMS\Http\Middleware;
 
-use Yajra\CMS\Repositories\Navigation\NavigationRepository;
 use Caffeinated\Menus\Builder;
 use Caffeinated\Menus\Facades\Menu;
 use Closure;
+use Yajra\CMS\Repositories\Navigation\NavigationRepository;
 
 class GenerateAdminMenu
 {
@@ -66,8 +66,12 @@ class GenerateAdminMenu
                 $contents->add('Media', route('administrator.media.index'))->icon('image')
                          ->data('permission', 'media.view');
 
-                $modules = $menu->add('Modules', '#')->icon('plug');
-                // TODO: Dynamically add modules here.
+                $mod     = $menu->add('Modules', '#')->icon('plug');
+                $modules = app('modules')->all();
+                collect($modules)->each(function ($module) use ($mod) {
+                    /** @var \Pingpong\Modules\Module $module */
+                    $mod->add($module->getStudlyName(), url("administrator/{$module->getLowerName()}"))->icon('file');
+                });
 
                 $users = $menu->add('Users', '#')->icon('key');
                 $users->add('Manage', route('administrator.users.index'))->icon('users')
