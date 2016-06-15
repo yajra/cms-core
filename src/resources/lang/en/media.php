@@ -49,7 +49,6 @@ return [
         'insert'        => 'Insert',
         'select'        => 'Select',
         'preview'       => 'Preview',
-        'close'         => 'Close',
         'dropzone_text' => 'Drop files here to upload'
     ],
 

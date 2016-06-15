@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('title')
-    Log Viewer | @parent
+    {{trans('cms::utilities.log.page_title')}} | @parent
 @stop
 
 @push('styles')
@@ -27,22 +27,22 @@
 @endpush
 
 @section('page-title')
-    @pageHeader('Log View Utility', 'Application logs viewer.', 'fa fa-calendar')
+    @pageHeader('cms::utilities.log.page_title','cms::utilities.log.description', 'cms::utilities.log.icon')
 @stop
 
 @section('content')
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="fa fa-list-alt"></i> Application Logs
+                <i class="fa fa-list-alt"></i> {{trans('cms::utilities.log.app_log')}}
             </h3>
             <div class="box-tools pull-right">
                 <a href="?dl={{ base64_encode($current_file) }}" class="btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-download-alt"></span>
-                    Download file
+                    {{trans('cms::utilities.log.download')}}
                 </a>
                 <a id="delete-log" href="?del={{ base64_encode($current_file) }}" class="btn btn-danger btn-sm">
-                    <span class="glyphicon glyphicon-trash"></span> Delete file
+                    <span class="glyphicon glyphicon-trash"></span> {{trans('cms::utilities.log.delete')}}
                 </a>
             </div>
         </div>
@@ -61,15 +61,15 @@
                 <div class="col-sm-9 col-md-10">
                     @if($logs === null)
                         <div>
-                            Log file >50M, please download it.
+                            {{trans('cms::utilities.log.file_over_50')}}
                         </div>
                     @else
                         <table id="table-log" class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Level</th>
-                                <th>Date</th>
-                                <th>Content</th>
+                                <th>{{trans('cms::utilities.log.level')}}</th>
+                                <th>{{trans('cms::utilities.log.date')}}</th>
+                                <th>{{trans('cms::utilities.log.content')}}</th>
                             </tr>
                             </thead>
                         </table>
@@ -91,7 +91,7 @@
     				<div id="stack-details"></div>
     			</div>
     			<div class="modal-footer">
-    				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    				<button type="button" class="btn btn-default" data-dismiss="modal">{{trans('button.close')}}</button>
     			</div>
     		</div>
     	</div>
@@ -132,7 +132,7 @@
         });
 
         $('#delete-log').click(function () {
-            return confirm('Are you sure?');
+            return confirm("{{trans('cms::utilities.log.delete_confirm')}}");
         });
     });
 </script>

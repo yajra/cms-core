@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Article Component Language Lines
+    | Lookup Component Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines are used on article component related messages
@@ -28,8 +28,6 @@ return [
         'description' => 'This is where you should edit lookups.',
         'icon'        => 'fa fa-edit',
         'fillup'      => 'Fill-up all the required fields.',
-        'update'      => 'Update',
-        'cancel'      => 'Cancel',
     ],
 
     'create' => [

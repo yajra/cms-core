@@ -25,10 +25,10 @@
 
         <div class="box-footer">
             <a href="{{ route('administrator.lookup.index') }}" class="btn btn-warning text-bold">
-                {{trans('cms::lookup.edit.cancel')}}
+                {{trans('cms::button.cancel')}}
             </a>
             <button type="submit" id="btnSave" class="btn btn-primary text-bold">
-                {{trans('cms::lookup.edit.update')}}
+                {{trans('cms::button.update')}}
             </button>
         </div>
     </div>

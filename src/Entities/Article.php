@@ -6,7 +6,7 @@ use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
 use Yajra\CMS\Entities\Traits\HasParameters;
 use Yajra\CMS\Entities\Traits\PublishableTrait;
 use Yajra\CMS\Presenters\ArticlePresenter;
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\Sluggable\HasSlug;
@@ -14,6 +14,7 @@ use Spatie\Sluggable\SlugOptions;
 use Yajra\Acl\Models\Permission;
 use Yajra\Acl\Traits\HasPermission;
 use Yajra\Auditable\AuditableTrait;
+use Yajra\Oci8\Eloquent\OracleEloquent as Model;
 
 /**
  * Class Article
