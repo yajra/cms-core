@@ -44,9 +44,9 @@ class WidgetsController extends Controller
      */
     public function create(Widget $widget)
     {
-        $widget->order     = 1;
-        $widget->type      = old('type', 'wysiwyg');
-        $widget->template  = old('template', 'widgets.wysiwyg.default');
+        $widget->order    = 1;
+        $widget->type     = old('type', 'wysiwyg');
+        $widget->template = old('template', 'widgets.wysiwyg.default');
 
         return view('administrator.widgets.create', compact('widget'));
     }
@@ -63,12 +63,13 @@ class WidgetsController extends Controller
         $widget->fill($request->all());
         $widget->published     = $request->get('published', false);
         $widget->authenticated = $request->get('authenticated', false);
+        $widget->show_title    = $request->get('show_title', false);
         $widget->save();
 
         $widget->syncPermissions($request->get('permissions', []));
         $widget->syncMenuAssignment($request->get('menu', []), $request->get('assignment', Widget::ALL_PAGES));
 
-        flash()->success('Widget successfully created!');
+        flash()->success(trans('cms::widget.store.success'));
 
         return redirect()->route('administrator.widgets.index');
     }
@@ -99,10 +100,13 @@ class WidgetsController extends Controller
         $widget->fill($request->all());
         $widget->published     = $request->get('published', false);
         $widget->authenticated = $request->get('authenticated', false);
+        $widget->show_title    = $request->get('show_title', false);
         $widget->save();
 
         $widget->syncPermissions($request->get('permissions', []));
         $widget->syncMenuAssignment($request->get('menu', []), $request->get('assignment', Widget::ALL_PAGES));
+
+        flash()->success(trans('cms::widget.update.success'));
 
         return redirect()->route('administrator.widgets.index');
     }
@@ -118,7 +122,7 @@ class WidgetsController extends Controller
     {
         $widget->delete();
 
-        return $this->notifySuccess('Widget successfully deleted!');
+        return $this->notifySuccess(trans('cms::widget.destroy.success'));
     }
 
     /**
@@ -132,9 +136,9 @@ class WidgetsController extends Controller
         $widget->published = ! $widget->published;
         $widget->save();
 
-        return $this->notifySuccess(sprintf(
-            'Widget successfully %s!',
-            $widget->published ? 'published' : 'unpublished'
-        ));
+        return $this->notifySuccess(trans('cms::widget.update.publish', [
+                'task' => $widget->published ? 'published' : 'unpublished',
+            ])
+        );
     }
 }

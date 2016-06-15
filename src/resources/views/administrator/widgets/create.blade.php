@@ -3,14 +3,14 @@
 @section('body', 'sidebar-collapse')
 
 @section('title')
-New Widget | @parent
+{{trans('cms::widget.create.title')}} | @parent
 @stop
 
 @push('styles')
 @endpush
 
 @section('page-title')
-    @pageHeader('New Widget', 'Create a widget.', 'fa fa-plus')
+    @pageHeader('cms::widget.create.title', 'cms::widget.create.description', 'cms::widget.create.icon')
 @stop
 
 @section('content')

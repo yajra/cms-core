@@ -1,11 +1,11 @@
 @extends('admin::layouts.master')
 
 @section('title')
-    Update Widget | @parent
+{{trans('cms::widget.edit.title')}} | @parent
 @stop
 
 @section('page-title')
-    @pageHeader('Update Widget', 'Update a widget.', 'fa fa-edit')
+    @pageHeader('cms::widget.edit.title', 'cms::widget.edit.description', 'cms::widget.edit.icon')
 @stop
 
 @section('content')

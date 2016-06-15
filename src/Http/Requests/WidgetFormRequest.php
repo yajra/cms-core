@@ -24,7 +24,7 @@ class WidgetFormRequest extends Request
         return [
             'title'           => 'required|max:255',
             'type'            => 'required|max:20',
-            'template'        => 'required|view_exists',
+            'template'        => 'required',
             'custom_template' => 'required_if:template,custom|view_exists',
             'parameter'       => 'required_if:type,menu',
             'position'        => 'required',
