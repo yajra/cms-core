@@ -28,6 +28,7 @@ use Yajra\Auditable\AuditableTrait;
  * @property int id
  * @property string authorization
  * @property Collection|Permission[] permissions
+ * @property bool show_title
  */
 class Widget extends Model implements Cacheable
 {
