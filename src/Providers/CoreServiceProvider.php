@@ -99,6 +99,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     protected function registerProviders()
     {
+        $this->app->register(ConfigurationServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(ViewComposerServiceProvider::class);
         $this->app->register(ThemeViewFinderServiceProvider::class);
@@ -115,7 +116,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(BackupServiceProvider::class);
         $this->app->register(MailPreviewServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
-        $this->app->register(ConfigurationServiceProvider::class);
         $this->app->register(LaravelLogViewerServiceProvider::class);
         $this->app->register(ArrilotWidgetServiceProvider::class);
         $this->app->register(WidgetServiceProvider::class);
