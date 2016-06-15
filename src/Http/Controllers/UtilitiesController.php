@@ -77,15 +77,15 @@ class UtilitiesController extends Controller
     public function backup($task = 'run')
     {
         if (! in_array($task, ['backup', 'clean'])) {
-            $message = trans('utilities.backup.not_allowed',['task'=>$task]). trans('utilities.field.executed_by',['name'=>$this->getCurrentUserName()]);
+            $message = trans('cms::utilities.backup.not_allowed',['task'=>$task]). trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]);
             $this->log->info($message);
 
             return $this->notifyError($message);
         }
 
         $this->command->call('backup:' . $task);
-        $message = $task == 'clean' ? trans('utilities.backup.cleanup_complete') : trans('utilities.backup.complete');
-        $this->log->info($message . trans('utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
+        $message = $task == 'clean' ? trans('cms::utilities.backup.cleanup_complete') : trans('cms::utilities.backup.complete');
+        $this->log->info($message . trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
 
         return $this->notifySuccess($message);
     }
@@ -108,9 +108,9 @@ class UtilitiesController extends Controller
     public function cache()
     {
         $this->command->call('cache:clear');
-        $this->log->info(trans('utilities.cache.success') . trans('utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
+        $this->log->info(trans('cms::utilities.cache.success') . trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
 
-        return $this->notifySuccess(trans('utilities.cache.success'));
+        return $this->notifySuccess(trans('cms::utilities.cache.success'));
     }
 
     /**
@@ -122,14 +122,14 @@ class UtilitiesController extends Controller
     public function config($task)
     {
         if (! in_array($task, ['cache', 'clear'])) {
-            $message = trans('utilities.config.not_allowed',['task'=>$task]). trans('utilities.field.executed_by',['name'=>$this->getCurrentUserName()]);
+            $message = trans('cms::utilities.config.not_allowed',['task'=>$task]). trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]);
             $this->log->info($message);
 
             return $this->notifyError($message);
         }
 
-        $message = $task == 'cache' ? trans('utilities.config.cache') : trans('utilities.config.cache_cleared');
-        $this->log->info($message . trans('utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
+        $message = $task == 'cache' ? trans('cms::utilities.config.cache') : trans('cms::utilities.config.cache_cleared');
+        $this->log->info($message . trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
         $this->command->call('config:' . $task);
 
         return $this->notifySuccess($message);
@@ -143,9 +143,9 @@ class UtilitiesController extends Controller
     public function views()
     {
         $this->command->call('view:clear');
-        $this->log->info(trans('utilities.views.success').trans('utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
+        $this->log->info(trans('cms::utilities.views.success').trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
 
-        return $this->notifySuccess(trans('utilities.views.success'));
+        return $this->notifySuccess(trans('cms::utilities.views.success'));
     }
 
     /**
