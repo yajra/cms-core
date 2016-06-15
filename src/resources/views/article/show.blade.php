@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('body-class', '')
+@section('body', '')
 
 @push('styles')
 @endpush
