@@ -47,7 +47,7 @@
                             {{trans('cms::widget.field.parameter')}}
                             @tooltip('cms::widget.tooltip.parameter')
                         </label>
-                        {!! form()->input('text', 'parameter', null, ['id'=>'parameter','class'=>'form-control','placeholder'=>trans('cms::widget.tooltip.parameter_placeholder')]) !!}
+                        {!! form()->input('text', 'parameter', null, ['id'=>'parameter','class'=>'form-control','placeholder'=>trans('cms::widget.field.parameter_placeholder')]) !!}
                         {!! $errors->first('parameter', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
