@@ -2,10 +2,10 @@
 
 namespace Yajra\CMS\Providers;
 
-use Yajra\CMS\Widgets\Menu;
-use Yajra\CMS\Widgets\WidgetManager;
-use Yajra\CMS\Widgets\Wysiwyg;
 use Illuminate\Support\ServiceProvider;
+use Yajra\CMS\Widgets\Menu;
+use Yajra\CMS\Widgets\Repository;
+use Yajra\CMS\Widgets\Wysiwyg;
 
 class WidgetServiceProvider extends ServiceProvider
 {
@@ -16,7 +16,16 @@ class WidgetServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        /** @var Repository $factory */
+        $factory = $this->app['widgets'];
+        $factory->register('menu', 'Menu Widget', Menu::class, [
+            'widgets.menu.bootstrap' => 'Bootstrap Menu (widgets.menu.bootstrap)',
+            'custom'                 => 'Custom Template',
+        ])->register('wysiwyg', 'WYSIWYG', Wysiwyg::class, [
+            'widgets.wysiwyg.default' => 'Default Bootstrap Panel (widgets.wysiwyg.default)',
+            'widgets.wysiwyg.raw'     => 'Plain Body Contents (widgets.wysiwyg.raw)',
+            'custom'                  => 'Custom Template',
+        ]);
     }
 
     /**
@@ -26,10 +35,18 @@ class WidgetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(WidgetManager::class, WidgetManager::class);
+        $this->app->singleton('widgets', function () {
+            return new Repository;
+        });
 
-        $this->app->make(WidgetManager::class)
-                  ->register('menu', Menu::class)
-                  ->register('wysiwyg', Wysiwyg::class);
+        $this->app->alias('widgets', Repository::class);
+    }
+
+    /**
+     * @return array
+     */
+    public function provides()
+    {
+        return ['widgets'];
     }
 }

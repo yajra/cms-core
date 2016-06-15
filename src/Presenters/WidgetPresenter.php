@@ -2,8 +2,8 @@
 
 namespace Yajra\CMS\Presenters;
 
-use Yajra\CMS\Widgets\WidgetManager;
 use Laracasts\Presenter\Presenter;
+use Yajra\CMS\Widgets\Repository;
 
 class WidgetPresenter extends Presenter
 {
@@ -25,9 +25,9 @@ class WidgetPresenter extends Presenter
      */
     public function type()
     {
-        /** @var WidgetManager $manager */
-        $manager = app(WidgetManager::class);
+        /** @var Repository $repository */
+        $repository = app('widgets');
 
-        return $manager->getClass($this->entity->type);
+        return $repository->findOrFail($this->entity->type)->getClass();
     }
 }
