@@ -9,8 +9,8 @@
                             @tooltip('cms::widget.tooltip.type')
                         </label>
                         <select name="type" class="form-control" v-model="widget.type" @change="fetchTemplates">
-                            @foreach(app('widgets')->all() as $type)
-                            <option value="{{$type->name}}">{{$type->description}}</option>
+                            @foreach(app('widgets')->all() as $item)
+                            <option value="{{$item->type}}">{{$item->name}}</option>
                             @endforeach
                         </select>
                         {!! $errors->first('type', '<span class="help-block">:message</span>') !!}

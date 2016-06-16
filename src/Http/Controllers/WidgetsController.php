@@ -160,7 +160,7 @@ class WidgetsController extends Controller
     public function templates($type)
     {
         $data = [];
-        foreach ($this->repository->all()->where('name', $type) as $widget) {
+        foreach ($this->repository->all()->where('type', $type) as $widget) {
             foreach ($widget->templates as $key => $value) {
                 $data[] = ['key' => $key, 'value' => $value];
             }

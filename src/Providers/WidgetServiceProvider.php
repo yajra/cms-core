@@ -3,6 +3,7 @@
 namespace Yajra\CMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Yajra\CMS\Console\WidgetMakeCommand;
 use Yajra\CMS\Widgets\Menu;
 use Yajra\CMS\Widgets\Repository;
 use Yajra\CMS\Widgets\Wysiwyg;
@@ -18,13 +19,25 @@ class WidgetServiceProvider extends ServiceProvider
     {
         /** @var Repository $factory */
         $factory = $this->app['widgets'];
-        $factory->register('menu', 'Menu Widget', Menu::class, [
-            'widgets.menu.bootstrap' => 'Bootstrap Menu (widgets.menu.bootstrap)',
-            'custom'                 => 'Custom Template',
-        ])->register('wysiwyg', 'WYSIWYG', Wysiwyg::class, [
-            'widgets.wysiwyg.default' => 'Default Bootstrap Panel (widgets.wysiwyg.default)',
-            'widgets.wysiwyg.raw'     => 'Plain Body Contents (widgets.wysiwyg.raw)',
-            'custom'                  => 'Custom Template',
+        $factory->register([
+            'type'        => 'menu',
+            'name'        => 'Menu Widget',
+            'version'     => '1.0.0',
+            'class'       => Menu::class,
+            'templates'   => [
+                'widgets.menu.bootstrap' => 'Bootstrap Menu (widgets.menu.bootstrap)',
+                'custom'                 => 'Custom Template',
+            ],
+        ])->register([
+            'type'      => 'wysiwyg',
+            'name'      => 'WYSIWYG',
+            'version'   => '1.0.0',
+            'class'     => Wysiwyg::class,
+            'templates' => [
+                'widgets.wysiwyg.default' => 'Default Bootstrap Panel (widgets.wysiwyg.default)',
+                'widgets.wysiwyg.raw'     => 'Plain Body Contents (widgets.wysiwyg.raw)',
+                'custom'                  => 'Custom Template',
+            ],
         ]);
     }
 
@@ -40,6 +53,11 @@ class WidgetServiceProvider extends ServiceProvider
         });
 
         $this->app->alias('widgets', Repository::class);
+
+        // override arrilot widget command.
+        $this->app->singleton('command.widget.make', function ($app) {
+            return new WidgetMakeCommand($app['files']);
+        });
     }
 
     /**

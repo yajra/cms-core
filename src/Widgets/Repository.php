@@ -2,25 +2,40 @@
 
 namespace Yajra\CMS\Widgets;
 
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 
 class Repository
 {
+    use ValidatesRequests;
+
     /**
      * @var array
      */
     protected $widgets = [];
 
     /**
-     * @param string $widget
-     * @param string $description
-     * @param string $classPath
-     * @param array $templates
+     * Register a widget.
+     *
+     * @param array $attributes
      * @return $this
+     * @throws \Exception
      */
-    public function register($widget, $description, $classPath, $templates = [])
+    public function register(array $attributes)
     {
-        $this->widgets[$widget] = new Widget($widget, $description, $classPath, $templates);
+        $validator = $this->getValidationFactory()->make($attributes, [
+            'type'        => 'required',
+            'name'        => 'required',
+            'version'     => 'required',
+            'class'       => 'required',
+            'templates'   => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            throw new \Exception('Invalid widget config detected!');
+        }
+
+        $this->widgets[$attributes['type']] = new Widget($attributes);
 
         return $this;
     }
