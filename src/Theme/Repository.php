@@ -87,7 +87,7 @@ class Repository
      * Find or fail a theme.
      *
      * @param string $theme
-     * @return mixed
+     * @return \Yajra\CMS\Theme\Theme
      * @throws \Yajra\CMS\Theme\NotFoundException
      */
     public function findOrFail($theme)
@@ -107,5 +107,16 @@ class Repository
     public function all()
     {
         return new Collection($this->themes);
+    }
+
+    /**
+     * Get current frontend theme.
+     *
+     * @return \Yajra\CMS\Theme\Theme
+     * @throws \Yajra\CMS\Theme\NotFoundException
+     */
+    public function current()
+    {
+        return $this->findOrFail($this->config->get('theme.frontend'));
     }
 }
