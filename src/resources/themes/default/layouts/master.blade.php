@@ -3,8 +3,6 @@
 <head>
     @include('system.headers.meta')
     {{ Asset::css() }}
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/datatables.css') }}" rel="stylesheet" type="text/css" />
     @stack('styles')
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -50,11 +48,7 @@
 </div>
 
 {{ Asset::js() }}
-<script src="{{ asset('vendor/datatables/buttons.server-side.js') }}" type="text/javascript"></script>
-
 @stack('js-plugins')
-<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/dt-filter-placeholder.js') }}" type="text/javascript"></script>
 @stack('scripts')
 @include('system.sweetalert')
 </body>
