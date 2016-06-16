@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @include('system.headers.meta')
-    @include('system.headers.libraries')
-    @include('system.headers.plugins')
+    @include('system.meta')
+    {{ Asset::css() }}
     @stack('styles')
     <style>
         h1 {
