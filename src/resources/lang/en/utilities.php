@@ -68,12 +68,12 @@ return [
     ],
 
     'menu' => [
-        'rebuild' => 'Rebuild Menu Tree',
+        'rebuild' => 'Rebuild Menu',
         'success' => 'Menu tree successfully rebuild!',
     ],
 
     'category' => [
-        'rebuild' => 'Rebuild Category Tree',
+        'rebuild' => 'Rebuild Category',
         'success' => 'Category tree successfully rebuild!',
     ]
 
