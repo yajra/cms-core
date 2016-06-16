@@ -61,17 +61,6 @@
 </div>
 
 <div class="form-group">
-    <label class="form-label-style block" for="title">Site Template
-        @tooltip('Frontend site template.')
-    </label>
-    {!! form()->input('text', 'version', $configuration->key("site.template"),[
-            'v-model'       => 'site.template',
-            'class'         => 'form-control',
-            'placeholder'   => 'Enter Template Here',
-        ]) !!}
-</div>
-
-<div class="form-group">
     <label class="form-label-style block" for="title">Administrator Template (AdminLTE Color Scheme)
         @tooltip('Administrator area AdminLTE color scheme.')
     </label>
