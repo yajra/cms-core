@@ -24,6 +24,8 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Asset::add('styles/default.css');
+        foreach (config('site.assets.' . config('site.assets.default')) as $asset => $value) {
+            Asset::add($value);
+        }
     }
 }
