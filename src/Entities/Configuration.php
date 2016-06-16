@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Configuration
  *
- * @package App
- * @property string value
  * @property string key
+ * @property string value
  */
 class Configuration extends Model
 {

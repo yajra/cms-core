@@ -51,4 +51,14 @@ class Theme extends Fluent
 
         parent::__construct($attributes);
     }
+
+    /**
+     * Check if this team is the default theme.
+     *
+     * @return bool
+     */
+    public function isDefault()
+    {
+        return $this->theme == config('theme.frontend', 'default');
+    }
 }
