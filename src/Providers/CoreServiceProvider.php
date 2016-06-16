@@ -101,11 +101,11 @@ class CoreServiceProvider extends ServiceProvider
     protected function registerProviders()
     {
         $this->app->register(ConfigurationServiceProvider::class);
+        $this->app->register(ThemesServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(RoumenAssetServiceProvider::class);
         $this->app->register(ViewComposerServiceProvider::class);
         $this->app->register(Oci8ServiceProvider::class);
-        $this->app->register(DatatablesServiceProvider::class);
         $this->app->register(AclServiceProvider::class);
         $this->app->register(MenusServiceProvider::class);
         $this->app->register(BreadcrumbsServiceProvider::class);
@@ -121,8 +121,8 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(ArrilotWidgetServiceProvider::class);
         $this->app->register(WidgetServiceProvider::class);
         $this->app->register(ModulesServiceProvider::class);
-        $this->app->register(ThemesServiceProvider::class);
         $this->app->register(AssetServiceProvider::class);
+        $this->app->register(DatatablesServiceProvider::class);
     }
 
     /**
