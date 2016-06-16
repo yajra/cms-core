@@ -15,7 +15,8 @@
                 <i class="fa fa-list"></i>&nbsp;{{trans('cms::theme.lists')}}
             </h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
             </div>
         </div>
         <div class="box-body">
@@ -26,7 +27,8 @@
                     <th>{{trans('cms::theme.table.description')}}</th>
                     <th>{{trans('cms::theme.table.version')}}</th>
                     <th width="20px">
-                        <i class="fa fa-star" data-toggle="tooltip" data-title="{{trans('cms::theme.table.default')}}"></i>
+                        <i class="fa fa-star" data-toggle="tooltip"
+                           data-title="{{trans('cms::theme.table.default')}}"></i>
                     </th>
                     <th>{{trans('cms::theme.table.positions')}}</th>
                     <th width="80px">{{trans('cms::theme.table.action')}}</th>
@@ -44,17 +46,29 @@
                         </td>
                         <td>
                             <ul>
-                            @foreach($theme->positions as $position)
-                                <li>{{$position}}</li>
-                            @endforeach
+                                @foreach($theme->positions as $position)
+                                    <li>{{$position}}</li>
+                                @endforeach
                             </ul>
                         </td>
                         <td>
                             @if(! $theme->isDefault())
-                            {!! form()->open() !!}
-                            {!! form()->hidden('theme', $theme->theme) !!}
-                            <button type="submit" class="btn btn-xs btn-primary btn-save">Set as Default</button>
-                            {!! form()->close() !!}
+                                {!! form()->open() !!}
+                                <button type="submit" class="btn btn-xs btn-primary btn-block btn-save">
+                                    <i class="fa fa-star"></i>
+                                    {{trans('cms::theme.default')}}
+                                </button>
+                                {!! form()->close() !!}
+
+                                <br>
+
+                                {!! form()->open(['method' => 'delete', 'url' => route('administrator.themes.destroy', $theme->theme)]) !!}
+                                {!! form()->hidden('theme', $theme->theme) !!}
+                                <button type="button" class="btn btn-xs btn-danger btn-block btn-delete">
+                                    <i class="fa fa-trash"></i>
+                                    {{trans('cms::theme.uninstall')}}
+                                </button>
+                                {!! form()->close() !!}
                             @endif
                         </td>
                     </tr>
@@ -65,4 +79,24 @@
 @stop
 
 @push('scripts')
+<script>
+    $(function () {
+        $('.btn-delete').on('click', function (e) {
+            var form = $(this).parents('form');
+            e.preventDefault();
+            swal({
+                title: "{{trans('cms::theme.confirm.title')}}",
+                text: "{{trans('cms::theme.confirm.text')}}",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: "{{trans('cms::theme.confirm.cancel')}}",
+                confirmButtonText: "{{trans('cms::theme.confirm.yes')}}",
+                closeOnConfirm: false
+            }, function () {
+                form.submit();
+            });
+        });
+    });
+</script>
 @endpush

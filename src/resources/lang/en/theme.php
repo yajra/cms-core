@@ -28,5 +28,16 @@ return [
         'action'      => 'Action',
     ],
 
-    'success' => 'Theme :theme was set as default!',
+    'confirm' => [
+        'title'  => 'Are you sure?',
+        'text'   => 'Uninstalling will permanently delete this theme!',
+        'cancel' => 'Cancel',
+        'yes'    => 'Yes, uninstall the theme',
+    ],
+
+    'success'   => 'Theme :theme was set as default!',
+    'default'   => 'Set as Default',
+    'uninstall' => 'Uninstall',
+    'deleted'   => 'Theme :theme uninstalled!',
+    'error'     => 'Error uninstalling :theme!',
 ];

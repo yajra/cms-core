@@ -3,6 +3,7 @@
 namespace Yajra\CMS\Theme;
 
 use Illuminate\Contracts\Config\Repository as Config;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
@@ -84,22 +85,6 @@ class Repository
     }
 
     /**
-     * Find or fail a theme.
-     *
-     * @param string $theme
-     * @return \Yajra\CMS\Theme\Theme
-     * @throws \Yajra\CMS\Theme\NotFoundException
-     */
-    public function findOrFail($theme)
-    {
-        if (in_array($theme, array_keys($this->themes))) {
-            return $this->themes[$theme];
-        }
-
-        throw new NotFoundException('Theme not found!');
-    }
-
-    /**
      * Get all themes.
      *
      * @return \Illuminate\Support\Collection
@@ -118,5 +103,57 @@ class Repository
     public function current()
     {
         return $this->findOrFail($this->config->get('theme.frontend'));
+    }
+
+    /**
+     * Find or fail a theme.
+     *
+     * @param string $theme
+     * @return \Yajra\CMS\Theme\Theme
+     * @throws \Yajra\CMS\Theme\NotFoundException
+     */
+    public function findOrFail($theme)
+    {
+        if (in_array($theme, array_keys($this->themes))) {
+            return $this->themes[$theme];
+        }
+
+        throw new NotFoundException('Theme not found!');
+    }
+
+    /**
+     * Uninstall a theme.
+     *
+     * @param string $theme
+     * @return bool
+     */
+    public function uninstall($theme)
+    {
+        /** @var Filesystem $filesystem */
+        $filesystem = app(Filesystem::class);
+        $dir        = $this->getDirectoryPath($theme);
+
+        return $filesystem->deleteDirectory($dir);
+    }
+
+    /**
+     * Get directory path of the theme.
+     *
+     * @param string $theme
+     * @return string
+     */
+    public function getDirectoryPath($theme)
+    {
+        return $this->getBasePath() . DIRECTORY_SEPARATOR . $theme;
+    }
+
+    /**
+     * Get themes base path.
+     *
+     * @return string
+     */
+    public function getBasePath()
+    {
+        return $this->config->get('theme.path');
     }
 }
