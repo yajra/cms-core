@@ -16,9 +16,13 @@ class ThemesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['view']->setFinder($this->app['theme.view.finder']);
-        $this->app['view']->addLocation(__DIR__ . '/../resources/views');
-        $this->loadViewsFrom(__DIR__ . '/../resources/theme', 'admin');
+        /** @var \Illuminate\View\Factory $view */
+        $view = $this->app['view'];
+        $view->setFinder($this->app['theme.view.finder']);
+        $view->addLocation(__DIR__ . '/../resources/views');
+
+        // Load admin theme views.
+        $this->loadViewsFrom(__DIR__ . '/../resources/themes/' . config('theme.backend', 'default'), 'admin');
 
         /** @var Repository $themes */
         $themes = $this->app['themes'];
@@ -34,7 +38,7 @@ class ThemesServiceProvider extends ServiceProvider
     {
         $this->app->singleton('theme.view.finder', function ($app) {
             $finder = new ThemeViewFinder($app['files'], $app['config']['view.paths']);
-            $finder->setBasePath(config('theme.path', base_path('themes')) . DIRECTORY_SEPARATOR . config('theme.active', 'default'));
+            $finder->setBasePath(config('theme.path', base_path('themes')) . DIRECTORY_SEPARATOR . config('theme.frontend', 'default'));
 
             return $finder;
         });
