@@ -2,11 +2,12 @@
 
 namespace Yajra\CMS\Providers;
 
-use Yajra\CMS\Entities\Category;
-use Yajra\CMS\Entities\Lookup;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Yajra\Acl\Models\Permission;
+use Yajra\CMS\Entities\Category;
+use Yajra\CMS\Theme\Repository;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,15 @@ class ViewComposerServiceProvider extends ServiceProvider
     protected function bootAdministratorViewComposer()
     {
         view()->composer('administrator.widgets.*', function (View $view) {
-            $view->with('widget_positions', Lookup::type('widgets.positions')->pluck('value', 'key'));
+            /** @var Repository $themes */
+            $themes    = $this->app['themes'];
+            $positions = $themes->current()->positions;
+            $data      = [];
+            foreach ($positions as $position) {
+                $data[$position] = Str::title($position);
+            }
+
+            $view->with('widget_positions', $data);
         });
 
         view()->composer('administrator.articles.partials.form', function (View $view) {
