@@ -55,7 +55,7 @@
                             @if(! $theme->isDefault())
                                 {!! form()->open() !!}
                                 {!! form()->hidden('theme', $theme->theme) !!}
-                                <button type="submit" class="btn btn-xs btn-primary btn-block btn-save">
+                                <button type="submit" class="btn btn-xs btn-primary btn-block">
                                     <i class="fa fa-star"></i>
                                     {{trans('cms::theme.default')}}
                                 </button>
@@ -70,6 +70,11 @@
                                     {{trans('cms::theme.uninstall')}}
                                 </button>
                                 {!! form()->close() !!}
+                            @else
+                                <button type="submit" disabled class="btn btn-xs btn-success btn-block">
+                                    <i class="fa fa-star"></i>
+                                    {{trans('cms::theme.current')}}
+                                </button>
                             @endif
                         </td>
                     </tr>

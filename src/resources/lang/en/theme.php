@@ -40,4 +40,5 @@ return [
     'uninstall' => 'Uninstall',
     'deleted'   => 'Theme :theme uninstalled!',
     'error'     => 'Error uninstalling :theme!',
+    'current'   => 'Current Theme',
 ];
