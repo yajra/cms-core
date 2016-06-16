@@ -50,8 +50,9 @@
     <div class='control-sidebar-bg'></div-->
 </div>
 
-@include('system.scripts.libraries')
-@include('system.scripts.plugins')
+{{ Asset::js() }}
+<script src="{{ asset('vendor/datatables/buttons.server-side.js') }}" type="text/javascript"></script>
+
 @stack('js-plugins')
 <script src="{{ asset('themes/admin-lte/js/app.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
