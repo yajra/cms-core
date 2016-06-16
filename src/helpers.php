@@ -129,7 +129,7 @@ if (! function_exists('theme_asset')) {
     {
         $path = $path ? DIRECTORY_SEPARATOR . $path : $path;
 
-        return asset('themes' . DIRECTORY_SEPARATOR . config('site.template', 'default') . $path, $secure);
+        return asset('themes' . DIRECTORY_SEPARATOR . config('theme.frontend', 'default') . $path, $secure);
     }
 }
 
