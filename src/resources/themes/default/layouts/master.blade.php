@@ -4,6 +4,7 @@
     @include('system.headers.meta')
     @include('system.headers.libraries')
     @include('system.headers.plugins')
+    {{ Asset::css() }}
     <link href="{{ asset('themes/admin-lte/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('themes/admin-lte/css/skins/skin-'.config('site.admin_theme').'.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet" type="text/css" />
