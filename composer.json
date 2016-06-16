@@ -44,7 +44,8 @@
         "spatie/laravel-sluggable": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^0.6.1",
         "themsaid/laravel-mail-preview": "^1.1",
-        "barryvdh/laravel-debugbar": "^2.2"
+        "barryvdh/laravel-debugbar": "^2.2",
+        "roumen/asset": "^2.5"
     },
     "require-dev": {
         "phpunit/phpunit" : "4.*",

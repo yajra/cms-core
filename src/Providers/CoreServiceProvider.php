@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Providers;
 
+use Roumen\Asset\AssetServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
 use Arrilot\Widgets\ServiceProvider as ArrilotWidgetServiceProvider;
@@ -35,10 +36,10 @@ class CoreServiceProvider extends ServiceProvider
         $this->bootCustomValidations();
         $this->bootCustomBladeDirectives();
 
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
 
         $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/cms'),
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/cms'),
         ]);
 
         if (config('app.debug') && config('app.debugbar')) {
@@ -101,6 +102,7 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->app->register(ConfigurationServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(AssetServiceProvider::class);
         $this->app->register(ViewComposerServiceProvider::class);
         $this->app->register(Oci8ServiceProvider::class);
         $this->app->register(DatatablesServiceProvider::class);
@@ -146,5 +148,6 @@ class CoreServiceProvider extends ServiceProvider
         $loader->alias('Widget', \Arrilot\Widgets\Facade::class);
         $loader->alias('AsyncWidget', \Arrilot\Widgets\AsyncFacade::class);
         $loader->alias('Module', \Pingpong\Modules\Facades\Module::class);
+        $loader->alias('Asset', \Roumen\Asset\Asset::class);
     }
 }
