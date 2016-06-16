@@ -20,6 +20,7 @@ class ThemesController extends Controller
      */
     public function __construct(Repository $themes)
     {
+        $this->authorizePermissionResource('theme');
         $this->themes = $themes;
     }
 

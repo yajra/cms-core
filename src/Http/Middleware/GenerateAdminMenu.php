@@ -73,7 +73,9 @@ class GenerateAdminMenu
                     $mod->add($module->getStudlyName(), url("administrator/{$module->getLowerName()}"))->icon('file');
                 });
 
-                $themes = $menu->add('Themes', route('administrator.themes.index'))->icon('windows');
+                $menu->add('Themes', route('administrator.themes.index'))
+                     ->icon('windows')
+                     ->data(['permission' => 'theme.view']);
 
                 $users = $menu->add('Users', '#')->icon('key');
                 $users->add('Manage', route('administrator.users.index'))->icon('users')
