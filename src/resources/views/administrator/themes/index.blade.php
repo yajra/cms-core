@@ -21,6 +21,7 @@
         </div>
         <div class="box-body">
             <table class="table table-striped table-bordered">
+                <thead>
                 <tr>
                     <th width="60px">{{trans('cms::theme.table.theme')}}</th>
                     <th>{{trans('cms::theme.table.name')}}</th>
@@ -33,6 +34,7 @@
                     <th>{{trans('cms::theme.table.positions')}}</th>
                     <th width="80px">{{trans('cms::theme.table.action')}}</th>
                 </tr>
+                </thead>
                 @foreach($themes as $theme)
                     <tr>
                         <td><span class="label label-success">{{$theme->theme}}</span></td>
