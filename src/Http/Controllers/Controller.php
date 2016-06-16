@@ -2,7 +2,6 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Roumen\Asset\Asset;
 use Yajra\CMS\Http\NotificationResponse;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
@@ -15,12 +14,4 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, AuthorizesPermissionResources,
         DispatchesJobs, ValidatesRequests, NotificationResponse;
-
-    /**
-     * Controller constructor.
-     */
-    public function __construct()
-    {
-        Asset::add('styles/default.css');
-    }
 }
