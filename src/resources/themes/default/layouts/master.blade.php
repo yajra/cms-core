@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @include('system.headers.meta')
+    @include('system.meta')
     {{ Asset::css() }}
     @stack('styles')
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

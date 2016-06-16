@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @include('system.headers.meta')
-    @include('system.headers.libraries')
-    @include('system.headers.plugins')
-    <link href="{{ asset('themes/admin-lte/css/AdminLTE.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('themes/admin-lte/css/skins/skin-blue.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/datatables.css') }}" rel="stylesheet" type="text/css" />
+    @include('system.meta')
+    {{ Asset::css() }}
     @stack('styles')
     <style>
         body {
@@ -26,12 +21,9 @@
         @yield('content')
     </div>
 
-    @include('system.scripts.libraries')
-    @include('system.scripts.plugins')
+    {{ Asset::js() }}
     @stack('js-plugins')
-    <script src="{{ asset('themes/admin-lte/js/app.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/dt-filter-placeholder.js') }}" type="text/javascript"></script>
     @stack('scripts')
+    @include('system.sweetalert')
 </body>
 </html>
