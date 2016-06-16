@@ -50,7 +50,7 @@ return [
         'type'          => 'Type of widget.',
         'template'      => 'Widget blade template.',
         'parameter'     => 'If widget is menu, the parameter value should be a navigation type like (mainmenu).',
-        'position'      => 'A pre-defined widget group position on your site template where the widget will be displayed.',
+        'position'      => 'A pre-defined widget group position on your frontend template where the widget will be displayed.',
         'order'         => 'Display order in widget position/group..',
         'authenticated' => 'Requires authentication to access the widget.',
         'published'     => 'Set publication status.',

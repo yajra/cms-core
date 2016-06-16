@@ -65,7 +65,7 @@
                 <div class="col-md-12">
                     <div class="form-group {!! $errors->has('position') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="position">
-                            {{trans('cms::widget.field.position')}}
+                            {{$theme->name}}&nbsp;{{trans('cms::widget.field.position')}}
                             @tooltip('cms::widget.tooltip.position')
                         </label>
                         {!! form()->select('position', $widget_positions , null , ['class' => 'form-control select2']) !!}

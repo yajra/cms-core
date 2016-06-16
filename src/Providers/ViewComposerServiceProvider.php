@@ -29,13 +29,15 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer('administrator.widgets.*', function (View $view) {
             /** @var Repository $themes */
             $themes    = $this->app['themes'];
-            $positions = $themes->current()->positions;
+            $theme     = $themes->current();
+            $positions = $theme->positions;
             $data      = [];
             foreach ($positions as $position) {
                 $data[$position] = Str::title($position);
             }
 
             $view->with('widget_positions', $data);
+            $view->with('theme', $theme);
         });
 
         view()->composer('administrator.articles.partials.form', function (View $view) {
