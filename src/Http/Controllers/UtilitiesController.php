@@ -9,6 +9,8 @@ use Illuminate\Contracts\Logging\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
+use Yajra\CMS\Entities\Category;
+use Yajra\CMS\Entities\Menu;
 use Yajra\Datatables\Datatables;
 
 class UtilitiesController extends Controller
@@ -206,5 +208,25 @@ class UtilitiesController extends Controller
             'files'        => LaravelLogViewer::getFiles(true),
             'current_file' => LaravelLogViewer::getFileName(),
         ]);
+    }
+
+    /**
+     * Rebuild menu entity nested set tree.
+     */
+    public function rebuildMenu()
+    {
+        Menu::rebuild();
+
+        return $this->notifySuccess(trans('cms::utilities.menu.success'));
+    }
+
+    /**
+     * Rebuild category entity nested set tree.
+     */
+    public function rebuildCategory()
+    {
+        Category::rebuild();
+
+        return $this->notifySuccess(trans('cms::utilities.category.success'));
     }
 }

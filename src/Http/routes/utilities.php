@@ -16,6 +16,10 @@ $router->post('utilities/cache', UtilitiesController::class . '@cache')
        ->name('administrator.utilities.cache');
 $router->post('utilities/views', UtilitiesController::class . '@views')
        ->name('administrator.utilities.views');
+$router->post('utilities/rebuild-menu', UtilitiesController::class . '@rebuildMenu')
+       ->name('administrator.utilities.menu.rebuild');
+$router->post('utilities/rebuild-category', UtilitiesController::class . '@rebuildCategory')
+       ->name('administrator.utilities.category.rebuild');
 
 $router->post('utilities/config/{task}', UtilitiesController::class . '@config')
        ->name('administrator.utilities.config');

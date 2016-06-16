@@ -38,6 +38,13 @@
             <a class="btn btn-app" href="{{ route('administrator.utilities.logs') }}">
                 <i class="fa fa-exclamation-triangle"></i> {{trans('cms::utilities.field.log_viewer')}}
             </a>
+            <button class="btn btn-app" data-post="{{ route('administrator.utilities.menu.rebuild') }}">
+                <i class="fa fa-tree"></i> {{trans('cms::utilities.menu.rebuild')}}
+            </button>
+            <button class="btn btn-app" data-post="{{ route('administrator.utilities.category.rebuild') }}">
+                <i class="fa fa-tree"></i> {{trans('cms::utilities.category.rebuild')}}
+            </button>
+
         </div>
     </div>
 @stop

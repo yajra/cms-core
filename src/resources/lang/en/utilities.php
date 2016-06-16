@@ -67,6 +67,14 @@ return [
         'success' => 'Compiled views cleared!',
     ],
 
-    
+    'menu' => [
+        'rebuild' => 'Rebuild Menu Tree',
+        'success' => 'Menu tree successfully rebuild!',
+    ],
+
+    'category' => [
+        'rebuild' => 'Rebuild Category Tree',
+        'success' => 'Category tree successfully rebuild!',
+    ]
 
 ];
