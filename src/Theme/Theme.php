@@ -61,4 +61,14 @@ class Theme extends Fluent
     {
         return $this->theme == config('theme.frontend', 'default');
     }
+
+    /**
+     * Get theme image preview url.
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function preview()
+    {
+        return url('themes/'.$this->theme.'/preview.png');
+    }
 }

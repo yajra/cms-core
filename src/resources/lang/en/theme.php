@@ -20,7 +20,9 @@ return [
 
     'table' => [
         'name'        => 'Name',
+        'preview'     => '',
         'theme'       => 'Theme',
+        'author'      => 'Author',
         'description' => 'Description',
         'version'     => 'Version',
         'positions'   => 'Positions',

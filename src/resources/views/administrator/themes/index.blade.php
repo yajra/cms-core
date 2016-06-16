@@ -20,27 +20,38 @@
             </div>
         </div>
         <div class="box-body">
-            <table class="table table-striped table-bordered">
+            <table class="table" id="themes-table">
                 <thead>
                 <tr>
-                    <th width="60px">{{trans('cms::theme.table.theme')}}</th>
-                    <th>{{trans('cms::theme.table.name')}}</th>
-                    <th>{{trans('cms::theme.table.description')}}</th>
-                    <th>{{trans('cms::theme.table.version')}}</th>
+                    <th width="120px">{{trans('cms::theme.table.preview')}}</th>
+                    <th>{{trans('cms::theme.table.theme')}}</th>
+                    <th>{{trans('cms::theme.table.author')}}</th>
                     <th width="20px">
                         <i class="fa fa-star" data-toggle="tooltip"
                            data-title="{{trans('cms::theme.table.default')}}"></i>
                     </th>
-                    <th>{{trans('cms::theme.table.positions')}}</th>
+                    <th width="80px">{{trans('cms::theme.table.positions')}}</th>
                     <th width="80px">{{trans('cms::theme.table.action')}}</th>
                 </tr>
                 </thead>
                 @foreach($themes as $theme)
                     <tr>
-                        <td><span class="label label-success">{{$theme->theme}}</span></td>
-                        <td>{{$theme->name}}</td>
-                        <td>{{$theme->description}}</td>
-                        <td>{{$theme->version}}</td>
+                        <td>
+                            <img src="{{$theme->preview()}}" class="thumbnail" width="220px" alt="{{$theme->name}}">
+                        </td>
+                        <td>
+                            <h3 class="lead no-margin text-blue">{{$theme->name}} <small>{{$theme->version}}</small></h3>
+                            <span class="label label-success">{{$theme->theme}}</span>
+                            <p></p>
+                            <p>{{$theme->description}}</p>
+                        </td>
+                        <td>
+                            <p>{{$theme->author['name'] or ''}}</p>
+                            <p>{{$theme->author['email'] or ''}}</p>
+                            @if($theme->author['website'])
+                                <p>{{html()->link($theme->author['website'])}}</p>
+                            @endif
+                        </td>
                         <td>
                             @if($theme->isDefault())
                                 <i class="fa fa-star text-green"></i>
@@ -104,6 +115,13 @@
             }, function () {
                 form.submit();
             });
+        });
+
+        $('#themes-table').DataTable({
+            order: [[1, 'asc']],
+            columnDefs: [
+                {orderable: false, targets: [0, 5]}
+            ]
         });
     });
 </script>
