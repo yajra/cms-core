@@ -102,7 +102,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(ConfigurationServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(ViewComposerServiceProvider::class);
-        $this->app->register(ThemeViewFinderServiceProvider::class);
         $this->app->register(Oci8ServiceProvider::class);
         $this->app->register(DatatablesServiceProvider::class);
         $this->app->register(AclServiceProvider::class);
@@ -120,6 +119,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(ArrilotWidgetServiceProvider::class);
         $this->app->register(WidgetServiceProvider::class);
         $this->app->register(ModulesServiceProvider::class);
+        $this->app->register(ThemesServiceProvider::class);
     }
 
     /**

@@ -2,10 +2,12 @@
 
 namespace Yajra\CMS\Providers;
 
-use Yajra\CMS\View\ThemeViewFinder;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Finder\Finder;
+use Yajra\CMS\Theme\Repository;
+use Yajra\CMS\View\ThemeViewFinder;
 
-class ThemeViewFinderServiceProvider extends ServiceProvider
+class ThemesServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -15,8 +17,12 @@ class ThemeViewFinderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app['view']->setFinder($this->app['theme.view.finder']);
-        $this->app['view']->addLocation(__DIR__.'/../resources/views');
-        $this->loadViewsFrom(__DIR__.'/../resources/theme', 'admin');
+        $this->app['view']->addLocation(__DIR__ . '/../resources/views');
+        $this->loadViewsFrom(__DIR__ . '/../resources/theme', 'admin');
+
+        /** @var Repository $themes */
+        $themes = $this->app['themes'];
+        $themes->scan();
     }
 
     /**
@@ -32,5 +38,11 @@ class ThemeViewFinderServiceProvider extends ServiceProvider
 
             return $finder;
         });
+
+        $this->app->singleton('themes', function () {
+            return new Repository(new Finder, $this->app['config']);
+        });
+
+        $this->app->alias('themes', Repository::class);
     }
 }
