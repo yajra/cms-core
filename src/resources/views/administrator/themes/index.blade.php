@@ -54,6 +54,7 @@
                         <td>
                             @if(! $theme->isDefault())
                                 {!! form()->open() !!}
+                                {!! form()->hidden('theme', $theme->theme) !!}
                                 <button type="submit" class="btn btn-xs btn-primary btn-block btn-save">
                                     <i class="fa fa-star"></i>
                                     {{trans('cms::theme.default')}}

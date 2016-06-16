@@ -44,6 +44,10 @@ class ThemesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'theme' => 'required',
+        ]);
+
         /** @var Configuration $config */
         $config        = Configuration::query()->firstOrCreate(['key' => 'theme.frontend']);
         $config->value = $request->get('theme');
