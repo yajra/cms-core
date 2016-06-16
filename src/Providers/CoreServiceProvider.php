@@ -2,7 +2,7 @@
 
 namespace Yajra\CMS\Providers;
 
-use Roumen\Asset\AssetServiceProvider;
+use Roumen\Asset\AssetServiceProvider as RoumenAssetServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
 use Arrilot\Widgets\ServiceProvider as ArrilotWidgetServiceProvider;
@@ -102,7 +102,7 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->app->register(ConfigurationServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
-        $this->app->register(AssetServiceProvider::class);
+        $this->app->register(RoumenAssetServiceProvider::class);
         $this->app->register(ViewComposerServiceProvider::class);
         $this->app->register(Oci8ServiceProvider::class);
         $this->app->register(DatatablesServiceProvider::class);
@@ -122,6 +122,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(WidgetServiceProvider::class);
         $this->app->register(ModulesServiceProvider::class);
         $this->app->register(ThemesServiceProvider::class);
+        $this->app->register(AssetServiceProvider::class);
     }
 
     /**
