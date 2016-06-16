@@ -51,9 +51,8 @@ return [
         'parameters_editor'      => 'Parameters Editor',
     ],
 
-    'field' => [
+    'filter' => [
         'all_types'       => 'All Types',
-        'widget_position' => 'Widget Theme Positions',
         'menu_types'      => 'Menu Types',
     ],
 

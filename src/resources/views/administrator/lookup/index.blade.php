@@ -24,18 +24,13 @@
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter">
-                                <i class="fa fa-list"></i>&nbsp;{{trans('cms::lookup.field.all_types')}}
+                                <i class="fa fa-list"></i>&nbsp;{{trans('cms::lookup.filter.all_types')}}
                             </a>
                         </li>
 
                         <li class="list-group-item list-group-padding">
-                            <a href="#" class="btn-filter" data-type="widgets.positions">
-                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.widget_position')}}
-                            </a>
-                        </li>
-                        <li class="list-group-item list-group-padding">
                             <a href="#" class="btn-filter" data-type="menu.types">
-                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.field.menu_types')}}
+                                <i class="fa fa-filter"></i>&nbsp;{{trans('cms::lookup.filter.menu_types')}}
                             </a>
                         </li>
                     </ul>
