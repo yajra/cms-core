@@ -3,7 +3,6 @@
 <head>
     @include('system.headers.meta')
     {{ Asset::css() }}
-    <link href="{{ asset('themes/admin-lte/css/skins/skin-'.config('site.admin_theme').'.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet" type="text/css" />
     @stack('styles')
