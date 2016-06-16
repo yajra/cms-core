@@ -34,7 +34,7 @@ class ThemesServiceProvider extends ServiceProvider
     {
         $this->app->singleton('theme.view.finder', function ($app) {
             $finder = new ThemeViewFinder($app['files'], $app['config']['view.paths']);
-            $finder->setBasePath(base_path('themes/' . config('site.template', 'default')));
+            $finder->setBasePath(config('theme.path', base_path('themes')) . DIRECTORY_SEPARATOR . config('theme.active', 'default'));
 
             return $finder;
         });
