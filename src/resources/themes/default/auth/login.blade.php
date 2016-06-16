@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @include('system.headers.meta')
-    @section('title', config('site.name') . ' | ' . trans('cms::auth.title'))
-    @section('keywords', config('site.keywords'))
-    @section('author', config('site.author'))
-    @section('description', config('site.description'))
-    @include('system.headers.libraries')
-    @include('system.headers.plugins')
+    @include('system.meta')
+    {{ Asset::css() }}
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet" type="text/css"/>
     @stack('styles')
@@ -67,8 +62,7 @@
     </div>
 </div>
 
-@include('system.scripts.libraries')
-@include('system.scripts.plugins')
+{{ Asset::js() }}
 <script src="{{ asset('js/jquery.backstretch.min.js') }}"></script>
 <script>
     $(function () {
