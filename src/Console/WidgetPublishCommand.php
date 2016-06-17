@@ -3,7 +3,6 @@
 namespace Yajra\CMS\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 use Yajra\CMS\Widgets\EloquentRepository;
 
 class WidgetPublishCommand extends Command
@@ -45,7 +44,7 @@ class WidgetPublishCommand extends Command
      */
     public function handle()
     {
-        $path = app_path('Widgets') . DIRECTORY_SEPARATOR . Str::title($this->argument('name')) . '.json';
+        $path = app_path('Widgets') . DIRECTORY_SEPARATOR . $this->argument('name') . '.json';
 
         $this->widgets->registerManifest($path);
 
