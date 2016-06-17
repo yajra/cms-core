@@ -2,13 +2,13 @@
 
 namespace Yajra\CMS\Http\Middleware;
 
+use Caffeinated\Menus\Builder;
+use Caffeinated\Menus\Facades\Menu as MenuFactory;
+use Closure;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Repositories\Navigation\NavigationRepository;
-use Caffeinated\Menus\Builder;
-use Caffeinated\Menus\Facades\Menu as MenuFactory;
-use Closure;
 
 class DynamicMenusBuilder
 {
@@ -61,10 +61,10 @@ class DynamicMenusBuilder
     protected function generateMenu($parentMenu, $item)
     {
         $subMenu     = $this->registerMenu($parentMenu, $item);
-        $descendants = $item->descendants()->limitDepth(1)->published()->get();
+        $descendants = $item->descendants()->published()->get()->toHierarchy();
         $descendants->each(function (Menu $subItem) use ($subMenu) {
             $subMenuChild = $this->registerMenu($subMenu, $subItem);
-            if ($subItem->descendants()->limitDepth(1)->published()->count()) {
+            if (count($subItem->children)) {
                 $this->generateMenu($subMenuChild, $subItem);
             }
         });
