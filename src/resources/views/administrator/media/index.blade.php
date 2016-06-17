@@ -59,8 +59,8 @@
 @stop
 
 @push('js-plugins')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    @asset('dropzone.js')
+    @asset('jstree.min.js')
 @endpush
 
 @push('scripts')

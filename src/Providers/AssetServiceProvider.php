@@ -31,6 +31,11 @@ class AssetServiceProvider extends ServiceProvider
         $siteAssets = config('site.assets.' . config('site.assets.default'));
         $this->addAdminAssets($siteAssets);
         $this->requireAdminDefaultAssets();
+        Blade::directive('asset', function ($asset) use ($siteAssets) {
+            $replaceBrackets = str_replace(['(', ')'], '', $asset);
+            $setAsset        = str_replace("'", '', $replaceBrackets);
+            Asset::add(array_get($siteAssets, $setAsset));
+        });
     }
 
     /**
