@@ -2,9 +2,6 @@
 
 namespace Yajra\CMS\Providers;
 
-use Roumen\Asset\AssetServiceProvider as RoumenAssetServiceProvider;
-use Yajra\CMS\View\Directives\PageHeaderDirective;
-use Yajra\CMS\View\Directives\TooltipDirective;
 use Arrilot\Widgets\ServiceProvider as ArrilotWidgetServiceProvider;
 use Barryvdh\Debugbar\ServiceProvider as DebugbarServiceProvider;
 use Barryvdh\Snappy\ServiceProvider as SnappyServiceProvider;
@@ -17,10 +14,13 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Laracasts\Flash\FlashServiceProvider;
 use Pingpong\Modules\ModulesServiceProvider;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider;
+use Roumen\Asset\AssetServiceProvider as RoumenAssetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
 use Themsaid\MailPreview\MailPreviewServiceProvider;
 use Yajra\Acl\AclServiceProvider;
+use Yajra\CMS\View\Directives\PageHeaderDirective;
+use Yajra\CMS\View\Directives\TooltipDirective;
 use Yajra\Datatables\DatatablesServiceProvider;
 use Yajra\Oci8\Oci8ServiceProvider;
 

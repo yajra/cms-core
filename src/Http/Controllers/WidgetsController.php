@@ -54,7 +54,7 @@ class WidgetsController extends Controller
     public function create(Widget $widget)
     {
         $widget->order    = 1;
-        $widget->type     = old('type', 'wysiwyg');
+        $widget->type     = old('type', 'WYSIWYG');
         $widget->template = old('template', 'widgets.wysiwyg.default');
 
         return view('administrator.widgets.create', compact('widget'));
@@ -159,11 +159,10 @@ class WidgetsController extends Controller
      */
     public function templates($type)
     {
-        $data = [];
-        foreach ($this->repository->all()->where('type', $type) as $widget) {
-            foreach ($widget->templates as $key => $value) {
-                $data[] = ['key' => $key, 'value' => $value];
-            }
+        $data   = [];
+        $widget = $this->repository->findOrFail($type);
+        foreach ($widget->templates as $template) {
+            $data[] = ['key' => $template['path'], 'value' => $template['description']];
         }
 
         return response()->json([

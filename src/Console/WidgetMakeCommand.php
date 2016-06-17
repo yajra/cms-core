@@ -3,7 +3,6 @@
 namespace Yajra\CMS\Console;
 
 use Arrilot\Widgets\Console\WidgetMakeCommand as ArrilotWidgetMakeCommand;
-use Illuminate\Support\Str;
 
 class WidgetMakeCommand extends ArrilotWidgetMakeCommand
 {
@@ -44,9 +43,9 @@ class WidgetMakeCommand extends ArrilotWidgetMakeCommand
         }
 
         $stub = $this->files->get($this->getJsonStubPath());
-        $stub = $this->replaceNamespace($stub, $name)->replaceFQCN($stub, $name);
+        $stub = $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
+        $stub = $this->replaceFQCN($stub, $name);
         $stub = $this->replaceView($stub);
-        $stub = $this->replaceType($stub);
 
         $this->files->put($path, $stub);
 
@@ -84,19 +83,8 @@ class WidgetMakeCommand extends ArrilotWidgetMakeCommand
      */
     protected function replaceFQCN($stub, $name)
     {
-        $fqcn  = str_replace("\\", "\\\\", $name);
+        $fqcn = str_replace("\\", "\\\\", $name);
 
         return str_replace('{{fqcn}}', $fqcn, $stub);
-    }
-
-    /**
-     * Replace widget type.
-     *
-     * @param string $stub
-     * @return string
-     */
-    protected function replaceType($stub)
-    {
-        return str_replace('{{type}}', Str::camel($this->makeViewName()), $stub);
     }
 }
