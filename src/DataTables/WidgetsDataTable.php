@@ -62,9 +62,8 @@ class WidgetsDataTable extends DataTable
         return [
             'id'            => ['width' => '20px'],
             'title',
-            'position'      => ['width' => '20px'],
-            'type',
-            'template',
+            'position'      => ['width' => '80px'],
+            'type'          => ['width' => '60px'],
             'published'     => [
                 'width' => '20px',
                 'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="Published"></i>',
@@ -77,7 +76,7 @@ class WidgetsDataTable extends DataTable
                 'width' => '20px',
                 'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="Sort/Order"></i>',
             ],
-            'updated_at'    => ['searchable' => false],
+            'updated_at'    => ['searchable' => false, 'width' => '100px'],
         ];
     }
 
