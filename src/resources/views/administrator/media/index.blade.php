@@ -59,8 +59,8 @@
 @stop
 
 @push('js-plugins')
-    @asset('dropzone.js')
-    @asset('jstree.js')
+    @assetJs('dropzone')
+    @assetJs('jstree')
 @endpush
 
 @push('scripts')

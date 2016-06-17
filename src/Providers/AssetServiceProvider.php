@@ -32,11 +32,7 @@ class AssetServiceProvider extends ServiceProvider
         $siteAssets = config('site.assets.' . config('site.assets.default'));
         $this->addAdminAssets($siteAssets);
         $this->requireAdminDefaultAssets();
-        Blade::directive('asset', function ($asset) use ($siteAssets) {
-            $replaceBrackets = str_replace(['(', ')'], '', $asset);
-            $setAsset        = str_replace("'", '', $replaceBrackets);
-            Asset::add(array_get($siteAssets, $setAsset));
-        });
+        $this->assetJs($siteAssets);
     }
 
     /**
@@ -59,5 +55,21 @@ class AssetServiceProvider extends ServiceProvider
         foreach (config('site.admin_required_assets', []) as $asset => $requiredValue) {
             Asset::add($requiredValue);
         }
+    }
+
+    /**
+     * Generate Javascript assets.
+     *
+     * @param string $siteAssets
+     * @return string
+     */
+    protected function assetJs($siteAssets)
+    {
+        Blade::directive('assetJs', function ($asset) use ($siteAssets) {
+            $replaceBrackets = str_replace(['(', ')'], '', $asset . '.js');
+            $setAsset        = str_replace("'", '', $replaceBrackets);
+
+            return '<?php echo "<script src=\"' . array_get($siteAssets, $setAsset) . '\"></script>"; ?>';
+        });
     }
 }
