@@ -23,10 +23,10 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        foreach (config('site.assets.' . config('site.assets.default'), []) as $asset => $value) {
+        foreach (config('site.admin-assets.' . config('site.admin-assets.default'), []) as $asset => $value) {
             Asset::add($value);
         }
-        foreach (config('site.assets.admin-required', []) as $asset => $requiredValue) {
+        foreach (config('site.admin-assets.admin-required-assets', []) as $asset => $requiredValue) {
             Asset::add($requiredValue);
         }
     }
