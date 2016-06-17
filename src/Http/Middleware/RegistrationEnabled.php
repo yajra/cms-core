@@ -15,7 +15,7 @@ class RegistrationEnabled
      */
     public function handle($request, Closure $next)
     {
-        if (config('site.registration')) {
+        if (! config('site.registration')) {
             abort(403, 'Registration is not allowed');
         }
 
