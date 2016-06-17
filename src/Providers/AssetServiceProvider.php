@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Roumen\Asset\Asset;
 
