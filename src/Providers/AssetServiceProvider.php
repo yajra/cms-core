@@ -67,8 +67,7 @@ class AssetServiceProvider extends ServiceProvider
     protected function assetJs($siteAssets)
     {
         Blade::directive('assetJs', function ($asset) use ($siteAssets) {
-            $replaceBrackets = str_replace(['(', ')'], '', $asset . '.js');
-            $setAsset        = str_replace("'", '', $replaceBrackets);
+            $setAsset = $this->strParser($asset);
 
             return '<?php echo "<script src=\"' . array_get($siteAssets, $setAsset) . '\"></script>"; ?>';
         });
@@ -83,10 +82,20 @@ class AssetServiceProvider extends ServiceProvider
     protected function assetCss($siteAssets)
     {
         Blade::directive('assetCss', function ($asset) use ($siteAssets) {
-            $replaceBrackets = str_replace(['(', ')'], '', $asset . '.css');
-            $setAsset        = str_replace("'", '', $replaceBrackets);
+            $setAsset = $this->strParser($asset);
 
             return '<link rel=\"stylesheet\" type=\"text/css\" href=\"' . array_get($siteAssets, $setAsset) . '\">';
         });
+    }
+
+    /**
+     * @param string $asset
+     * @return string
+     */
+    private function strParser($asset)
+    {
+        $replaceBrackets = str_replace(['(', ')'], '', $asset . '.js');
+
+        return str_replace("'", '', $replaceBrackets);
     }
 }
