@@ -29,7 +29,7 @@ class AssetServiceProvider extends ServiceProvider
     public function register()
     {
         $this->addAdminAssets();
-        $this->requireDefaultAssets();
+        $this->requireAdminDefaultAssets();
     }
 
     /**
@@ -45,7 +45,7 @@ class AssetServiceProvider extends ServiceProvider
     /**
      * Add require default assets.
      */
-    protected function requireDefaultAssets()
+    protected function requireAdminDefaultAssets()
     {
         foreach (config('site.admin_assets.required_assets', []) as $asset => $requiredValue) {
             Asset::add($requiredValue);
