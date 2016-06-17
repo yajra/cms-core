@@ -41,7 +41,7 @@ class AssetServiceProvider extends ServiceProvider
     protected function addAdminAssets($siteAssets)
     {
         foreach (config('site.admin_assets', []) as $asset => $value) {
-            Asset::add(array_get($siteAssets, $value));
+            Asset::add(array_get($siteAssets, $value)[0]);
         }
     }
 
@@ -50,7 +50,7 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function requireAdminDefaultAssets()
     {
-        foreach (config('site.admin_assets.required_assets', []) as $asset => $requiredValue) {
+        foreach (config('site.admin_required_assets', []) as $asset => $requiredValue) {
             Asset::add($requiredValue);
         }
     }
