@@ -29,7 +29,7 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $siteAssets = config('site.assets.' . config('site.assets.default'));
+        $siteAssets = config('asset.assets.' . config('asset.default'));
         $this->addAdminAssets($siteAssets);
         $this->requireAdminDefaultAssets();
         $this->assetJs($siteAssets);
@@ -43,7 +43,7 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function addAdminAssets($siteAssets)
     {
-        foreach (config('site.admin_assets', []) as $asset => $value) {
+        foreach (config('asset.admin_assets', []) as $asset => $value) {
             Asset::add(array_get($siteAssets, $value));
         }
     }
@@ -53,7 +53,7 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function requireAdminDefaultAssets()
     {
-        foreach (config('site.admin_required_assets', []) as $asset => $requiredValue) {
+        foreach (config('asset.admin_required_assets', []) as $asset => $requiredValue) {
             Asset::add($requiredValue);
         }
     }
