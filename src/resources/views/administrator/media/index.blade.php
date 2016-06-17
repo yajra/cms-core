@@ -60,7 +60,7 @@
 
 @push('js-plugins')
     @asset('dropzone.js')
-    @asset('jstree.min.js')
+    @asset('jstree.js')
 @endpush
 
 @push('scripts')
