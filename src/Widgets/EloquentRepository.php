@@ -52,6 +52,9 @@ class EloquentRepository implements Repository
         $extension       = new Extension;
         $extension->type = 'widget';
         $extension->name = $attributes['name'];
+        if (isset($attributes['protected'])) {
+            $extension->protected = $attributes['protected'];
+        }
         if (isset($attributes['parameters'])) {
             $extension->parameters = $attributes['parameters'];
         }

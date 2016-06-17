@@ -12,6 +12,7 @@ use Yajra\CMS\Entities\Traits\HasParameters;
  * @property string parameters
  * @property bool enabled
  * @property string manifest
+ * @property bool protected
  */
 class Extension extends Model
 {
