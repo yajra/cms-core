@@ -33,6 +33,7 @@ class AssetServiceProvider extends ServiceProvider
         $this->addAdminAssets($siteAssets);
         $this->requireAdminDefaultAssets();
         $this->assetJs($siteAssets);
+        $this->assetCss($siteAssets);
     }
 
     /**
@@ -70,6 +71,22 @@ class AssetServiceProvider extends ServiceProvider
             $setAsset        = str_replace("'", '', $replaceBrackets);
 
             return '<?php echo "<script src=\"' . array_get($siteAssets, $setAsset) . '\"></script>"; ?>';
+        });
+    }
+
+    /**
+     * Generate CSS assets.
+     *
+     * @param string $siteAssets
+     * @return string
+     */
+    protected function assetCss($siteAssets)
+    {
+        Blade::directive('assetCss', function ($asset) use ($siteAssets) {
+            $replaceBrackets = str_replace(['(', ')'], '', $asset . '.css');
+            $setAsset        = str_replace("'", '', $replaceBrackets);
+
+            return '<link rel=\"stylesheet\" type=\"text/css\" href=\"' . array_get($siteAssets, $setAsset) . '\">';
         });
     }
 }
