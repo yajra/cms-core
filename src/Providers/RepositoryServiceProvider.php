@@ -3,9 +3,12 @@
 namespace Yajra\CMS\Providers;
 
 use Yajra\CMS\Contracts\Cacheable;
+use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Entities\Widget;
+use Yajra\CMS\Extension\EloquentRepository;
+use Yajra\CMS\Extension\Repository;
 use Yajra\CMS\Repositories\Article\ArticleEloquentRepository;
 use Yajra\CMS\Repositories\Article\ArticleRepository;
 use Yajra\CMS\Repositories\Category\CategoryEloquentRepository;
@@ -69,5 +72,11 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->singleton(ArticleRepository::class, ArticleEloquentRepository::class);
         $this->app->singleton(CategoryRepository::class, CategoryEloquentRepository::class);
+
+        $this->app->singleton('extensions', function() {
+            return new EloquentRepository(new Extension);
+        });
+
+        $this->app->alias('extensions', Repository::class);
     }
 }

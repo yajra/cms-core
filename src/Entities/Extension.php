@@ -46,4 +46,24 @@ class Extension extends Model
     {
         return json_decode($this->attributes['manifest'], true);
     }
+
+    /**
+     * Get version.
+     *
+     * @return string
+     */
+    public function getVersionAttribute()
+    {
+        return $this->manifest['version'] ?? '0.0.0';
+    }
+
+    /**
+     * Get description.
+     *
+     * @return string
+     */
+    public function getDescriptionAttribute()
+    {
+        return $this->manifest['description'] ?? 'No description';
+    }
 }

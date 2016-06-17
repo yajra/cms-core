@@ -100,6 +100,8 @@ class GenerateAdminMenu
                            'permission' => 'lookup.view',
                            'append'     => route('administrator.lookup.create'),
                        ]);
+                $config->add('Extensions', route('administrator.extension.index'))->icon('plug')
+                       ->data('permission', 'extension.view');;
                 $config->add('Global', route('administrator.configuration.index'))->icon('globe')
                        ->data('permission', 'utilities.config');;
 

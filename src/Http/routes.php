@@ -14,6 +14,7 @@ $router->get('/', DashboardController::class . '@index')->name('administrator.in
 require_once 'routes/configuration.php';
 require_once 'routes/navigation.php';
 require_once 'routes/utilities.php';
+require_once 'routes/extension.php';
 require_once 'routes/content.php';
 require_once 'routes/widgets.php';
 require_once 'routes/profile.php';
