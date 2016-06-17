@@ -28,22 +28,25 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->addAdminAssets();
+        $siteAssets = config('site.assets.' . config('site.assets.default'));
+        $this->addAdminAssets($siteAssets);
         $this->requireAdminDefaultAssets();
     }
 
     /**
-     * Add theme assets.
+     * Add admin assets.
+     *
+     * @param array $siteAssets
      */
-    protected function addAdminAssets()
+    protected function addAdminAssets($siteAssets)
     {
-        foreach (config('site.admin_assets.' . config('site.admin_assets.default'), []) as $asset => $value) {
-            Asset::add($value);
+        foreach (config('site.admin_assets', []) as $asset => $value) {
+            Asset::add(array_get($siteAssets, $value));
         }
     }
 
     /**
-     * Add require default assets.
+     * Add require admin default assets.
      */
     protected function requireAdminDefaultAssets()
     {
