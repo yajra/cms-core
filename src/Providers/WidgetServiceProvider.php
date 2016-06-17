@@ -27,12 +27,6 @@ class WidgetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('widgets', function () {
-            return new EloquentRepository;
-        });
-
-        $this->app->alias('widgets', Repository::class);
-
         // override arrilot widget command.
         $this->app->singleton('command.widget.make', function ($app) {
             return new WidgetMakeCommand($app['files']);

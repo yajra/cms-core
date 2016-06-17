@@ -2,13 +2,14 @@
 
 namespace Yajra\CMS\Providers;
 
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Yajra\CMS\Contracts\Cacheable;
 use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Extension\EloquentRepository;
-use Yajra\CMS\Extension\Repository;
 use Yajra\CMS\Repositories\Article\ArticleEloquentRepository;
 use Yajra\CMS\Repositories\Article\ArticleRepository;
 use Yajra\CMS\Repositories\Category\CategoryEloquentRepository;
@@ -19,7 +20,6 @@ use Yajra\CMS\Repositories\Navigation\NavigationRepository;
 use Yajra\CMS\Repositories\Widget\WidgetCacheRepository;
 use Yajra\CMS\Repositories\Widget\WidgetEloquentRepository;
 use Yajra\CMS\Repositories\Widget\WidgetRepository;
-use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -53,6 +53,15 @@ class RepositoryServiceProvider extends ServiceProvider
             $cachedModel::saved($closure);
             $cachedModel::deleted($closure);
         }
+
+        Extension::saved(function ($model) {
+            $this->app['cache.store']->forget('extension.widget.' . Str::lower($model->name));
+            $this->app['cache.store']->forget('extension.widget.all');
+        });
+        Extension::deleted(function ($model) {
+            $this->app['cache.store']->forget('extension.widget.' . Str::lower($model->name));
+            $this->app['cache.store']->forget('extension.widget.all');
+        });
     }
 
     /**
@@ -73,10 +82,18 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(ArticleRepository::class, ArticleEloquentRepository::class);
         $this->app->singleton(CategoryRepository::class, CategoryEloquentRepository::class);
 
-        $this->app->singleton('extensions', function() {
+        $this->app->singleton('extensions', function () {
             return new EloquentRepository(new Extension);
         });
 
-        $this->app->alias('extensions', Repository::class);
+        $this->app->singleton('widgets', function () {
+            return new \Yajra\CMS\Widgets\CacheRepository(
+                new \Yajra\CMS\Widgets\EloquentRepository,
+                $this->app['cache.store']
+            );
+        });
+
+        $this->app->alias('extensions', \Yajra\CMS\Extension\Repository::class);
+        $this->app->alias('widgets', \Yajra\CMS\Widgets\Repository::class);
     }
 }
