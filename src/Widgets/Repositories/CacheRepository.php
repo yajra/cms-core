@@ -57,7 +57,7 @@ class CacheRepository implements Repository
      * Find or fail a widget.
      *
      * @param int $id
-     * @return \Yajra\CMS\Widgets\Widget
+     * @return \Yajra\CMS\Entities\Extension
      * @throws \Yajra\CMS\Exceptions\WidgetNotFoundException
      */
     public function findOrFail($id)

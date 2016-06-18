@@ -27,7 +27,9 @@ class WidgetPresenter extends Presenter
     {
         /** @var \Yajra\CMS\Widgets\Repositories\EloquentRepository $repository */
         $repository = app('widgets');
+        /** @var \Yajra\CMS\Entities\Extension $widget */
+        $widget = $repository->findOrFail($this->entity->extension_id);
 
-        return $repository->findOrFail($this->entity->extension_id)->class;
+        return $widget->manifest['class'];
     }
 }

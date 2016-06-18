@@ -2,11 +2,11 @@
 
 namespace Yajra\CMS\Widgets\Repositories;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\File;
 use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Exceptions\WidgetNotFoundException;
-use Yajra\CMS\Widgets\Widget;
 
 class EloquentRepository implements Repository
 {
@@ -70,16 +70,16 @@ class EloquentRepository implements Repository
      * Find or fail a widget.
      *
      * @param int $id
-     * @return \Yajra\CMS\Widgets\Widget
+     * @return \Yajra\CMS\Entities\Extension
      * @throws \Yajra\CMS\Exceptions\WidgetNotFoundException
      */
     public function findOrFail($id)
     {
-        if ($extension = Extension::query()->findOrFail($id)) {
-            return new Widget($extension->manifest);
+        try {
+            return Extension::query()->findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            throw new WidgetNotFoundException('Widget not found!');
         }
-
-        throw new WidgetNotFoundException('Widget not found!');
     }
 
     /**

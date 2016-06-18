@@ -159,8 +159,8 @@ class WidgetsController extends Controller
     public function templates($type)
     {
         $data   = [];
-        $widget = $this->repository->findOrFail($type);
-        foreach ($widget->templates as $template) {
+        $extension = $this->repository->findOrFail($type);
+        foreach ($extension->manifest['templates'] as $template) {
             $data[] = ['key' => $template['path'], 'value' => $template['description']];
         }
 
