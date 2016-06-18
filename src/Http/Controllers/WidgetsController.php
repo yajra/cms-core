@@ -5,7 +5,7 @@ namespace Yajra\CMS\Http\Controllers;
 use Yajra\CMS\DataTables\WidgetsDataTable;
 use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Http\Requests\WidgetFormRequest;
-use Yajra\CMS\Widgets\Repository;
+use Yajra\CMS\Widgets\Repositories\Repository;
 
 class WidgetsController extends Controller
 {
@@ -19,14 +19,14 @@ class WidgetsController extends Controller
     ];
 
     /**
-     * @var \Yajra\CMS\Widgets\Repository
+     * @var \Yajra\CMS\Widgets\Repositories\Repository
      */
     protected $repository;
 
     /**
      * WidgetsController constructor.
      *
-     * @param \Yajra\CMS\Widgets\Repository $repository
+     * @param \Yajra\CMS\Widgets\Repositories\Repository $repository
      */
     public function __construct(Repository $repository)
     {

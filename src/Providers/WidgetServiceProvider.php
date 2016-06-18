@@ -5,8 +5,6 @@ namespace Yajra\CMS\Providers;
 use Illuminate\Support\ServiceProvider;
 use Yajra\CMS\Console\WidgetMakeCommand;
 use Yajra\CMS\Console\WidgetPublishCommand;
-use Yajra\CMS\Widgets\EloquentRepository;
-use Yajra\CMS\Widgets\Repository;
 
 class WidgetServiceProvider extends ServiceProvider
 {

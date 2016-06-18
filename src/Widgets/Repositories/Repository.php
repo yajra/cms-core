@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\CMS\Widgets;
+namespace Yajra\CMS\Widgets\Repositories;
 
 interface Repository
 {

@@ -3,7 +3,7 @@
 namespace Yajra\CMS\Console;
 
 use Illuminate\Console\Command;
-use Yajra\CMS\Widgets\EloquentRepository;
+use Yajra\CMS\Widgets\Repositories\EloquentRepository;
 
 class WidgetPublishCommand extends Command
 {
@@ -22,14 +22,14 @@ class WidgetPublishCommand extends Command
     protected $description = 'Install YajraCMS widget.';
 
     /**
-     * @var \Yajra\CMS\Widgets\EloquentRepository
+     * @var \Yajra\CMS\Widgets\Repositories\EloquentRepository
      */
     protected $widgets;
 
     /**
      * Create a new command instance.
      *
-     * @param \Yajra\CMS\Widgets\EloquentRepository $widgets
+     * @param \Yajra\CMS\Widgets\Repositories\EloquentRepository $widgets
      */
     public function __construct(EloquentRepository $widgets)
     {

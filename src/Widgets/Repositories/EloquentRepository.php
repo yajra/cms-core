@@ -1,11 +1,12 @@
 <?php
 
-namespace Yajra\CMS\Widgets;
+namespace Yajra\CMS\Widgets\Repositories;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\File;
 use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Exceptions\WidgetNotFoundException;
+use Yajra\CMS\Widgets\Widget;
 
 class EloquentRepository implements Repository
 {

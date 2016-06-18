@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\CMS\Widgets;
+namespace Yajra\CMS\Widgets\Repositories;
 
 use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Support\Str;
@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class CacheRepository implements Repository
 {
     /**
-     * @var \Yajra\CMS\Widgets\EloquentRepository
+     * @var \Yajra\CMS\Widgets\Repositories\EloquentRepository
      */
     protected $repository;
 
@@ -20,7 +20,7 @@ class CacheRepository implements Repository
     /**
      * CacheRepository constructor.
      *
-     * @param \Yajra\CMS\Widgets\EloquentRepository $repository
+     * @param \Yajra\CMS\Widgets\Repositories\EloquentRepository $repository
      * @param \Illuminate\Contracts\Cache\Repository $cache
      */
     public function __construct(EloquentRepository $repository, Cache $cache)
