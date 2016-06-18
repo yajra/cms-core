@@ -2,11 +2,11 @@
 
 namespace Yajra\CMS\Providers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Roumen\Asset\Asset;
 use Yajra\CMS\Entities\Configuration;
-use Yajra\CMS\Entities\FileAsset;
 
 /**
  * Class AssetServiceProvider
@@ -20,10 +20,15 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->addAdminAssets();
-        $this->requireAdminDefaultAssets();
-        $this->assetJs();
-        $this->assetCss();
+        try {
+            $siteAssets = config('asset.assets.' . Configuration::key('asset.default'), 'cdn');
+            $this->addAdminAssets($siteAssets);
+            $this->requireAdminDefaultAssets();
+            $this->assetJs($siteAssets);
+            $this->assetCss($siteAssets);
+        } catch (QueryException $e) {
+            // \\_('',)_//            
+        }
     }
 
     /**
@@ -36,17 +41,19 @@ class AssetServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load admin assets.
+     * Add admin assets.
+     *
+     * @param array $siteAssets
      */
-    protected function addAdminAssets()
+    protected function addAdminAssets($siteAssets)
     {
-        foreach (config('asset.admin_assets') as $asset) {
-            Asset::add($this->getAssetUrlByname($asset)->url);
+        foreach (config('asset.admin_assets', []) as $asset => $value) {
+            Asset::add(array_get($siteAssets, $value));
         }
     }
 
     /**
-     * Load require admin default assets.
+     * Add require admin default assets.
      */
     protected function requireAdminDefaultAssets()
     {
@@ -56,52 +63,43 @@ class AssetServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load js assets.
+     * Generate Javascript assets.
      *
+     * @param string $siteAssets
      * @return string
      */
-    protected function assetJs()
+    protected function assetJs($siteAssets)
     {
-        Blade::directive('assetJs', function ($asset) {
-            $asset = $this->getAssetUrlByname($this->strParser($asset . '.js'));
+        Blade::directive('assetJs', function ($asset) use ($siteAssets) {
+            $setAsset = $this->strParser($asset . '.js');
 
-            return '<?php echo "<script src=\"' . $asset->url . '\"></script>"; ?>';
+            return '<?php echo "<script src=\"' . array_get($siteAssets, $setAsset) . '\"></script>"; ?>';
         });
     }
 
     /**
-     * Load css assets.
+     * Generate CSS assets.
      *
+     * @param string $siteAssets
      * @return string
      */
-    protected function assetCss()
+    protected function assetCss($siteAssets)
     {
-        Blade::directive('assetCss', function ($asset) {
-            $asset = $this->getAssetUrlByname($this->strParser($asset . '.css'));
+        Blade::directive('assetCss', function ($asset) use ($siteAssets) {
+            $setAsset = $this->strParser($asset . '.css');
 
-            return '<?php echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"' . $asset->url . '\">"; ?>';
+            return '<?php echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"' . array_get($siteAssets, $setAsset) . '\">"; ?>';
         });
     }
 
     /**
-     * @param string $str
-     * @return string
-     */
-    private function strParser($str)
-    {
-        return str_replace("'", '', str_replace(['(', ')'], '', $str));
-    }
-
-    /**
-     * Get url by asset name.
-     *
      * @param string $asset
-     * @return FileAsset
+     * @return string
      */
-    private function getAssetUrlByname($asset)
+    private function strParser($asset)
     {
-        return FileAsset::where('name', $asset)
-                        ->where('category', Configuration::key('asset.default'))
-                        ->first();
+        $replaceBrackets = str_replace(['(', ')'], '', $asset);
+
+        return str_replace("'", '', $replaceBrackets);
     }
 }
