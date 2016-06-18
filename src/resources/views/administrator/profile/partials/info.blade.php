@@ -55,8 +55,16 @@
                     </div>
                     <div class="col-xs-12">
                         <hr>
-                        <h4 class="box-title"><i class="fa fa-image"></i> {{trans('cms::profile.form.sep-title.upload-av')}}</h4>
+                        <h4 class="box-title">
+                            <i class="fa fa-image"></i> {{trans('cms::profile.form.sep-title.upload-av')}}
+                            <div class="pull-right">
+                                <a href="{{route('administrator.profile.remove-avatar')}}" class="btn btn-xs btn-warning">
+                                    <i class="fa fa-trash"></i> {{trans('cms::profile.form.button.remove-avatar')}}
+                                </a>
+                            </div>
+                        </h4>
                         <hr>
+
                         {{ form()->file('avatar') }}
 
                         <p class="help-block">{{trans('cms::profile.form.require.avatar')}}</p>

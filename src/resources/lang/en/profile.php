@@ -12,32 +12,33 @@ return [
     | language lines according to your application's requirements.
 	*/
 
-    'edit' => [
-    	'title' => 'Profile Update',
-    	'page-title' => 'Profile Update',
-    	'page-desc' => 'Update your User\'s Information.',
+    'edit'  => [
+        'title'      => 'Profile Update',
+        'page-title' => 'Profile Update',
+        'page-desc'  => 'Update your User\'s Information.',
     ],
     'alert' => [
-        'success' => 'Profile successfully Updated!'
+        'success' => 'Profile successfully Updated!',
     ],
-    'form' => [
-    	'box-title' => 'Basic Information',
-    	'field' => [
+    'form'  => [
+        'box-title' => 'Basic Information',
+        'field'     => [
             'first-name' => 'First Name',
-            'last-name' => 'Last Name',
-            'email' => 'Email Address',
-            'pass-new' => 'New Password',
-            'pass-conf' => 'Confirm Password',
-    	],
-    	'sep-title' => [
-    		'change-pass' => 'Change Password',
-    		'upload-av' => 'Upload Avatar',
-    	],
-    	'button' => [
-            'save' => 'Save Profile'
-    	],
-    	'require' => [
-            'avatar' => 'Upload your chosen avatar here.'
-    	],
+            'last-name'  => 'Last Name',
+            'email'      => 'Email Address',
+            'pass-new'   => 'New Password',
+            'pass-conf'  => 'Confirm Password',
+        ],
+        'sep-title' => [
+            'change-pass' => 'Change Password',
+            'upload-av'   => 'Upload Avatar',
+        ],
+        'button'    => [
+            'save' => 'Save Profile',
+            'remove-avatar' => 'Remove Avatar',
+        ],
+        'require'   => [
+            'avatar' => 'Upload your chosen avatar here.',
+        ],
     ],
 ];

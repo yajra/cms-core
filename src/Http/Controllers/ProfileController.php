@@ -57,4 +57,18 @@ class ProfileController extends Controller
 
         return $fileName;
     }
+
+    /**
+     * Remove current user's avatar.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeAvatar()
+    {
+        $profile = auth()->user();
+        $profile->avatar = '';
+        $profile->save();
+
+        return redirect()->route('administrator.profile.edit');
+    }
 }
