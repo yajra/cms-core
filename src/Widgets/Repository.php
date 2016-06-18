@@ -27,7 +27,7 @@ interface Repository
      *
      * @param int $id
      * @return \Yajra\CMS\Widgets\Widget
-     * @throws \Yajra\CMS\Widgets\NotFoundException
+     * @throws \Yajra\CMS\Exceptions\WidgetNotFoundException
      */
     public function findOrFail($id);
 

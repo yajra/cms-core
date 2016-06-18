@@ -5,6 +5,7 @@ namespace Yajra\CMS\Widgets;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\File;
 use Yajra\CMS\Entities\Extension;
+use Yajra\CMS\Exceptions\WidgetNotFoundException;
 
 class EloquentRepository implements Repository
 {
@@ -69,7 +70,7 @@ class EloquentRepository implements Repository
      *
      * @param int $id
      * @return \Yajra\CMS\Widgets\Widget
-     * @throws \Yajra\CMS\Widgets\NotFoundException
+     * @throws \Yajra\CMS\Exceptions\WidgetNotFoundException
      */
     public function findOrFail($id)
     {
@@ -77,7 +78,7 @@ class EloquentRepository implements Repository
             return new Widget($extension->manifest);
         }
 
-        throw new NotFoundException('Widget not found!');
+        throw new WidgetNotFoundException('Widget not found!');
     }
 
     /**

@@ -7,6 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
+use Yajra\CMS\Exceptions\ThemeNotFoundException;
 
 class Repository
 {
@@ -98,7 +99,7 @@ class Repository
      * Get current frontend theme.
      *
      * @return \Yajra\CMS\Theme\Theme
-     * @throws \Yajra\CMS\Theme\NotFoundException
+     * @throws \Yajra\CMS\Exceptions\ThemeNotFoundException
      */
     public function current()
     {
@@ -110,7 +111,7 @@ class Repository
      *
      * @param string $theme
      * @return \Yajra\CMS\Theme\Theme
-     * @throws \Yajra\CMS\Theme\NotFoundException
+     * @throws \Yajra\CMS\Exceptions\ThemeNotFoundException
      */
     public function findOrFail($theme)
     {
@@ -118,7 +119,7 @@ class Repository
             return $this->themes[$theme];
         }
 
-        throw new NotFoundException('Theme not found!');
+        throw new ThemeNotFoundException('Theme not found!');
     }
 
     /**
