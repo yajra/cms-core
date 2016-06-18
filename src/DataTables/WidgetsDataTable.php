@@ -33,7 +33,14 @@ class WidgetsDataTable extends DataTable
      */
     public function query()
     {
-        $users = Widget::query()->withoutGlobalScope('menu_assignment');
+        $users = Widget::query()
+                       ->select('widgets.*')
+                       ->with([
+                           'extension' => function ($query) {
+                               $query->select('id', 'name');
+                           },
+                       ])
+                       ->withoutGlobalScope('menu_assignment');
 
         return $this->applyScopes($users);
     }
@@ -60,23 +67,30 @@ class WidgetsDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'id'            => ['width' => '20px'],
+            'id'             => ['width' => '20px', 'name' => 'widgets.id'],
             'title',
-            'position'      => ['width' => '80px'],
-            'type'          => ['width' => '60px'],
-            'published'     => [
+            'position'       => ['width' => '80px'],
+            'extension.name' => [
+                'width' => '60px',
+                'title' => '<i class="fa fa-plug" data-toggle="tooltip" data-title="Widget Extension"></i> Ext.',
+            ],
+            'published'      => [
                 'width' => '20px',
                 'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="Published"></i>',
             ],
-            'authenticated' => [
+            'authenticated'  => [
                 'width' => '20px',
                 'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="Authentication Required"></i>',
             ],
-            'order'         => [
+            'order'          => [
                 'width' => '20px',
                 'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="Sort/Order"></i>',
+                'name'  => 'widgets.order',
             ],
-            'updated_at'    => ['searchable' => false, 'width' => '100px'],
+            'updated_at'     => [
+                'searchable' => false,
+                'width'      => '100px',
+            ],
         ];
     }
 
