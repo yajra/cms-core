@@ -33,6 +33,11 @@
                             <i class="fa fa-laptop"></i>&nbsp;Application Environment
                             </a>
                         </li>
+                        <li id="list-group-asset-mgmt" class="list-group-item list-group-padding">
+                            <a href="javascript:void(0)" @click="checkTab('asset-mgmt')">
+                            <i class="fa fa-magic"></i>&nbsp;Asset Management
+                            </a>
+                        </li>
                         <li id="list-group-db-conn" class="list-group-item list-group-padding">
                             <a href="javascript:void(0)" @click="checkTab('db-conn')">
                             <i class="fa fa-database"></i>&nbsp;Database Connection
@@ -69,6 +74,11 @@
                     <li id="site-mgmt" style="margin: 0;">
                         <a class="hide" data-toggle="tab" href="tab-site-mgmt">
                             <i class="fa fa-cog"></i>&nbsp;Site Management
+                        </a>
+                    </li>
+                    <li id="asset-mgmt" style="margin: 0;">
+                        <a class="hide" data-toggle="tab" href="tab-asset-mgmt">
+                            <i class="fa fa-magic"></i>&nbsp;Asset Management
                         </a>
                     </li>
                     <li id="app-env" style="margin: 0;">
@@ -109,6 +119,20 @@
                             <div class="box box-solid">
                                 <div class="box-body">
                                     @include('administrator.configuration.partials.form.site-management')
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary text-bold">
+                                        Update
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- /.tab-pane -->
+                    <div class="tab-pane hide" id="tab-asset-mgmt">
+                        <form method="POST" v-on:submit.prevent="onSubmit(this.asset, 'asset management')">
+                            <div class="box box-solid">
+                                <div class="box-body">
+                                    @include('administrator.configuration.partials.form.asset-management')
                                 </div>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary text-bold">
