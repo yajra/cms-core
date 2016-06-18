@@ -5,6 +5,7 @@ namespace Yajra\CMS\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Roumen\Asset\Asset;
+use Yajra\CMS\Entities\Configuration;
 
 /**
  * Class AssetServiceProvider
@@ -15,11 +16,14 @@ class AssetServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
     public function boot()
     {
+        $siteAssets = config('asset.assets.' . Configuration::key('asset.default'));
+        $this->addAdminAssets($siteAssets);
+        $this->requireAdminDefaultAssets();
+        $this->assetJs($siteAssets);
+        $this->assetCss($siteAssets);
     }
 
     /**
@@ -29,11 +33,6 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $siteAssets = config('asset.assets.' . config('asset.default'));
-        $this->addAdminAssets($siteAssets);
-        $this->requireAdminDefaultAssets();
-        $this->assetJs($siteAssets);
-        $this->assetCss($siteAssets);
     }
 
     /**
