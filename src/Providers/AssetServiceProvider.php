@@ -83,7 +83,7 @@ class AssetServiceProvider extends ServiceProvider
         Blade::directive('assetCss', function ($asset) use ($siteAssets) {
             $setAsset = $this->strParser($asset . '.css');
 
-            return '<link rel=\"stylesheet\" type=\"text/css\" href=\"' . array_get($siteAssets, $setAsset) . '\">';
+            return '<?php echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"' . array_get($siteAssets, $setAsset) . '\">"; ?>';
         });
     }
 
