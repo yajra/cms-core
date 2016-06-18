@@ -19,6 +19,3 @@
 
     </div>
 </div>
-<pre>
-    @{{ asset | json }}
-</pre>
