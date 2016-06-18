@@ -5,12 +5,7 @@ namespace Yajra\CMS\Repositories\Navigation;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Repositories\RepositoryAbstract;
 
-/**
- * Class NavigationEloquentRepository
- *
- * @package App\Repositories\Administrator\Navigation
- */
-class NavigationEloquentRepository extends RepositoryAbstract implements NavigationRepository
+class EloquentRepository extends RepositoryAbstract implements Repository
 {
     /**
      * Get all published navigation.

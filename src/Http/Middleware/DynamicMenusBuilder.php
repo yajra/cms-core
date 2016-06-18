@@ -8,12 +8,12 @@ use Closure;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Entities\Widget;
-use Yajra\CMS\Repositories\Navigation\NavigationRepository;
+use Yajra\CMS\Repositories\Navigation\Repository;
 
 class DynamicMenusBuilder
 {
     /**
-     * @var NavigationRepository
+     * @var Repository
      */
     protected $repository;
 
@@ -27,7 +27,7 @@ class DynamicMenusBuilder
     public function handle($request, Closure $next)
     {
         if (! $request->is('administrator/*')) {
-            $this->repository = app(NavigationRepository::class);
+            $this->repository = app(Repository::class);
             $this->repository->getPublished()->each(function (Navigation $navigation) {
                 MenuFactory::make($navigation->type, function (Builder $builder) use ($navigation) {
                     $navigation->menus->each(function (Menu $menu) use ($builder) {

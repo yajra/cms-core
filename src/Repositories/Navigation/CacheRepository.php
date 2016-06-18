@@ -4,15 +4,10 @@ namespace Yajra\CMS\Repositories\Navigation;
 
 use Illuminate\Contracts\Cache\Repository as Cache;
 
-/**
- * Class NavigationCacheRepository
- *
- * @package App\Repositories\Administrator\Navigation
- */
-class NavigationCacheRepository implements NavigationRepository
+class CacheRepository implements Repository
 {
     /**
-     * @var \Yajra\CMS\Repositories\Navigation\NavigationRepository
+     * @var \Yajra\CMS\Repositories\Navigation\Repository
      */
     protected $repository;
 
@@ -23,11 +18,12 @@ class NavigationCacheRepository implements NavigationRepository
 
     /**
      * NavigationRepository constructor.
-     *
-     * @param \Yajra\CMS\Repositories\Navigation\NavigationRepository $repository
+     
+     * 
+*@param \Yajra\CMS\Repositories\Navigation\Repository $repository
      * @param \Illuminate\Contracts\Cache\Repository $cache
      */
-    public function __construct(NavigationRepository $repository, Cache $cache)
+    public function __construct(Repository $repository, Cache $cache)
     {
         $this->repository = $repository;
         $this->cache      = $cache;

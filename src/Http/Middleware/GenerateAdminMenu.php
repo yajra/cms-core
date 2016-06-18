@@ -5,7 +5,6 @@ namespace Yajra\CMS\Http\Middleware;
 use Caffeinated\Menus\Builder;
 use Caffeinated\Menus\Facades\Menu;
 use Closure;
-use Yajra\CMS\Repositories\Navigation\NavigationRepository;
 
 class GenerateAdminMenu
 {
@@ -22,7 +21,7 @@ class GenerateAdminMenu
             Menu::make('admin', function (Builder $menu) {
                 $menu->add('Dashboard', route('administrator.index'))->icon('home');
 
-                $navs = app(NavigationRepository::class)->getPublished();
+                $navs = app('navigation')->getPublished();
                 if ($navs->count()) {
                     $nav = $menu->add('Navigation', '#')->icon('sitemap')
                                 ->data('permission', 'navigation.view');

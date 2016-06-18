@@ -7,7 +7,7 @@ namespace Yajra\CMS\Repositories\Navigation;
  *
  * @package App\Repositories\Administrator\Navigation
  */
-interface NavigationRepository
+interface Repository
 {
     /**
      * Get all published navigation.
