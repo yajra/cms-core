@@ -82,7 +82,7 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('extensions', function () {
-            return new \Yajra\CMS\Repositories\Extension\EloquentRepository(new Extension);
+            return new \Yajra\CMS\Repositories\Extension\EloquentRepository;
         });
 
         $this->app->singleton('widgets', function () {

@@ -3,24 +3,10 @@
 namespace Yajra\CMS\Repositories\Extension;
 
 use Yajra\CMS\Entities\Extension;
+use Yajra\CMS\Repositories\RepositoryAbstract;
 
-class EloquentRepository implements Repository
+class EloquentRepository extends RepositoryAbstract implements Repository
 {
-    /**
-     * @var \Yajra\CMS\Entities\Extension
-     */
-    protected $extension;
-
-    /**
-     * EloquentRepository constructor.
-     *
-     * @param \Yajra\CMS\Entities\Extension $extension
-     */
-    public function __construct(Extension $extension)
-    {
-        $this->extension = $extension;
-    }
-
     /**
      * Install an extension.
      *
@@ -50,7 +36,7 @@ class EloquentRepository implements Repository
      */
     public function uninstall($id)
     {
-        $extension = $this->extension->query()->findOrFail($id);
+        $extension = $this->getModel()->query()->findOrFail($id);
         // TODO: remove extension files.
         $extension->delete();
     }
@@ -62,7 +48,7 @@ class EloquentRepository implements Repository
      */
     public function all()
     {
-        return $this->extension->all();
+        return $this->getModel()->all();
     }
 
     /**
@@ -73,6 +59,16 @@ class EloquentRepository implements Repository
      */
     public function findOrFail($id)
     {
-        return $this->extension->query()->findOrFail($id);
+        return $this->getModel()->query()->findOrFail($id);
+    }
+
+    /**
+     * Get repository model.
+     *
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder
+     */
+    public function getModel()
+    {
+        return new Extension;
     }
 }
