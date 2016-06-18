@@ -31,4 +31,15 @@ class EloquentRepository extends RepositoryAbstract implements Repository
     {
         return new Navigation();
     }
+
+    /**
+     * Find or fail a navigation.
+     *
+     * @param int $id
+     * @return \Yajra\CMS\Entities\Navigation
+     */
+    public function findOrFail($id)
+    {
+        return $this->getModel()->query()->findOrFail($id);
+    }
 }

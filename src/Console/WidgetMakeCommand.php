@@ -101,9 +101,12 @@ class WidgetMakeCommand extends ArrilotWidgetMakeCommand
         }
 
         $this->makeDirectory($path);
-        $view = $this->files->get($this->getViewStub());
+        $view = $this->files->get($this->getViewStub('view'));
         $this->files->put($path, $view);
 
-        $this->info('View created successfully.');
+        $form = $this->files->get($this->getViewStub('form'));
+        $this->files->put($this->getViewPath('_form'), $form);
+
+        $this->info('Views successfully created.');
     }
 }

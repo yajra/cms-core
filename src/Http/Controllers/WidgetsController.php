@@ -170,4 +170,24 @@ class WidgetsController extends Controller
             'data'     => $data,
         ], 200);
     }
+
+    /**
+     * Get widget custom parameter form if any.
+     *
+     * @param int $id
+     * @param int $widget
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     */
+    public function parameters($id, $widget)
+    {
+        $widget    = Widget::query()->findOrNew($widget);
+        $extension = $this->repository->findOrFail($id);
+        $formView  = $extension->param('form');
+
+        if (view()->exists($formView)) {
+            return view($formView, compact('widget'));
+        }
+
+        return view('widgets.partials.none');
+    }
 }

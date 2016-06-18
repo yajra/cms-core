@@ -27,4 +27,15 @@ trait HasParameters
 
         return new Fluent(json_decode($parameters));
     }
+
+    /**
+     * Get a value in fluent parameters.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function param($key)
+    {
+        return $this->fluentParameters()->get($key);
+    }
 }

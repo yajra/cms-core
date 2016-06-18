@@ -18,9 +18,8 @@ class CacheRepository implements Repository
 
     /**
      * NavigationRepository constructor.
-     
-     * 
-*@param \Yajra\CMS\Repositories\Navigation\Repository $repository
+     *
+     * @param \Yajra\CMS\Repositories\Navigation\Repository $repository
      * @param \Illuminate\Contracts\Cache\Repository $cache
      */
     public function __construct(Repository $repository, Cache $cache)
@@ -51,5 +50,16 @@ class CacheRepository implements Repository
         return $this->cache->rememberForever('navigation.published', function () {
             return $this->repository->getPublished();
         });
+    }
+
+    /**
+     * Find or fail a navigation.
+     *
+     * @param int $id
+     * @return \Yajra\CMS\Entities\Navigation
+     */
+    public function findOrFail($id)
+    {
+        return $this->repository->findOrFail($id);
     }
 }

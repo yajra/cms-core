@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-md-8">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group {!! $errors->has('type') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="type">
                             {{trans('cms::widget.field.type')}}
                             @tooltip('cms::widget.tooltip.type')
                         </label>
-                        <select name="extension_id" class="form-control" v-model="widget.extension_id" @change="fetchTemplates">
+                        <select name="extension_id" class="form-control" v-model="widget.extension_id" @change="fetchDependencies">
                             @foreach($extensions as $extension)
                             <option value="{{$extension->id}}">{{$extension->description or $extension->name}}</option>
                             @endforeach
@@ -16,7 +16,7 @@
                         {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div v-model="widget.template" class="form-group {!! $errors->has('template') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="template">
                             {{trans('cms::widget.field.template')}}
@@ -24,15 +24,14 @@
                         </label>
                         <select name="template" class="form-control" v-model="widget.template">
                             <option v-for="template in templates"
-                                    v-bind:value="template.key">@{{ template.value }}</option>
+                                    v-bind:value="template.key">
+                                @{{ template.value }}
+                            </option>
                         </select>
                         {!! $errors->first('template', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group {!! $errors->has('custom_template') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="custom_template">
                             {!! trans('cms::widget.field.custom_template') !!}
@@ -41,17 +40,9 @@
                         {!! $errors->first('custom_template', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group {!! $errors->has('parameter') ? 'has-error' : '' !!}">
-                        <label class="form-label-style" for="parameter">
-                            {{trans('cms::widget.field.parameter')}}
-                            @tooltip('cms::widget.tooltip.parameter')
-                        </label>
-                        {!! form()->input('text', 'parameter', null, ['id'=>'parameter','class'=>'form-control','placeholder'=>trans('cms::widget.field.parameter_placeholder')]) !!}
-                        {!! $errors->first('parameter', '<span class="help-block">:message</span>') !!}
-                    </div>
-                </div>
             </div>
+
+            <div id="widget-custom-form"></div>
 
             <div class="form-group {!! $errors->has('body') ? 'has-error' : '' !!}">
                 <div class="input-control">
@@ -60,6 +51,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="row">
                 <div class="col-md-12">

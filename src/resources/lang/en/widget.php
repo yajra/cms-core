@@ -56,8 +56,11 @@ return [
         'published'     => 'Set publication status.',
         'show_title'    => 'Display widget title.',
         'authorization' => 'Widget authorization will only apply if at least one permission was selected.',
-        'class_suffix'  => 'A suffix to be applied to the CSS of the widget. This allows for individual widget styling.',
-        'header_class'  => 'The CSS class for widget header/title.',
+        'parameters'    => [
+            'class_suffix'  => 'A suffix to be applied to the CSS of the widget. This allows for individual widget styling.',
+            'header_class'  => 'The CSS class for widget header/title.',
+            'navigation_id' => 'Navigation group to display.',
+        ],
     ],
 
     'field' => [
@@ -82,10 +85,14 @@ return [
         'published_placeholder'     => '',
         'authorization'             => 'Widget Authorization Condition',
         'authorization_placeholder' => '',
-        'class_suffix'              => 'Widget Class Suffix',
-        'class_suffix_placeholder'  => '',
-        'header_class'              => 'Header Class',
-        'header_class_placeholder'  => '',
+        'parameters'                => [
+            'navigation_id'             => 'Navigation Group',
+            'navigation_id_placeholder' => '',
+            'class_suffix'              => 'Widget Class Suffix',
+            'class_suffix_placeholder'  => '',
+            'header_class'              => 'Widget Header Class',
+            'header_class_placeholder'  => '',
+        ],
     ],
 
     'tab' => [

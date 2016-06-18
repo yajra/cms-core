@@ -79,18 +79,32 @@
             templates: []
         },
         methods: {
+            fetchDependencies: function () {
+                this.fetchTemplates();
+                this.fetchParametersView();
+            },
+
+            fetchParametersView: function () {
+                var url = '/administrator/widgets/' + this.widget.extension_id + '/parameters/' + (this.widget.id | 0);
+                this.$http.get(url).then(function (response) {
+                    $('#widget-custom-form').html(response.data);
+                });
+            },
+
             fetchTemplates: function () {
                 $.blockUI();
-                $.getJSON('/administrator/widgets/' + this.widget.extension_id + '/templates', {}, function (json) {
+                var url = '/administrator/widgets/' + this.widget.extension_id + '/templates';
+                this.$http.get(url, {}).then(function (response) {
+                    var json = response.data;
                     this.templates = json.data;
                     this.widget.extension_id = json.selected;
                     this.widget.template = json.template;
                     $.unblockUI();
-                }.bind(this))
+                });
             }
         },
         ready: function () {
-            this.fetchTemplates();
+            this.fetchDependencies();
 
             CKEDITOR.replace('body', {
                 allowedContent: true,
