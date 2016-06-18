@@ -8,11 +8,11 @@ use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Entities\Widget;
-use Yajra\CMS\Extension\EloquentRepository;
 use Yajra\CMS\Repositories\Article\ArticleEloquentRepository;
 use Yajra\CMS\Repositories\Article\ArticleRepository;
 use Yajra\CMS\Repositories\Category\CategoryEloquentRepository;
 use Yajra\CMS\Repositories\Category\CategoryRepository;
+use Yajra\CMS\Repositories\Extension\EloquentRepository;
 use Yajra\CMS\Repositories\Navigation\NavigationCacheRepository;
 use Yajra\CMS\Repositories\Navigation\NavigationEloquentRepository;
 use Yajra\CMS\Repositories\Navigation\NavigationRepository;
@@ -92,7 +92,7 @@ class RepositoryServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->alias('extensions', \Yajra\CMS\Extension\Repository::class);
+        $this->app->alias('extensions', \Yajra\CMS\Repositories\Extension\Repository::class);
         $this->app->alias('widgets', \Yajra\CMS\Widgets\Repositories\Repository::class);
     }
 }

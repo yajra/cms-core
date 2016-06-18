@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\CMS\Extension;
+namespace Yajra\CMS\Repositories\Extension;
 
 use Yajra\CMS\Entities\Extension;
 

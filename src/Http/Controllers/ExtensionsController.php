@@ -4,19 +4,19 @@ namespace Yajra\CMS\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yajra\CMS\DataTables\ExtensionsDataTable;
-use Yajra\CMS\Extension\Repository;
+use Yajra\CMS\Repositories\Extension\Repository;
 
 class ExtensionsController extends Controller
 {
     /**
-     * @var \Yajra\CMS\Extension\Repository
+     * @var \Yajra\CMS\Repositories\Extension\Repository
      */
     protected $repository;
 
     /**
      * ExtensionsController constructor.
      *
-     * @param \Yajra\CMS\Extension\Repository $repository
+     * @param \Yajra\CMS\Repositories\Extension\Repository $repository
      */
     public function __construct(Repository $repository)
     {
