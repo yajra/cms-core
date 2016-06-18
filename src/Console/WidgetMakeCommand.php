@@ -87,4 +87,23 @@ class WidgetMakeCommand extends ArrilotWidgetMakeCommand
 
         return str_replace('{{fqcn}}', $fqcn, $stub);
     }
+
+    /**
+     * Create a new view file for the widget.
+     * return void
+     */
+    protected function createView()
+    {
+        if ($this->files->exists($path = $this->getViewPath())) {
+            $this->error('View already exists!');
+
+            return;
+        }
+
+        $this->makeDirectory($path);
+        $view = $this->files->get($this->getViewStub());
+        $this->files->put($path, $view);
+
+        $this->info('View created successfully.');
+    }
 }
