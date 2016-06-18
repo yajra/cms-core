@@ -69,6 +69,6 @@ class Theme extends Fluent
      */
     public function preview()
     {
-        return url('themes/'.$this->theme.'/preview.png');
+        return url('themes/' . $this->theme . '/preview.png');
     }
 }

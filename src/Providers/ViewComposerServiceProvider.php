@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Yajra\Acl\Models\Permission;
 use Yajra\CMS\Entities\Category;
-use Yajra\CMS\Theme\Repository;
+use Yajra\CMS\Repositories\Theme\CollectionRepository;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     protected function bootAdministratorViewComposer()
     {
         view()->composer('administrator.widgets.*', function (View $view) {
-            /** @var Repository $themes */
+            /** @var \Yajra\CMS\Repositories\Theme\CollectionRepository $themes */
             $themes    = $this->app['themes'];
             $theme     = $themes->current();
             $positions = $theme->positions;

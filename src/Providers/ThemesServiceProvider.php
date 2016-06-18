@@ -4,7 +4,8 @@ namespace Yajra\CMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\Finder\Finder;
-use Yajra\CMS\Theme\Repository;
+use Yajra\CMS\Repositories\Theme\CollectionRepository;
+use Yajra\CMS\Repositories\Theme\Repository;
 use Yajra\CMS\View\ThemeViewFinder;
 
 class ThemesServiceProvider extends ServiceProvider
@@ -22,9 +23,10 @@ class ThemesServiceProvider extends ServiceProvider
         $view->addLocation(__DIR__ . '/../resources/views');
 
         // Load admin theme views.
-        $this->loadViewsFrom(__DIR__ . '/../resources/themes/' . config('theme.backend', 'default'), 'admin');
+        $theme = config('theme.backend', 'default');
+        $this->loadViewsFrom(__DIR__ . '/../resources/themes/' . $theme, 'admin');
 
-        /** @var Repository $themes */
+        /** @var \Yajra\CMS\Repositories\Theme\Repository $themes */
         $themes = $this->app['themes'];
         $themes->scan();
     }
@@ -37,14 +39,16 @@ class ThemesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('theme.view.finder', function ($app) {
-            $finder = new ThemeViewFinder($app['files'], $app['config']['view.paths']);
-            $finder->setBasePath(config('theme.path', base_path('themes')) . DIRECTORY_SEPARATOR . config('theme.frontend', 'default'));
+            $finder   = new ThemeViewFinder($app['files'], $app['config']['view.paths']);
+            $basePath = config('theme.path', base_path('themes'));
+            $theme    = config('theme.frontend', 'default');
+            $finder->setBasePath($basePath . DIRECTORY_SEPARATOR . $theme);
 
             return $finder;
         });
 
         $this->app->singleton('themes', function () {
-            return new Repository(new Finder, $this->app['config']);
+            return new CollectionRepository(new Finder, $this->app['config']);
         });
 
         $this->app->alias('themes', Repository::class);

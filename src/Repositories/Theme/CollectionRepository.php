@@ -1,6 +1,6 @@
 <?php
 
-namespace Yajra\CMS\Theme;
+namespace Yajra\CMS\Repositories\Theme;
 
 use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Filesystem\Filesystem;
@@ -8,8 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 use Yajra\CMS\Exceptions\ThemeNotFoundException;
+use Yajra\CMS\Theme\Theme;
 
-class Repository
+class CollectionRepository implements Repository
 {
     use ValidatesRequests;
 

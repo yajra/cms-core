@@ -4,19 +4,19 @@ namespace Yajra\CMS\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yajra\CMS\Entities\Configuration;
-use Yajra\CMS\Theme\Repository;
+use Yajra\CMS\Repositories\Theme\Repository;
 
 class ThemesController extends Controller
 {
     /**
-     * @var \Yajra\CMS\Theme\Repository
+     * @var \Yajra\CMS\Repositories\Theme\Repository
      */
     protected $themes;
 
     /**
      * ThemesController constructor.
      *
-     * @param \Yajra\CMS\Theme\Repository $themes
+     * @param \Yajra\CMS\Repositories\Theme\Repository $themes
      */
     public function __construct(Repository $themes)
     {
