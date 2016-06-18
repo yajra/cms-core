@@ -25,11 +25,11 @@ interface Repository
     /**
      * Find or fail a widget.
      *
-     * @param string $name
+     * @param int $id
      * @return \Yajra\CMS\Widgets\Widget
      * @throws \Yajra\CMS\Widgets\NotFoundException
      */
-    public function findOrFail($name);
+    public function findOrFail($id);
 
     /**
      * Get all registered widgets.

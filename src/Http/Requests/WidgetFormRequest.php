@@ -23,7 +23,7 @@ class WidgetFormRequest extends Request
     {
         return [
             'title'           => 'required|max:255',
-            'type'            => 'required|max:20',
+            'extension_id'    => 'required|exists:extensions,id',
             'template'        => 'required',
             'custom_template' => 'required_if:template,custom|view_exists',
             'parameter'       => 'required_if:type,menu',

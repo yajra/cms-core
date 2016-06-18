@@ -55,7 +55,7 @@ class DynamicWidgetsBuilder
 
                             if ($displayWidget) {
                                 $factory->group($widget->position)
-                                        ->addWidget($widget->present()->type, [], $widget);
+                                        ->addWidget($widget->present()->class(), [], $widget);
                             }
                         });
                     });

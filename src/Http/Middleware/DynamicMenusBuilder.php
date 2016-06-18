@@ -26,7 +26,7 @@ class DynamicMenusBuilder
      */
     public function handle($request, Closure $next)
     {
-        if (! app()->runningInConsole() || ! $request->is('administrator/*')) {
+        if (! $request->is('administrator/*')) {
             $this->repository = app(NavigationRepository::class);
             $this->repository->getPublished()->each(function (Navigation $navigation) {
                 MenuFactory::make($navigation->type, function (Builder $builder) use ($navigation) {

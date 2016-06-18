@@ -5,6 +5,9 @@ namespace Yajra\CMS\Widgets;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 
+/**
+ * @property string class
+ */
 class Widget extends Fluent
 {
     /**

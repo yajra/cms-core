@@ -8,16 +8,16 @@
                             {{trans('cms::widget.field.type')}}
                             @tooltip('cms::widget.tooltip.type')
                         </label>
-                        <select name="type" class="form-control" v-model="widget.type" @change="fetchTemplates">
-                            @foreach(app('widgets')->all() as $item)
-                            <option value="{{$item->name}}">{{$item->description or $item->name}}</option>
+                        <select name="extension_id" class="form-control" v-model="widget.extension_id" @change="fetchTemplates">
+                            @foreach($extensions as $extension)
+                            <option value="{{$extension->id}}">{{$extension->description or $extension->name}}</option>
                             @endforeach
                         </select>
                         {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group {!! $errors->has('template') ? 'has-error' : '' !!}">
+                    <div v-model="widget.template" class="form-group {!! $errors->has('template') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="template">
                             {{trans('cms::widget.field.template')}}
                             @tooltip('cms::widget.tooltip.template')

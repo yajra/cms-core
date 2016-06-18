@@ -67,14 +67,13 @@ class EloquentRepository implements Repository
     /**
      * Find or fail a widget.
      *
-     * @param string $name
+     * @param int $id
      * @return \Yajra\CMS\Widgets\Widget
      * @throws \Yajra\CMS\Widgets\NotFoundException
      */
-    public function findOrFail($name)
+    public function findOrFail($id)
     {
-        if ($extension = Extension::widget($name)) {
-
+        if ($extension = Extension::query()->findOrFail($id)) {
             return new Widget($extension->manifest);
         }
 
@@ -88,6 +87,6 @@ class EloquentRepository implements Repository
      */
     public function all()
     {
-        return Extension::all();
+        return Extension::query()->where('type', 'widget')->get();
     }
 }

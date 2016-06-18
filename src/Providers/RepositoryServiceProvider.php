@@ -3,7 +3,6 @@
 namespace Yajra\CMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Yajra\CMS\Contracts\Cacheable;
 use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Menu;
@@ -55,11 +54,11 @@ class RepositoryServiceProvider extends ServiceProvider
         }
 
         Extension::saved(function ($model) {
-            $this->app['cache.store']->forget('extension.widget.' . Str::lower($model->name));
+            $this->app['cache.store']->forget('extension.widget.' . $model->id);
             $this->app['cache.store']->forget('extension.widget.all');
         });
         Extension::deleted(function ($model) {
-            $this->app['cache.store']->forget('extension.widget.' . Str::lower($model->name));
+            $this->app['cache.store']->forget('extension.widget.' . $model->id);
             $this->app['cache.store']->forget('extension.widget.all');
         });
     }

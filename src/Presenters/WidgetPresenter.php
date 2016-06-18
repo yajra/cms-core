@@ -23,11 +23,11 @@ class WidgetPresenter extends Presenter
      * @return string
      * @throws \Exception
      */
-    public function type()
+    public function class()
     {
         /** @var EloquentRepository $repository */
         $repository = app('widgets');
 
-        return $repository->findOrFail($this->entity->type)->class;
+        return $repository->findOrFail($this->entity->extension_id)->class;
     }
 }

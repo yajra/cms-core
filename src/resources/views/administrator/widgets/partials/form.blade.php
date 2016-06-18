@@ -81,9 +81,10 @@
         methods: {
             fetchTemplates: function () {
                 $.blockUI();
-                $.getJSON('/administrator/widgets/' + this.widget.type + '/templates', {}, function (json) {
+                $.getJSON('/administrator/widgets/' + this.widget.extension_id + '/templates', {}, function (json) {
                     this.templates = json.data;
-                    this.widget.type = json.selected;
+                    this.widget.extension_id = json.selected;
+                    this.widget.template = json.template;
                     $.unblockUI();
                 }.bind(this))
             }

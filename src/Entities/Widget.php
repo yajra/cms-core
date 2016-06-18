@@ -2,16 +2,17 @@
 
 namespace Yajra\CMS\Entities;
 
-use Yajra\CMS\Contracts\Cacheable;
-use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
-use Yajra\CMS\Entities\Traits\HasParameters;
-use Yajra\CMS\Presenters\WidgetPresenter;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 use Yajra\Acl\Models\Permission;
 use Yajra\Acl\Traits\HasPermission;
 use Yajra\Auditable\AuditableTrait;
+use Yajra\CMS\Contracts\Cacheable;
+use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
+use Yajra\CMS\Entities\Traits\HasOrder;
+use Yajra\CMS\Entities\Traits\HasParameters;
+use Yajra\CMS\Presenters\WidgetPresenter;
 
 /**
  * @property string title
@@ -29,14 +30,19 @@ use Yajra\Auditable\AuditableTrait;
  * @property string authorization
  * @property Collection|Permission[] permissions
  * @property bool show_title
+ * @property int extension_id
  */
 class Widget extends Model implements Cacheable
 {
     use PresentableTrait, AuditableTrait, CanRequireAuthentication;
-    use HasParameters, HasPermission;
+    use HasParameters, HasPermission, HasOrder;
     const ALL_PAGES      = 0;
     const NO_PAGES       = 1;
     const SELECTED_PAGES = 2;
+
+    // extensions constant
+    const EXT_MENU       = 1;
+    const EXT_WYSIWYG    = 2;
 
     /**
      * @var \Yajra\CMS\Presenters\WidgetPresenter
@@ -49,7 +55,7 @@ class Widget extends Model implements Cacheable
     protected $fillable = [
         'title',
         'position',
-        'type',
+        'extension_id',
         'template',
         'custom_template',
         'order',
@@ -179,5 +185,15 @@ class Widget extends Model implements Cacheable
     public function menus()
     {
         return $this->belongsToMany(Menu::class, 'widget_menu');
+    }
+
+    /**
+     * Get related extension.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function extension()
+    {
+        return $this->belongsTo(Extension::class);
     }
 }

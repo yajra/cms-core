@@ -38,6 +38,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 
             $view->with('widget_positions', $data);
             $view->with('theme', $theme);
+            $view->with('extensions', $this->app['widgets']->all());
         });
 
         view()->composer('administrator.articles.partials.form', function (View $view) {

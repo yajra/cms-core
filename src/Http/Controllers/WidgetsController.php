@@ -53,9 +53,8 @@ class WidgetsController extends Controller
      */
     public function create(Widget $widget)
     {
-        $widget->order    = 1;
-        $widget->type     = old('type', 'WYSIWYG');
-        $widget->template = old('template', 'widgets.wysiwyg.default');
+        $widget->extension_id = old('extension_id', Widget::EXT_WYSIWYG);
+        $widget->template     = old('template', 'widgets.wysiwyg.default');
 
         return view('administrator.widgets.create', compact('widget'));
     }
@@ -166,6 +165,7 @@ class WidgetsController extends Controller
         }
 
         return response()->json([
+            'template' => $data[0]['key'],
             'selected' => $type,
             'data'     => $data,
         ], 200);

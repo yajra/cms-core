@@ -56,16 +56,16 @@ class CacheRepository implements Repository
     /**
      * Find or fail a widget.
      *
-     * @param string $name
+     * @param int $id
      * @return \Yajra\CMS\Widgets\Widget
      * @throws \Yajra\CMS\Widgets\NotFoundException
      */
-    public function findOrFail($name)
+    public function findOrFail($id)
     {
-        $name = Str::lower($name);
+        $id = Str::lower($id);
 
-        return $this->cache->rememberForever("extension.widget.$name", function () use ($name) {
-            return $this->repository->findOrFail($name);
+        return $this->cache->rememberForever("extension.widget.$id", function () use ($id) {
+            return $this->repository->findOrFail($id);
         });
     }
 
