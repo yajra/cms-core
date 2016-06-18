@@ -215,7 +215,7 @@ class UtilitiesController extends Controller
      */
     public function rebuildMenu()
     {
-        Menu::rebuild();
+        Menu::rebuild(true);
 
         return $this->notifySuccess(trans('cms::utilities.menu.success'));
     }
@@ -225,7 +225,7 @@ class UtilitiesController extends Controller
      */
     public function rebuildCategory()
     {
-        Category::rebuild();
+        Category::rebuild(true);
 
         return $this->notifySuccess(trans('cms::utilities.category.success'));
     }
