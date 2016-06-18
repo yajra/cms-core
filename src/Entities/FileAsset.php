@@ -4,6 +4,9 @@ namespace Yajra\CMS\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string url
+ */
 class FileAsset extends Model
 {
     /**
