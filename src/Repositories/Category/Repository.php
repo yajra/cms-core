@@ -2,7 +2,7 @@
 
 namespace Yajra\CMS\Repositories\Category;
 
-interface CategoryRepository
+interface Repository
 {
     /**
      * Get all published articles.

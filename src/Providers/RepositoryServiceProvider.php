@@ -8,10 +8,6 @@ use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Entities\Widget;
-use Yajra\CMS\Repositories\Article\ArticleEloquentRepository;
-use Yajra\CMS\Repositories\Article\ArticleRepository;
-use Yajra\CMS\Repositories\Category\CategoryEloquentRepository;
-use Yajra\CMS\Repositories\Category\CategoryRepository;
 use Yajra\CMS\Repositories\Widget\WidgetCacheRepository;
 use Yajra\CMS\Repositories\Widget\WidgetEloquentRepository;
 use Yajra\CMS\Repositories\Widget\WidgetRepository;
@@ -77,8 +73,13 @@ class RepositoryServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->singleton(ArticleRepository::class, ArticleEloquentRepository::class);
-        $this->app->singleton(CategoryRepository::class, CategoryEloquentRepository::class);
+        $this->app->singleton('articles', function () {
+            return new \Yajra\CMS\Repositories\Article\EloquentRepository;
+        });
+
+        $this->app->singleton('categories', function () {
+            return new \Yajra\CMS\Repositories\Category\EloquentRepository;
+        });
 
         $this->app->singleton('extensions', function () {
             return new \Yajra\CMS\Repositories\Extension\EloquentRepository(new Extension);
@@ -91,6 +92,8 @@ class RepositoryServiceProvider extends ServiceProvider
             );
         });
 
+        $this->app->alias('articles', \Yajra\CMS\Repositories\Article\Repository::class);
+        $this->app->alias('categories', \Yajra\CMS\Repositories\Category\Repository::class);
         $this->app->alias('navigation', \Yajra\CMS\Repositories\Navigation\Repository::class);
         $this->app->alias('extensions', \Yajra\CMS\Repositories\Extension\Repository::class);
         $this->app->alias('widgets', \Yajra\CMS\Widgets\Repositories\Repository::class);

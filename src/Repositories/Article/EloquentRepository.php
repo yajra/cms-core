@@ -5,7 +5,7 @@ namespace Yajra\CMS\Repositories\Article;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Repositories\RepositoryAbstract;
 
-class ArticleEloquentRepository extends RepositoryAbstract implements ArticleRepository
+class EloquentRepository extends RepositoryAbstract implements Repository
 {
     /**
      * Get repository model.

@@ -2,20 +2,14 @@
 
 namespace Yajra\CMS\Providers;
 
-use Yajra\CMS\Entities\Article;
-use Yajra\CMS\Entities\Category;
-use Yajra\CMS\Entities\Widget;
-use Yajra\CMS\Http\Controllers\ArticleController;
-use Yajra\CMS\Http\Controllers\AuthController;
-use Yajra\CMS\Http\Controllers\CategoryController;
-use Yajra\CMS\Repositories\Article\ArticleRepository;
-use Yajra\CMS\Repositories\Category\CategoryRepository;
-use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
-use Yajra\Acl\Models\Permission;
-use Yajra\Acl\Models\Role;
+use Yajra\CMS\Entities\Article;
+use Yajra\CMS\Entities\Category;
+use Yajra\CMS\Http\Controllers\ArticleController;
+use Yajra\CMS\Http\Controllers\AuthController;
+use Yajra\CMS\Http\Controllers\CategoryController;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -35,12 +29,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $router->model('users', User::class);
-        $router->model('roles', Role::class);
-        $router->model('permissions', Permission::class);
-        $router->model('widgets', Widget::class);
-        $router->model('articles', Article::class);
-        $router->model('categories', Category::class);
+        $router->model('users', \App\User::class);
+        $router->model('roles', \Yajra\Acl\Models\Role::class);
+        $router->model('permissions', \Yajra\Acl\Models\Permission::class);
+        $router->model('widgets', \Yajra\CMS\Entities\Widget::class);
+        $router->model('articles', \Yajra\CMS\Entities\Article::class);
+        $router->model('categories', \Yajra\CMS\Entities\Category::class);
 
         parent::boot($router);
     }
@@ -82,8 +76,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapArticleRoutes(Router $router)
     {
         try {
-            /** @var ArticleRepository $repository */
-            $repository = app(ArticleRepository::class);
+            /** @var \Yajra\CMS\Repositories\Article\Repository $repository */
+            $repository = app('articles');
             $repository->getAllPublished()->each(function (Article $article) use ($router) {
                 $middleware = ['web'];
                 if ($article->requiresAuthentication()) {
@@ -92,9 +86,11 @@ class RouteServiceProvider extends ServiceProvider
 
                 if ($article->permissions->count()) {
                     if ($article->authorization === 'can') {
-                        $article->permissions->each(function (Permission $permission) use ($middleware) {
-                            $middleware[] = 'can:' . $permission->slug;
-                        });
+                        $article->permissions->each(
+                            function (\Yajra\Acl\Models\Permission $permission) use ($middleware) {
+                                $middleware[] = 'can:' . $permission->slug;
+                            }
+                        );
                     } else {
                         $abilities    = $article->permissions->pluck('slug')->toArray();
                         $middleware[] = 'canAtLeast:' . implode(',', $abilities);
@@ -121,8 +117,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapCategoryRoutes(Router $router)
     {
         try {
-            /** @var CategoryRepository $repository */
-            $repository = app(CategoryRepository::class);
+            /** @var \Yajra\CMS\Repositories\Category\Repository $repository */
+            $repository = app('categories');
             $repository->getAllPublished()->each(function (Category $category) use ($router) {
                 $middleware = ['web'];
                 if ($category->requiresAuthentication()) {
@@ -175,7 +171,7 @@ class RouteServiceProvider extends ServiceProvider
             'middleware' => 'administrator',
             'prefix'     => 'administrator',
         ], function ($router) {
-            require __DIR__ .'/../Http/routes.php';
+            require __DIR__ . '/../Http/routes.php';
         });
     }
 }

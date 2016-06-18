@@ -5,7 +5,7 @@ namespace Yajra\CMS\Repositories\Category;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Repositories\RepositoryAbstract;
 
-class CategoryEloquentRepository extends RepositoryAbstract implements CategoryRepository
+class EloquentRepository extends RepositoryAbstract implements Repository
 {
     /**
      * Get all published articles.
