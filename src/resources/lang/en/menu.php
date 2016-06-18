@@ -27,8 +27,9 @@ return [
     ],
 
     'update' => [
-        'success' => 'Menu successfully updated!',
-        'publish' => 'Menu successfully %s!',
+        'success'    => 'Menu successfully updated!',
+        'publish'    => 'Menu successfully %s!',
+        'move_error' => 'A menu cannot be moved to it\'s own sub-menu or to itself (inside moved tree)!',
     ],
 
     'destroy' => [

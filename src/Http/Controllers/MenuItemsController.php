@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
+use Baum\MoveNotPossibleException;
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\DataTables\MenuItemsDataTable;
 use Yajra\CMS\Entities\Lookup;
@@ -73,9 +74,11 @@ class MenuItemsController extends Controller
         $menu->authenticated = $request->get('authenticated', false);
         $navigation->menus()->save($menu);
 
+        $menu->makeChildOf(Menu::query()->findOrFail($request->get('parent_id')));
+
         $menu->permissions()->sync($request->get('permissions', []));
 
-        flash()->success('Menu successfully created!');
+        flash()->success(trans('cms::menu.store.success'));
 
         return redirect()->route('administrator.navigation.menu.index', $navigation->id);
     }
@@ -104,13 +107,21 @@ class MenuItemsController extends Controller
      */
     public function update(Navigation $navigation, Menu $menu, MenuItemsFormRequest $request)
     {
+        try {
+            $menu->makeChildOf(Menu::query()->findOrFail($request->get('parent_id')));
+        } catch (MoveNotPossibleException $e) {
+            flash()->error(trans('cms::menu.update.move_error'));
+
+            return back();
+        }
         $menu->fill($request->all());
         $menu->published     = $request->get('published', false);
         $menu->authenticated = $request->get('authenticated', false);
         $navigation->menus()->save($menu);
+        
         $menu->permissions()->sync($request->get('permissions', []));
 
-        flash()->success('Menu successfully updated!');
+        flash()->success(trans('cms::menu.update.success'));
 
         return redirect()->route('administrator.navigation.menu.index', $navigation->id);
     }
@@ -127,9 +138,9 @@ class MenuItemsController extends Controller
             abort(404);
         }
 
-        $navigation->menus()->query()->find($menu->id)->delete();
+        $navigation->menus()->findOrFail($menu->id)->delete();
 
-        return $this->notifySuccess('Menu successfully deleted!');
+        return $this->notifySuccess(trans('cms::menu.destroy.success'));
     }
 
     /**

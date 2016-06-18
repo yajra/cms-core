@@ -2,15 +2,15 @@
 
 namespace Yajra\CMS\Entities;
 
-use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
-use Yajra\CMS\Entities\Traits\HasParameters;
-use Yajra\CMS\Entities\Traits\PublishableTrait;
-use Yajra\CMS\Presenters\MenuPresenter;
 use Baum\Node;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 use Yajra\Acl\Models\Permission;
 use Yajra\Auditable\AuditableTrait;
+use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
+use Yajra\CMS\Entities\Traits\HasParameters;
+use Yajra\CMS\Entities\Traits\PublishableTrait;
+use Yajra\CMS\Presenters\MenuPresenter;
 
 /**
  * @property int depth
@@ -27,6 +27,7 @@ use Yajra\Auditable\AuditableTrait;
  * @property string authorization
  * @property mixed permissions
  * @property mixed widgets
+ * @property int navigation_id
  */
 class Menu extends Node
 {
@@ -51,7 +52,6 @@ class Menu extends Node
         'url',
         'target',
         'order',
-        'parent_id',
         'published',
         'authenticated',
         'authorization',
@@ -124,28 +124,40 @@ class Menu extends Node
         ];
 
         if ($this->exists) {
-            $parents = $this->ancestors()
-                            ->withoutRoot()
-                            ->orWhere(function ($query) {
-                                $query->where('depth', $this->depth)->where('id', '<>', $this->id);
-                            })
-                            ->get();
-            foreach ($parents as $parent) {
-                $items[] = [
-                    'title' => $parent->present()->indentedTitle(0),
-                    'id'    => $parent->id,
-                ];
-            }
+            $nodes = $root->descendants()
+                          ->where('navigation_id', $this->navigation_id)
+                          ->where('id', '<>', $this->id)
+                          ->get();
         } else {
-            foreach ($root->getDescendants() as $parent) {
-                $items[] = [
-                    'title' => $parent->present()->indentedTitle(0),
-                    'id'    => $parent->id,
-                ];
-            }
+            $nodes = $root->getDescendants();
+        }
+
+        foreach ($nodes as $node) {
+            $this->appendMenu($node, $items);
         }
 
         return array_pluck($items, 'title', 'id');
+    }
+
+    /**
+     * @param \Baum\Node $node
+     * @param array $items
+     * @return array
+     */
+    protected function appendMenu($node, &$items)
+    {
+        if ($node->isLeaf()) {
+            $items[] = [
+                'title' => $node->present()->indentedTitle(),
+                'id'    => $node->id,
+            ];
+        } else {
+            foreach ($node->children as $child) {
+                $this->appendMenu($child, $items);
+            }
+        }
+
+        return $items;
     }
 
     /**

@@ -106,6 +106,10 @@ class MenuItemsDataTable extends DataTable
                 'width' => '20px',
                 'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="Display Order"></i>',
             ],
+            'depth'         => [
+                'width' => '20px',
+                'title' => '<i class="fa fa-sitemap" data-toggle="tooltip" data-title="Depth"></i>',
+            ],
             'created_at'    => ['width' => '100px'],
             'updated_at'    => ['width' => '100px'],
         ];
