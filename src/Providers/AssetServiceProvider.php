@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use Roumen\Asset\Asset;
 use Yajra\CMS\Entities\Configuration;
 use Yajra\CMS\Entities\FileAsset;
+use Illuminate\Database\QueryException;
+
 
 /**
  * Class AssetServiceProvider
@@ -20,10 +22,14 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->addAdminAssets();
-        $this->requireAdminDefaultAssets();
-        $this->assetJs();
-        $this->assetCss();
+        try {
+            $this->addAdminAssets();
+            $this->requireAdminDefaultAssets();
+            $this->assetJs();
+            $this->assetCss();
+        } catch (QueryException $e) {
+            // \\_(",)_//
+        }
     }
 
     /**
