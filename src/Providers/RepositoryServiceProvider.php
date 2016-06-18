@@ -84,18 +84,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton('extensions', function () {
             return new \Yajra\CMS\Repositories\Extension\EloquentRepository;
         });
-
-        $this->app->singleton('widgets', function () {
-            return new \Yajra\CMS\Widgets\Repositories\CacheRepository(
-                new \Yajra\CMS\Widgets\Repositories\EloquentRepository,
-                $this->app['cache.store']
-            );
-        });
-
+        
         $this->app->alias('articles', \Yajra\CMS\Repositories\Article\Repository::class);
         $this->app->alias('categories', \Yajra\CMS\Repositories\Category\Repository::class);
         $this->app->alias('navigation', \Yajra\CMS\Repositories\Navigation\Repository::class);
         $this->app->alias('extensions', \Yajra\CMS\Repositories\Extension\Repository::class);
-        $this->app->alias('widgets', \Yajra\CMS\Widgets\Repositories\Repository::class);
     }
 }

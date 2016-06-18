@@ -38,7 +38,10 @@ class ViewComposerServiceProvider extends ServiceProvider
 
             $view->with('widget_positions', $data);
             $view->with('theme', $theme);
-            $view->with('extensions', $this->app['widgets']->all());
+
+            /** @var \Yajra\CMS\Repositories\Extension\Repository $extensions */
+            $extensions = $this->app['extensions'];
+            $view->with('extensions', $extensions->allWidgets());
         });
 
         view()->composer('administrator.articles.partials.form', function (View $view) {

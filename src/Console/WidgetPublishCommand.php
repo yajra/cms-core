@@ -3,7 +3,7 @@
 namespace Yajra\CMS\Console;
 
 use Illuminate\Console\Command;
-use Yajra\CMS\Widgets\Repositories\EloquentRepository;
+use Yajra\CMS\Repositories\Extension\Repository;
 
 class WidgetPublishCommand extends Command
 {
@@ -19,22 +19,22 @@ class WidgetPublishCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Install YajraCMS widget.';
+    protected $description = 'Install YajraCMS widget extension.';
 
     /**
-     * @var \Yajra\CMS\Widgets\Repositories\EloquentRepository
+     * @var \Yajra\CMS\Repositories\Extension\Repository
      */
-    protected $widgets;
+    private $extensions;
 
     /**
      * Create a new command instance.
      *
-     * @param \Yajra\CMS\Widgets\Repositories\EloquentRepository $widgets
+     * @param \Yajra\CMS\Repositories\Extension\Repository $extensions
      */
-    public function __construct(EloquentRepository $widgets)
+    public function __construct(Repository $extensions)
     {
         parent::__construct();
-        $this->widgets = $widgets;
+        $this->extensions = $extensions;
     }
 
     /**
@@ -46,8 +46,8 @@ class WidgetPublishCommand extends Command
     {
         $path = app_path('Widgets') . DIRECTORY_SEPARATOR . $this->argument('name') . '.json';
 
-        $this->widgets->registerManifest($path);
+        $this->extensions->registerManifest($path);
 
-        $this->info($this->argument('name') . ' widget installed!');
+        $this->info($this->argument('name') . ' widget extension installed!');
     }
 }

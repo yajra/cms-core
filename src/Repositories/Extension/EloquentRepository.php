@@ -2,11 +2,16 @@
 
 namespace Yajra\CMS\Repositories\Extension;
 
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\File;
 use Yajra\CMS\Entities\Extension;
+use Yajra\CMS\Exceptions\InvalidManifestException;
 use Yajra\CMS\Repositories\RepositoryAbstract;
 
 class EloquentRepository extends RepositoryAbstract implements Repository
 {
+    use ValidatesRequests;
+
     /**
      * Install an extension.
      *
@@ -42,6 +47,16 @@ class EloquentRepository extends RepositoryAbstract implements Repository
     }
 
     /**
+     * Get repository model.
+     *
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder
+     */
+    public function getModel()
+    {
+        return new Extension;
+    }
+
+    /**
      * Get all extensions.
      *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
@@ -55,7 +70,7 @@ class EloquentRepository extends RepositoryAbstract implements Repository
      * Find or fail an extension.
      *
      * @param int $id
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     * @return \Yajra\CMS\Entities\Extension
      */
     public function findOrFail($id)
     {
@@ -63,12 +78,66 @@ class EloquentRepository extends RepositoryAbstract implements Repository
     }
 
     /**
-     * Get repository model.
+     * Get all registered widgets.
      *
-     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Support\Collection
      */
-    public function getModel()
+    public function allWidgets()
     {
-        return new Extension;
+        return $this->getModel()->query()->where('type', 'widget')->get();
+    }
+
+    /**
+     * Register an extension using manifest config file.
+     *
+     * @param string $path
+     * @throws \Exception
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function registerManifest($path)
+    {
+        if (! File::exists($path)) {
+            throw new \Exception('Extension manifest file does not exist! Path: ' . $path);
+        }
+
+        $manifest = File::get($path);
+        $manifest = json_decode($manifest, true);
+        $this->register($manifest);
+    }
+
+    /**
+     * Register an extension.
+     *
+     * @param array $attributes
+     * @return $this
+     * @throws \Exception
+     */
+    public function register(array $attributes)
+    {
+        $validator = $this->getValidationFactory()->make($attributes, [
+            'type'       => 'required',
+            'name'       => 'required',
+            'class'      => 'required',
+            'templates'  => 'required',
+            'parameters' => 'json',
+        ]);
+
+        if ($validator->fails()) {
+            throw new InvalidManifestException("Invalid manifest file detected!");
+        }
+
+        $extension       = new Extension;
+        $extension->type = $attributes['type'];
+        $extension->name = $attributes['name'];
+        if (isset($attributes['protected'])) {
+            $extension->protected = $attributes['protected'];
+        }
+        if (isset($attributes['parameters'])) {
+            $extension->parameters = $attributes['parameters'];
+        }
+        $extension->manifest = json_encode($attributes);
+        $extension->save();
+
+        return $this;
     }
 }

@@ -5,7 +5,7 @@ namespace Yajra\CMS\Http\Controllers;
 use Yajra\CMS\DataTables\WidgetsDataTable;
 use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Http\Requests\WidgetFormRequest;
-use Yajra\CMS\Widgets\Repositories\Repository;
+use Yajra\CMS\Repositories\Extension\Repository;
 
 class WidgetsController extends Controller
 {
@@ -19,14 +19,14 @@ class WidgetsController extends Controller
     ];
 
     /**
-     * @var \Yajra\CMS\Widgets\Repositories\Repository
+     * @var \Yajra\CMS\Repositories\Extension\Repository
      */
     protected $repository;
 
     /**
      * WidgetsController constructor.
      *
-     * @param \Yajra\CMS\Widgets\Repositories\Repository $repository
+     * @param \Yajra\CMS\Repositories\Extension\Repository $repository
      */
     public function __construct(Repository $repository)
     {
@@ -158,7 +158,7 @@ class WidgetsController extends Controller
      */
     public function templates($type)
     {
-        $data   = [];
+        $data      = [];
         $extension = $this->repository->findOrFail($type);
         foreach ($extension->manifest['templates'] as $template) {
             $data[] = ['key' => $template['path'], 'value' => $template['description']];

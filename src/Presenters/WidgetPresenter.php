@@ -3,7 +3,6 @@
 namespace Yajra\CMS\Presenters;
 
 use Laracasts\Presenter\Presenter;
-use Yajra\CMS\Widgets\Repositories\EloquentRepository;
 
 class WidgetPresenter extends Presenter
 {
@@ -25,11 +24,10 @@ class WidgetPresenter extends Presenter
      */
     public function class()
     {
-        /** @var \Yajra\CMS\Widgets\Repositories\EloquentRepository $repository */
-        $repository = app('widgets');
-        /** @var \Yajra\CMS\Entities\Extension $widget */
-        $widget = $repository->findOrFail($this->entity->extension_id);
+        /** @var \Yajra\CMS\Repositories\Extension\Repository $repository */
+        $repository = app('extensions');
+        $extension  = $repository->findOrFail($this->entity->extension_id);
 
-        return $widget->manifest['class'];
+        return $extension->manifest['class'];
     }
 }
