@@ -2,17 +2,17 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
+use App\Http\Requests;
 use Baum\MoveNotPossibleException;
+use Exception;
+use Illuminate\Http\Request;
+use Yajra\Acl\Models\Permission;
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\DataTables\MenuItemsDataTable;
 use Yajra\CMS\Entities\Lookup;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Http\Requests\MenuItemsFormRequest;
-use App\Http\Requests;
-use Exception;
-use Illuminate\Http\Request;
-use Yajra\Acl\Models\Permission;
 
 class MenuItemsController extends Controller
 {
@@ -22,9 +22,9 @@ class MenuItemsController extends Controller
      * @var array
      */
     protected $customPermissionMap = [
-        'publish'       => 'update',
-        'getArticles'   => 'lists',
-        'getTypesByKey' => 'lists',
+        'publish'  => 'update',
+        'articles' => 'view',
+        'types'    => 'view',
     ];
 
     /**
@@ -118,7 +118,7 @@ class MenuItemsController extends Controller
         $menu->published     = $request->get('published', false);
         $menu->authenticated = $request->get('authenticated', false);
         $navigation->menus()->save($menu);
-        
+
         $menu->permissions()->sync($request->get('permissions', []));
 
         flash()->success(trans('cms::menu.update.success'));
@@ -168,7 +168,7 @@ class MenuItemsController extends Controller
      * @param \Yajra\CMS\DataTables\ArticlesDataTable $dataTable
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getArticles(ArticlesDataTable $dataTable)
+    public function articles(ArticlesDataTable $dataTable)
     {
         return $dataTable->ajax();
     }
@@ -178,7 +178,7 @@ class MenuItemsController extends Controller
      * @param \Yajra\CMS\Entities\Menu $menu
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getTypesByKey(Request $request, Menu $menu)
+    public function types(Request $request, Menu $menu)
     {
         /** @var Lookup $item */
         $item     = Lookup::type('menu.types')->where('key', $request->query('key'))->firstOrFail();

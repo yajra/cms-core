@@ -20,7 +20,8 @@ $router->post('users/{users}/block', UsersController::class . '@ban')
        ->name('administrator.users.block');
 $router->delete('users/{id}/force', UsersController::class . '@forceDelete')
        ->name('administrator.users.destroy.force');
-$router->post('users/{id}/restore', UsersController::class . '@restore')->name('administrator.users.restore');
+$router->post('users/{id}/restore', UsersController::class . '@restore')
+        ->name('administrator.users.restore');
 $router->resource('users', UsersController::class);
 
 // Roles Routes
