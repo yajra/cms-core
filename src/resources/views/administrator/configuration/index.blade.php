@@ -71,49 +71,49 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li id="site-mgmt" style="margin: 0;">
+                    <li id="site-mgmt" style="margin: 0px 0px -2px;">
                         <a class="hide" data-toggle="tab" href="tab-site-mgmt">
                             <i class="fa fa-cog"></i>&nbsp;Site Management
                         </a>
                     </li>
-                    <li id="asset-mgmt" style="margin: 0;">
+                    <li id="asset-mgmt" style="margin: 0px 0px -2px;">
                         <a class="hide" data-toggle="tab" href="tab-asset-mgmt">
                             <i class="fa fa-magic"></i>&nbsp;Asset Management
                         </a>
                     </li>
-                    <li id="app-env" style="margin: 0;">
+                    <li id="app-env" style="margin: 0px 0px -2px;">
                         <a class="hide" href="#tab-app-env" data-toggle="tab">
                             <i class="fa fa-laptop"></i>&nbsp;Application Environment
                         </a>
                     </li>
-                    <li id="db-conn" style="margin: 0;">
+                    <li id="db-conn" style="margin: 0px 0px -2px;">
                         <a class="hide" href="#tab-db-conn" data-toggle="tab">
                             <i class="fa fa-database"></i>&nbsp;Database Connection
                         </a>
                     </li>
-                    <li id="mail-driver" style="margin: 0;">
+                    <li id="mail-driver" style="margin: 0px 0px -2px;">
                         <a class="hide" href="#tab-mail-driver" data-toggle="tab">
                             <i class="fa fa-envelope"></i>&nbsp;Mail Driver
                         </a>
                     </li>
-                    <li id="cache-store" style="margin: 0;">
+                    <li id="cache-store" style="margin: 0px 0px -2px;">
                         <a class="hide" href="#tab-cache-store" data-toggle="tab">
                             <i class="fa fa-cloud-download"></i>&nbsp;Cache Store
                         </a>
                     </li>
-                    <li id="session-driver" style="margin: 0;">
+                    <li id="session-driver" style="margin: 0px 0px -2px;">
                         <a class="hide" href="#tab-session-driver" data-toggle="tab">
                             <i class="fa fa-comment-o"></i>&nbsp;Session Driver
                         </a>
                     </li>
-                    <li id="file-system" style="margin: 0;">
+                    <li id="file-system" style="margin: 0px 0px -2px;">
                         <a class="hide" href="#tab-file-system" data-toggle="tab">
                             <i class="fa fa-briefcase"></i>&nbsp;File System
                         </a>
                     </li>
                 </ul>
 
-                <div class="tab-content">
+                <div class="tab-content padding-0">
                     <div class="tab-pane hide" id="tab-site-mgmt">
                         <form method="POST" v-on:submit.prevent="onSubmit(this.site, 'site management')">
                             <div class="box box-solid">

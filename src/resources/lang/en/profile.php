@@ -12,15 +12,16 @@ return [
     | language lines according to your application's requirements.
 	*/
 
-    'edit'  => [
+    'position' => 'Administrator',
+    'edit'     => [
         'title'      => 'Profile Update',
         'page-title' => 'Profile Update',
         'page-desc'  => 'Update your User\'s Information.',
     ],
-    'alert' => [
+    'alert'    => [
         'success' => 'Profile successfully Updated!',
     ],
-    'form'  => [
+    'form'     => [
         'box-title' => 'Basic Information',
         'field'     => [
             'first-name' => 'First Name',
@@ -28,13 +29,14 @@ return [
             'email'      => 'Email Address',
             'pass-new'   => 'New Password',
             'pass-conf'  => 'Confirm Password',
+            'require'    => 'please fill up all required fields.',
         ],
         'sep-title' => [
             'change-pass' => 'Change Password',
             'upload-av'   => 'Upload Avatar',
         ],
         'button'    => [
-            'save' => 'Save Profile',
+            'save'          => 'Save Profile',
             'remove-avatar' => 'Remove Avatar',
         ],
         'require'   => [

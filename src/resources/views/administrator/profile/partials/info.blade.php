@@ -1,30 +1,56 @@
 <div class="row">
-    <div class="col-md-6">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">
-                    <i class="fa fa-user"></i>&nbsp;
-                    {{trans('cms::profile.form.box-title')}}
+    <div class="col-md-3">
+        <div class="box box-primary">
+            <div class="box-body box-profile">
+                {{ html()->image(
+                    currentUser()->present()->avatar ,
+                    'alt',
+                    array( 'class' => 'profile-user-img img-responsive img-circle', 'style' => "" ))
+                }}
+                <h3 class="profile-username text-center">
+                    {{currentUser()->present()->first_name}} {{currentUser()->present()->last_name}}
                 </h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
+                <p class="text-muted text-center">{{trans('cms::profile.position')}}</p>
+                <a href="#" class="btn btn-warning btn-block"><b>{{trans('cms::profile.form.button.remove-avatar')}}</b></a>
             </div>
-            <div class="box-body">
-                <div role="row">
-                    <div class="col-xs-12">
-                        <label for="first_name">{{trans('cms::profile.form.field.first-name')}}</label>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#basic-info" data-toggle="tab"><i class="fa fa-info"></i>
+                        {{trans('cms::profile.form.box-title')}}</a>
+                </li>
+                <li><a href="#change-pass" data-toggle="tab"><i class="fa fa-lock"></i>
+                        {{trans('cms::profile.form.sep-title.change-pass')}}</a>
+                </li>
+                <li><a href="#change-avatar" data-toggle="tab"><i class="fa fa-image"></i>
+                        {{trans('cms::profile.form.sep-title.upload-av')}}</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="active tab-pane" id="basic-info">
+                    <div class="form-group">
+                        <label class="form-label-style"
+                               for="first_name">{{trans('cms::profile.form.field.first-name')}}
+                            @tooltip('Some text here.')
+                        </label>
                         {{ form()->input('text', 'first_name', null, ['class' => 'form-control', 'required']) }}
                         {!! $errors->first('first_name', '<small class="help-inline text-danger">:message</small>') !!}
                     </div>
 
-                    <div class="col-xs-12">
-                        <label for="last_name">{{trans('cms::profile.form.field.last-name')}}</label>
+                    <div class="form-group">
+                        <label class="form-label-style"
+                               for="last_name">{{trans('cms::profile.form.field.last-name')}}
+                            @tooltip('Some text here.')
+                        </label>
                         {{ form()->input('text', 'last_name', null, ['class' => 'form-control', 'required']) }}
                         {!! $errors->first('last_name', '<small class="help-inline text-danger">:message</small>') !!}
                     </div>
-                    <div class="col-xs-12">
-                        <label for="email">{{trans('cms::profile.form.field.email')}}</label>
+                    <div class="form-group">
+                        <label class="form-label-style" for="email">{{trans('cms::profile.form.field.email')}}
+                            @tooltip('Some text here.')
+                        </label>
                         {{ form()->input('email', 'email', null, [
                             'class' => 'form-control',
                             'placeholder' => 'Please enter e-mail',
@@ -32,49 +58,42 @@
                         ]) }}
                         {!! $errors->first('email', '<small class="help-inline text-danger">:message</small>') !!}
                     </div>
-
-                    <div class="col-xs-12">
-                        <hr>
-                        <h4 class="box-title"><i class="fa fa-key"></i>
-                            {{trans('cms::profile.form.sep-title.change-pass')}}
-                        </h4>
-                        <hr>
-                        <label>{{trans('cms::profile.form.field.pass-new')}}</label>
+                </div>
+                <div class="tab-pane" id="change-pass">
+                    <div class="form-group">
+                        <label class="form-label-style">{{trans('cms::profile.form.field.pass-new')}}
+                            @tooltip('Some text here.')
+                        </label>
                         {{ form()->input('password', 'password', null, [
                             'class' => 'form-control',
                             'placeholder' => 'Enter new password'
                         ]) }}
                         {!! $errors->first('password', '<small class="help-inline text-danger">:message</small>') !!}
                     </div>
-                    <div class="col-xs-12">
-                        <label>{{trans('cms::profile.form.field.pass-conf')}}</label>
+                    <div class="form-group">
+                        <label class="form-label-style">{{trans('cms::profile.form.field.pass-conf')}}
+                            @tooltip('Some text here.')
+                        </label>
                         {{ form()->input('password', 'password_confirmation', null, [
                             'class' => 'form-control',
                             'placeholder' => 'Confirm new password '
                         ]) }}
                     </div>
-                    <div class="col-xs-12">
-                        <hr>
-                        <h4 class="box-title">
-                            <i class="fa fa-image"></i> {{trans('cms::profile.form.sep-title.upload-av')}}
-                            <div class="pull-right">
-                                <a href="{{route('administrator.profile.remove-avatar')}}" class="btn btn-xs btn-warning">
-                                    <i class="fa fa-trash"></i> {{trans('cms::profile.form.button.remove-avatar')}}
-                                </a>
-                            </div>
-                        </h4>
-                        <hr>
-
+                </div>
+                <div class="tab-pane" id="change-avatar">
+                    <div class="form-group">
                         {{ form()->file('avatar') }}
 
                         <p class="help-block">{{trans('cms::profile.form.require.avatar')}}</p>
                         {!! $errors->first('avatar', '<small class="help-inline text-danger">:message</small>') !!}
                     </div>
                 </div>
-            </div>
-                <!-- /.box-body -->
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">{{trans('cms::profile.form.button.save')}}</button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit"
+                                class="btn btn-primary">{{trans('cms::profile.form.button.save')}}</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
