@@ -2,10 +2,8 @@
 
 namespace Yajra\CMS\Presenters;
 
-use Yajra\CMS\Entities\Article;
-use Yajra\CMS\Entities\Category;
 use Laracasts\Presenter\Presenter;
-use Yajra\CMS\Entities\Extension;
+use Yajra\CMS\Contracts\UrlGenerator;
 
 class MenuPresenter extends Presenter
 {
@@ -38,30 +36,16 @@ class MenuPresenter extends Presenter
      */
     public function url()
     {
-        switch ($this->entity->extension->id) {
-            case Extension::MENU_ARTICLE:
-                $article = Article::query()->findOrFail($this->entity->param('article_id', 0));
-
-                return $article->alias ?? '';
-
-            case Extension::MENU_CATEGORY_LIST:
-                $category   = $this->entity->param('category_id', 0);
-                $categoryId = explode(':', $category)[0];
-
-                $category = Category::query()->findOrFail($categoryId);
-
-                return 'category/' . $category->alias;
-
-            case Extension::MENU_CATEGORY_BLOG:
-                $category   = $this->entity->param('category_id', 0);
-                $categoryId = explode(':', $category)[0];
-
-                $category = Category::query()->findOrFail($categoryId);
-
-                return 'category/' . $category->alias . '/blog';
-
-            default:
-                return $this->entity->url;
+        /** @var \Yajra\CMS\Entities\Extension $extension */
+        $extension = $this->entity->extension;
+        $class     = $extension->param('class');
+        if (class_exists($class)) {
+            $entity = app($class)->findOrNew($this->entity->param('id'));
+            if ($entity instanceof UrlGenerator) {
+                return $entity->getUrl($extension->param('data'));
+            }
         }
+
+        return $this->entity->url;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Entities;
 
+use Yajra\CMS\Contracts\UrlGenerator;
 use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
 use Yajra\CMS\Entities\Traits\HasParameters;
 use Yajra\CMS\Entities\Traits\PublishableTrait;
@@ -21,7 +22,7 @@ use Yajra\Auditable\AuditableTrait;
  * @property string alias
  * @property int hits
  */
-class Category extends Node
+class Category extends Node implements UrlGenerator
 {
     use AuditableTrait, PresentableTrait, PublishableTrait;
     use HasSlug, CanRequireAuthentication, HasParameters;
@@ -165,5 +166,16 @@ class Category extends Node
         return SlugOptions::create()
                           ->generateSlugsFrom('title')
                           ->saveSlugsTo('alias');
+    }
+
+    /**
+     * Get url from implementing class.
+     *
+     * @param mixed $args
+     * @return string
+     */
+    public function getUrl($args)
+    {
+        return 'category/' . $this->alias . '/' . $args;
     }
 }

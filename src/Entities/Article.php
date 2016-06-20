@@ -2,11 +2,7 @@
 
 namespace Yajra\CMS\Entities;
 
-use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
-use Yajra\CMS\Entities\Traits\HasParameters;
-use Yajra\CMS\Entities\Traits\PublishableTrait;
-use Yajra\CMS\Presenters\ArticlePresenter;
-// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\Sluggable\HasSlug;
@@ -14,7 +10,11 @@ use Spatie\Sluggable\SlugOptions;
 use Yajra\Acl\Models\Permission;
 use Yajra\Acl\Traits\HasPermission;
 use Yajra\Auditable\AuditableTrait;
-use Yajra\Oci8\Eloquent\OracleEloquent as Model;
+use Yajra\CMS\Contracts\UrlGenerator;
+use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
+use Yajra\CMS\Entities\Traits\HasParameters;
+use Yajra\CMS\Entities\Traits\PublishableTrait;
+use Yajra\CMS\Presenters\ArticlePresenter;
 
 /**
  * Class Article
@@ -34,7 +34,7 @@ use Yajra\Oci8\Eloquent\OracleEloquent as Model;
  * @property string authorization
  * @property string author_alias
  */
-class Article extends Model
+class Article extends Model implements UrlGenerator
 {
     use AuditableTrait, PublishableTrait, HasSlug;
     use CanRequireAuthentication, HasPermission, PresentableTrait;
@@ -137,5 +137,16 @@ class Article extends Model
     public function getOrderAttribute()
     {
         return $this->attributes['order'] ?? 1;
+    }
+
+    /**
+     * Get url from implementing class.
+     *
+     * @param mixed $args
+     * @return string
+     */
+    public function getUrl($args)
+    {
+        return $this->alias;
     }
 }

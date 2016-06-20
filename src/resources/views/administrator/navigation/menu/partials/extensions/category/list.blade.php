@@ -7,7 +7,7 @@
             <label class="form-label-style col-md-3">Choose a Category</label>
 
             <div class="input-control col-md-9">
-                {!! form()->categories('parameters[category_id]', null, ['id' => 'select-category', 'class' => 'select2 form-control']) !!}
+                {!! form()->categories('parameters[id]', null, ['id' => 'select-category', 'class' => 'select2 form-control']) !!}
             </div>
         </div>
 
