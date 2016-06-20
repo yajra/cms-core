@@ -21,6 +21,9 @@ class ExtensionsDataTable extends DataTable
                 return "<h3 class=\"lead no-margin\">{$extension->name} <small>{$extension->version}</small></h3>
                             <p>{$extension->description}</p>";
             })
+            ->editColumn('type', function($extension) {
+                return dt_label($extension->type);
+            })
             ->editColumn('enabled', function ($extension) {
                 return $extension->enabled ? 'Y' : 'N';
             })
