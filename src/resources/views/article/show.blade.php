@@ -18,15 +18,7 @@
 @stop
 
 @section('content')
-    <h3 class="article-title">{{ $article->title }}</h3>
-    <p>
-        <small class="article-author"><i class="fa fa-user"></i> {{ $article->present()->author() }}</small>
-        &nbsp;&nbsp;
-        <small class="article-date"><i class="fa fa-calendar"></i> {{ $article->present()->dateCreated() }}</small>
-    </p>
-    <div class="article-content">
-        {!! $article->present()->content() !!}
-    </div>
+    @include('article.blog', ['article' => $article])
 @stop
 
 @push('scripts')

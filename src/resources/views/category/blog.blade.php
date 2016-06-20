@@ -36,7 +36,7 @@
         </div>
     @endif
 
-    @each('category.article', $articles, 'article')
+    @each('category.articles', $articles, 'article')
 
     {!! $articles->render() !!}
 @stop
