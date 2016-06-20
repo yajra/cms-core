@@ -89,7 +89,7 @@ if (! function_exists('file_can_have_thumbnail')) {
      */
     function file_can_have_thumbnail($file)
     {
-        return exif_imagetype(substr($file, 7));
+        return @exif_imagetype(substr($file, 7));
     }
 }
 

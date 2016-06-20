@@ -297,9 +297,9 @@ class MediaController extends Controller
      */
     public function addFile(Request $request)
     {
+        $maxSize   = $this->config->get('media.max_file_size', 3);
         $validator = $this->getValidationFactory()->make($request->all(), [
-            'file' => 'required|mimes:' . $this->getAcceptedFiles() . 'size:' . $this->config->get('media.max_file_size',
-                    3),
+            'file' => 'required|mimes:' . $this->getAcceptedFiles() . '|max:' . $maxSize * 1024,
         ]);
 
         if ($validator->fails()) {
