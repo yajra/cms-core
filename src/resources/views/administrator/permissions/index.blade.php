@@ -1,31 +1,32 @@
 @extends('admin::layouts.master')
 
 @section('title')
-Permissions | @parent
+{{trans('cms::permission.index.title')}} | @parent
 @stop
 
 @push('styles')
 @endpush
 
 @section('page-title')
-    @pageHeader('Permission Manager', 'Setup and Manage User Role Permissions.', 'fa fa-tag')
+    @pageHeader('cms::permission.index.title', 'cms::permission.index.description', 'cms::permission.index.icon')
 @stop
 
 @section('content')
-<div class="box">
-    <div class="box-header with-border">
-        <h3 class="box-title">
-            <i class="fa fa-list"></i>&nbsp;
-            Permission Lists
-        </h3>
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="fa fa-list"></i>&nbsp;
+                {{trans('cms::permission.index.list')}}
+            </h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            {!! $dataTable->table(['id' => 'permissions-table', 'class' => 'table table-hover']) !!}
         </div>
     </div>
-    <div class="box-body">
-        {!! $dataTable->table(['id' => 'permissions-table', 'class' => 'table table-hover']) !!}
-    </div>
-</div>
 @stop
 
 @push('scripts')

@@ -1,11 +1,11 @@
 @extends('admin::layouts.master')
 
 @section('title')
-    New Permission | @parent
+{{trans('cms::permission.create.title')}} | @parent
 @stop
 
 @section('page-title')
-    @pageHeader('New Permission', 'Create users permission and attach role.', 'fa fa-plus')
+    @pageHeader('cms::permission.create.title', 'cms::permission.create.description', 'cms::permission.create.icon')
 @stop
 
 @section('content')

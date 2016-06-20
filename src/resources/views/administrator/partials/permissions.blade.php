@@ -2,7 +2,7 @@
     <div class="box-header with-border">
         <h3 class="box-title" style="font-size: 15px;">
             <i class="fa fa-tag"></i>
-            Attached Permissions
+            {{trans('cms::permission.attached')}}
             {!! $errors->first('permissions', '<small class="help-inline text-red">:message</small>') !!}
         </h3>
         <div class="box-tools pull-right">

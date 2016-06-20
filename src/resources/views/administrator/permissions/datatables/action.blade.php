@@ -2,7 +2,7 @@
     <a href="{!! route('administrator.permissions.edit', $id) !!}"
        class="btn btn-default btn-xs"
        data-toggle="tooltip"
-       data-title="Edit"
+       data-title="{{trans('cms::button.edit')}}"
        data-container="body"
     >
         <i class="fa fa-pencil"></i>
@@ -11,7 +11,7 @@
         <button data-remote="{!! route('administrator.permissions.destroy', $id) !!}"
             class="btn btn-danger btn-xs btn-delete"
             data-toggle="tooltip"
-            data-title="Delete"
+            data-title="{{trans('cms::button.delete')}}"
             data-container="body"
         >
             <i class="fa fa-trash-o"></i>

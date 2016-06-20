@@ -1,11 +1,11 @@
 @extends('admin::layouts.master')
 
 @section('title')
-Update Permission | @parent
+{{trans('cms::permission.edit.title')}} | @parent
 @stop
 
 @section('page-title')
-    @pageHeader('Update Permission', 'Update users permission and attach role.', 'fa fa-edit')
+    @pageHeader('cms::permission.edit.title', 'cms::permission.edit.description', 'cms::permission.edit.icon')
 @stop
 
 @section('content')

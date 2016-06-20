@@ -15,8 +15,13 @@ return [
 
     'back'   => 'Back',
     'cancel' => 'Cancel',
+    'reset'  => 'Reset',
     'close'  => 'Close',
+    'create' => 'Create',
+    'new'    => 'New',
+    'edit'   => 'Edit',
     'update' => 'Update',
+    'delete' => 'Delete',
     'save'   => 'Save',
 
 ];
