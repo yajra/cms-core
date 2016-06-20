@@ -115,9 +115,10 @@ class EloquentRepository extends RepositoryAbstract implements Repository
     public function register(array $attributes)
     {
         $validator = $this->getValidationFactory()->make($attributes, [
-            'type'       => 'required',
-            'name'       => 'required',
-            'class'      => 'required',
+            'type'                 => 'required',
+            'name'                 => 'required',
+            'parameters.class'     => 'required_if:type,widget',
+            'parameters.templates' => 'required_if:type,widget',
         ]);
 
         if ($validator->fails()) {

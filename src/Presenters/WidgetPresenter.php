@@ -28,6 +28,6 @@ class WidgetPresenter extends Presenter
         $repository = app('extensions');
         $extension  = $repository->findOrFail($this->entity->extension_id);
 
-        return $extension->manifest['class'];
+        return $extension->param('class');
     }
 }

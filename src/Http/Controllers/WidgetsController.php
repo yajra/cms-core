@@ -160,8 +160,8 @@ class WidgetsController extends Controller
     {
         $data      = [];
         $extension = $this->repository->findOrFail($type);
-        foreach ($extension->param('templates') as $key => $template) {
-            $data[] = ['key' => $template->path, 'value' => $template->description];
+        foreach ($extension->param('templates') as $template) {
+            $data[] = ['key' => $template['path'], 'value' => $template['description']];
         }
 
         return response()->json([
