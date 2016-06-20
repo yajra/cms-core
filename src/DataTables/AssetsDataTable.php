@@ -16,12 +16,6 @@ class AssetsDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-//            ->editColumn('name', function ($asset) {
-//                $label = $asset->type == 'css' ? 'success' : 'warning';
-//                $type  = $asset->type == 'css' ? 'css' : 'javascript';
-//
-//                return $asset->name . " &nbsp;<span class=\"label label-{$label}\">{$type}</span>";
-//            })
             ->make(true);
     }
 

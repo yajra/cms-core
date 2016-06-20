@@ -110,6 +110,8 @@ class AssetServiceProvider extends ServiceProvider
     }
 
     /**
+     * Add site assets.
+     *
      * @param string $type
      */
     protected function addAssets($type)
