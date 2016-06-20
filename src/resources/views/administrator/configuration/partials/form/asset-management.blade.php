@@ -25,8 +25,12 @@
             <div class="box-body" style="padding: 0px">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#css" data-toggle="tab">CSS</a></li>
-                        <li><a href="#javascript" data-toggle="tab" @click="showJsAssets()">Javascript</a></li>
+                        <li class="active"><a href="#css" data-toggle="tab">
+                                <span class="label label-success">CSS</span>
+                            </a></li>
+                        <li><a href="#javascript" data-toggle="tab" @click="showJsAssets()">
+                            <span class="label label-warning">Javascript</span>
+                            </a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="active tab-pane" id="css">
