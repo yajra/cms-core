@@ -94,11 +94,6 @@ class GenerateAdminMenu
                       ]);
 
                 $config = $menu->add('Configurations', '#')->icon('gears');
-                $config->add('Lookup Registry', route('administrator.lookup.index'))->icon('list-ul')
-                       ->data([
-                           'permission' => 'lookup.view',
-                           'append'     => route('administrator.lookup.create'),
-                       ]);
                 $config->add('Extensions', route('administrator.extension.index'))->icon('plug')
                        ->data('permission', 'extension.view');;
                 $config->add('Global', route('administrator.configuration.index'))->icon('globe')
