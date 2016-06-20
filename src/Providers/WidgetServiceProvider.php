@@ -30,12 +30,4 @@ class WidgetServiceProvider extends ServiceProvider
             return new WidgetMakeCommand($app['files']);
         });
     }
-
-    /**
-     * @return array
-     */
-    public function provides()
-    {
-        return ['widgets'];
-    }
 }
