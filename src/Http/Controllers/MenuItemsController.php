@@ -41,6 +41,8 @@ class MenuItemsController extends Controller
     {
         $this->authorizePermissionResource('menu');
         $this->extensions = $extensions;
+
+        view()->share('extensions', $this->extensions->all()->where('type', 'menu'));
     }
 
     /**
@@ -64,9 +66,7 @@ class MenuItemsController extends Controller
         $menu->extension_id = old('extension_id', Extension::MENU_INTERNAL);
         $menu->load('extension');
 
-        $extensions = $this->extensions->all()->where('type', 'menu');
-
-        return view('administrator.navigation.menu.create', compact('navigation', 'menu', 'extensions'));
+        return view('administrator.navigation.menu.create', compact('navigation', 'menu'));
     }
 
     /**
@@ -102,9 +102,7 @@ class MenuItemsController extends Controller
             abort(404);
         }
 
-        $extensions = $this->extensions->all()->where('type', 'menu');
-
-        return view('administrator.navigation.menu.edit', compact('navigation', 'menu', 'extensions'));
+        return view('administrator.navigation.menu.edit', compact('navigation', 'menu'));
     }
 
     /**
