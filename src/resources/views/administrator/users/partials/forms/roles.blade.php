@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	  <div class="panel-heading">
-			<h3 class="panel-title">Attach Roles</h3>
+			<h3 class="panel-title">{{trans('cms::user.form.attach-roles')}}</h3>
 	  </div>
 	  <div class="panel-body">
           <div class="row {!! $errors->has('roles') ? 'has-error' : '' !!}">
@@ -11,7 +11,7 @@
           </div>
           <br>
           <p class="quoted">
-              <strong>Note:</strong> <br>User will inherit all the permissions of the roles they are assigned to.
+              <strong>{{trans('cms::user.form.note')}}</strong> <br>{{trans('cms::user.form.attach-roles-note')}}
           </p>
 	  </div>
 </div>

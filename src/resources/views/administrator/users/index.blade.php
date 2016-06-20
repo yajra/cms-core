@@ -2,18 +2,18 @@
 
 @push('styles')
 <style>
-    .select2-search__field{
+    .select2-search__field {
         border: none !important;
     }
 </style>
 @endpush
 
 @section('title')
-    User Manager | @parent
+{{trans('cms::user.index.title')}} | @parent
 @stop
 
 @section('page-title')
-    @pageHeader('User Manager', 'Add / Edit / Delete / Activate / Deactivate / Block / Unblock user.', 'fa fa-users')
+    @pageHeader('cms::user.index.title', 'cms::user.index.description', 'cms::user.index.icon')
 @stop
 
 @section('content')
@@ -21,18 +21,19 @@
         <div class="box-header with-border">
             <h3 class="box-title">
                 <i class="fa fa-search"></i>&nbsp;
-                Search Tools
+                {{trans('cms::user.index.search')}}
                 <small>search and filter records.</small>
             </h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
             </div>
         </div>
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-xs-6">
                     <select name="activated" id="activated" multiple class="select2 input-sm form-control"
-                            data-placeholder="Filter by Activation">
+                            data-placeholder="{{trans('cms::user.index.activation')}}">
                         <option value=""></option>
                         <option value="1">Yes</option>
                         <option value="0">No</option>
@@ -40,7 +41,7 @@
                 </div>
 
                 <div class="col-md-6 col-xs-6">
-                    {!! form()->select('roles', $roles , null , ['class' => 'form-control select2 input-sm', 'multiple', 'data-placeholder' => 'Filter by Role']) !!}
+                    {!! form()->select('roles', $roles , null , ['class' => 'form-control select2 input-sm', 'multiple', 'data-placeholder' => trans('cms::user.index.role')]) !!}
                 </div>
             </div>
             <div style="margin-top: 20px;">

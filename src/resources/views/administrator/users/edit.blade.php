@@ -1,11 +1,11 @@
 @extends('admin::layouts.master')
 
 @section('title')
-Update User | @parent
+{{trans('cms::user.edit.title')}} | @parent
 @stop
 
 @section('page-title')
-    @pageHeader('Update User', 'Update user information.', 'fa fa-edit')
+    @pageHeader('cms::user.edit.title', 'cms::user.edit.description', 'cms::user.edit.icon')
 @stop
 
 @section('content')
@@ -13,9 +13,3 @@ Update User | @parent
     @include('administrator.users.partials.form')
     {!! form()->close() !!}
 @stop
-
-@push('plugins')
-@endpush
-
-@push('scripts')
-@endpush

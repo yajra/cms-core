@@ -1,9 +1,9 @@
 <div class="actions">
     <div class="btn-group submenu">
         <button class="btn btn-default btn-sm"
-           data-toggle="dropdown"
-           data-hover="dropdown"
-           data-close-others="true"
+                data-toggle="dropdown"
+                data-hover="dropdown"
+                data-close-others="true"
         >
             <i class="fa fa-wrench"></i>
             <span>Manage</span>
@@ -14,14 +14,14 @@
                 <button data-href="{{ route('administrator.users.edit', $id) }}"
                         class="btn btn-link"
                 >
-                    <i class="fa fa-pencil"></i> Edit User
+                    <i class="fa fa-pencil"></i> {{trans('cms::user.edit-user')}}
                 </button>
             </li>
             <li>
                 <button data-href="{{ route('administrator.users.password', $id) }}"
                         class="btn btn-link"
                 >
-                    <i class="fa fa-refresh"></i> Change Password
+                    <i class="fa fa-refresh"></i> {{trans('cms::user.change-password')}}
                 </button>
             </li>
             @if($id <> auth('administrator')->id())
@@ -30,7 +30,7 @@
                         <button data-ajax="{!! route('administrator.users.activate', $id) !!}"
                                 class="btn btn-link"
                         >
-                            <i class="fa fa-play"></i> Activate User
+                            <i class="fa fa-play"></i> {{trans('cms::user.activate')}}
                         </button>
                     </li>
                 @else
@@ -38,7 +38,7 @@
                         <button data-ajax="{!! route('administrator.users.activate', $id) !!}"
                                 class="btn btn-link"
                         >
-                            <i class="fa fa-pause"></i> Deactivate User
+                            <i class="fa fa-pause"></i> {{trans('cms::user.deactivate')}}
                         </button>
                     </li>
                 @endif
@@ -48,7 +48,7 @@
                         <button data-ajax="{!! route('administrator.users.block', $id) !!}"
                                 class="btn btn-link"
                         >
-                            <i class="fa fa-check"></i> Un-block User
+                            <i class="fa fa-check"></i> {{trans('cms::user.unblock')}}
                         </button>
                     </li>
                 @else
@@ -56,7 +56,7 @@
                         <button data-ajax="{!! route('administrator.users.block', $id) !!}"
                                 class="btn btn-link"
                         >
-                            <i class="fa fa-ban"></i> Block User
+                            <i class="fa fa-ban"></i> {{trans('cms::user.block')}}
                         </button>
                     </li>
                 @endif
@@ -64,14 +64,14 @@
                     <button data-remote="{!! route('administrator.users.destroy', $id) !!}"
                             class="btn btn-link btn-delete"
                     >
-                        <i class="fa fa-trash"></i> Delete User
+                        <i class="fa fa-trash"></i> {{trans('cms::user.delete')}}
                     </button>
                 </li>
                 <li>
                     <button data-href="{!! route('administrator.users.show', $id) !!}"
                             class="btn btn-link"
                     >
-                        <i class="fa fa-eye"></i> View Profile
+                        <i class="fa fa-eye"></i> {{trans('cms::user.view')}}
                     </button>
                 </li>
             @endif
