@@ -6,8 +6,16 @@
 
 @push('styles')
 <style>
-    .list-group-padding {padding-left: 10px !important;  }
-    a.disabled {pointer-events: none;}
+    .list-group-padding {
+        padding-left: 10px !important;
+    }
+
+    a.disabled {
+        pointer-events: none;
+    }
+    .table-container{
+        margin-top: 3px !important;
+    }
 </style>
 @endpush
 

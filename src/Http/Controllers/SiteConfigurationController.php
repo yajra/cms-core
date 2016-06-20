@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
+use Yajra\CMS\DataTables\AssetsDataTable;
 use Yajra\CMS\Entities\Configuration;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -64,5 +65,16 @@ class SiteConfigurationController extends Controller
     protected function removeByKey($key)
     {
         return Configuration::where('key', $key)->delete();
+    }
+
+    /**
+     * Show all site assets.
+     *
+     * @param \Yajra\CMS\DataTables\AssetsDataTable $dataTable
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAssets(AssetsDataTable $dataTable)
+    {
+        return $dataTable->ajax();
     }
 }

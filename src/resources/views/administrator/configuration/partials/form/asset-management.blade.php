@@ -16,6 +16,42 @@
 
 <div class="row">
     <div class="col-md-12">
-
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <label class="box-title form-label-style font-s14">Site Assets
+                    @tooltip('Some text here.')
+                </label>
+            </div><!-- /.box-header -->
+            <div class="box-body" style="padding: 0px">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#css" data-toggle="tab">CSS</a></li>
+                        <li><a href="#javascript" data-toggle="tab" @click="showJsAssets()">Javascript</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="css">
+                            <table class="table table-hover" id="css-assets-table" style="margin-top: 3px !important;">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>URL</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div><!-- /.tab-pane -->
+                        <div class="tab-pane" id="javascript">
+                            <table class="table table-hover" id="js-assets-table" style="margin-top: 3px !important;">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>URL</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div><!-- /.tab-pane -->
+                    </div><!-- /.tab-content -->
+                </div>
+            </div><!-- /.box-body -->
+        </div>
     </div>
 </div>
