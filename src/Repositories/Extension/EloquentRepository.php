@@ -118,7 +118,6 @@ class EloquentRepository extends RepositoryAbstract implements Repository
             'type'       => 'required',
             'name'       => 'required',
             'class'      => 'required',
-            'templates'  => 'required',
         ]);
 
         if ($validator->fails()) {
