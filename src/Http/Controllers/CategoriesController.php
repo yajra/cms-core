@@ -45,6 +45,8 @@ class CategoriesController extends Controller
      */
     public function create(Category $category)
     {
+        $category->published = true;
+
         return view('administrator.categories.create', compact('category'));
     }
 

@@ -23,12 +23,21 @@
 
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#article-content" data-toggle="tab">
-                <i class="fa fa-info"></i> {{trans('cms::article.tab.content')}}</a></li>
-        <li><a href="#article-publishing" data-toggle="tab">
-                <i class="fa fa-briefcase"></i> {{trans('cms::article.tab.publishing')}}</a></li>
-        <li><a href="#article-permission" data-toggle="tab">
-                <i class="fa fa-lock"></i> {{trans('cms::article.tab.permission')}}</a></li>
+        <li class="active">
+            <a href="#article-content" data-toggle="tab">
+                <i class="fa fa-info"></i> {{trans('cms::article.tab.content')}}
+            </a>
+        </li>
+        <li>
+            <a href="#article-publishing" data-toggle="tab">
+                <i class="fa fa-briefcase"></i> {{trans('cms::article.tab.publishing')}}
+            </a>
+        </li>
+        <li>
+            <a href="#article-permission" data-toggle="tab">
+                <i class="fa fa-lock"></i> {{trans('cms::article.tab.permission')}}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="active tab-pane" id="article-content">

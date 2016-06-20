@@ -48,6 +48,7 @@ class Category extends Node
         'description',
         'title',
         'alias',
+        'parameters',
         'created_at',
         'updated_at',
     ];
