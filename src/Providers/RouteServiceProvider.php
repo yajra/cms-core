@@ -5,6 +5,7 @@ namespace Yajra\CMS\Providers;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Yajra\Acl\Models\Permission;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Http\Controllers\ArticleController;
@@ -31,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->model('users', \App\User::class);
         $router->model('roles', \Yajra\Acl\Models\Role::class);
-        $router->model('permissions', \Yajra\Acl\Models\Permission::class);
+        $router->model('permissions', Permission::class);
         $router->model('widgets', \Yajra\CMS\Entities\Widget::class);
         $router->model('articles', \Yajra\CMS\Entities\Article::class);
         $router->model('categories', \Yajra\CMS\Entities\Category::class);
@@ -87,7 +88,7 @@ class RouteServiceProvider extends ServiceProvider
                 if ($article->permissions->count()) {
                     if ($article->authorization === 'can') {
                         $article->permissions->each(
-                            function (\Yajra\Acl\Models\Permission $permission) use ($middleware) {
+                            function (Permission $permission) use ($middleware) {
                                 $middleware[] = 'can:' . $permission->slug;
                             }
                         );
@@ -125,12 +126,14 @@ class RouteServiceProvider extends ServiceProvider
                     $middleware[] = 'auth';
                 }
 
-                $router->get('category/' . $category->alias, function () use ($category, $router) {
-                    return $this->app->call(CategoryController::class . '@show', [
-                        'category'   => $category,
-                        'parameters' => $router->current()->parameters(),
-                    ]);
-                })->middleware($middleware)->name($category->title);
+                $router->get('category/' . $category->alias . '/{layout?}',
+                    function ($layout = 'list') use ($category, $router) {
+                        return $this->app->call(CategoryController::class . '@show', [
+                            'category'   => $category,
+                            'layout'     => $layout,
+                            'parameters' => $router->current()->parameters(),
+                        ]);
+                    })->middleware($middleware)->name($category->title);
             });
         } catch (QueryException $e) {
             // \\_(",)_//

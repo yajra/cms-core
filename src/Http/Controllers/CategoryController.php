@@ -2,10 +2,10 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Yajra\CMS\Entities\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Yajra\CMS\Entities\Category;
 
 class CategoryController extends Controller
 {
@@ -14,15 +14,20 @@ class CategoryController extends Controller
      *
      * @param \Yajra\CMS\Entities\Category $category
      * @param \Illuminate\Http\Request $request
+     * @param string $layout
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Category $category, Request $request)
+    public function show(Category $category, Request $request, $layout = 'list')
     {
         $category->increment('hits');
-        $limit    = $request->get('limit', 10);
-        $articles = $category->articles()->paginate($limit);
-        $articles->setPath($category->alias . '?limit=' . $limit);
 
-        return view('category.show', compact('category', 'articles', 'limit'));
+        $limit    = $request->get('limit', $layout == 'list' ? 10 : 5);
+        $articles = $category->articles()->paginate($limit);
+
+        if ($request->has('limit')) {
+            $articles->setPath('?limit=' . $limit);
+        }
+
+        return view('category.' . $layout, compact('category', 'articles', 'limit'));
     }
 }

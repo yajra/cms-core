@@ -3,6 +3,7 @@
 namespace Yajra\CMS\Entities;
 
 use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
+use Yajra\CMS\Entities\Traits\HasParameters;
 use Yajra\CMS\Entities\Traits\PublishableTrait;
 use Yajra\CMS\Presenters\CategoryPresenter;
 use Baum\Node;
@@ -23,7 +24,7 @@ use Yajra\Auditable\AuditableTrait;
 class Category extends Node
 {
     use AuditableTrait, PresentableTrait, PublishableTrait;
-    use HasSlug, CanRequireAuthentication;
+    use HasSlug, CanRequireAuthentication, HasParameters;
 
     /**
      * @var \Yajra\CMS\Presenters\CategoryPresenter

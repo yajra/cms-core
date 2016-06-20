@@ -27,6 +27,16 @@ class ArticlePresenter extends Presenter
     }
 
     /**
+     * Date published.
+     *
+     * @return mixed
+     */
+    public function datePublished()
+    {
+        return $this->entity->created_at->format('d M Y');
+    }
+
+    /**
      * Publication state.
      *
      * @return string

@@ -25,7 +25,7 @@ class ExtensionsDataTable extends DataTable
                 return dt_label($extension->type);
             })
             ->editColumn('enabled', function ($extension) {
-                return $extension->enabled ? 'Y' : 'N';
+                return dt_check($extension->enabled);
             })
             ->make(true);
     }

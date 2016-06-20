@@ -64,6 +64,7 @@ class MenuItemsController extends Controller
     public function create(Navigation $navigation, Menu $menu)
     {
         $menu->extension_id = old('extension_id', Extension::MENU_INTERNAL);
+        $menu->published    = true;
         $menu->load('extension');
 
         return view('administrator.navigation.menu.create', compact('navigation', 'menu'));

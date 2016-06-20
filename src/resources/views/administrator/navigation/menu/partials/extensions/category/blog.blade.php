@@ -31,7 +31,7 @@
     $(function () {
         $('#select-category').on('change', function() {
             var slug = $(this).val();
-            $('#url').val('category/' + slug.split(':')[1] );
+            $('#url').val('category/' + slug.split(':')[1] + '/blog' );
         }).select2().change();
     });
 </script>

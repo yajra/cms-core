@@ -45,6 +45,8 @@ class ArticlesController extends Controller
      */
     public function create(Article $article)
     {
+        $article->published = true;
+
         return view('administrator.articles.create', compact('article'));
     }
 
