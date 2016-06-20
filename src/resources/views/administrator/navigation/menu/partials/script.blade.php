@@ -4,10 +4,11 @@ new Vue({
     methods: {
         generateSelectedItem: function (selectedKey, selectedValue) {
             $.blockUI();
+            var singleArticleExtension = 5;
             $('#selected-type-key').val(selectedKey);
             $('#selected-type-value').val(selectedValue);
             $('#menu-items-modal').modal('hide');
-            if (selectedKey == 3) {
+            if (selectedKey == singleArticleExtension) {
                 this.initArticleDataTable();
             }
             var menuId = $('#menu-id').val();
