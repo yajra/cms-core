@@ -11,7 +11,7 @@
 
 @section('keywords', $category->param('meta_keywords') ?? config('site.keywords'))
 @section('description', $category->param('meta_description') ?? config('site.description'))
-@section('author', $category->param('author') ?? config('site.author'))
+@section('author', $category->param('author_alias') ?? config('site.author'))
 
 @section('page-title')
     {{ $category->title }}
