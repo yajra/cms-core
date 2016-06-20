@@ -3,7 +3,7 @@
         <div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
             <label class="form-label-style block" for="title">
                 {{trans('cms::article.field.title')}}
-                @tooltip('article.tooltip.title')
+                @tooltip('cms::article.tooltip.title')
             </label>
             {!! form()->input('text', 'title', null, ['id'=>'title','class'=>'form-control','placeholder'=>trans('cms::article.field.title_placeholder')]) !!}
             {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
@@ -13,7 +13,7 @@
         <div class="form-group {!! $errors->has('alias') ? 'has-error' : '' !!}">
             <label class="form-label-style block" for="alias">
                 {{trans('cms::article.field.alias')}}
-                @tooltip('article.tooltip.alias')
+                @tooltip('cms::article.tooltip.alias')
             </label>
             {!! form()->input('text', 'alias', null, ['id'=>'alias','class'=>'form-control','placeholder'=>trans('cms::article.field.alias_placeholder')]) !!}
             {!! $errors->first('alias', '<span class="help-block">:message</span>') !!}
@@ -52,7 +52,7 @@
                     <div class="form-group {!! $errors->has('authorization') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="authorization">
                             {{trans('cms::article.field.authorization')}}
-                            @tooltip('article.tooltip.authorization')
+                            @tooltip('cms::article.tooltip.authorization')
                         </label>
 
                         {{ form()->select('authorization', ['can' => trans('cms::article.authorization.can'), 'canAtLeast' => trans('cms::article.authorization.canAtLeast')], null, ['class' => 'form-control']) }}

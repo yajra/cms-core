@@ -3,7 +3,7 @@
         <div class="form-group {!! $errors->has('blade_template') ? 'has-error' : '' !!}">
             <label class="form-label-style block" for="blade_template">
                 {{trans('cms::article.field.blade_template')}}
-                @tooltip('article.tooltip.blade_template')
+                @tooltip('cms::article.tooltip.blade_template')
             </label>
             {!! form()->input('text', 'blade_template', null, ['id'=>'blade_template','class'=>'form-control input-sm','placeholder'=>trans('cms::article.field.blade_template_placeholder')]) !!}
             {!! $errors->first('blade_template', '<span class="help-block">:message</span>') !!}
@@ -17,7 +17,7 @@
         <div class="form-group {!! $errors->has('category_id') ? 'has-error' : '' !!}">
             <label for="category_id" class="form-label-style block">
                 {{trans('cms::article.field.category')}}
-                @tooltip('article.tooltip.category')
+                @tooltip('cms::article.tooltip.category')
             </label>
             {!! form()->select('category_id', $categories, null, ['class' => 'form-control']) !!}
             {!! $errors->first('category_id', '<span class="help-block">:message</span>') !!}
@@ -26,7 +26,7 @@
         <div class="form-group {!! $errors->has('order') ? 'has-error' : '' !!}">
             <label class="form-label-style block" for="order">
                 {{trans('cms::article.field.order')}}
-                @tooltip('article.tooltip.order')
+                @tooltip('cms::article.tooltip.order')
             </label>
             {!! form()->select('order', array_combine(range(1, 100), range(1, 100)) , null , ['class' => 'form-control']) !!}
             {!! $errors->first('order', '<span class="help-block">:message</span>') !!}
@@ -37,7 +37,7 @@
                 <div class="form-group {!! $errors->has('authenticated') ? 'has-error' : '' !!}">
                     <label class="form-label-style" for="authenticated">
                         {{trans('cms::article.field.authenticated')}}
-                        @tooltip('article.tooltip.authenticated')
+                        @tooltip('cms::article.tooltip.authenticated')
                     </label>
                     <br>
                     {!! form()->checkbox('authenticated', $value = 1, $checked = null, ['name' =>'authenticated','id'=>'authenticated','class'=>'form-control bootstrap-checkbox']) !!}
@@ -48,7 +48,7 @@
                 <div class="form-group {!! $errors->has('published') ? 'has-error' : '' !!}">
                     <label class="form-label-style" for="published">
                         {{trans('cms::article.field.published')}}
-                        @tooltip('article.tooltip.published')
+                        @tooltip('cms::article.tooltip.published')
                     </label>
                     <br>
                     {!! form()->checkbox('published', $value = 1, $checked = null, ['name' =>'published','id'=>'published','class'=>'form-control bootstrap-checkbox']) !!}
@@ -59,7 +59,7 @@
                 <div class="form-group {!! $errors->has('featured') ? 'has-error' : '' !!}">
                     <label class="form-label-style" for="featured">
                         {{trans('cms::article.field.featured')}}
-                        @tooltip('article.tooltip.featured')
+                        @tooltip('cms::article.tooltip.featured')
                     </label>
                     <br>
                     {!! form()->checkbox('featured', $value = 1, $checked = null, ['name' =>'featured','id'=>'featured','class'=>'form-control bootstrap-checkbox']) !!}
