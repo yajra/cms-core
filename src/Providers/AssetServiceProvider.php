@@ -9,7 +9,6 @@ use Yajra\CMS\Entities\Configuration;
 use Yajra\CMS\Entities\FileAsset;
 use Illuminate\Database\QueryException;
 
-
 /**
  * Class AssetServiceProvider
  *
@@ -46,9 +45,8 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function addAdminAssets()
     {
-        foreach (config('asset.admin_assets') as $asset) {
-            Asset::add($this->getAssetUrlByname($asset)->url);
-        }
+        $this->addAssets('css');
+        $this->addAssets('js');
     }
 
     /**
@@ -109,5 +107,17 @@ class AssetServiceProvider extends ServiceProvider
         return FileAsset::where('name', $asset)
                         ->where('category', Configuration::key('asset.default'))
                         ->first();
+    }
+
+    /**
+     * @param string $type
+     */
+    protected function addAssets($type)
+    {
+        $assets = config('asset.admin_assets.' . $type);
+        ksort($assets);
+        foreach ($assets as $key => $value) {
+            Asset::add($this->getAssetUrlByname($value)->url);
+        }
     }
 }
