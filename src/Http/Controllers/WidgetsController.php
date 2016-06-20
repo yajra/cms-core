@@ -3,6 +3,7 @@
 namespace Yajra\CMS\Http\Controllers;
 
 use Yajra\CMS\DataTables\WidgetsDataTable;
+use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Http\Requests\WidgetFormRequest;
 use Yajra\CMS\Repositories\Extension\Repository;
@@ -53,7 +54,7 @@ class WidgetsController extends Controller
      */
     public function create(Widget $widget)
     {
-        $widget->extension_id = old('extension_id', Widget::EXT_WYSIWYG);
+        $widget->extension_id = old('extension_id', Extension::WIDGET_WYSIWYG);
         $widget->template     = old('template', 'widgets.wysiwyg.default');
 
         return view('administrator.widgets.create', compact('widget'));

@@ -40,10 +40,6 @@ class Widget extends Model implements Cacheable
     const NO_PAGES       = 1;
     const SELECTED_PAGES = 2;
 
-    // extensions constant
-    const EXT_MENU       = 1;
-    const EXT_WYSIWYG    = 2;
-
     /**
      * @var \Yajra\CMS\Presenters\WidgetPresenter
      */
