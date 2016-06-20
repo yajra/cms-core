@@ -17,6 +17,12 @@ use Yajra\CMS\Entities\Traits\HasParameters;
 class Extension extends Model
 {
     use HasParameters;
+    const WIDGET_MENU    = 1;
+    const WIDGET_WYSIWYG = 2;
+    const MENU_ARTICLE   = 3;
+    const MENU_CATEGORY  = 4;
+    const MENU_INTERNAL  = 5;
+    const MENU_EXTERNAL  = 6;
 
     /**
      * @var array

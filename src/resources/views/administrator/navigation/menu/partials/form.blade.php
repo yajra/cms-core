@@ -57,4 +57,4 @@
     </div>
 </div>
 
-@include('administrator.navigation.menu.partials.modal.types')
+@include('administrator.navigation.menu.partials.modal.extensions')

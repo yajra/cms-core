@@ -22,10 +22,10 @@ class MenuItemsFormRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
-            'type'  => 'required|max:255',
-            'url'   => 'required|max:255',
-            'order' => 'required|numeric|max:100',
+            'title'        => 'required|max:255',
+            'extension_id' => 'required',
+            'url'          => 'required|max:255',
+            'order'        => 'required|numeric|max:100',
         ];
     }
 }

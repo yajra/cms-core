@@ -8,6 +8,7 @@ use Laracasts\Presenter\PresentableTrait;
 use Yajra\Acl\Models\Permission;
 use Yajra\Auditable\AuditableTrait;
 use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
+use Yajra\CMS\Entities\Traits\HasOrder;
 use Yajra\CMS\Entities\Traits\HasParameters;
 use Yajra\CMS\Entities\Traits\PublishableTrait;
 use Yajra\CMS\Presenters\MenuPresenter;
@@ -28,11 +29,12 @@ use Yajra\CMS\Presenters\MenuPresenter;
  * @property mixed permissions
  * @property mixed widgets
  * @property int navigation_id
+ * @property int extension_id
  */
 class Menu extends Node
 {
     use PresentableTrait, PublishableTrait, CanRequireAuthentication;
-    use AuditableTrait, HasParameters;
+    use AuditableTrait, HasParameters, HasOrder;
 
     /**
      * @var array
@@ -56,7 +58,7 @@ class Menu extends Node
         'authenticated',
         'authorization',
         'parameters',
-        'type',
+        'extension_id',
     ];
 
     /**
@@ -193,5 +195,15 @@ class Menu extends Node
     public function isActive()
     {
         return request()->getRequestUri() === '/' . $this->present()->url();
+    }
+
+    /**
+     * Get related extension.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function extension()
+    {
+        return $this->belongsTo(Extension::class);
     }
 }

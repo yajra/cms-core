@@ -51,5 +51,5 @@
 @stop
 
 @push('scripts')
-<script src="/js/admin/menu-item.js" type="text/javascript"></script>
+@include('administrator.navigation.menu.partials.script')
 @endpush

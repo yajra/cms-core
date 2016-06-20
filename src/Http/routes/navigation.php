@@ -9,8 +9,8 @@ use Yajra\CMS\Http\Controllers\MenuItemsController;
 use Yajra\CMS\Http\Controllers\NavigationController;
 
 // Navigation Menu Routes
-$router->get('navigation/menu/types', MenuItemsController::class . '@types');
-$router->get('navigation/menu/types/{menu}', MenuItemsController::class . '@types');
+$router->get('navigation/menu/extensions', MenuItemsController::class . '@extensions');
+$router->get('navigation/menu/extensions/{menu}', MenuItemsController::class . '@extensions');
 $router->post('navigation/{navigation}/menu/{menu}/publish', MenuItemsController::class . '@publish')
        ->name('administrator.navigation.menu.publish');
 $router->get('navigation/menu/articles', MenuItemsController::class . '@articles');

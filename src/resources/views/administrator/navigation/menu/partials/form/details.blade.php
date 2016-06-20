@@ -10,14 +10,14 @@
 
         <div id="menu-item-container">
             <div class="input-group">
-                <input type="hidden" id="selected-type-key" name="type"
-                       value="{{ old('type', $menu->menuType->key) }}"/>
+                <input type="hidden" id="selected-type-key" name="extension_id"
+                       value="{{ old('extension_id', $menu->extension->id) }}"/>
                 <input type="text"
                        id="selected-type-value"
                        title="Menu Type"
                        class="form-control"
                        name="type_value"
-                       value="{{ old('type_value', $menu->menuType->value) }}"
+                       value="{{ old('type_value', $menu->extension->name) }}"
                        readonly/>
                 <div class="input-group-btn">
                     <button data-toggle="modal" data-target="#menu-items-modal" class="btn btn-primary btn-flat"
@@ -30,7 +30,7 @@
             <hr>
 
             <div id="menu-item-selected-container">
-                @include('administrator.navigation.menu.partials.types.' . old('type', $menu->type))
+                @include($menu->extension->param('template'))
             </div>
         </div>
     </div>

@@ -3,4 +3,4 @@
 </a>
 <small>(Alias: {{ $menu->present()->url() }})</small>
 <br>
-<small><span class="label label-info">MENU TYPE:</span> <span class="label label-success">{{ $menu->menuType->value }}</span></small>
+<small><span class="label label-info">MENU TYPE:</span> <span class="label label-success">{{ $menu->extension->name }}</span></small>

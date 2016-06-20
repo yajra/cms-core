@@ -6,13 +6,13 @@ use App\Http\Requests;
 use Baum\MoveNotPossibleException;
 use Exception;
 use Illuminate\Http\Request;
-use Yajra\Acl\Models\Permission;
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\DataTables\MenuItemsDataTable;
-use Yajra\CMS\Entities\Lookup;
+use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Http\Requests\MenuItemsFormRequest;
+use Yajra\CMS\Repositories\Extension\Repository;
 
 class MenuItemsController extends Controller
 {
@@ -28,11 +28,19 @@ class MenuItemsController extends Controller
     ];
 
     /**
-     * MenuItemsController constructor.
+     * @var \Yajra\CMS\Repositories\Extension\Repository
      */
-    public function __construct()
+    protected $extensions;
+
+    /**
+     * MenuItemsController constructor.
+     *
+     * @param \Yajra\CMS\Repositories\Extension\Repository $extensions
+     */
+    public function __construct(Repository $extensions)
     {
         $this->authorizePermissionResource('menu');
+        $this->extensions = $extensions;
     }
 
     /**
@@ -53,12 +61,12 @@ class MenuItemsController extends Controller
      */
     public function create(Navigation $navigation, Menu $menu)
     {
-        $menu->order = 1; // set default ordering
-        $menu->type  = 'url.internal';
-        $permissions = Permission::all();
-        $menuItems   = Lookup::where('type', 'menu.types')->get();
+        $menu->extension_id = old('extension_id', Extension::MENU_INTERNAL);
+        $menu->load('extension');
 
-        return view('administrator.navigation.menu.create', compact('navigation', 'menu', 'permissions', 'menuItems'));
+        $extensions = $this->extensions->all()->where('type', 'menu');
+
+        return view('administrator.navigation.menu.create', compact('navigation', 'menu', 'extensions'));
     }
 
     /**
@@ -93,10 +101,10 @@ class MenuItemsController extends Controller
         if ($menu->isRoot()) {
             abort(404);
         }
-        $permissions = Permission::all();
-        $menuItems   = Lookup::where('type', 'menu.types')->get();
 
-        return view('administrator.navigation.menu.edit', compact('navigation', 'menu', 'permissions', 'menuItems'));
+        $extensions = $this->extensions->all()->where('type', 'menu');
+
+        return view('administrator.navigation.menu.edit', compact('navigation', 'menu', 'extensions'));
     }
 
     /**
@@ -176,20 +184,17 @@ class MenuItemsController extends Controller
     /**
      * @param \Illuminate\Http\Request $request
      * @param \Yajra\CMS\Entities\Menu $menu
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
      */
-    public function types(Request $request, Menu $menu)
+    public function extensions(Request $request, Menu $menu)
     {
-        /** @var Lookup $item */
-        $item     = Lookup::type('menu.types')->where('key', $request->query('key'))->firstOrFail();
-        $template = $item->fluentParameters()->template;
+        $extension = $this->extensions->findOrFail($request->query('key'));
+        $template  = $extension->param('template');
 
         if (view()->exists($template)) {
             return view($template, compact('menu'));
         }
 
-        $view = 'administrator.navigation.menu.partials.types.' . $request->query('key');
-
-        return view($view, compact('menu'));
+        return '';
     }
 }

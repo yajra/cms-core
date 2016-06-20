@@ -8,19 +8,19 @@
                         aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Menu Item Type</h4>
+                <h4 class="modal-title">Menu Extension</h4>
             </div>
             <div id="assets-body" class="modal-body">
                 <ul class="nav nav-pills nav-stacked">
-                    @foreach($menuItems as $menuItem)
+                    @foreach($extensions as $extension)
                         <li>
-                            <a @click="generateSelectedItem('{{$menuItem->key}}','{{$menuItem->value}}')"
+                            <a @click="generateSelectedItem('{{$extension->id}}','{{$extension->name}}')"
                                 href="javascript:void(0)">
                                 <i class="fa fa-file-text-o"></i>
-                                {{$menuItem->value}}
+                                {{$extension->name}}
                                 &nbsp; / &nbsp;
                                 <small class="text-muted">
-                                    {{ $menuItem->fluentParameters()->description }}
+                                    {{ $extension->description }}
                                 </small>
                             </a>
                         </li>
