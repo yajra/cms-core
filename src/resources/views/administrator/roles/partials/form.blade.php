@@ -1,8 +1,9 @@
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 style="color: #505b69;" class="box-title">ROLE INFORMATION
+        <h3 style="color: #505b69;" class="box-title">
+            {{trans('cms::role.form.title')}}
             <small>
-                (please fill up all required fields.)
+                {{trans('cms::role.form.help')}}
             </small>
         </h3>
         <div class="box-tools pull-right">
@@ -12,13 +13,17 @@
     <div class="box-body">
         <div class="row">
                 <div class="col-md-6 form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-                    <label class="form-label-style" for="name">Name</label>
-                    {!! form()->input('text', 'name', null, ['id'=>'name','class'=>'form-control','placeholder'=>'Enter name here']) !!}
+                    <label class="form-label-style" for="name">
+                        {{trans('cms::role.form.field.name')}}
+                    </label>
+                    {!! form()->input('text', 'name', null, ['id'=>'name','class'=>'form-control','placeholder'=>trans('cms::role.form.field.name_placeholder')]) !!}
                     {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                 </div>
                 <div class="col-md-6 form-group {!! $errors->has('slug') ? 'has-error' : '' !!}">
-                    <label class="form-label-style" for="slug">Slug</label>
-                    {!! form()->input('text', 'slug', null, ['id'=>'slug','class'=>'form-control','placeholder'=>'Enter slug here']) !!}
+                    <label class="form-label-style" for="slug">
+                        {{trans('cms::role.form.field.slug')}}
+                    </label>
+                    {!! form()->input('text', 'slug', null, ['id'=>'slug','class'=>'form-control','placeholder'=>trans('cms::role.form.field.slug_placeholder')]) !!}
                     {!! $errors->first('slug', '<span class="help-block">:message</span>') !!}
                 </div>
         </div>

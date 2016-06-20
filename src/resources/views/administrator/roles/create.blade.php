@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('title')
-New Role | @parent
+{{trans('cms::role.create.title')}} | @parent
 @stop
 
 @push('styles')
@@ -13,7 +13,7 @@ New Role | @parent
 @endpush
 
 @section('page-title')
-    @pageHeader('New Role', 'Create users role and attach permissions.', 'fa fa-plus')
+    @pageHeader('cms::role.create.title', 'cms::role.create.description', 'cms::role.create.icon')
 @stop
 
 @section('content')

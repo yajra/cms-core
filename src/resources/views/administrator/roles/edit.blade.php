@@ -1,11 +1,11 @@
 @extends('admin::layouts.master')
 
 @section('title')
-    Update Role | @parent
+{{trans('cms::role.edit.title')}} | @parent
 @stop
 
 @section('page-title')
-    @pageHeader('Update Role', 'Update users role and attach permissions.', 'fa fa-edit')
+    @pageHeader('cms::role.edit.title', 'cms::role.edit.description', 'cms::role.edit.icon')
 @stop
 
 @section('content')

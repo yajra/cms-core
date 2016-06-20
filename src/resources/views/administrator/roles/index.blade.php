@@ -1,14 +1,14 @@
 @extends('admin::layouts.master')
 
 @section('title')
-Roles | @parent
+{{trans('cms::role.index.title')}} | @parent
 @stop
 
 @push('styles')
 @endpush
 
 @section('page-title')
-    @pageHeader('Role Manager', 'Setup and Manage User Role.', 'fa fa-shield')
+    @pageHeader('cms::role.index.title', 'cms::role.index.description', 'cms::role.index.icon')
 @stop
 
 @section('content')
@@ -16,7 +16,7 @@ Roles | @parent
     <div class="box-header with-border">
         <h3 class="box-title">
             <i class="fa fa-list"></i>&nbsp;
-            Role Lists
+            {{trans('cms::permission.index.list')}}
         </h3>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
