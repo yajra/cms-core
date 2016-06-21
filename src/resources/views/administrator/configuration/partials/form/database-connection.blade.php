@@ -9,7 +9,7 @@
                     'sqlite'    => 'SQLite',
                     'mysql'     => 'MYSQL',
                     'pgsql'     => 'PGSQL',
-                    'oracle'    => 'ORACLE'
+                    'oracle'    => 'ORACLE',
                 ],$configuration->key("database.default"),[
                     'class'     => 'form-control select2',
                     'id'        => 'default-db',
@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        @foreach($configuration->key("database.connections") as $database)
+        @foreach($databases as $database)
             <div class="@if($configuration->key("database.default") == $database['driver']) @else hide @endif db-container"
                  id="{{$database['driver']}}-db-container">
                 @include('administrator.configuration.partials.form.databases.'.$database['driver'])
