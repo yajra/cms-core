@@ -413,7 +413,11 @@
                         $('.dataTables_filter input').attr('placeholder', 'Quick search');
                     }
                 });
+            },
+            showModal: function (name) {
+                $('#'+name).modal('show');
             }
+
         }
     });
 </script>

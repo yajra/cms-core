@@ -25,8 +25,8 @@
                     <span class="label label-warning">Javascript</span>
                     </a></li>
                 <li class="pull-right">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;New Asset</button>
-                    <button type="button" class="btn btn-primary"><i class="fa fa-cog"></i>&nbsp;Settings</button>
+                    <button @click="showModal('new-asset-modal')" type="button" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;New Asset</button>
+                    <button @click="showModal('customize-asset-modal')" type="button" class="btn btn-primary"><i class="fa fa-cog"></i>&nbsp;Customize</button>
                 </li>
             </ul>
             <div class="tab-content">
@@ -54,3 +54,7 @@
         </div>
     </div>
 </div>
+
+@include('administrator.configuration.modal.new-asset')
+
+
