@@ -24,6 +24,10 @@
                 <li><a href="#javascript" data-toggle="tab" @click="showJsAssets()">
                     <span class="label label-warning">Javascript</span>
                     </a></li>
+                <li class="pull-right">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;New Asset</button>
+                    <button type="button" class="btn btn-primary"><i class="fa fa-cog"></i>&nbsp;Settings</button>
+                </li>
             </ul>
             <div class="tab-content">
                 <div class="active tab-pane" id="css">
