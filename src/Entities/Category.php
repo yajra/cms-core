@@ -75,24 +75,6 @@ class Category extends Node implements UrlGenerator
     }
 
     /**
-     * @return array
-     */
-    public static function lookup()
-    {
-        $root  = static::root();
-        $items = [];
-
-        foreach ($root->getDescendants() as $category) {
-            $items[] = [
-                'title' => $category->present()->indentedTitle(),
-                'id'    => $category->id,
-            ];
-        }
-
-        return array_pluck($items, 'title', 'id');
-    }
-
-    /**
      * Get list of possible parent node.
      *
      * @return array
