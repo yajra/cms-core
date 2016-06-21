@@ -25,10 +25,7 @@ class DynamicWidgetsBuilder
 
         try {
             $factory = app('arrilot.widget-group-collection');
-
-            /** @var Collection $widgets */
-            $widgets = $this->getWidgets();
-            $widgets->each(function (Collection $group) use ($factory) {
+            $this->getWidgets()->each(function (Collection $group) use ($factory) {
                 $group->each(function (Widget $widget) use ($factory) {
                     $displayWidget = true;
 
@@ -36,7 +33,7 @@ class DynamicWidgetsBuilder
                         $displayWidget = false;
                     }
 
-                    if ($widget->permissions->count()) {
+                    if (count($widget->permissions)) {
                         if ($widget->authorization === 'can') {
                             foreach ($widget->permissions as $permission) {
                                 if (auth()->guest() ||
