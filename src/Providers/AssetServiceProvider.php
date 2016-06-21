@@ -22,7 +22,8 @@ class AssetServiceProvider extends ServiceProvider
     public function boot()
     {
         try {
-            $this->addAdminAssets();
+            $this->addAssets('css');
+            $this->addAssets('js');
             $this->requireAdminDefaultAssets();
             $this->assetJs();
             $this->assetCss();
@@ -38,15 +39,6 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-    }
-
-    /**
-     * Load admin assets.
-     */
-    protected function addAdminAssets()
-    {
-        $this->addAssets('css');
-        $this->addAssets('js');
     }
 
     /**
