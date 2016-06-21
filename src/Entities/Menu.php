@@ -124,7 +124,7 @@ class Menu extends Node
         $items = [
             ['id' => '1', 'title' => 'Item Root'],
         ];
-        $nodes = $root->descendants()->limitDepth(1);
+        $nodes = $root->descendants();
         if ($this->exists) {
             $nodes->where('navigation_id', $this->navigation_id)->where('id', '<>', $this->id);
         }
@@ -157,8 +157,6 @@ class Menu extends Node
                 }
             }
         }
-
-        return $items;
     }
 
     /**
