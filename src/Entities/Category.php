@@ -85,7 +85,7 @@ class Category extends Node implements UrlGenerator
         foreach ($root->getDescendants() as $category) {
             $items[] = [
                 'title' => $category->present()->indentedTitle(),
-                'id'    => $category->id . ':' . $category->alias,
+                'id'    => $category->id,
             ];
         }
 

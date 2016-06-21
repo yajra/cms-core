@@ -15,11 +15,7 @@ class FormServiceProvider extends ServiceProvider
     public function boot()
     {
         form()->macro('categories', function ($name = 'category_id', $selected = null, $options = []) {
-            return form()->select($name, Category::lookup(), $selected, $options);
-        });
-
-        form()->macro('selectCategories', function ($options = []) {
-            return form()->select('category_id', Category::lists(), null, $options);
+            return form()->select($name, Category::lists(), $selected, $options);
         });
     }
 

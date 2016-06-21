@@ -23,7 +23,7 @@
                     <tr>
                         <th><input class="form-control footer-text" style="width: 100%" placeholder="Search Id..." /></th>
                         <th><input class="form-control footer-text" style="width: 100%" placeholder="Search title..." /></th>
-                        <th>{{ form()->selectCategories(['class' => 'form-control select2', 'style' => 'width: 100%']) }}</th>
+                        <th>{{ form()->categories('category_id', null, ['class' => 'form-control select2', 'style' => 'width: 100%']) }}</th>
                         <th></th>
                         <th></th>
                         <th></th>
