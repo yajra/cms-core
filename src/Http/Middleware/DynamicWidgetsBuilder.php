@@ -25,7 +25,7 @@ class DynamicWidgetsBuilder
 
         try {
             $factory = app('arrilot.widget-group-collection');
-            $this->getWidgets()->each(function (Collection $group) use ($factory) {
+            $this->getWidgetsToDisplay()->each(function (Collection $group) use ($factory) {
                 $group->each(function (Widget $widget) use ($factory) {
                     $displayWidget = true;
 
@@ -72,8 +72,11 @@ class DynamicWidgetsBuilder
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function getWidgets()
+    protected function getWidgetsToDisplay()
     {
+        // Note:
+        // This widget has menu_assignment global scope attached in the query.
+        // @see DynamicMenusBuilder for the global scope.
         $widgets = Widget::with('permissions')->published()->get();
 
         return $widgets->groupBy('position')->sortBy('order');
