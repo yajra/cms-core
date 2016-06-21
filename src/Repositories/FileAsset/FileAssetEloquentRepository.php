@@ -4,6 +4,7 @@ namespace Yajra\CMS\Repositories\FileAsset;
 
 use Yajra\CMS\Entities\Configuration;
 use Yajra\CMS\Entities\FileAsset;
+use Yajra\CMS\Entities\FileAssetGroup;
 use Yajra\CMS\Repositories\RepositoryAbstract;
 use Roumen\Asset\Asset;
 use Illuminate\Support\Facades\Blade;
@@ -18,7 +19,7 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
     /**
      * Get repository model.
      *
-     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder
+     * @return \Yajra\CMS\Entities\FileAsset
      */
     public function getModel()
     {
@@ -49,7 +50,7 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
      * Get file asset by name.
      *
      * @param string $name
-     * @return FileAsset
+     * @return \Yajra\CMS\Entities\FileAsset
      */
     public function getByName($name)
     {
@@ -93,18 +94,19 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
     }
 
     /**
+     * Get file asset by type and name.
+     *
      * @param string $type
-     * @param string $status
-     * @return \Illuminate\Database\Eloquent\Model|null|static
+     * @param string $name
+     * @return \Yajra\CMS\Entities\FileAsset
      */
-    private function getByTypeAndStatus($type, $status = null)
+    private function getByTypeAndName($type, $name)
     {
         return $this->getModel()
                     ->where('type', $type)
+                    ->where('name', $name)
                     ->where('category', Configuration::key('asset.default'))
-                    ->where('asset', $status)
-                    ->orderBy('order', 'asc')
-                    ->get();
+                    ->first();
     }
 
     /**
@@ -115,9 +117,24 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
      */
     public function addAsset($type)
     {
-        $assets = $this->getByTypeAndStatus($type, 'admin');
-        foreach ($assets as $asset) {
-            Asset::add($asset->url);
+        $backEndAssets = $this->getGroupByType($type, 'backend');
+        foreach ($backEndAssets as $asset) {
+            Asset::add($this->getByTypeAndName($type, $asset->file_asset_name)->url);
         }
+    }
+
+    /**
+     * Get asset group by type and user.
+     *
+     * @param string $type
+     * @param string $user
+     * @return \Yajra\CMS\Entities\FileAssetGroup
+     */
+    public function getGroupByType($type, $user)
+    {
+        return FileAssetGroup::where('type', $type)
+                             ->orderBy('order', 'asc')
+                             ->orderBy('user', $user)
+                             ->get();
     }
 }

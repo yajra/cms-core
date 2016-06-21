@@ -12,7 +12,7 @@ interface FileAssetRepository
     /**
      * Get all file assets.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return \Yajra\CMS\Entities\FileAsset
      */
     public function all();
 
@@ -25,7 +25,7 @@ interface FileAssetRepository
      * Get file asset by name.
      *
      * @param string $name
-     * @return FileAsset
+     * @return \Yajra\CMS\Entities\FileAsset
      */
     public function getByName($name);
 
