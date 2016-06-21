@@ -2,12 +2,10 @@
 
 namespace Yajra\CMS\Providers;
 
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Roumen\Asset\Asset;
-use Yajra\CMS\Entities\Configuration;
-use Yajra\CMS\Entities\FileAsset;
 use Illuminate\Database\QueryException;
+use Yajra\CMS\Repositories\FileAsset\FileAssetEloquentRepository;
+use Yajra\CMS\Repositories\FileAsset\FileAssetRepository;
 
 /**
  * Class AssetServiceProvider
@@ -39,6 +37,9 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(FileAssetRepository::class, function () {
+            return new FileAssetEloquentRepository();
+        });
     }
 
     /**
@@ -46,9 +47,7 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function requireAdminDefaultAssets()
     {
-        foreach (config('asset.admin_required_assets', []) as $asset => $requiredValue) {
-            Asset::add($requiredValue);
-        }
+        $this->app->make(FileAssetRepository::class)->registerAdminRequireAssets();
     }
 
     /**
@@ -58,11 +57,7 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function assetJs()
     {
-        Blade::directive('assetJs', function ($asset) {
-            $asset = $this->getAssetUrlByname($this->strParser($asset . '.js'));
-
-            return '<?php echo "<script src=\"' . $asset->url . '\"></script>"; ?>';
-        });
+        return $this->app->make(FileAssetRepository::class)->registerJsBlade();
     }
 
     /**
@@ -72,33 +67,7 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function assetCss()
     {
-        Blade::directive('assetCss', function ($asset) {
-            $asset = $this->getAssetUrlByname($this->strParser($asset . '.css'));
-
-            return '<?php echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"' . $asset->url . '\">"; ?>';
-        });
-    }
-
-    /**
-     * @param string $str
-     * @return string
-     */
-    private function strParser($str)
-    {
-        return str_replace("'", '', str_replace(['(', ')'], '', $str));
-    }
-
-    /**
-     * Get url by asset name.
-     *
-     * @param string $asset
-     * @return FileAsset
-     */
-    private function getAssetUrlByname($asset)
-    {
-        return FileAsset::where('name', $asset)
-                        ->where('category', Configuration::key('asset.default'))
-                        ->first();
+        return $this->app->make(FileAssetRepository::class)->registerCssBlade();
     }
 
     /**
@@ -108,10 +77,6 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function addAssets($type)
     {
-        $assets = config('asset.admin_assets.' . $type);
-        ksort($assets);
-        foreach ($assets as $key => $value) {
-            Asset::add($this->getAssetUrlByname($value)->url);
-        }
+        return $this->app->make(FileAssetRepository::class)->addAsset($type);
     }
 }
