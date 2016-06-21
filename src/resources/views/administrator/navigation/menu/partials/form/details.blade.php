@@ -36,7 +36,8 @@
     </div>
     <div class="col-md-4">
         <div class="form-group {!! $errors->has('parent_id') ? 'has-error' : '' !!}">
-            <label for="parent_id" class="form-label-style block">Parent
+            <label for="parent_id" class="form-label-style block">
+                Parent
                 @tooltip('Parent menu item.')
             </label>
             {!! form()->select('parent_id', $menu->getParentsList(), null, ['class' => 'select2 form-control']) !!}
@@ -44,14 +45,16 @@
         </div>
 
         <div class="form-group {!! $errors->has('target') ? 'has-error' : '' !!}">
-            <label class="form-label-style block" for="target">On Click, Open in:
+            <label class="form-label-style block" for="target">
+                On Click, Open in:
                 @tooltip('Target browser window when the menu item is selected.')
             </label>
             {!! form()->select('target', ['0' => 'Parent','1' => 'New Window'], null,['class'=> 'select2 form-control']) !!}
             {!! $errors->first('target', '<span class="help-block">:message</span>') !!}
         </div>
         <div class="form-group {!! $errors->has('order') ? 'has-error' : '' !!}">
-            <label class="form-label-style block" for="order">Order
+            <label class="form-label-style block" for="order">
+                Order
                 @tooltip('Display order of the menu.')
             </label>
             {!! form()->select('order', array_combine(range(1, 100), range(1, 100)) , null , ['class' => 'form-control select2']) !!}
@@ -61,7 +64,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group {!! $errors->has('authenticated') ? 'has-error' : '' !!}">
-                    <label class="form-label-style" for="authenticated">Authenticated
+                    <label class="form-label-style" for="authenticated">
+                        Authenticated
                         @tooltip('Requires authentication to access the menu.')
                     </label>
                     <br>
@@ -71,7 +75,8 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group {!! $errors->has('published') ? 'has-error' : '' !!}">
-                    <label class="form-label-style" for="published">Published
+                    <label class="form-label-style" for="published">
+                        Published
                         @tooltip('Set publication status.')
                     </label>
                     <br>

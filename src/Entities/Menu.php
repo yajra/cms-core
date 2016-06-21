@@ -124,18 +124,15 @@ class Menu extends Node
         $items = [
             ['id' => '1', 'title' => 'Item Root'],
         ];
-
+        $nodes = $root->descendants()->limitDepth(1);
         if ($this->exists) {
-            $nodes = $root->descendants()
-                          ->where('navigation_id', $this->navigation_id)
-                          ->where('id', '<>', $this->id)
-                          ->get();
-        } else {
-            $nodes = $root->getDescendants();
+            $nodes->where('navigation_id', $this->navigation_id)->where('id', '<>', $this->id);
         }
 
-        foreach ($nodes as $node) {
-            $this->appendMenu($node, $items);
+        foreach ($nodes->get() as $node) {
+            foreach ($node->getDescendantsAndSelf()->toHierarchy() as $menu) {
+                $this->appendMenu($menu, $items);
+            }
         }
 
         return array_pluck($items, 'title', 'id');
@@ -148,14 +145,16 @@ class Menu extends Node
      */
     protected function appendMenu($node, &$items)
     {
-        if ($node->isLeaf()) {
-            $items[] = [
-                'title' => $node->present()->indentedTitle(),
-                'id'    => $node->id,
-            ];
-        } else {
+        $items[] = [
+            'title' => $node->present()->indentedTitle(),
+            'id'    => $node->id,
+        ];
+
+        if (count($node->children)) {
             foreach ($node->children as $child) {
-                $this->appendMenu($child, $items);
+                foreach ($child->getDescendantsAndSelf()->toHierarchy() as $menu) {
+                    $this->appendMenu($menu, $items);
+                }
             }
         }
 
