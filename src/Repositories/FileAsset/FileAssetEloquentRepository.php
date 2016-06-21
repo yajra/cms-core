@@ -53,9 +53,10 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
      */
     public function getByName($name)
     {
-        return FileAsset::where('name', $name)
-                        ->where('category', Configuration::key('asset.default'))
-                        ->first();
+        return $this->getModel()
+                    ->where('name', $name)
+                    ->where('category', Configuration::key('asset.default'))
+                    ->first();
     }
 
     /**
@@ -92,6 +93,21 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
     }
 
     /**
+     * @param string $type
+     * @param string $status
+     * @return \Illuminate\Database\Eloquent\Model|null|static
+     */
+    private function getByTypeAndStatus($type, $status = null)
+    {
+        return $this->getModel()
+                    ->where('type', $type)
+                    ->where('category', Configuration::key('asset.default'))
+                    ->where('asset', $status)
+                    ->orderBy('order', 'asc')
+                    ->get();
+    }
+
+    /**
      * Add site asset.
      *
      * @param string $type
@@ -99,10 +115,9 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
      */
     public function addAsset($type)
     {
-        $assets = config('asset.admin_assets.' . $type);
-        ksort($assets);
-        foreach ($assets as $key => $value) {
-            Asset::add($this->getByName($value)->url);
+        $assets = $this->getByTypeAndStatus($type, 'admin');
+        foreach ($assets as $asset) {
+            Asset::add($asset->url);
         }
     }
 }
