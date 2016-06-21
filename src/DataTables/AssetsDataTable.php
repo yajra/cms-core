@@ -29,7 +29,7 @@ class AssetsDataTable extends DataTable
         $assets = FileAsset::select()
                            ->where('category', config('asset.default'))
                            ->where('type', $this->request()->get('type'))
-                           ->orderBy('order', 'asc');
+                           ->orderBy('name', 'asc');
 
         return $this->applyScopes($assets);
     }
