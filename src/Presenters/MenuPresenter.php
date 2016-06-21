@@ -36,9 +36,11 @@ class MenuPresenter extends Presenter
      */
     public function url()
     {
+        /** @var \Yajra\CMS\Repositories\Extension\Repository $repository */
+        $repository = app('extensions');
         /** @var \Yajra\CMS\Entities\Extension $extension */
-        $extension = $this->entity->extension;
-        $class     = $extension->param('class');
+        $extension  = $repository->findOrFail($this->entity->extension_id);
+        $class      = $extension->param('class');
         if (class_exists($class)) {
             $entity = app($class)->findOrNew($this->entity->param('id'));
             if ($entity instanceof UrlGenerator) {

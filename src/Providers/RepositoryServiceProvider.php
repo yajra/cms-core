@@ -46,12 +46,14 @@ class RepositoryServiceProvider extends ServiceProvider
         }
 
         Extension::saved(function ($model) {
-            $this->app['cache.store']->forget('extension.widget.' . $model->id);
-            $this->app['cache.store']->forget('extension.widget.all');
+            $this->app['cache.store']->forget('extension.' . $model->id);
+            $this->app['cache.store']->forget('extension.widgets');
+            $this->app['cache.store']->forget('extension.all');
         });
         Extension::deleted(function ($model) {
-            $this->app['cache.store']->forget('extension.widget.' . $model->id);
-            $this->app['cache.store']->forget('extension.widget.all');
+            $this->app['cache.store']->forget('extension.' . $model->id);
+            $this->app['cache.store']->forget('extension.widgets');
+            $this->app['cache.store']->forget('extension.all');
         });
     }
 
@@ -82,7 +84,10 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('extensions', function () {
-            return new \Yajra\CMS\Repositories\Extension\EloquentRepository;
+            return new \Yajra\CMS\Repositories\Extension\CacheRepository(
+                new \Yajra\CMS\Repositories\Extension\EloquentRepository,
+                $this->app['cache.store']
+            );
         });
         
         $this->app->alias('articles', \Yajra\CMS\Repositories\Article\Repository::class);
