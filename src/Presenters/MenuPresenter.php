@@ -26,9 +26,9 @@ class MenuPresenter extends Presenter
      */
     public function indentedTitle($start = 1, $symbol = '— ')
     {
-        $depth = $this->entity->depth ?? 1;
+        $repeat = $this->entity->depth - $start;
 
-        return str_repeat($symbol, $depth - $start) . ' ' . $this->entity->title;
+        return str_repeat($symbol, $repeat >=0 ? $repeat : 0) . ' ' . $this->entity->title;
     }
 
     /**
