@@ -26,6 +26,16 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
     }
 
     /**
+     * Get all file assets.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function all()
+    {
+        return $this->getModel()->query()->get();
+    }
+
+    /**
      * Register admin required assets.
      */
     public function registerAdminRequireAssets()

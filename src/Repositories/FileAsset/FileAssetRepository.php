@@ -10,6 +10,13 @@ namespace Yajra\CMS\Repositories\FileAsset;
 interface FileAssetRepository
 {
     /**
+     * Get all file assets.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function all();
+
+    /**
      * Register admin required assets.
      */
     public function registerAdminRequireAssets();
