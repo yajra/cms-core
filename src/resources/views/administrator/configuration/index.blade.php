@@ -13,8 +13,13 @@
     a.disabled {
         pointer-events: none;
     }
-    .table-container{
+
+    .table-container {
         margin-top: 3px !important;
+    }
+
+    .select2-container{
+        width: 100% !important;
     }
 </style>
 @endpush
@@ -347,10 +352,28 @@
                     case 'asset.default':
                         that.asset.default = selected;
                         break;
+                    case 'newasset.type':
+                        that.newasset.type = selected;
+                        break;
+                    case 'newasset.category':
+                        that.newasset.category = selected;
+                            if(selected == 'cdn'){
+                                $('#asset-url-label').text('URL');
+                            } else{
+                                $('#asset-url-label').text('Path');
+                            }
+                        break;
                 }
             });
         },
-        data: {},
+        data: {
+            'newasset': {
+                'name': '',
+                'type': '',
+                'category': '',
+                'url': '',
+            }
+        },
         methods: {
             checkTab: function (selectedTab) {
                 window.location = '#setup-' + selectedTab;
@@ -415,7 +438,7 @@
                 });
             },
             showModal: function (name) {
-                $('#'+name).modal('show');
+                $('#' + name).modal('show');
             }
 
         }

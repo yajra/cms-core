@@ -9,7 +9,7 @@
             'class'     => 'form-control select2',
             'id'        => 'default-asset',
             'v-model'   => 'asset.default',
-            'config'    => 'asset.default'
+            'config'    => 'asset.default',
     ]) !!}
 </div>
 

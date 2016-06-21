@@ -9,7 +9,14 @@
                 </h4>
             </div>
             <div class="modal-body">
-
+                @include('administrator.configuration.partials.form.form-asset')
+                <pre>
+                    @{{ newasset | json }}
+                </pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary text-bold">SAVE</button>
+                <button type="button" class="btn btn-warning text-bold" data-dismiss="modal">CLOSE</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
