@@ -83,8 +83,6 @@ class MenuItemsController extends Controller
         $menu->authenticated = $request->get('authenticated', false);
         $navigation->menus()->save($menu);
 
-        $menu->makeChildOf(Menu::query()->findOrFail($request->get('parent_id')));
-
         $menu->permissions()->sync($request->get('permissions', []));
 
         flash()->success(trans('cms::menu.store.success'));
