@@ -2,7 +2,7 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Yajra\CMS\DataTables\AssetsDataTable;
+use Yajra\CMS\DataTables\FileAssetsDataTable;
 use Yajra\CMS\Entities\Configuration;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -70,10 +70,10 @@ class SiteConfigurationController extends Controller
     /**
      * Show all site assets.
      *
-     * @param \Yajra\CMS\DataTables\AssetsDataTable $dataTable
+     * @param \Yajra\CMS\DataTables\FileAssetsDataTable $dataTable
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getAssets(AssetsDataTable $dataTable)
+    public function getAssets(FileAssetsDataTable $dataTable)
     {
         return $dataTable->ajax();
     }

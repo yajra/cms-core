@@ -5,7 +5,7 @@ namespace Yajra\CMS\DataTables;
 use Yajra\CMS\Entities\FileAsset;
 use Yajra\Datatables\Services\DataTable;
 
-class AssetsDataTable extends DataTable
+class FileAssetsDataTable extends DataTable
 {
     /**
      * Display ajax response.
