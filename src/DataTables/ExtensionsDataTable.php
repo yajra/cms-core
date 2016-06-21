@@ -18,11 +18,11 @@ class ExtensionsDataTable extends DataTable
             ->eloquent($this->query())
             ->addColumn('action', 'administrator.extensions.datatables.action')
             ->editColumn('name', function ($extension) {
-                return "<h3 class=\"lead no-margin\">{$extension->name} <small>{$extension->version}</small></h3>
+                return "<h3 class=\"lead no-margin text-blue\">{$extension->name} <small>{$extension->version}</small></h3>
                             <p>{$extension->description}</p>";
             })
             ->editColumn('type', function($extension) {
-                return dt_label($extension->type);
+                return dt_label($extension->type, 'danger');
             })
             ->editColumn('enabled', function ($extension) {
                 return dt_check($extension->enabled);
