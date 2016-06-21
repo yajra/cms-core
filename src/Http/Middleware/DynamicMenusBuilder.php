@@ -30,20 +30,22 @@ class DynamicMenusBuilder
             $this->repository = app(Repository::class);
             $this->repository->getPublished()->each(function (Navigation $navigation) {
                 MenuFactory::make($navigation->type, function (Builder $builder) use ($navigation) {
-                    $navigation->menus->each(function (Menu $menu) use ($builder) {
-                        $widgets = $menu->getConnection()->table('widget_menu');
-
+                    $widgets    = $navigation->getConnection()->table('widget_menu');
+                    $assignment = [0];
+                    $navigation->menus->each(function (Menu $menu) use ($builder, $widgets, $assignment) {
                         if ($menu->isActive()) {
-                            $widgets->whereIn('menu_id', [0, $menu->id]);
-                        } else {
-                            $widgets->where('menu_id', 0);
+                            $assignment[] = $menu->id;
                         }
 
-                        Widget::addGlobalScope('menu_assignment', function ($query) use ($widgets) {
-                            $query->whereIn('id', $widgets->pluck('widget_id'));
-                        });
+                        $menus = $menu->descendantsAndSelf()->with('permissions')->get()->toHierarchy();
+                        foreach ($menus as $menu) {
+                            $this->generateMenu($builder, $menu);
+                        }
+                    });
 
-                        $this->generateMenu($builder, $menu);
+                    $widgets = $widgets->where('menu_id', $assignment);
+                    Widget::addGlobalScope('menu_assignment', function ($query) use ($widgets) {
+                        $query->whereIn('id', $widgets->pluck('widget_id'));
                     });
                 });
             });
@@ -56,13 +58,12 @@ class DynamicMenusBuilder
      * Generate the menu.
      *
      * @param \Caffeinated\Menus\Builder|\Caffeinated\Menus\Item $parentMenu
-     * @param \Yajra\CMS\Entities\Menu $item
+     * @param \Yajra\CMS\Entities\Menu $menu
      */
-    protected function generateMenu($parentMenu, $item)
+    protected function generateMenu($parentMenu, $menu)
     {
-        $subMenu     = $this->registerMenu($parentMenu, $item);
-        $descendants = $item->descendants()->published()->get()->toHierarchy();
-        $descendants->each(function (Menu $subItem) use ($subMenu) {
+        $subMenu = $this->registerMenu($parentMenu, $menu);
+        $menu->children->each(function (Menu $subItem) use ($subMenu) {
             $subMenuChild = $this->registerMenu($subMenu, $subItem);
             if (count($subItem->children)) {
                 $this->generateMenu($subMenuChild, $subItem);
@@ -88,7 +89,7 @@ class DynamicMenusBuilder
             return false;
         }
 
-        if ($menu->permissions->count()) {
+        if (count($menu->permissions)) {
             if ($menu->authorization === 'can') {
                 foreach ($menu->permissions as $permission) {
                     if (auth()->guest() ||
@@ -108,6 +109,7 @@ class DynamicMenusBuilder
             }
         }
 
-        return $parentMenu->add($menu->title, $menu->present()->url())->attribute('target', $menu->present()->target());
+        return $parentMenu->add($menu->title, $menu->present()->url())
+                          ->attribute('target', $menu->present()->target());
     }
 }

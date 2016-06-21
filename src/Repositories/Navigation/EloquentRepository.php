@@ -17,8 +17,7 @@ class EloquentRepository extends RepositoryAbstract implements Repository
         return $this->getModel()->with([
             'menus' => function ($query) {
                 $query->limitDepth(1)->orderBy('order', 'asc');
-            },
-            'menus.permissions',
+            }
         ])->published()->get();
     }
 
