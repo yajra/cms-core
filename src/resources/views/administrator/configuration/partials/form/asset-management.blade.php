@@ -26,7 +26,7 @@
                     </a></li>
                 <li class="pull-right">
                     <button @click="showModal('new-asset-modal')" type="button" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;New Asset</button>
-                    <button @click="showModal('customize-asset-modal')" type="button" class="btn btn-primary"><i class="fa fa-cog"></i>&nbsp;Customize</button>
+                    <button @click="showModal('customize-asset-modal')" type="button" class="btn btn-danger"><i class="fa fa-cog"></i>&nbsp;Manage Site Assets</button>
                 </li>
             </ul>
             <div class="tab-content">
