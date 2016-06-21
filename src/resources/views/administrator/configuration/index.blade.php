@@ -241,5 +241,180 @@
 @stop
 
 @push('scripts')
-<script src="/js/admin/configuration.js" type="text/javascript"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#config-container',
+        ready: function () {
+            var that = this;
+
+            // Focus tab depends on url active.
+            if (window.location.hash) {
+                localStorage.activeTab = window.location.hash.substring(1).replace("setup-", "");
+                window.location = '#setup-' + localStorage.activeTab;
+                this.checkTab(localStorage.activeTab);
+            } else {
+                localStorage.activeTab = 'site-mgmt';
+                this.checkTab(localStorage.activeTab);
+            }
+
+            $('#app_debug').on('change', function () {
+                if (that.app.debug == 1) {
+                    that.app.debug = 0;
+                } else {
+                    that.app.debug = 1;
+                }
+            });
+
+            $('#app_debugbar').on('change', function () {
+                if (that.app.debugbar == 1) {
+                    that.app.debugbar = 0;
+                } else {
+                    that.app.debugbar = 1;
+                }
+            });
+
+            // Global config change container on select database type.
+            $('#default-db').on('change', function () {
+                $('.db-container').removeClass('hide').addClass('hide');
+                $('#' + $(this).val() + '-db-container').removeClass('hide');
+            });
+            // Global config change container on select cache type.
+            $('#default-cache').on('change', function () {
+                $('.cache-container').removeClass('hide').addClass('hide');
+                $('#' + $(this).val() + '-cache-container').removeClass('hide');
+            });
+            // Global config change container on select file system type.
+            $('#default-filesytem').on('change', function () {
+                $('.filesystem-container').removeClass('hide').addClass('hide');
+                $('#' + $(this).val() + '-filesystem-container').removeClass('hide');
+            });
+
+            $('#css-assets-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '/administrator/configuration/assets',
+                    type: "get",
+                    data: {
+                        type: "css"
+                    }
+                },
+                columns: [
+                    {data: 'name', name: 'name'},
+                    {data: 'url', name: 'url'},
+                ],
+                initComplete: function () {
+
+                }
+            });
+
+            // select2 on change. Set vue object value.
+            var $eventSelect = $('select');
+            $eventSelect.on("change", function () {
+                var select = $(this).attr('config');
+                var selected = $(this).val();
+
+                switch (select) {
+                    case 'site.admin_theme':
+                        that.site.admin_theme = selected;
+                        break;
+                    case 'app.env':
+                        that.app.env = selected;
+                        break;
+                    case 'app.timezone':
+                        that.app.timezone = selected;
+                        break;
+                    case 'app.locale':
+                        that.app.locale = selected;
+                        break;
+                    case 'app.log':
+                        that.app.log = selected;
+                        break;
+                    case 'database.default':
+                        that.database.default = selected;
+                        break;
+                    case 'mail.driver':
+                        that.mail.driver = selected;
+                        break;
+                    case 'cache.default':
+                        that.cache.default = selected;
+                        break;
+                    case 'session.driver':
+                        that.session.driver = selected;
+                        break;
+                    case 'filesystems.default':
+                        that.filesystems.default = selected;
+                    case 'asset.default':
+                        that.asset.default = selected;
+                        break;
+                }
+            });
+        },
+        data: {},
+        methods: {
+            checkTab: function (selectedTab) {
+                window.location = '#setup-' + selectedTab;
+                var activeTab = $('.nav-tabs .active').attr('id');
+                $('#' + activeTab).hide();
+                $('#' + activeTab).removeClass('active');
+                $('#tab-' + activeTab).hide();
+                $('#tab-' + activeTab).removeClass('active');
+                $('#' + selectedTab).addClass('active');
+                $('#' + selectedTab).show();
+                $('#tab-' + selectedTab).show();
+                $('#tab-' + selectedTab).addClass('active');
+                $('#' + selectedTab + ' a').removeClass('hide');
+                $('#tab-' + selectedTab).removeClass('hide');
+                $('.list-group-item').css('background', '#FFFFFF');
+                $('.list-group-item a').css('color', '#3c8dbc');
+                $('#list-group-' + selectedTab).css('background', '#F5F5F5');
+                $('#list-group-' + selectedTab + ' a').css('color', '#2f353b');
+                localStorage.activeTab = selectedTab;
+                $('.select2-container').css('width', '100%');
+            },
+            onSubmit: function (values, config_title) {
+                swal({
+                            title: "Are you sure?",
+                            text: "Save and update site configuration.",
+                            type: "info",
+                            showCancelButton: true,
+                            closeOnConfirm: false,
+                            showLoaderOnConfirm: true,
+                        },
+                        function () {
+                            Vue.http.post('/administrator/configuration', values).then(function (response) {
+                                swal({
+                                    title: "Updated!",
+                                    type: "success",
+                                    text: "Your " + config_title + " configuration successfully updated! <br><small>You may need to refresh the page to reflect some changes.</small>",
+                                    html: true
+                                });
+                            }, function (response) {
+                                // error callback
+                            });
+                        });
+            },
+            showJsAssets: function () {
+                $('#js-assets-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: '/administrator/configuration/assets',
+                        type: "get",
+                        data: {
+                            type: "js"
+                        }
+                    },
+                    columns: [
+                        {data: 'name', name: 'name'},
+                        {data: 'url', name: 'url'},
+                    ],
+                    initComplete: function () {
+                        $('.dataTables_filter input').attr('placeholder', 'Quick search');
+                    }
+                });
+            }
+        }
+    });
+</script>
 @endpush
