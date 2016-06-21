@@ -55,6 +55,7 @@ class Menu extends Node
         'target',
         'order',
         'published',
+        'parent_id',
         'authenticated',
         'authorization',
         'parameters',

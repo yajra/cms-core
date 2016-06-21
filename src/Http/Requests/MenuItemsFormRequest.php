@@ -23,6 +23,7 @@ class MenuItemsFormRequest extends Request
     {
         return [
             'title'        => 'required|max:255',
+            'parent_id'    => 'required',
             'extension_id' => 'required',
             'url'          => 'required|max:255',
             'order'        => 'required|numeric|max:100',
