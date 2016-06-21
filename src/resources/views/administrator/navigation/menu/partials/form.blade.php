@@ -40,7 +40,7 @@
                         <div class="form-group {!! $errors->has('authorization') ? 'has-error' : '' !!}">
                             <label class="form-label-style" for="authorization">
                                 {{trans('cms::menu.field.authorization')}}
-                                @tooltip('menu.tooltip.authorization')
+                                @tooltip('cms::menu.tooltip.authorization')
                             </label>
 
                             {{ form()->select('authorization', ['can' => trans('cms::menu.authorization.can'), 'canAtLeast' => trans('cms::menu.authorization.canAtLeast')], null, ['class' => 'form-control']) }}
