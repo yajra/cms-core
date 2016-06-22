@@ -47,6 +47,8 @@ class WidgetPublishCommand extends Command
         $path = app_path('Widgets') . DIRECTORY_SEPARATOR . $this->argument('name') . '.json';
 
         $this->extensions->registerManifest($path);
+        $this->laravel->make('cache.store')->forget('extensions.widgets');
+        $this->laravel->make('cache.store')->forget('extensions.all');
 
         $this->info($this->argument('name') . ' widget extension installed!');
     }
