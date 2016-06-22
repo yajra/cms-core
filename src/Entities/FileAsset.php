@@ -13,4 +13,9 @@ class FileAsset extends Model
      * @var string
      */
     protected $table = 'file_assets';
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['name', 'type', 'category', 'url'];
 }

@@ -26,10 +26,8 @@ class FileAssetsDataTable extends DataTable
      */
     public function query()
     {
-        $assets = FileAsset::select()
-                           ->where('category', config('asset.default'))
-                           ->where('type', $this->request()->get('type'))
-                           ->orderBy('name', 'asc');
+        $assets = FileAsset::select()->where('category', config('asset.default'))
+                           ->where('type', $this->request()->get('type'));
 
         return $this->applyScopes($assets);
     }

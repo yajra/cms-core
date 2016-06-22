@@ -18,7 +18,7 @@
         margin-top: 3px !important;
     }
 
-    .select2-container{
+    .select2-container {
         width: 100% !important;
     }
 </style>
@@ -154,6 +154,7 @@
                                 </div>
                             </div>
                         </form>
+                        @include('administrator.configuration.modal.new-asset')
                     </div><!-- /.tab-pane -->
                     <div class="tab-pane hide" id="tab-app-env">
                         <form method="POST" v-on:submit.prevent="onSubmit(this.app, 'application environment')">
@@ -294,7 +295,7 @@
                 $('#' + $(this).val() + '-filesystem-container').removeClass('hide');
             });
 
-            $('#css-assets-table').DataTable({
+            that.cssAssetTable = $('#css-assets-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -308,9 +309,6 @@
                     {data: 'name', name: 'name'},
                     {data: 'url', name: 'url'},
                 ],
-                initComplete: function () {
-
-                }
             });
 
             // select2 on change. Set vue object value.
@@ -357,16 +355,18 @@
                         break;
                     case 'newasset.category':
                         that.newasset.category = selected;
-                            if(selected == 'cdn'){
-                                $('#asset-url-label').text('URL');
-                            } else{
-                                $('#asset-url-label').text('Path');
-                            }
+                        if (selected == 'cdn') {
+                            $('#asset-url-label').text('URL');
+                        } else {
+                            $('#asset-url-label').text('Path');
+                        }
                         break;
                 }
             });
         },
         data: {
+            'cssAssetTable': '',
+            'jsAssetTable': '',
             'newasset': {
                 'name': '',
                 'type': '',
@@ -418,7 +418,8 @@
                         });
             },
             showJsAssets: function () {
-                $('#js-assets-table').DataTable({
+                var that = this;
+                that.jsAssetTable = $('#js-assets-table').DataTable({
                     processing: true,
                     serverSide: true,
                     ajax: {
@@ -439,6 +440,40 @@
             },
             showModal: function (name) {
                 $('#' + name).modal('show');
+            },
+            submitNewAsset: function (values) {
+                var that = this;
+
+                swal({
+                            title: "Are you sure?",
+                            text: "Save and add new asset.",
+                            type: "info",
+                            showCancelButton: true,
+                            closeOnConfirm: false,
+                            showLoaderOnConfirm: true,
+                        },
+                        function () {
+                            Vue.http.post('/administrator/configuration/asset/store', values).then(function (response) {
+                                $('#new-asset-modal').modal('hide');
+                                that.newasset.name = '';
+                                that.newasset.url = '';
+                                swal({
+                                    title: "Success!",
+                                    type: "success",
+                                    text: "Asset successfully added.",
+                                    html: true
+                                });
+                                that.cssAssetTable.ajax.reload();
+                                that.jsAssetTable.ajax.reload();
+                            }, function (response) {
+                                if (response.data.name) {
+                                    var textwarning = response.data.name;
+                                } else if (response.data.url) {
+                                    var textwarning = response.data.url;
+                                }
+                                sweetAlert("Oops...", textwarning, "error");
+                            });
+                        });
             }
 
         }

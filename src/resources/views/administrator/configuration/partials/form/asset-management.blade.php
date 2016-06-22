@@ -55,6 +55,3 @@
     </div>
 </div>
 
-@include('administrator.configuration.modal.new-asset')
-
-
