@@ -77,8 +77,8 @@ class DynamicWidgetsBuilder
         // Note:
         // This widget has menu_assignment global scope attached in the query.
         // @see DynamicMenusBuilder for the global scope.
-        $widgets = Widget::with('permissions')->published()->get();
+        $widgets = Widget::with('permissions')->published()->orderBy('order', 'asc')->get();
 
-        return $widgets->groupBy('position')->sortBy('order');
+        return $widgets->groupBy('position');
     }
 }
