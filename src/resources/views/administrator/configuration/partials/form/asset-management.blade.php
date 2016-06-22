@@ -36,6 +36,7 @@
                         <tr>
                             <th>Name</th>
                             <th>URL</th>
+                            <th>ACTION</th>
                         </tr>
                         </thead>
                     </table>
@@ -46,6 +47,7 @@
                         <tr>
                             <th>Name</th>
                             <th>URL</th>
+                            <th>ACTION</th>
                         </tr>
                         </thead>
                     </table>

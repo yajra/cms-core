@@ -140,6 +140,7 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'url', name: 'url'},
+                    {data: 'action', name: 'action', 'searchable': false, 'orderable': false,'width':'67px'},
                 ],
             });
 
@@ -264,6 +265,7 @@
                     columns: [
                         {data: 'name', name: 'name'},
                         {data: 'url', name: 'url'},
+                        {data: 'action', name: 'action', 'searchable': false, 'orderable': false,'width':'67px'},
                     ],
                     initComplete: function () {
                         $('.dataTables_filter input').attr('placeholder', 'Quick search');
