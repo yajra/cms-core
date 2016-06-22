@@ -40,7 +40,7 @@
         </div>
         <div class="tab-pane" id="user-advanced">
             <div class="content">
-                @include('administrator.users.partials.forms.parameters')
+                @include('administrator.users.partials.parameters')
             </div>
         </div>
     </div>
