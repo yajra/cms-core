@@ -36,46 +36,14 @@
                 <div class="box-body box-profile">
                     <p class="text-muted text-center">{!! $configuration->key("site.name") !!}</p>
                     <ul class="list-group list-group-unbordered">
-                        <li id="list-group-site-mgmt" class="list-group-item list-group-padding">
-                            <a href="javascript:void(0)" @click="checkTab('site-mgmt')">
-                            <i class="fa fa-cog"></i>&nbsp;Site Management
-                            </a>
-                        </li>
-                        <li id="list-group-app-env" class="list-group-item list-group-padding">
-                            <a href="javascript:void(0)" @click="checkTab('app-env')">
-                            <i class="fa fa-laptop"></i>&nbsp;Application Environment
-                            </a>
-                        </li>
-                        <li id="list-group-asset-mgmt" class="list-group-item list-group-padding">
-                            <a href="javascript:void(0)" @click="checkTab('asset-mgmt')">
-                            <i class="fa fa-magic"></i>&nbsp;Asset Management
-                            </a>
-                        </li>
-                        <li id="list-group-db-conn" class="list-group-item list-group-padding">
-                            <a href="javascript:void(0)" @click="checkTab('db-conn')">
-                            <i class="fa fa-database"></i>&nbsp;Database Connection
-                            </a>
-                        </li>
-                        <li id="list-group-mail-driver" class="list-group-item list-group-padding">
-                            <a href="javascript:void(0)" @click="checkTab('mail-driver')">
-                            <i class="fa fa-envelope"></i>&nbsp;Mail Driver
-                            </a>
-                        </li>
-                        <li id="list-group-cache-store" class="list-group-item list-group-padding">
-                            <a href="javascript:void(0)" @click="checkTab('cache-store')">
-                            <i class="fa fa-cloud-download"></i>&nbsp;Cache Store
-                            </a>
-                        </li>
-                        <li id="list-group-session-driver" class="list-group-item list-group-padding">
-                            <a href="javascript:void(0)" @click="checkTab('session-driver')">
-                            <i class="fa fa-comment-o"></i>&nbsp;Session Driver
-                            </a>
-                        </li>
-                        <li id="list-group-file-system" class="list-group-item list-group-padding">
-                            <a href="javascript:void(0)" @click="checkTab('file-system')">
-                            <i class="fa fa-briefcase"></i>&nbsp;File System
-                            </a>
-                        </li>
+                        @include('administrator.configuration.partials.list-item',['title' => 'Site Management','key'=>'site-mgmt','icon' => 'fa-cog'])
+                        @include('administrator.configuration.partials.list-item',['title' => 'Application Environment','key'=>'app-env','icon' => 'fa-laptop'])
+                        @include('administrator.configuration.partials.list-item',['title' => 'Asset Management','key'=>'asset-mgmt','icon' => 'fa-magic'])
+                        @include('administrator.configuration.partials.list-item',['title' => 'Database Connection','key'=>'db-conn','icon' => 'fa-database'])
+                        @include('administrator.configuration.partials.list-item',['title' => 'Mail Driver','key'=>'mail-driver','icon' => 'fa-envelope'])
+                        @include('administrator.configuration.partials.list-item',['title' => 'Cache Store','key'=>'cache-store','icon' => 'fa-cloud-download'])
+                        @include('administrator.configuration.partials.list-item',['title' => 'Session Driver','key'=>'session-driver','icon' => 'fa-comment-o'])
+                        @include('administrator.configuration.partials.list-item',['title' => 'File System','key'=>'file-system','icon' => 'fa-briefcase'])
                     </ul>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -84,166 +52,30 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li id="site-mgmt" style="margin: 0px 0px -2px;">
-                        <a class="hide" data-toggle="tab" href="tab-site-mgmt">
-                            <i class="fa fa-cog"></i>&nbsp;Site Management
-                        </a>
-                    </li>
-                    <li id="asset-mgmt" style="margin: 0px 0px -2px;">
-                        <a class="hide" data-toggle="tab" href="tab-asset-mgmt">
-                            <i class="fa fa-magic"></i>&nbsp;Asset Management
-                        </a>
-                    </li>
-                    <li id="app-env" style="margin: 0px 0px -2px;">
-                        <a class="hide" href="#tab-app-env" data-toggle="tab">
-                            <i class="fa fa-laptop"></i>&nbsp;Application Environment
-                        </a>
-                    </li>
-                    <li id="db-conn" style="margin: 0px 0px -2px;">
-                        <a class="hide" href="#tab-db-conn" data-toggle="tab">
-                            <i class="fa fa-database"></i>&nbsp;Database Connection
-                        </a>
-                    </li>
-                    <li id="mail-driver" style="margin: 0px 0px -2px;">
-                        <a class="hide" href="#tab-mail-driver" data-toggle="tab">
-                            <i class="fa fa-envelope"></i>&nbsp;Mail Driver
-                        </a>
-                    </li>
-                    <li id="cache-store" style="margin: 0px 0px -2px;">
-                        <a class="hide" href="#tab-cache-store" data-toggle="tab">
-                            <i class="fa fa-cloud-download"></i>&nbsp;Cache Store
-                        </a>
-                    </li>
-                    <li id="session-driver" style="margin: 0px 0px -2px;">
-                        <a class="hide" href="#tab-session-driver" data-toggle="tab">
-                            <i class="fa fa-comment-o"></i>&nbsp;Session Driver
-                        </a>
-                    </li>
-                    <li id="file-system" style="margin: 0px 0px -2px;">
-                        <a class="hide" href="#tab-file-system" data-toggle="tab">
-                            <i class="fa fa-briefcase"></i>&nbsp;File System
-                        </a>
-                    </li>
+                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Site Management','key' => 'site-mgmt', 'icon' =>'fa-cog'])
+                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Asset Management','key' => 'asset-mgmt', 'icon' =>'fa-magic'])
+                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Application Environment','key' => 'app-env', 'icon' =>'fa-laptop'])
+                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Database Connection','key' => 'db-conn', 'icon' =>'fa-database'])
+                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Mail Driver','key' => 'mail-driver', 'icon' =>'fa-envelope'])
+                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Cache Store','key' => 'cache-store', 'icon' =>'fa-cloud-download'])
+                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Session Driver','key' => 'session-driver', 'icon' =>'fa-comment-o'])
+                    @include('administrator.configuration.partials.tab-list-item',['title' => 'File System','key' => 'file-system', 'icon' =>'fa-briefcase'])
                 </ul>
 
                 <div class="tab-content padding-0">
-                    <div class="tab-pane hide" id="tab-site-mgmt">
-                        <form method="POST" v-on:submit.prevent="onSubmit(this.site, 'site management')">
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    @include('administrator.configuration.partials.form.site-management')
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary text-bold">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- /.tab-pane -->
-                    <div class="tab-pane hide" id="tab-asset-mgmt">
-                        <form method="POST" v-on:submit.prevent="onSubmit(this.asset, 'asset management')">
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    @include('administrator.configuration.partials.form.asset-management')
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary text-bold">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        @include('administrator.configuration.modal.new-asset')
-                    </div><!-- /.tab-pane -->
-                    <div class="tab-pane hide" id="tab-app-env">
-                        <form method="POST" v-on:submit.prevent="onSubmit(this.app, 'application environment')">
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    @include('administrator.configuration.partials.form.app-environment')
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary text-bold">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- /.tab-pane -->
-                    <div class="tab-pane hide" id="tab-db-conn">
-                        <form method="POST" v-on:submit.prevent="onSubmit(this.database, ''database connection)">
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    @include('administrator.configuration.partials.form.database-connection')
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary text-bold">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- /.tab-pane -->
-                    <div class="tab-pane hide" id="tab-mail-driver">
-                        <form method="POST" v-on:submit.prevent="onSubmit(this.mail, 'mail driver')">
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    @include('administrator.configuration.partials.form.mail-driver')
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary text-bold">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- /.tab-pane -->
-                    <div class="tab-pane hide" id="tab-cache-store">
-                        <form method="POST" v-on:submit.prevent="onSubmit(this.cache, 'cache setup')">
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    @include('administrator.configuration.partials.form.cache-store')
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary text-bold">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- /.tab-pane -->
-                    <div class="tab-pane hide" id="tab-session-driver">
-                        <form method="POST" v-on:submit.prevent="onSubmit(this.session, 'session driver')">
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    @include('administrator.configuration.partials.form.session-driver')
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary text-bold">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- /.tab-pane -->
-                    <div class="tab-pane hide" id="tab-file-system">
-                        <form method="POST" v-on:submit.prevent="onSubmit(this.filesystems, 'file system')">
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    @include('administrator.configuration.partials.form.file-system')
-                                </div>
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary text-bold">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- /.tab-pane -->
+                    @include('administrator.configuration.partials.tab-content', ['key' => 'site-mgmt', 'vueKey' => 'this.site','swalTitle'=>'site management','form'=>'administrator.configuration.partials.form.site-management'])
+                    @include('administrator.configuration.partials.tab-content', ['key' => 'asset-mgmt', 'vueKey' => 'this.asset','swalTitle'=>'asset management','form'=>'administrator.configuration.partials.form.asset-management'])
+                    @include('administrator.configuration.partials.tab-content', ['key' => 'app-env', 'vueKey' => 'this.app','swalTitle'=>'application environment','form'=>'administrator.configuration.partials.form.app-environment'])
+                    @include('administrator.configuration.partials.tab-content', ['key' => 'db-conn', 'vueKey' => 'this.database','swalTitle'=>'database connection','form'=>'administrator.configuration.partials.form.database-connection'])
+                    @include('administrator.configuration.partials.tab-content', ['key' => 'mail-driver', 'vueKey' => 'this.mail','swalTitle'=>'mail driver','form'=>'administrator.configuration.partials.form.mail-driver'])
+                    @include('administrator.configuration.partials.tab-content', ['key' => 'cache-store', 'vueKey' => 'this.cache','swalTitle'=>'cache setup','form'=>'administrator.configuration.partials.form.cache-store'])
+                    @include('administrator.configuration.partials.tab-content', ['key' => 'session-driver', 'vueKey' => 'this.session','swalTitle'=>'session driver','form'=>'administrator.configuration.partials.form.session-driver'])
+                    @include('administrator.configuration.partials.tab-content', ['key' => 'file-system', 'vueKey' => 'this.filesystems','swalTitle'=>'file system','form'=>'administrator.configuration.partials.form.file-system'])
                 </div><!-- /.tab-content -->
             </div><!-- /.nav-tabs-custom -->
         </div><!-- /.col -->
     </div><!-- /.row -->
+    @include('administrator.configuration.modal.new-asset')
 @stop
 
 @push('scripts')
