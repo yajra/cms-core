@@ -17,7 +17,7 @@ class FileAssetsDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())
             ->editColumn('url', function (FileAsset $asset) {
-                return '<small><a href="' . $asset->url . '">' . $asset->url . '</a></small>';
+                return '<small><a target="_blank" href="' . $asset->url . '">' . $asset->url . '</a></small>';
             })
             ->addColumn('action', 'administrator.configuration.datatables.action')
             ->make(true);
