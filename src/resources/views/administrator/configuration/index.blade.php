@@ -308,8 +308,7 @@
                                 sweetAlert("Oops...", textwarning, "error");
                             });
                         });
-            }
-
+            },
         }
     });
 </script>

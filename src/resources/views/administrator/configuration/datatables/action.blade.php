@@ -1,5 +1,5 @@
 <div class="btn-group" style="width: 67px">
-    <button type="button" data-remote="#"
+    <button id="{{$id}}" type="button"
             class="btn btn-xs btn-edt-asset btn-warning"
             data-toggle="tooltip"
             data-title="Edit"
@@ -7,7 +7,7 @@
     >
         &nbsp;&nbsp;<i class="fa fa-edit"></i>&nbsp;&nbsp;
     </button>
-    <button type="button" data-remote="#"
+    <button id="{{$id}}" type="button"
             class="btn btn-xs btn-delete-asset btn-danger"
             data-toggle="tooltip"
             data-title="Delete"
