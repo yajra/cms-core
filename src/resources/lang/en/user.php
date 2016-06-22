@@ -74,6 +74,12 @@ return [
         ],
     ],
 
+    'tab' => [
+        'info'     => 'User Information',
+        'role'     => 'Attached Roles',
+        'advanced' => 'Advanced Parameters',
+    ],
+
     'edit-user'       => 'Edit User',
     'change-password' => 'Change Password',
     'activate'        => 'Activate User',
