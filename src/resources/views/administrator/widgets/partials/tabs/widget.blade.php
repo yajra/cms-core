@@ -10,7 +10,7 @@
                         </label>
                         <select name="extension_id" class="form-control" v-model="widget.extension_id" @change="fetchDependencies">
                             @foreach($extensions as $extension)
-                            <option value="{{$extension->id}}">{{$extension->description or $extension->name}}</option>
+                            <option value="{{$extension->id}}">{{$extension->name}}</option>
                             @endforeach
                         </select>
                         {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
