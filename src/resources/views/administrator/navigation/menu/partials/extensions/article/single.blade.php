@@ -6,7 +6,7 @@
           <div id="menu-item-list-selected" style="margin-top:10px;">
               <div class="input-group">
                   <input id="selected-article-id" name="parameters[id]" value="{{ old('parameters.id', $menu->param('id')) }}" type="hidden">
-                  <input id="selected-article-title" name="parameters[id]" value="{{ old('parameters.title', $menu->param('title')) }}" type="text" class="form-control" placeholder="Select an article" readonly>
+                  <input id="selected-article-title" name="parameters[title]" value="{{ old('parameters.title', $menu->param('title')) }}" type="text" class="form-control" placeholder="Select an article" readonly>
             <span class="input-group-btn">
                 <button @click="initArticleDataTable"
                     data-toggle="modal"
