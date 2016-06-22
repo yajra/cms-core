@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="form-group {!! $errors->has('type') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="type">
                             {{trans('cms::widget.field.type')}}
@@ -16,7 +16,7 @@
                         {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div v-model="widget.template" class="form-group {!! $errors->has('template') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="template">
                             {{trans('cms::widget.field.template')}}
@@ -31,10 +31,11 @@
                         {!! $errors->first('template', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="form-group {!! $errors->has('custom_template') ? 'has-error' : '' !!}">
                         <label class="form-label-style" for="custom_template">
                             {!! trans('cms::widget.field.custom_template') !!}
+                            <small class="help-inline">{!! trans('cms::widget.field.custom_template_required') !!}</small>
                         </label>
                         {!! form()->input('text', 'custom_template', null, ['id'=>'custom_template','class'=>'form-control input-sm','placeholder'=>'path.to.widget.view']) !!}
                         {!! $errors->first('custom_template', '<span class="help-block">:message</span>') !!}
