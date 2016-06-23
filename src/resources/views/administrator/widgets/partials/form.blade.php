@@ -98,7 +98,6 @@
                     var json = response.data;
                     this.templates = json.data;
                     this.widget.extension_id = json.selected;
-                    this.widget.template = json.template;
                     $.unblockUI();
                 });
             }
