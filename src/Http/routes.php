@@ -18,7 +18,6 @@ require_once 'routes/extension.php';
 require_once 'routes/content.php';
 require_once 'routes/widgets.php';
 require_once 'routes/profile.php';
-require_once 'routes/themes.php';
 require_once 'routes/media.php';
 require_once 'routes/acl.php';
 

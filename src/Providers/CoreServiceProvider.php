@@ -19,6 +19,7 @@ use Spatie\Backup\BackupServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
 use Themsaid\MailPreview\MailPreviewServiceProvider;
 use Yajra\Acl\AclServiceProvider;
+use Yajra\CMS\Themes\ThemesServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
 use Yajra\Datatables\DatatablesServiceProvider;
@@ -37,6 +38,10 @@ class CoreServiceProvider extends ServiceProvider
         $this->bootCustomBladeDirectives();
 
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
+
+        /** @var \Illuminate\View\Factory $view */
+        $view = $this->app['view'];
+        $view->addLocation(__DIR__ . '/../resources/views');
 
         $this->publishes([
             __DIR__ . '/../resources/lang' => resource_path('lang/vendor/cms'),
