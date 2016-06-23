@@ -62,7 +62,6 @@
             @include('administrator.widgets.partials.tabs.advanced')
         </div>
     </div>
-    <!-- /.tab-content -->
 </div>
 
 @push('js-plugins')
