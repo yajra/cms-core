@@ -74,8 +74,8 @@
                 </div><!-- /.tab-content -->
             </div><!-- /.nav-tabs-custom -->
         </div><!-- /.col -->
+        @include('administrator.configuration.modal.new-asset')
     </div><!-- /.row -->
-    @include('administrator.configuration.modal.new-asset')
 @stop
 
 @push('scripts')
