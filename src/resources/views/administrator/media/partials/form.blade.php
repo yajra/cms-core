@@ -20,3 +20,13 @@
     {!! form()->hidden('current_directory', $current_directory) !!}
     {!! form()->close() !!}
 </div>
+<p>
+    <strong>Accepted Files:</strong>
+    <span class="label label-info">{{$accepted_files}}</span>
+
+</p>
+<p>
+    <strong>Max File Size:</strong>
+    <span class="label label-danger"> {{$max_file_size}}mb</span>
+</p>
+
