@@ -60,22 +60,6 @@ class FileAssetCacheRepository implements FileAssetRepository
     }
 
     /**
-     * Register css blade directive.
-     */
-    public function registerCssBlade()
-    {
-        return $this->repository->registerCssBlade();
-    }
-
-    /**
-     * Register javascript blade directive.
-     */
-    public function registerJsBlade()
-    {
-        return $this->repository->registerJsBlade();
-    }
-
-    /**
      * Add site asset.
      *
      * @param string $type
@@ -84,5 +68,14 @@ class FileAssetCacheRepository implements FileAssetRepository
     public function addAsset($type)
     {
         return $this->repository->addAsset($type);
+    }
+
+    /**
+     * @param string $str
+     * @return string
+     */
+    public function strParser($str)
+    {
+        return $this->repository->strParser($str);
     }
 }

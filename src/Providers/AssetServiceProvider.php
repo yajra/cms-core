@@ -8,6 +8,7 @@ use Yajra\CMS\Entities\FileAsset;
 use Yajra\CMS\Repositories\FileAsset\FileAssetCacheRepository;
 use Yajra\CMS\Repositories\FileAsset\FileAssetEloquentRepository;
 use Yajra\CMS\Repositories\FileAsset\FileAssetRepository;
+use Illuminate\Support\Facades\Blade;
 
 /**
  * Class AssetServiceProvider
@@ -63,13 +64,17 @@ class AssetServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load js assets.
-     *
-     * @return string
+     * Register javascript blade directive.
      */
     protected function assetJs()
     {
-        return $this->app->make(FileAssetRepository::class)->registerJsBlade();
+        Blade::directive('assetJs', function ($asset) {
+            $asset = $this->app->make(FileAssetRepository::class)->getByName(
+                $this->app->make(FileAssetRepository::class)->strParser($asset . '.js')
+            );
+
+            return '<?php echo "<script src=\"' . $asset->url . '\"></script>"; ?>';
+        });
     }
 
     /**
@@ -79,7 +84,13 @@ class AssetServiceProvider extends ServiceProvider
      */
     protected function assetCss()
     {
-        return $this->app->make(FileAssetRepository::class)->registerCssBlade();
+        Blade::directive('assetCss', function ($asset) {
+            $asset = $this->app->make(FileAssetRepository::class)->getByName(
+                $this->app->make(FileAssetRepository::class)->strParser($asset . '.css')
+            );
+
+            return '<?php echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"' . $asset->url . '\">"; ?>';
+        });
     }
 
     /**

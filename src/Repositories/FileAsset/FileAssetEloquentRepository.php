@@ -7,7 +7,6 @@ use Yajra\CMS\Entities\FileAsset;
 use Yajra\CMS\Entities\FileAssetGroup;
 use Yajra\CMS\Repositories\RepositoryAbstract;
 use Roumen\Asset\Asset;
-use Illuminate\Support\Facades\Blade;
 
 /**
  * Class FileAssetEloquentRepository
@@ -61,34 +60,10 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
     }
 
     /**
-     * Register css blade directive.
-     */
-    public function registerCssBlade()
-    {
-        Blade::directive('assetCss', function ($asset) {
-            $asset = $this->getByName($this->strParser($asset . '.css'));
-
-            return '<?php echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"' . $asset->url . '\">"; ?>';
-        });
-    }
-
-    /**
-     * Register javascript blade directive.
-     */
-    public function registerJsBlade()
-    {
-        Blade::directive('assetJs', function ($asset) {
-            $asset = $this->getByName($this->strParser($asset . '.js'));
-
-            return '<?php echo "<script src=\"' . $asset->url . '\"></script>"; ?>';
-        });
-    }
-
-    /**
      * @param string $str
      * @return string
      */
-    private function strParser($str)
+    public function strParser($str)
     {
         return str_replace("'", '', str_replace(['(', ')'], '', $str));
     }
