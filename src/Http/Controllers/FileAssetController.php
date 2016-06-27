@@ -34,4 +34,17 @@ class FileAssetController extends Controller
     {
         return $dataTable->ajax();
     }
+
+    /**
+     * Remove selected asset.
+     *
+     * @param \Yajra\CMS\Entities\FileAsset $asset
+     * @return bool|null
+     */
+    public function deleteAsset(FileAsset $asset)
+    {
+        $asset->delete();
+
+        return $asset;
+    }
 }

@@ -128,7 +128,7 @@
             });
 
             that.asset.assetDt = $('#css-assets-table').DataTable({
-                order:[[1,'asc']],
+                order: [[1, 'asc']],
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -141,6 +141,30 @@
                     {data: 'url', name: 'url'},
                     {data: 'action', name: 'action', 'searchable': false, 'orderable': false, 'width': '67px'},
                 ],
+                drawCallback() {
+                    $('.btn-delete-asset').on('click', function () {
+                        var assetId = $(this).attr('id');
+                        swal({
+                            title: "Are you sure?",
+                            text: "Delete selected asset.",
+                            type: "info",
+                            showCancelButton: true,
+                            closeOnConfirm: false,
+                            showLoaderOnConfirm: true,
+                        },
+                        function () {
+                            Vue.http.post('/administrator/configuration/asset/delete/' + assetId).then(function (response) {
+                                that.asset.assetDt.ajax.url('/administrator/configuration/assets/' + that.asset.default).load();
+                                swal({
+                                    title: "Success!",
+                                    type: "success",
+                                    text: "Asset successfully deleted.",
+                                    html: true
+                                });
+                            });
+                        });
+                    })
+                }
             });
 
             // select2 on change. Set vue object value.
@@ -256,34 +280,34 @@
                 var that = this;
 
                 swal({
-                            title: "Are you sure?",
-                            text: "Save and add new asset.",
-                            type: "info",
-                            showCancelButton: true,
-                            closeOnConfirm: false,
-                            showLoaderOnConfirm: true,
-                        },
-                        function () {
-                            Vue.http.post('/administrator/configuration/asset/store', values).then(function (response) {
-                                $('#new-asset-modal').modal('hide');
-                                that.newasset.name = '';
-                                that.newasset.url = '';
-                                swal({
-                                    title: "Success!",
-                                    type: "success",
-                                    text: "Asset successfully added.",
-                                    html: true
-                                });
-                                that.asset.assetDt.ajax.url('/administrator/configuration/assets/' + that.asset.default).load();
-                            }, function (response) {
-                                if (response.data.name) {
-                                    var textwarning = response.data.name;
-                                } else if (response.data.url) {
-                                    var textwarning = response.data.url;
-                                }
-                                sweetAlert("Oops...", textwarning, "error");
-                            });
+                    title: "Are you sure?",
+                    text: "Save and add new asset.",
+                    type: "info",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                },
+                function () {
+                    Vue.http.post('/administrator/configuration/asset/store', values).then(function (response) {
+                        $('#new-asset-modal').modal('hide');
+                        that.newasset.name = '';
+                        that.newasset.url = '';
+                        swal({
+                            title: "Success!",
+                            type: "success",
+                            text: "Asset successfully added.",
+                            html: true
                         });
+                        that.asset.assetDt.ajax.url('/administrator/configuration/assets/' + that.asset.default).load();
+                    }, function (response) {
+                        if (response.data.name) {
+                            var textwarning = response.data.name;
+                        } else if (response.data.url) {
+                            var textwarning = response.data.url;
+                        }
+                        sweetAlert("Oops...", textwarning, "error");
+                    });
+                });
             },
         }
     });
