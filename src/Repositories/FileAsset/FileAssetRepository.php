@@ -25,9 +25,10 @@ interface FileAssetRepository
      * Get file asset by name.
      *
      * @param string $name
+     * @param null $category
      * @return \Yajra\CMS\Entities\FileAsset
      */
-    public function getByName($name);
+    public function getByName($name, $category = null);
 
     /**
      * Add site asset.
@@ -36,10 +37,4 @@ interface FileAssetRepository
      * @return \Roumen\Asset\Asset;
      */
     public function addAsset($type);
-
-    /**
-     * @param string $str
-     * @return string
-     */
-    public function strParser($str);
 }

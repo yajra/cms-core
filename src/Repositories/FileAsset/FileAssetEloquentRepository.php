@@ -49,23 +49,19 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
      * Get file asset by name.
      *
      * @param string $name
+     * @param null $category
      * @return \Yajra\CMS\Entities\FileAsset
      */
-    public function getByName($name)
+    public function getByName($name, $category = null)
     {
+        if (is_null($category)) {
+            $category = config('asset.default');
+        }
+        
         return $this->getModel()
                     ->where('name', $name)
-                    ->where('category', Configuration::key('asset.default'))
+                    ->where('category', $category)
                     ->first();
-    }
-
-    /**
-     * @param string $str
-     * @return string
-     */
-    public function strParser($str)
-    {
-        return str_replace("'", '', str_replace(['(', ')'], '', $str));
     }
 
     /**

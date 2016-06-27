@@ -26,8 +26,8 @@ class AssetServiceProvider extends ServiceProvider
             $this->addAssets('css');
             $this->addAssets('js');
             $this->requireAdminDefaultAssets();
-            $this->assetJs();
-            $this->assetCss();
+            $this->JsDirective();
+            $this->CssDirective();
         } catch (QueryException $e) {
             // \\_(",)_//
         }
@@ -66,30 +66,22 @@ class AssetServiceProvider extends ServiceProvider
     /**
      * Register javascript blade directive.
      */
-    protected function assetJs()
+    protected function JsDirective()
     {
-        Blade::directive('assetJs', function ($asset) {
-            $asset = $this->app->make(FileAssetRepository::class)->getByName(
-                $this->app->make(FileAssetRepository::class)->strParser($asset . '.js')
-            );
-
-            return '<?php echo "<script src=\"' . $asset->url . '\"></script>"; ?>';
+        Blade::directive('js', function ($expression) {
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetJsDirective::class)->handle({$expression}) ?>";
         });
     }
 
     /**
-     * Load css assets.
+     * Register css blade directive.
      *
      * @return string
      */
-    protected function assetCss()
+    protected function CssDirective()
     {
-        Blade::directive('assetCss', function ($asset) {
-            $asset = $this->app->make(FileAssetRepository::class)->getByName(
-                $this->app->make(FileAssetRepository::class)->strParser($asset . '.css')
-            );
-
-            return '<?php echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"' . $asset->url . '\">"; ?>';
+        Blade::directive('css', function ($expression) {
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetCssDirective::class)->handle({$expression}) ?>";
         });
     }
 

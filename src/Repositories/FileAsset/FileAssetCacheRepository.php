@@ -52,11 +52,12 @@ class FileAssetCacheRepository implements FileAssetRepository
      * Get file asset by name.
      *
      * @param string $name
-     * @return FileAsset
+     * @param null $category
+     * @return \Yajra\CMS\Repositories\FileAsset\FileAsset
      */
-    public function getByName($name)
+    public function getByName($name, $category = null)
     {
-        return $this->repository->getByName($name);
+        return $this->repository->getByName($name, $category);
     }
 
     /**
@@ -68,14 +69,5 @@ class FileAssetCacheRepository implements FileAssetRepository
     public function addAsset($type)
     {
         return $this->repository->addAsset($type);
-    }
-
-    /**
-     * @param string $str
-     * @return string
-     */
-    public function strParser($str)
-    {
-        return $this->repository->strParser($str);
     }
 }
