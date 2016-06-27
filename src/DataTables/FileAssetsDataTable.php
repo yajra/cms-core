@@ -4,6 +4,7 @@ namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\FileAsset;
 use Yajra\Datatables\Services\DataTable;
+use Illuminate\Support\Facades\URL;
 
 class FileAssetsDataTable extends DataTable
 {
@@ -17,7 +18,7 @@ class FileAssetsDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())
             ->editColumn('url', function (FileAsset $asset) {
-                return '<small><a target="_blank" href="' . $asset->url . '">' . $asset->url . '</a></small>';
+                return '<small style="word-break: break-all"><a target="_blank" href="' . $asset->url . '">' . $asset->url . '</a></small>';
             })
             ->addColumn('action', 'administrator.configuration.datatables.action')
             ->make(true);
@@ -30,8 +31,8 @@ class FileAssetsDataTable extends DataTable
      */
     public function query()
     {
-        $assets = FileAsset::select()->where('category', config('asset.default'))
-                           ->where('type', $this->request()->get('type'));
+        $url    = explode("/", URL::current());
+        $assets = FileAsset::select()->where('category', $url[6]);
 
         return $this->applyScopes($assets);
     }
