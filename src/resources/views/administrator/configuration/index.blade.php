@@ -127,6 +127,7 @@
                 $('#' + $(this).val() + '-filesystem-container').removeClass('hide');
             });
 
+            // File assets datatable.
             that.asset.assetDt = $('#css-assets-table').DataTable({
                 order: [[1, 'asc']],
                 processing: true,
@@ -163,7 +164,20 @@
                                 });
                             });
                         });
-                    })
+                    });
+
+                    $('.btn-edit-asset').on('click', function () {
+                        $.blockUI();
+                        var assetId = $(this).attr('id');
+                        Vue.http.get('/administrator/configuration/asset/edit/' + assetId).then(function(response) {
+                            that.editasset.name = response.data.name;
+                            that.editasset.url = response.data.url;
+                            $("#edit-asset-type").val(response.data.type).change();
+                            $("#edit-asset-category").val(response.data.category).change();
+                            $('#edit-asset-modal').modal('show');
+                            $.unblockUI();
+                        });
+                    });
                 }
             });
 
@@ -210,6 +224,9 @@
                     case 'newasset.type':
                         that.newasset.type = selected;
                         break;
+                    case 'editasset.type':
+                        that.editasset.type = selected;
+                        break;
                     case 'newasset.category':
                         that.newasset.category = selected;
                         if (selected == 'cdn') {
@@ -218,12 +235,26 @@
                             $('#asset-url-label').text('Path');
                         }
                         break;
+                    case 'editasset.category':
+                        that.editasset.category = selected;
+                        if (selected == 'cdn') {
+                            $('#edit-asset-url-label').text('URL');
+                        } else {
+                            $('#edit-asset-url-label').text('Path');
+                        }
+                        break;
                 }
             });
         },
         data: {
             'assetDt': '',
             'newasset': {
+                'name': '',
+                'type': '',
+                'category': '',
+                'url': '',
+            },
+            'editasset':{
                 'name': '',
                 'type': '',
                 'category': '',
@@ -253,32 +284,31 @@
             },
             onSubmit: function (values, config_title) {
                 swal({
-                            title: "Are you sure?",
-                            text: "Save and update site configuration.",
-                            type: "info",
-                            showCancelButton: true,
-                            closeOnConfirm: false,
-                            showLoaderOnConfirm: true,
-                        },
-                        function () {
-                            Vue.http.post('/administrator/configuration', values).then(function (response) {
-                                swal({
-                                    title: "Updated!",
-                                    type: "success",
-                                    text: "Your " + config_title + " configuration successfully updated! <br><small>You may need to refresh the page to reflect some changes.</small>",
-                                    html: true
-                                });
-                            }, function (response) {
-                                // error callback
-                            });
+                    title: "Are you sure?",
+                    text: "Save and update site configuration.",
+                    type: "info",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                },
+                function () {
+                    Vue.http.post('/administrator/configuration', values).then(function (response) {
+                        swal({
+                            title: "Updated!",
+                            type: "success",
+                            text: "Your " + config_title + " configuration successfully updated! <br><small>You may need to refresh the page to reflect some changes.</small>",
+                            html: true
                         });
+                    }, function (response) {
+                        // error callback
+                    });
+                });
             },
             showModal: function (name) {
                 $('#' + name).modal('show');
             },
             submitNewAsset: function (values) {
                 var that = this;
-
                 swal({
                     title: "Are you sure?",
                     text: "Save and add new asset.",

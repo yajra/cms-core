@@ -1,6 +1,6 @@
 <div class="btn-group" style="width: 67px">
     <button id="{{$id}}" type="button"
-            class="btn btn-xs btn-edt-asset btn-warning"
+            class="btn btn-xs btn-edit-asset btn-warning"
             data-toggle="tooltip"
             data-title="Edit"
             data-container="body"

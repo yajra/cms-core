@@ -47,4 +47,13 @@ class FileAssetController extends Controller
 
         return $asset;
     }
+
+    /**
+     * @param \Yajra\CMS\Entities\FileAsset $asset
+     * @return \Yajra\CMS\Entities\FileAsset
+     */
+    public function editAsset(FileAsset $asset)
+    {
+        return $asset;
+    }
 }
