@@ -26,10 +26,11 @@ class FileAssetController extends Controller
     /**
      * Show all site assets.
      *
+     * @param string $category
      * @param \Yajra\CMS\DataTables\FileAssetsDataTable $dataTable
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getAssets(FileAssetsDataTable $dataTable)
+    public function getAssets($category, FileAssetsDataTable $dataTable)
     {
         return $dataTable->ajax();
     }

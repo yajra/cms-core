@@ -127,20 +127,19 @@
                 $('#' + $(this).val() + '-filesystem-container').removeClass('hide');
             });
 
-            that.cssAssetTable = $('#css-assets-table').DataTable({
+            that.asset.assetDt = $('#css-assets-table').DataTable({
+                order:[[1,'asc']],
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '/administrator/configuration/assets',
+                    url: '/administrator/configuration/assets/' + that.asset.default,
                     type: "get",
-                    data: {
-                        type: "css"
-                    }
                 },
                 columns: [
                     {data: 'name', name: 'name'},
+                    {data: 'type', name: 'type'},
                     {data: 'url', name: 'url'},
-                    {data: 'action', name: 'action', 'searchable': false, 'orderable': false,'width':'67px'},
+                    {data: 'action', name: 'action', 'searchable': false, 'orderable': false, 'width': '67px'},
                 ],
             });
 
@@ -182,6 +181,7 @@
                         that.filesystems.default = selected;
                     case 'asset.default':
                         that.asset.default = selected;
+                        that.asset.assetDt.ajax.url('/administrator/configuration/assets/' + selected).load();
                         break;
                     case 'newasset.type':
                         that.newasset.type = selected;
@@ -198,8 +198,7 @@
             });
         },
         data: {
-            'cssAssetTable': '',
-            'jsAssetTable': '',
+            'assetDt': '',
             'newasset': {
                 'name': '',
                 'type': '',
@@ -250,28 +249,6 @@
                             });
                         });
             },
-            showJsAssets: function () {
-                var that = this;
-                that.jsAssetTable = $('#js-assets-table').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: {
-                        url: '/administrator/configuration/assets',
-                        type: "get",
-                        data: {
-                            type: "js"
-                        }
-                    },
-                    columns: [
-                        {data: 'name', name: 'name'},
-                        {data: 'url', name: 'url'},
-                        {data: 'action', name: 'action', 'searchable': false, 'orderable': false,'width':'67px'},
-                    ],
-                    initComplete: function () {
-                        $('.dataTables_filter input').attr('placeholder', 'Quick search');
-                    }
-                });
-            },
             showModal: function (name) {
                 $('#' + name).modal('show');
             },
@@ -297,8 +274,7 @@
                                     text: "Asset successfully added.",
                                     html: true
                                 });
-                                that.cssAssetTable.ajax.reload();
-                                that.jsAssetTable.ajax.reload();
+                                that.asset.assetDt.ajax.url('/administrator/configuration/assets/' + that.asset.default).load();
                             }, function (response) {
                                 if (response.data.name) {
                                     var textwarning = response.data.name;
