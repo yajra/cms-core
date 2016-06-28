@@ -17,8 +17,8 @@ class AssetCssDirective
     public function handle($styles, $category = null)
     {
         foreach ((array)$styles as $style) {
-            if (! str_contains('.js', $style)) {
-                $style .= ".js";
+            if (! str_contains('.css', $style)) {
+                $style .= ".css";
             }
             Asset::add(app(FileAssetRepository::class)->getByName($style, $category)->url);
         }
