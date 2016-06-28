@@ -170,6 +170,7 @@
                         $.blockUI();
                         var assetId = $(this).attr('id');
                         Vue.http.get('/administrator/configuration/asset/edit/' + assetId).then(function(response) {
+                            that.editasset.id = response.data.id;
                             that.editasset.name = response.data.name;
                             that.editasset.url = response.data.url;
                             $("#edit-asset-type").val(response.data.type).change();
@@ -305,7 +306,11 @@
                 });
             },
             showModal: function (name) {
+                var that = this;
                 $('#' + name).modal('show');
+                $("#asset-category").val(that.asset.default).change();
+                that.newasset.category = that.asset.default;
+
             },
             submitNewAsset: function (values) {
                 var that = this;
@@ -339,6 +344,36 @@
                     });
                 });
             },
+            submitEditAsset: function (values) {
+                var that = this;
+                swal({
+                            title: "Are you sure?",
+                            text: "Save and update selected asset.",
+                            type: "info",
+                            showCancelButton: true,
+                            closeOnConfirm: false,
+                            showLoaderOnConfirm: true,
+                        },
+                        function () {
+                            Vue.http.post('/administrator/configuration/asset/update/'+values.id, values).then(function (response) {
+                                $('#edit-asset-modal').modal('hide');
+                                swal({
+                                    title: "Success!",
+                                    type: "success",
+                                    text: "Selected asset successfully updated.",
+                                    html: true
+                                });
+                                that.asset.assetDt.ajax.url('/administrator/configuration/assets/' + that.asset.default).load();
+                            }, function (response) {
+                                if (response.data.name) {
+                                    var textwarning = response.data.name;
+                                } else if (response.data.url) {
+                                    var textwarning = response.data.url;
+                                }
+                                sweetAlert("Oops...", textwarning, "error");
+                            });
+                        });
+            }
         }
     });
 </script>

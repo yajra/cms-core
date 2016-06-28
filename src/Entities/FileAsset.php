@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string url
+ * @property int id
+ * @property string type
+ * @property string category
+ * @property string name
  */
 class FileAsset extends Model
 {

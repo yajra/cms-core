@@ -3,6 +3,7 @@
 namespace Yajra\CMS\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Yajra\CMS\DataTables\FileAssetsDataTable;
 use Yajra\CMS\Entities\FileAsset;
 use Yajra\CMS\Http\Requests\FileAssetFormRequest;
@@ -49,11 +50,34 @@ class FileAssetController extends Controller
     }
 
     /**
+     * Get selected asset information.
+     *
      * @param \Yajra\CMS\Entities\FileAsset $asset
      * @return \Yajra\CMS\Entities\FileAsset
      */
     public function editAsset(FileAsset $asset)
     {
+        return $asset;
+    }
+
+    /**
+     * Update selected asset.
+     *
+     * @param \Yajra\CMS\Entities\FileAsset $asset
+     * @param \Illuminate\Http\Request $request
+     * @return \Yajra\CMS\Entities\FileAsset
+     */
+    public function updateAsset(FileAsset $asset, Request $request)
+    {
+        $this->validate($request, [
+            'name'     => 'required',
+            'type'     => 'required',
+            'category' => 'required',
+            'url'      => 'required',
+        ]);
+        $asset->fill($request->all());
+        $asset->save();
+
         return $asset;
     }
 }
