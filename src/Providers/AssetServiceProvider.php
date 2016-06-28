@@ -25,7 +25,6 @@ class AssetServiceProvider extends ServiceProvider
         try {
             $this->addAssets('css');
             $this->addAssets('js');
-            $this->requireAdminDefaultAssets();
             $this->JsDirective();
             $this->CssDirective();
         } catch (QueryException $e) {

@@ -41,14 +41,6 @@ class FileAssetCacheRepository implements FileAssetRepository
     }
 
     /**
-     * Register admin required assets.
-     */
-    public function registerAdminRequireAssets()
-    {
-        return $this->repository->registerAdminRequireAssets();
-    }
-
-    /**
      * Get file asset by name.
      *
      * @param string $name

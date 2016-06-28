@@ -4,7 +4,6 @@ namespace Yajra\CMS\Repositories\FileAsset;
 
 use Yajra\CMS\Entities\Configuration;
 use Yajra\CMS\Entities\FileAsset;
-use Yajra\CMS\Entities\FileAssetGroup;
 use Yajra\CMS\Repositories\RepositoryAbstract;
 use Roumen\Asset\Asset;
 
@@ -36,16 +35,6 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
     }
 
     /**
-     * Register admin required assets.
-     */
-    public function registerAdminRequireAssets()
-    {
-        foreach (config('asset.admin_required_assets', []) as $asset => $requiredValue) {
-            Asset::add($requiredValue);
-        }
-    }
-
-    /**
      * Get file asset by name.
      *
      * @param string $name
@@ -57,7 +46,7 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
         if (is_null($category)) {
             $category = config('asset.default');
         }
-        
+
         return $this->getModel()
                     ->where('name', $name)
                     ->where('category', $category)
@@ -88,24 +77,9 @@ class FileAssetEloquentRepository extends RepositoryAbstract implements FileAsse
      */
     public function addAsset($type)
     {
-        $backEndAssets = $this->getGroupByType($type, 'backend');
+        $backEndAssets = config('asset.assets.backend.' . $type);
         foreach ($backEndAssets as $asset) {
-            Asset::add($this->getByTypeAndName($type, $asset->file_asset_name)->url);
+            Asset::add($this->getByTypeAndName($type, $asset)->url);
         }
-    }
-
-    /**
-     * Get asset group by type and user.
-     *
-     * @param string $type
-     * @param string $user
-     * @return \Yajra\CMS\Entities\FileAssetGroup
-     */
-    public function getGroupByType($type, $user)
-    {
-        return FileAssetGroup::where('type', $type)
-                             ->orderBy('order', 'asc')
-                             ->orderBy('user', $user)
-                             ->get();
     }
 }

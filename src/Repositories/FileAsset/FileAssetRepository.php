@@ -17,11 +17,6 @@ interface FileAssetRepository
     public function all();
 
     /**
-     * Register admin required assets.
-     */
-    public function registerAdminRequireAssets();
-
-    /**
      * Get file asset by name.
      *
      * @param string $name
