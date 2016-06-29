@@ -48,7 +48,7 @@ class NavigationDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '134px', 'className' => 'text-center'])
+                    ->addAction(['width' => '150px', 'className' => 'text-center'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -62,7 +62,7 @@ class NavigationDataTable extends DataTable
         return [
             'id'         => ['width' => '20px'],
             'title',
-            'type',
+            'type'       => ['width' => '80px'],
             'menus'      => [
                 'orderable'  => false,
                 'name'       => 'menus',
