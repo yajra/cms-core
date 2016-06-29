@@ -60,6 +60,7 @@ return [
             'class_suffix'  => 'A suffix to be applied to the CSS of the widget. This allows for individual widget styling.',
             'header_class'  => 'The CSS class for widget header/title.',
             'navigation_id' => 'Navigation group to display.',
+            'menu_class'    => 'Menu navigation CSS class name.',
         ],
     ],
 
@@ -93,6 +94,7 @@ return [
             'class_suffix_placeholder'  => '',
             'header_class'              => 'Widget Header Class',
             'header_class_placeholder'  => '',
+            'menu_class'                => 'Menu Navigation Class',
         ],
     ],
 
