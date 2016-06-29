@@ -24,6 +24,8 @@ class Extension extends Model
     const MENU_ARTICLE       = 5;
     const MENU_CATEGORY_LIST = 6;
     const MENU_CATEGORY_BLOG = 7;
+    const WIDGET_BREADCRUMB  = 8;
+    const WIDGET_BLADE_VIEW  = 9;
 
     /**
      * @var array
