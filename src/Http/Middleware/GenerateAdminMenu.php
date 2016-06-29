@@ -65,12 +65,12 @@ class GenerateAdminMenu
                 $contents->add('Media', route('administrator.media.index'))->icon('image')
                          ->data('permission', 'media.view');
 
-                $mod     = $menu->add('Modules', '#')->icon('plug');
-                $modules = app('modules')->all();
-                collect($modules)->each(function ($module) use ($mod) {
-                    /** @var \Pingpong\Modules\Module $module */
-                    $mod->add($module->getStudlyName(), url("administrator/{$module->getLowerName()}"))->icon('file');
-                });
+//                $mod     = $menu->add('Modules', '#')->icon('plug');
+//                $modules = app('modules')->all();
+//                collect($modules)->each(function ($module) use ($mod) {
+//                    /** @var \Pingpong\Modules\Module $module */
+//                    $mod->add($module->getStudlyName(), url("administrator/{$module->getLowerName()}"))->icon('file');
+//                });
 
                 $menu->add('Themes', route('administrator.themes.index'))
                      ->icon('windows')
