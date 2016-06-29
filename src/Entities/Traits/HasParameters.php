@@ -22,11 +22,12 @@ trait HasParameters
      * Get a value in fluent parameters.
      *
      * @param string $key
+     * @param string $default
      * @return mixed
      */
-    public function param($key)
+    public function param($key, $default = '')
     {
-        return $this->fluentParameters()->get($key);
+        return $this->fluentParameters()->get($key, $default);
     }
 
     /**
