@@ -1,0 +1,21 @@
+{
+  "type": "widget",
+  "name": "Breadcrumb",
+  "description": "Display a breadcrumb",
+  "version": "1.0.0",
+  "protected": true,
+  "parameters": {
+    "class": "Yajra\\CMS\\Widgets\\Breadcrumb",
+    "form": "widgets.forms.breadcrumb",
+    "templates": [
+      {
+        "path": "widgets.breadcrumb",
+        "description": "Default template (widgets.breadcrumb)"
+      },
+      {
+        "path": "custom",
+        "description": "Custom template"
+      }
+    ]
+  }
+}

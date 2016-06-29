@@ -1,0 +1,21 @@
+{
+  "type": "widget",
+  "name": "Wysiwyg",
+  "description": "Display a custom content using Wysiwyg editor.",
+  "version": "1.0.0",
+  "protected": true,
+  "parameters": {
+    "class": "Yajra\\CMS\\Widgets\\Wysiwyg",
+    "form": "widgets.forms.wysiwyg",
+    "templates": [
+      {
+        "path": "widgets.wysiwyg.default",
+        "description": "Default template (widgets.wysiwyg.default)"
+      },
+      {
+        "path": "widgets.wysiwyg.raw",
+        "description": "Default template (widgets.wysiwyg.raw)"
+      }
+    ]
+  }
+}

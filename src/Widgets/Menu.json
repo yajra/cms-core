@@ -1,0 +1,25 @@
+{
+  "type": "widget",
+  "name": "Menu",
+  "description": "Display a navigation menu items",
+  "version": "1.0.0",
+  "protected": true,
+  "parameters": {
+    "class": "Yajra\\CMS\\Widgets\\Menu",
+    "form": "widgets.forms.menu",
+    "templates": [
+      {
+        "path": "widgets.menu.bootstrap",
+        "description": "Bootstrap (widgets.menu.bootstrap)"
+      },
+      {
+        "path": "widgets.menu.plain",
+        "description": "Bootstrap (no container) (widgets.menu.plain)"
+      },
+      {
+        "path": "custom",
+        "description": "Custom template"
+      }
+    ]
+  }
+}
