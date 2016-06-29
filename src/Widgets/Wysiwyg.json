@@ -6,7 +6,7 @@
   "protected": true,
   "parameters": {
     "class": "Yajra\\CMS\\Widgets\\Wysiwyg",
-    "form": "widgets.forms.wysiwyg",
+    "form": "widgets.forms.none",
     "templates": [
       {
         "path": "widgets.wysiwyg.default",

@@ -1,0 +1,17 @@
+{
+  "type": "widget",
+  "name": "Blade View",
+  "description": "Display a custom blade view.",
+  "version": "1.0.0",
+  "protected": true,
+  "parameters": {
+    "class": "Yajra\\CMS\\Widgets\\Blade",
+    "form": "widgets.forms.none",
+    "templates": [
+      {
+        "path": "custom",
+        "description": "Custom template path"
+      }
+    ]
+  }
+}

@@ -6,7 +6,7 @@
   "protected": true,
   "parameters": {
     "class": "Yajra\\CMS\\Widgets\\Breadcrumb",
-    "form": "widgets.forms.breadcrumb",
+    "form": "widgets.forms.none",
     "templates": [
       {
         "path": "widgets.breadcrumb",
