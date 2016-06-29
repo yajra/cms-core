@@ -103,7 +103,16 @@ class RouteServiceProvider extends ServiceProvider
                         'article'    => $article,
                         'parameters' => $router->current()->parameters(),
                     ]);
-                })->middleware($middleware)->name($article->title);
+                })->middleware($middleware)->name($article->alias);
+
+                /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
+                $breadcrumb = app('breadcrumbs');
+                $breadcrumb->register($article->alias,
+                    function (\DaveJamesMiller\Breadcrumbs\Generator $breadcrumbs) use ($article) {
+                        $breadcrumbs->parent('home');
+                        $breadcrumbs->push($article->title, route($article->alias));
+                    }
+                );
             });
         } catch (QueryException $e) {
             // \\_(",)_//
@@ -133,7 +142,16 @@ class RouteServiceProvider extends ServiceProvider
                             'layout'     => $layout,
                             'parameters' => $router->current()->parameters(),
                         ]);
-                    })->middleware($middleware)->name($category->title);
+                    })->middleware($middleware)->name('category.' . $category->alias);
+
+                /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
+                $breadcrumb = app('breadcrumbs');
+                $breadcrumb->register('category.' . $category->alias,
+                    function (\DaveJamesMiller\Breadcrumbs\Generator $breadcrumbs) use ($category) {
+                        $breadcrumbs->parent('home');
+                        $breadcrumbs->push($category->title, route('category.' . $category->alias));
+                    }
+                );
             });
         } catch (QueryException $e) {
             // \\_(",)_//
