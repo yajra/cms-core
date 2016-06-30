@@ -24,7 +24,7 @@ class ProfileFormRequest extends Request
         return [
             'first_name' => 'required',
             'last_name'  => 'required',
-            'username'   => 'required|alpha_num|unique:users,username,' . $this->user()->id,
+            'username'   => 'required|alpha_num|max:20|unique:users,username,' . $this->user()->id,
             'avatar'     => 'image',
             'password'   => 'min:4|confirmed',
         ];
