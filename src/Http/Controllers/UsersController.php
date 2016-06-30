@@ -101,7 +101,7 @@ class UsersController extends Controller
     public function store()
     {
         $this->validate($this->request, [
-            'username'   => 'required|unique:users',
+            'username'   => 'required|alpha_num|unique:users',
             'email'      => 'required|email',
             'first_name' => 'required',
             'last_name'  => 'required',
@@ -181,7 +181,7 @@ class UsersController extends Controller
     public function update(User $user)
     {
         $this->validate($this->request, [
-            'username'              => 'required|unique:users,username,' . $user->id,
+            'username'              => 'required|alpha_num|unique:users,username,' . $user->id,
             'email'                 => 'required|email',
             'first_name'            => 'required',
             'last_name'             => 'required',
