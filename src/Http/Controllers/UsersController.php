@@ -2,11 +2,11 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Yajra\CMS\DataTables\UsersDataTable;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Yajra\Acl\Models\Role;
+use Yajra\CMS\DataTables\UsersDataTable;
 
 class UsersController extends Controller
 {
@@ -101,7 +101,8 @@ class UsersController extends Controller
     public function store()
     {
         $this->validate($this->request, [
-            'email'      => 'required|email|unique:users',
+            'username'   => 'required|unique:users',
+            'email'      => 'required|email',
             'first_name' => 'required',
             'last_name'  => 'required',
             'password'   => 'min:4|confirmed',
@@ -180,7 +181,8 @@ class UsersController extends Controller
     public function update(User $user)
     {
         $this->validate($this->request, [
-            'email'                 => 'required|email|unique:users,email,' . $user->id,
+            'username'              => 'required|unique:users,username,' . $user->id,
+            'email'                 => 'required|email',
             'first_name'            => 'required',
             'last_name'             => 'required',
             'password'              => 'min:4|confirmed',

@@ -11,7 +11,8 @@ return [
     ],
 
     'placeholder' => [
+        'username' => '*** username ***',
         'email'    => 'you@domain.com',
-        'password' => '**** password ****',
+        'password' => '*** password ***',
     ],
 ];

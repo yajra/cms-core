@@ -40,6 +40,13 @@ class AuthController extends Controller
     protected $redirectAfterLogout = '/administrator';
 
     /**
+     * Username to use for login.
+     *
+     * @var string
+     */
+    protected $username = 'username';
+
+    /**
      * Create a new authentication controller instance.
      */
     public function __construct()
