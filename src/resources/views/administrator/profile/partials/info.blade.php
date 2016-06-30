@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label class="form-label-style"
                                for="first_name">{{trans('cms::profile.form.field.first-name')}}
-                            @tooltip('Some text here.')
+                            @tooltip('')
                         </label>
                         {{ form()->input('text', 'first_name', null, ['class' => 'form-control', 'required']) }}
                         {!! $errors->first('first_name', '<small class="help-inline text-danger">:message</small>') !!}
@@ -42,14 +42,24 @@
                     <div class="form-group">
                         <label class="form-label-style"
                                for="last_name">{{trans('cms::profile.form.field.last-name')}}
-                            @tooltip('Some text here.')
+                            @tooltip('')
                         </label>
                         {{ form()->input('text', 'last_name', null, ['class' => 'form-control', 'required']) }}
                         {!! $errors->first('last_name', '<small class="help-inline text-danger">:message</small>') !!}
                     </div>
                     <div class="form-group">
+                        <label class="form-label-style" for="username">{{trans('cms::profile.form.field.username')}}
+                            @tooltip('')
+                        </label>
+                        {{ form()->input('text', 'username', null, [
+                            'class' => 'form-control',
+                            'required'
+                        ]) }}
+                        {!! $errors->first('username', '<small class="help-inline text-danger">:message</small>') !!}
+                    </div>
+                    <div class="form-group">
                         <label class="form-label-style" for="email">{{trans('cms::profile.form.field.email')}}
-                            @tooltip('Some text here.')
+                            @tooltip('')
                         </label>
                         {{ form()->input('email', 'email', null, [
                             'class' => 'form-control',
@@ -62,7 +72,7 @@
                 <div class="tab-pane" id="change-pass">
                     <div class="form-group">
                         <label class="form-label-style">{{trans('cms::profile.form.field.pass-new')}}
-                            @tooltip('Some text here.')
+                            @tooltip('')
                         </label>
                         {{ form()->input('password', 'password', null, [
                             'class' => 'form-control',
@@ -72,7 +82,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label-style">{{trans('cms::profile.form.field.pass-conf')}}
-                            @tooltip('Some text here.')
+                            @tooltip('')
                         </label>
                         {{ form()->input('password', 'password_confirmation', null, [
                             'class' => 'form-control',

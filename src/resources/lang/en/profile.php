@@ -30,6 +30,7 @@ return [
             'pass-new'   => 'New Password',
             'pass-conf'  => 'Confirm Password',
             'require'    => 'please fill up all required fields.',
+            'username'   => 'Username',
         ],
         'sep-title' => [
             'change-pass' => 'Change Password',
