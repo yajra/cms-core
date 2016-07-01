@@ -5,7 +5,9 @@
 @push('styles')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css"/>
-<style>.table-container {margin-top: 0 !important;}</style>
+<style>.table-container {
+        margin-top: 0 !important;
+    }</style>
 @endpush
 
 @section('title')
@@ -58,7 +60,7 @@
     </div>
 @stop
 
-@js(['dropzone', 'jstree'])
+@js(['dropzone','jstree'])
 
 @push('scripts')
 <script>
@@ -120,7 +122,7 @@
             columnDefs: [
                 {orderable: false, targets: [3, 4]}
                 @cannot('media.delete')
-                    ,{visible: false, targets: [4]}
+                , {visible: false, targets: [4]}
                 @endcannot
             ]
         });
@@ -144,7 +146,7 @@
                 closeOnConfirm: false
             }, function () {
                 $.ajax({
-                   url:  '{{ url('administrator/media/delete-media') }}',
+                    url: '{{ url('administrator/media/delete-media') }}',
                     data: {s: filePath},
                     type: 'POST',
                     dataType: 'json',

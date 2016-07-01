@@ -13,14 +13,15 @@ class AssetCssDirective
      *
      * @param string|array $styles
      * @param null $category
+     * @param string $group
      */
-    public function handle($styles, $category = null)
+    public function handle($styles, $group = 'footer', $category = null)
     {
         foreach ((array)$styles as $style) {
             if (! str_contains('.css', $style)) {
                 $style .= ".css";
             }
-            Asset::add(app(FileAssetRepository::class)->getByName($style, $category)->url);
+            Asset::add(app(FileAssetRepository::class)->getByName($style, $category)->url, $group);
         }
     }
 }

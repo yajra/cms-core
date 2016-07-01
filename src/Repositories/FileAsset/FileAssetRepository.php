@@ -24,12 +24,4 @@ interface FileAssetRepository
      * @return \Yajra\CMS\Entities\FileAsset
      */
     public function getByName($name, $category = null);
-
-    /**
-     * Add site asset.
-     *
-     * @param string $type
-     * @return \Roumen\Asset\Asset;
-     */
-    public function addAsset($type);
 }

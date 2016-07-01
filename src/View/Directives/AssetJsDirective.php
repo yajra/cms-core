@@ -13,14 +13,15 @@ class AssetJsDirective
      *
      * @param string|array $scripts
      * @param null $category
+     * @param string $group
      */
-    public function handle($scripts, $category = null)
+    public function handle($scripts, $group = 'footer', $category = null)
     {
         foreach ((array)$scripts as $script) {
             if (! str_contains('.js', $script)) {
                 $script .= ".js";
             }
-            Asset::add(app(FileAssetRepository::class)->getByName($script, $category)->url);
+            Asset::add(app(FileAssetRepository::class)->getByName($script, $category)->url, $group);
         }
     }
 }

@@ -23,10 +23,10 @@ class AssetServiceProvider extends ServiceProvider
     public function boot()
     {
         try {
-            $this->addAssets('css');
-            $this->addAssets('js');
-            $this->JsDirective();
-            $this->CssDirective();
+            $this->customJsPlugin();
+            $this->customCssPlugin();
+            $this->addAssetAfter();
+            $this->addAssetBefore();
         } catch (QueryException $e) {
             // \\_(",)_//
         }
@@ -55,42 +55,48 @@ class AssetServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load require admin default assets.
+     * Register custom javascript plugin.
      */
-    protected function requireAdminDefaultAssets()
-    {
-        $this->app->make(FileAssetRepository::class)->registerAdminRequireAssets();
-    }
-
-    /**
-     * Register javascript blade directive.
-     */
-    protected function JsDirective()
+    protected function customJsPlugin()
     {
         Blade::directive('js', function ($expression) {
-            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetJsDirective::class)->handle({$expression}) ?>";
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetJsDirective::class)->handle{$expression} ?>";
         });
     }
 
     /**
-     * Register css blade directive.
+     * Register custom css plugin.
      *
      * @return string
      */
-    protected function CssDirective()
+    protected function customCssPlugin()
     {
         Blade::directive('css', function ($expression) {
-            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetCssDirective::class)->handle({$expression}) ?>";
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetCssDirective::class)->handle{$expression} ?>";
         });
     }
 
     /**
-     * Add site assets.
+     * Add a css after the selected file.
      *
-     * @param string $type
+     * @return string
      */
-    protected function addAssets($type)
+    protected function addAssetAfter()
     {
-        return $this->app->make(FileAssetRepository::class)->addAsset($type);
+        Blade::directive('assetAfter', function ($expression) {
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetAddAfterDirective::class)->handle{$expression} ?>";
+        });
+    }
+
+    /**
+     * Add a css before the selected file.
+     *
+     * @return string
+     */
+    protected function addAssetBefore()
+    {
+        Blade::directive('assetBefore', function ($expression) {
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetAddBeforeDirective::class)->handle{$expression} ?>";
+        });
     }
 }
