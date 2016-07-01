@@ -23,7 +23,7 @@ class AssetJsDirective
             }
             /** @var \Yajra\CMS\Entities\FileAsset $getData */
             $getData = app(FileAssetRepository::class)->getByName($script, $category);
-            Asset::add($getData ? $getData->url : $script, $group);
+            Asset::add($getData ? $getData->url : $script, $group, $category);
         }
     }
 }
