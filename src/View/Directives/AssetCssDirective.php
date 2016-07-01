@@ -21,7 +21,9 @@ class AssetCssDirective
             if (! str_contains('.css', $style)) {
                 $style .= ".css";
             }
-            Asset::add(app(FileAssetRepository::class)->getByName($style, $category)->url, $group);
+            /** @var \Yajra\CMS\Entities\FileAsset $getData */
+            $getData = app(FileAssetRepository::class)->getByName($style, $category);
+            Asset::add($getData ? $getData->url : $style, $group);
         }
     }
 }

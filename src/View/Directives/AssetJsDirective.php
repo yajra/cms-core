@@ -21,7 +21,9 @@ class AssetJsDirective
             if (! str_contains('.js', $script)) {
                 $script .= ".js";
             }
-            Asset::add(app(FileAssetRepository::class)->getByName($script, $category)->url, $group);
+            /** @var \Yajra\CMS\Entities\FileAsset $getData */
+            $getData = app(FileAssetRepository::class)->getByName($script, $category);
+            Asset::add($getData ? $getData->url : $script, $group);
         }
     }
 }
