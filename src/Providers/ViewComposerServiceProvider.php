@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 use Yajra\Acl\Models\Permission;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Configuration;
-use Yajra\CMS\Repositories\Theme\CollectionRepository;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -42,8 +41,8 @@ class ViewComposerServiceProvider extends ServiceProvider
 
             /** @var \Yajra\CMS\Repositories\Extension\Repository $extensions */
             $extensions = $this->app['extensions'];
-            $widgets = $extensions->allWidgets()->filter(function($extension) {
-               return $extension->enabled;
+            $widgets    = $extensions->allWidgets()->filter(function ($extension) {
+                return $extension->enabled;
             });
             $view->with('extensions', $widgets);
         });
