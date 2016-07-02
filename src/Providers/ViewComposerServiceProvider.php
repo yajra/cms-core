@@ -28,7 +28,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     protected function bootAdministratorViewComposer()
     {
         view()->composer('administrator.widgets.*', function (View $view) {
-            /** @var \Yajra\CMS\Repositories\Theme\CollectionRepository $themes */
+            /** @var \Yajra\CMS\Themes\Repositories\Repository $themes */
             $themes    = $this->app['themes'];
             $theme     = $themes->current();
             $positions = $theme->positions;
@@ -42,7 +42,10 @@ class ViewComposerServiceProvider extends ServiceProvider
 
             /** @var \Yajra\CMS\Repositories\Extension\Repository $extensions */
             $extensions = $this->app['extensions'];
-            $view->with('extensions', $extensions->allWidgets());
+            $widgets = $extensions->allWidgets()->filter(function($extension) {
+               return $extension->enabled;
+            });
+            $view->with('extensions', $widgets);
         });
 
         view()->composer('administrator.articles.partials.form', function (View $view) {
