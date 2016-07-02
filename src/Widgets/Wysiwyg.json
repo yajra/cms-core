@@ -14,7 +14,7 @@
       },
       {
         "path": "widgets.wysiwyg.raw",
-        "description": "Default template (widgets.wysiwyg.raw)"
+        "description": "Raw Output (widgets.wysiwyg.raw)"
       }
     ]
   }
