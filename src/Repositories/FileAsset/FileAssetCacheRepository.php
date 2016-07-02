@@ -49,7 +49,10 @@ class FileAssetCacheRepository implements FileAssetRepository
      */
     public function getByName($name, $category = null)
     {
-        return $this->repository->getByName($name, $category);
+        return $this->cache->rememberForever('fileAssets.' . $name . '.' . $category,
+            function () use ($name, $category) {
+                return $this->repository->getByName($name, $category);
+            });
     }
 
     /**
@@ -60,6 +63,8 @@ class FileAssetCacheRepository implements FileAssetRepository
      */
     public function addAsset($type)
     {
-        return $this->repository->addAsset($type);
+        return $this->cache->rememberForever('fileAssets.addAsset.' . $type, function () use ($type) {
+            return $this->repository->addAsset($type);
+        });
     }
 }
