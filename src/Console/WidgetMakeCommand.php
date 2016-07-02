@@ -7,6 +7,13 @@ use Arrilot\Widgets\Console\WidgetMakeCommand as ArrilotWidgetMakeCommand;
 class WidgetMakeCommand extends ArrilotWidgetMakeCommand
 {
     /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'widget:make';
+
+    /**
      * The console command description.
      *
      * @var string
