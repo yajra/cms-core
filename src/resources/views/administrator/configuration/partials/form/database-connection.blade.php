@@ -22,11 +22,21 @@
 
 <div class="row">
     <div class="col-md-12">
-        @foreach($databases as $database)
-            <div class="@if($configuration->key("database.default") == $database['driver']) @else hide @endif db-container"
-                 id="{{$database['driver']}}-db-container">
-                @include('administrator.configuration.partials.form.databases.'.$database['driver'])
-            </div>
-        @endforeach
+        <div class="@if($configuration->key("database.default") == 'mysql') @else hide @endif db-container"
+             id="mysql-db-container">
+            @include('administrator.configuration.partials.form.databases.mysql')
+        </div>
+        <div class="@if($configuration->key("database.default") == 'oracle') @else hide @endif db-container"
+             id="oracle-db-container">
+            @include('administrator.configuration.partials.form.databases.oracle')
+        </div>
+        <div class="@if($configuration->key("database.default") == 'pgsql') @else hide @endif db-container"
+             id="pgsql-db-container">
+            @include('administrator.configuration.partials.form.databases.pgsql')
+        </div>
+        <div class="@if($configuration->key("database.default") == 'sqlite') @else hide @endif db-container"
+             id="sqlite-db-container">
+            @include('administrator.configuration.partials.form.databases.sqlite')
+        </div>
     </div>
 </div>

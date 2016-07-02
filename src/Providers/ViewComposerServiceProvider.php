@@ -52,9 +52,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
 
         view()->composer('administrator.configuration.partials.form.database-connection', function (View $view) {
-            $dbArray   = Configuration::key("database.connections");
-            $databases = array_except($dbArray, ['IBPMWorkgroup', 'vueic', 'uigleads', 'faxmanager', 'aas']);
-            $view->with('databases', $databases);
+            $view->with('databases', Configuration::key("database.connections"));
         });
 
         view()->composer(['administrator.partials.permissions'], function (View $view) {
