@@ -46,15 +46,9 @@ class ViewComposerServiceProvider extends ServiceProvider
             });
             $view->with('extensions', $widgets);
         });
-
         view()->composer('administrator.articles.partials.form', function (View $view) {
             $view->with('categories', Category::lists());
         });
-
-        view()->composer('administrator.configuration.partials.form.database-connection', function (View $view) {
-            $view->with('databases', Configuration::key("database.connections"));
-        });
-
         view()->composer(['administrator.partials.permissions'], function (View $view) {
             $view->with('permissions', Permission::all());
         });
