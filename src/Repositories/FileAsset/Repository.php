@@ -7,7 +7,7 @@ namespace Yajra\CMS\Repositories\FileAsset;
  *
  * @package Yajra\CMS\Repositories\Article
  */
-interface FileAssetRepository
+interface Repository
 {
     /**
      * Get all file assets.

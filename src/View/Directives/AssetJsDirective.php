@@ -3,7 +3,7 @@
 namespace Yajra\CMS\View\Directives;
 
 use Roumen\Asset\Asset;
-use Yajra\CMS\Repositories\FileAsset\FileAssetRepository;
+use Yajra\CMS\Repositories\FileAsset\Repository;
 
 class AssetJsDirective
 {
@@ -22,7 +22,7 @@ class AssetJsDirective
                 $script .= ".js";
             }
             /** @var \Yajra\CMS\Entities\FileAsset $getData */
-            $getData = app(FileAssetRepository::class)->getByName($script, $category);
+            $getData = app(Repository::class)->getByName($script, $category);
             Asset::add($getData ? $getData->url : $script, $group, $category);
         }
     }

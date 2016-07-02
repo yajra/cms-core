@@ -3,7 +3,7 @@
 namespace Yajra\CMS\View\Directives;
 
 use Roumen\Asset\Asset;
-use Yajra\CMS\Repositories\FileAsset\FileAssetRepository;
+use Yajra\CMS\Repositories\FileAsset\Repository;
 
 class AssetCssDirective
 {
@@ -22,7 +22,7 @@ class AssetCssDirective
                 $style .= ".css";
             }
             /** @var \Yajra\CMS\Entities\FileAsset $getData */
-            $getData = app(FileAssetRepository::class)->getByName($style, $category);
+            $getData = app(Repository::class)->getByName($style, $category);
             Asset::add($getData ? $getData->url : $style, $group, $category);
         }
     }

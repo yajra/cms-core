@@ -2,17 +2,15 @@
 
 namespace Yajra\CMS\Repositories\FileAsset;
 
-use Yajra\CMS\Entities\Configuration;
 use Yajra\CMS\Entities\FileAsset;
 use Yajra\CMS\Repositories\RepositoryAbstract;
-use Roumen\Asset\Asset;
 
 /**
  * Class FileAssetEloquentRepository
  *
  * @package Yajra\CMS\Repositories\Article
  */
-class FileAssetEloquentRepository extends RepositoryAbstract implements FileAssetRepository
+class EloquentRepository extends RepositoryAbstract implements Repository
 {
     /**
      * Get repository model.

@@ -5,9 +5,9 @@ namespace Yajra\CMS\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\QueryException;
 use Yajra\CMS\Entities\FileAsset;
-use Yajra\CMS\Repositories\FileAsset\FileAssetCacheRepository;
-use Yajra\CMS\Repositories\FileAsset\FileAssetEloquentRepository;
-use Yajra\CMS\Repositories\FileAsset\FileAssetRepository;
+use Yajra\CMS\Repositories\FileAsset\CacheRepository;
+use Yajra\CMS\Repositories\FileAsset\EloquentRepository;
+use Yajra\CMS\Repositories\FileAsset\Repository;
 use Illuminate\Support\Facades\Blade;
 
 /**
@@ -46,9 +46,9 @@ class AssetServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(FileAssetRepository::class, function () {
-            return new FileAssetCacheRepository(
-                new FileAssetEloquentRepository,
+        $this->app->singleton(Repository::class, function () {
+            return new CacheRepository(
+                new EloquentRepository,
                 $this->app['cache.store']
             );
         });

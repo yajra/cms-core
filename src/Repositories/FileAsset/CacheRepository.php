@@ -4,10 +4,10 @@ namespace Yajra\CMS\Repositories\FileAsset;
 
 use Illuminate\Contracts\Cache\Repository as Cache;
 
-class FileAssetCacheRepository implements FileAssetRepository
+class CacheRepository implements Repository
 {
     /**
-     * @var \Yajra\CMS\Repositories\FileAsset\FileAssetRepository
+     * @var \Yajra\CMS\Repositories\FileAsset\Repository
      */
     private $repository;
 
@@ -19,10 +19,10 @@ class FileAssetCacheRepository implements FileAssetRepository
     /**
      * FileAssetCacheRepository constructor.
      *
-     * @param \Yajra\CMS\Repositories\FileAsset\FileAssetRepository $repository
+     * @param \Yajra\CMS\Repositories\FileAsset\Repository $repository
      * @param \Illuminate\Contracts\Cache\Repository $cache
      */
-    public function __construct(FileAssetRepository $repository, Cache $cache)
+    public function __construct(Repository $repository, Cache $cache)
     {
         $this->repository = $repository;
         $this->cache      = $cache;
