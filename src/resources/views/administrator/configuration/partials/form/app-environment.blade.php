@@ -13,7 +13,7 @@
                     'v-model'   => 'app.env',
                     'class'     => 'form-control select2',
                     'config'    => 'app.env',
-                ])  !!}
+                ]) !!}
         </div>
     </div>
     <div class="col-md-6">
@@ -78,7 +78,6 @@
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">

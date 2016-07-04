@@ -1,6 +1,6 @@
 <div class="form-group">
     <label class="form-label-style block" for="title">Database Name
-        @tooltip('Some Text Here.')
+        @tooltip('SQLite database name.')
     </label>
     {!! form()->input('text', 'author', $configuration->key("database.connections.sqlite.database"), [
         'id'            => 'site_author',

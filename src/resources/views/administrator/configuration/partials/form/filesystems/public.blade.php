@@ -9,10 +9,9 @@
         'v-model'       => 'filesystems.disksAAApublicAAAroot'
     ]) !!}
 </div>
-
 <div class="form-group">
     <label class="form-label-style block" for="title">Visibility
-        @tooltip('')
+        @tooltip('File system visibility.')
     </label>
     {!! form()->input('text', 'visibility', $configuration->key("filesystems.disks.public.visibility"), [
         'id'            => 'app_visibility',

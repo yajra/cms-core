@@ -1,6 +1,6 @@
 <div class="form-group">
     <label class="form-label-style block" for="title">Connection
-        @tooltip('')
+        @tooltip('Specify redis connection.')
     </label>
     {!! form()->input('text', 'connection', $configuration->key("cache.stores.redis.connection"), [
         'id'            => 'app_connection',

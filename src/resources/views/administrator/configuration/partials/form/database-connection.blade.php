@@ -19,7 +19,6 @@
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="col-md-12">
         <div class="@if($configuration->key("database.default") == 'mysql') @else hide @endif db-container"

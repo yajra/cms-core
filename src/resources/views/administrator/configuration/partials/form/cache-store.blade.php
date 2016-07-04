@@ -14,8 +14,6 @@
             'config'    => 'cache.default'
     ]) !!}
 </div>
-
-
 <div class="row">
     <div class="col-md-12">
         @foreach($configuration->key("cache.stores") as $cache)

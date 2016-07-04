@@ -9,7 +9,6 @@
             'placeholder'   => 'Enter Site Name Here',
     ]) !!}
 </div>
-
 <div class="form-group">
     <label class="form-label-style block" for="title">Version
         @tooltip('Site version number.')
@@ -20,7 +19,6 @@
             'placeholder'   => 'Enter Version Here',
         ]) !!}
 </div>
-
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
@@ -47,7 +45,6 @@
         </div>
     </div>
 </div>
-
 <div class="form-group">
     <label class="form-label-style block" for="title">Site Description
         @tooltip('Default site meta description.')
@@ -59,7 +56,6 @@
             'rows'          => '4',
         ]) !!}
 </div>
-
 <div class="form-group">
     <label class="form-label-style block" for="title">Administrator Template (AdminLTE Color Scheme)
         @tooltip('Administrator area AdminLTE color scheme.')
@@ -85,7 +81,6 @@
                 ])
     !!}
 </div>
-
 <div class="form-group">
     <label class="form-label-style" for="registration">Enable Registration
         @tooltip('Frontend registration flag. If set to true, registration will be allowed.')

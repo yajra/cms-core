@@ -1,5 +1,4 @@
 <input type="hidden" v-model="filesystems.config" value="filesystems">
-
 <div class="form-group">
     <label class="form-label-style block" for="title">Default File System
         @tooltip('Here you may specify the default filesystem disk that should be used by the framework. A "local" driver, as well as a variety of cloud based drivers are available for your choosing. Just store away!')
@@ -15,8 +14,6 @@
             'config'    => 'filesystems.default'
     ]) !!}
 </div>
-
-
 <div class="row">
     <div class="col-md-12">
         @foreach($configuration->key("filesystems.disks") as $type)
