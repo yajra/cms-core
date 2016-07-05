@@ -13,7 +13,7 @@ new Vue({
             }
             var menuId = $('#menu-id').val();
             this.$http
-                .get('/administrator/navigation/menu/extensions/' + menuId, {'key': selectedKey})
+                .get('/administrator/navigation/menu/extensions/' + menuId + '?key=' + selectedKey)
                 .then(function (response) {
                     $('#menu-item-selected-container').html(response.data);
                     $('#menutype').val(selectedKey);
