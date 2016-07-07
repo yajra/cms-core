@@ -28,7 +28,7 @@ class MenuPresenter extends Presenter
     {
         $repeat = $this->entity->depth - $start;
 
-        return str_repeat($symbol, $repeat >=0 ? $repeat : 0) . ' ' . $this->entity->title;
+        return str_repeat($symbol, $repeat >= 0 ? $repeat : 0) . ' ' . $this->entity->title;
     }
 
     /**
@@ -41,8 +41,8 @@ class MenuPresenter extends Presenter
         /** @var \Yajra\CMS\Repositories\Extension\Repository $repository */
         $repository = app('extensions');
         /** @var \Yajra\CMS\Entities\Extension $extension */
-        $extension  = $repository->findOrFail($this->entity->extension_id);
-        $class      = $extension->param('class');
+        $extension = $repository->findOrFail($this->entity->extension_id);
+        $class     = $extension->param('class');
         if (class_exists($class)) {
             $entity = app($class)->findOrNew($this->entity->param('id'));
             if ($entity instanceof UrlGenerator) {
@@ -51,5 +51,25 @@ class MenuPresenter extends Presenter
         }
 
         return url($this->entity->url);
+    }
+
+    /**
+     * Get menu link custom style.
+     *
+     * @return mixed
+     */
+    public function linkStyle()
+    {
+        return $this->entity->param('link_style');
+    }
+
+    /**
+     * Get menu link title.
+     *
+     * @return mixed
+     */
+    public function linkTitle()
+    {
+        return $this->entity->param('link_title') ? $this->entity->param('link_title') : $this->entity->title;
     }
 }

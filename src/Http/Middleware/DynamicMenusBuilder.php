@@ -110,7 +110,14 @@ class DynamicMenusBuilder
             }
         }
 
-        return $parentMenu->add($menu->title, $menu->present()->url())
-                          ->attribute('target', $menu->present()->target());
+        $item = $parentMenu->add($menu->title, $menu->present()->url)
+                           ->attribute('target', $menu->present()->target)
+                           ->attribute('title', $menu->present()->linkTitle);
+
+        if ($menu->present()->linkStyle) {
+            $item->attribute('style', $menu->present()->linkStyle);
+        }
+
+        return $item;
     }
 }
