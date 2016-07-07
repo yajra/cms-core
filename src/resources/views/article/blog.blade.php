@@ -4,7 +4,7 @@
 </h3>
 @endif
 
-<p>
+<div class="article-details">
     @if($article->param('show_author'))
     <small class="inline-help">Written by: {{ $article->present()->author }}</small>
     <br>
@@ -29,7 +29,7 @@
         <i class="fa fa-eye"></i> Hits: {{ $article->present()->hits }}
     </small>
     @endif
-</p>
+</div>
 
 <div class="article-content">
     {!! $article->present()->content !!}
