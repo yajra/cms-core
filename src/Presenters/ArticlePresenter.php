@@ -84,4 +84,16 @@ class ArticlePresenter extends Presenter
             ? view($this->entity->blade_template, compact('article', $this->entity))->render()
             : $this->entity->body;
     }
+
+    /**
+     * Get the article's title.
+     *
+     * @return mixed
+     */
+    public function title()
+    {
+        $heading = session('active_menu')->param('page_heading');
+
+        return $heading ? $heading : $this->entity->title;
+    }
 }

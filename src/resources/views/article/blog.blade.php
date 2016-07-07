@@ -1,6 +1,6 @@
 @if($article->param('show_title'))
 <h3 class="article-title">
-    <a href="{{ url($article->alias) }}">{{ $article->title }}</a>
+    <a href="{{ url($article->alias) }}">{{ $article->present()->title }}</a>
 </h3>
 @endif
 
