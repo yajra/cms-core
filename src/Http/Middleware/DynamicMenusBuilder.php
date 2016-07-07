@@ -26,16 +26,18 @@ class DynamicMenusBuilder
      */
     public function handle($request, Closure $next)
     {
+        session()->forget('active_menu');
+
         if (! $request->is('administrator*')) {
             $this->repository = app(Repository::class);
             $this->repository->getPublished()->each(function (Navigation $navigation) {
                 MenuFactory::make($navigation->type, function (Builder $builder) use ($navigation) {
                     $widgets    = $navigation->getConnection()->table('widget_menu');
                     $assignment = [0];
-                    $navigation->menus->each(function (Menu $menu) use ($builder, $widgets, $assignment) {
+                    $navigation->menus->each(function (Menu $menu) use ($builder, $widgets, &$assignment) {
                         if ($menu->isActive()) {
                             $assignment[] = $menu->id;
-                            session(['active_menu' => $menu]);
+                            session()->flash('active_menu', $menu);
                         }
 
                         $menus = $menu->descendantsAndSelf()->with('permissions')->get()->toHierarchy();
