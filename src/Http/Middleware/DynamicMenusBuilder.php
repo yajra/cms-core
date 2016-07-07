@@ -46,7 +46,7 @@ class DynamicMenusBuilder
                         }
                     });
 
-                    $widgets = $widgets->where('menu_id', $assignment);
+                    $widgets = $widgets->whereIn('menu_id', $assignment);
                     Widget::addGlobalScope('menu_assignment', function ($query) use ($widgets) {
                         $query->whereIn('id', $widgets->pluck('widget_id'));
                     });
