@@ -10,7 +10,7 @@
     "templates": [
       {
         "path": "widgets.wysiwyg.default",
-        "description": "Default template (widgets.wysiwyg.default)"
+        "description": "Bootstrap Panel (widgets.wysiwyg.default)"
       },
       {
         "path": "widgets.wysiwyg.raw",
