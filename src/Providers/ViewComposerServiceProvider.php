@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Yajra\Acl\Models\Permission;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Configuration;
+use Yajra\CMS\Entities\Menu;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,10 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->bootAdministratorViewComposer();
+
+        view()->composer('*', function(View $view) {
+           $view->with('active_menu', session('active_menu', new Menu));
+        });
     }
 
     /**

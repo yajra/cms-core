@@ -35,6 +35,7 @@ class DynamicMenusBuilder
                     $navigation->menus->each(function (Menu $menu) use ($builder, $widgets, $assignment) {
                         if ($menu->isActive()) {
                             $assignment[] = $menu->id;
+                            session(['active_menu' => $menu]);
                         }
 
                         $menus = $menu->descendantsAndSelf()->with('permissions')->get()->toHierarchy();
