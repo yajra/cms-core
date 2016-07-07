@@ -192,7 +192,10 @@ class Menu extends Node
      */
     public function isActive()
     {
-        return url(request()->getRequestUri()) === $this->present()->url();
+        $url  = $this->present()->url();
+        $path = request()->path();
+
+        return $url == request()->url() || $url == $path || url($url, [], true) == url($path, [], true);
     }
 
     /**
