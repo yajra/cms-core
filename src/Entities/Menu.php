@@ -192,7 +192,7 @@ class Menu extends Node
      */
     public function isActive()
     {
-        return request()->getRequestUri() === '/' . $this->present()->url();
+        return url(request()->getRequestUri()) === $this->present()->url();
     }
 
     /**
