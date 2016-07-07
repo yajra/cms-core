@@ -10,7 +10,7 @@
     "templates": [
       {
         "path": "custom",
-        "description": "Custom template path"
+        "description": "Custom Template"
       }
     ]
   }

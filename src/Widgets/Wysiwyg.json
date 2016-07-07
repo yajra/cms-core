@@ -15,6 +15,10 @@
       {
         "path": "widgets.wysiwyg.raw",
         "description": "Raw Output (widgets.wysiwyg.raw)"
+      },
+      {
+        "path": "custom",
+        "description": "Custom Template"
       }
     ]
   }
