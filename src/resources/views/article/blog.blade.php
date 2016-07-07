@@ -6,28 +6,25 @@
 
 <div class="article-details">
     @if($article->param('show_author'))
-    <small class="inline-help">Written by: {{ $article->present()->author }}</small>
-    <br>
+    <p class="article-author">Written by: {{ $article->present()->author }}</p>
     @endif
 
     @if($article->param('show_create_date'))
-    <small class="inline-help">
+    <p class="article-created">
         <i class="fa fa-calendar"></i> Published: {{ $article->present()->datePublished }}
-    </small>
-    <br>
+    </p>
     @endif
 
     @if($article->param('show_modify_date'))
-    <small class="inline-help">
+    <p class="article-modified">
         <i class="fa fa-calendar"></i> Modified: {{ $article->present()->dateModified }}
-    </small>
-    <br>
+    </p>
     @endif
 
     @if($article->param('show_hits'))
-    <small class="inline-help">
+    <p class="article-hits">
         <i class="fa fa-eye"></i> Hits: {{ $article->present()->hits }}
-    </small>
+    </p>
     @endif
 </div>
 
