@@ -56,6 +56,7 @@ class WidgetsController extends Controller
     {
         $widget->extension_id = old('extension_id', Extension::WIDGET_WYSIWYG);
         $widget->template     = old('template', 'widgets.wysiwyg.default');
+        $widget->published    = old('published', true);
 
         return view('administrator.widgets.create', compact('widget'));
     }
