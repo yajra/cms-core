@@ -72,7 +72,7 @@ return [
         'template'                  => 'Template',
         'template_placeholder'      => '',
         'custom_template'           => 'Custom Template',
-        'custom_template_required'  => '(Required if Custom)',
+        'custom_template_required'  => 'This field is required if Custom Template was selected.',
         'parameter'                 => 'Parameter',
         'parameter_placeholder'     => '',
         'position'                  => 'Position',
