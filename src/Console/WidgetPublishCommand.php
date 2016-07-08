@@ -12,7 +12,7 @@ class WidgetPublishCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'widget:install {name}';
+    protected $signature = 'widget:install {name} {--path}';
 
     /**
      * The console command description.
@@ -45,6 +45,10 @@ class WidgetPublishCommand extends Command
     public function handle()
     {
         $path = app_path('Widgets') . DIRECTORY_SEPARATOR . $this->argument('name') . '.json';
+
+        if ($this->option('path')) {
+            $path = base_path($this->argument('name'));
+        }
 
         $this->extensions->registerManifest($path);
         $this->laravel->make('cache.store')->forget('extensions.widgets');
