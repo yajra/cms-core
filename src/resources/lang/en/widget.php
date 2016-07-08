@@ -120,4 +120,13 @@ return [
         'empty'         => 'You don\'t have any menu!',
         'empty_content' => 'You can create menu items inside the :link module.',
     ],
+
+    'login' => [
+        'show_greeting' => 'Show Greeting',
+        'pre_text'      => 'Pre-text',
+        'tooltip'       => [
+            'show_greeting' => 'Show or hide the simple greeting text.',
+            'pre_text'      => 'This is a text or HTML that will displayed above the login form.',
+        ],
+    ],
 ];

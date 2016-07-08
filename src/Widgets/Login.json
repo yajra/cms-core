@@ -1,0 +1,20 @@
+{
+    "name": "Login",
+    "type": "widget",
+    "description": "Displays a Login form.",
+    "version": "1.0.0",
+    "parameters": {
+        "class": "Yajra\\CMS\\Widgets\\Login",
+        "form": "widgets.forms.login",
+        "templates": [
+            {
+              "path": "widgets.login",
+              "description": "Default Login Template"
+            },
+            {
+              "path": "custom",
+              "description": "Custom Template"
+            }
+        ]
+    }
+}
