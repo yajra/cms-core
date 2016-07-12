@@ -63,11 +63,11 @@ return [
             'external_reference' => 'An optional reference used to link to external data sources.',
             'blade_template'     => 'If set, the content of the article will be based on the blade template content.',
             'parameters'         => [
-                'show_title' => 'Show/Hide article title.',
-                'show_author' => 'Show/Hide article author.',
+                'show_title'       => 'Show/Hide article title.',
+                'show_author'      => 'Show/Hide article author.',
                 'show_create_date' => 'Show/Hide the date the article was created.',
                 'show_modify_date' => 'Show/Hide the date the article was updated.',
-                'show_hits' => 'Show/Hide the # of hits the article have.',
+                'show_hits'        => 'Show/Hide the # of hits the article have.',
             ],
         ],
 
@@ -103,20 +103,21 @@ return [
             'blade_template'                 => 'Use Custom Blade Template',
             'blade_template_placeholder'     => 'path.to.blade.template',
             'parameters'                     => [
-                'show_title' => 'Show Title',
-                'show_author' => 'Show Author',
+                'show_title'       => 'Show Title',
+                'show_author'      => 'Show Author',
                 'show_create_date' => 'Show Create Date',
                 'show_modify_date' => 'Show Modify Date',
-                'show_hits' => 'Show Hits',
+                'show_hits'        => 'Show Hits',
             ],
         ],
     ],
 
     'tab' => [
-        'content'    => 'Content',
-        'publishing' => 'Publishing',
-        'permission' => 'Article Permissions',
-        'options'    => 'Options',
+        'content'      => 'Content',
+        'publishing'   => 'Publishing',
+        'images_links' => 'Images and links',
+        'permission'   => 'Article Permissions',
+        'options'      => 'Options',
     ],
 
     'authorization' => [

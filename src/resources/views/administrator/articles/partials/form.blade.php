@@ -34,6 +34,11 @@
             </a>
         </li>
         <li>
+            <a href="#article-images-links" data-toggle="tab">
+                <i class="fa fa-image"></i> {{trans('cms::article.tab.images_links')}}
+            </a>
+        </li>
+        <li>
             <a href="#article-options" data-toggle="tab">
                 <i class="fa fa-eye"></i> {{trans('cms::article.tab.options')}}
             </a>
@@ -50,6 +55,9 @@
         </div>
         <div class="tab-pane" id="article-publishing">
             @include('administrator.articles.partials.form.publishing')
+        </div>
+        <div class="tab-pane" id="article-images-links">
+            @include('administrator.articles.partials.form.images-links')
         </div>
         <div class="tab-pane" id="article-options">
             @include('administrator.articles.partials.form.options')
