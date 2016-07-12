@@ -24,6 +24,29 @@
             {!! form()->text('parameters[image_intro_caption]', $article->param('image_intro_caption'), ['placeholder' => trans('cms::article.form.field.image_intro_caption_placeholder'), 'class' => 'form-control']) !!}
         </div>
         <hr>
+        <div class="form-group">//TODO</div>
+        <div class="form-group {{ $errors->has('parameters[image_float_fulltext]') ? 'has-error' : '' }}">
+            <label class="form-label-style block" for="parameters[image_float_fulltext]">
+                {{trans('cms::article.form.field.image_float_fulltext')}}
+                @tooltip('cms::article.form.tooltip.image_float_fulltext')
+            </label>
+            {!! form()->select('parameters[image_float_fulltext]', ['Use Global','Right', 'Left','None'], $article->param('image_float_fulltext', 0), ['id'=>'parameters[image_float_fulltext]','class'=>'form-control']) !!}
+            {!! $errors->first('parameters[image_float_fulltext]', '<span class="help-block">:message</span>') !!}
+        </div>
+        <div class="form-group">
+            <label class="form-label-style block" for="img_intro_alt_fulltext">
+                {{trans('cms::article.form.field.img_intro_alt_fulltext')}}
+                @tooltip('cms::article.form.tooltip.img_intro_alt_fulltext')
+            </label>
+            {!! form()->text('parameters[img_intro_alt_fulltext]', $article->param('img_intro_alt_fulltext'), ['placeholder' => trans('cms::article.form.field.img_intro_alt_fulltext_placeholder'), 'class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            <label class="form-label-style block" for="image_intro_caption_fulltext">
+                {{trans('cms::article.form.field.image_intro_caption_fulltext')}}
+                @tooltip('cms::article.form.tooltip.image_intro_caption_fulltext')
+            </label>
+            {!! form()->text('parameters[image_intro_caption_fulltext]', $article->param('image_intro_caption_fulltext'), ['placeholder' => trans('cms::article.form.field.image_intro_caption_fulltext_placeholder'), 'class' => 'form-control']) !!}
+        </div>
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-5">
