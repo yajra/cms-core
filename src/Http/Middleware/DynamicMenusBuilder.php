@@ -109,26 +109,9 @@ class DynamicMenusBuilder
         }
 
         if ($menu->isActive()) {
-            $this->setWidgetGlobalScope($menu->id);
             session()->flash('active_menu', $menu);
         }
 
         return $item;
-    }
-
-    /**
-     * Set global scope for widgets.
-     *
-     * @param int $activeMenuId
-     */
-    protected function setWidgetGlobalScope($activeMenuId)
-    {
-        $assignment = [0, $activeMenuId];
-        $widget     = new Widget;
-        $widgets    = $widget->getConnection()->table('widget_menu');
-        $widgets    = $widgets->whereIn('menu_id', $assignment);
-        Widget::addGlobalScope('menu_assignment', function ($query) use ($widgets) {
-            $query->whereIn('id', $widgets->pluck('widget_id'));
-        });
     }
 }

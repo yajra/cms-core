@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Entities;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -61,6 +62,28 @@ class Widget extends Model implements Cacheable
         'authorization',
         'body',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('menu_assignment', function(Builder $builder) {
+            $widget     = new Widget;
+            $assignment = [0];
+            if (session()->has('active_menu')) {
+                $assignment[] = session('active_menu')->id;
+            }
+
+            $widgets    = $widget->getConnection()->table('widget_menu');
+            $widgets    = $widgets->whereIn('menu_id', $assignment);
+            $builder->whereIn('id', $widgets->pluck('widget_id'));
+        });
+    }
 
     /**
      * Query scope by widget position.
