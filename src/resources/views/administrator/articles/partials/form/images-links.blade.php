@@ -1,6 +1,11 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">//TODO</div>
+        <label class="form-label-style block" for="parameters[intro_image]">Intro Image</label>
+        <div class="input-group input-group-sm">
+            {!! form()->imageBrowser('intro_image',['id'=>'intro_image','label'=>'Select']) !!}
+            {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
+        </div>
+        <br>
         <div class="form-group {{ $errors->has('parameters[image_float]') ? 'has-error' : '' }}">
             <label class="form-label-style block" for="parameters[image_float]">
                 {{trans('cms::article.form.field.image_float')}}

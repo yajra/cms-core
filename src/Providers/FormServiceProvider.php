@@ -17,6 +17,12 @@ class FormServiceProvider extends ServiceProvider
         form()->macro('categories', function ($name = 'category_id', $selected = null, $options = []) {
             return form()->select($name, Category::lists(), $selected, $options);
         });
+        form()->macro('imageBrowser', function ($name = 'intro_image', $options = []) {
+            return view('system.macro.image-browser', [
+                'name'        => $name,
+                'options'     => $options,
+            ]);
+        });
     }
 
     /**
