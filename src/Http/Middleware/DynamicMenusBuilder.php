@@ -32,23 +32,11 @@ class DynamicMenusBuilder
             $this->repository = app(Repository::class);
             $this->repository->getPublished()->each(function (Navigation $navigation) {
                 MenuFactory::make($navigation->type, function (Builder $builder) use ($navigation) {
-                    $widgets    = $navigation->getConnection()->table('widget_menu');
-                    $assignment = [0];
-                    $navigation->menus->each(function (Menu $menu) use ($builder, $widgets, &$assignment) {
-                        if ($menu->isActive()) {
-                            $assignment[] = $menu->id;
-                            session()->flash('active_menu', $menu);
-                        }
-
+                    $navigation->menus->each(function (Menu $menu) use ($builder, &$assignment) {
                         $menus = $menu->descendantsAndSelf()->with('permissions')->get()->toHierarchy();
                         foreach ($menus as $menu) {
                             $this->generateMenu($builder, $menu);
                         }
-                    });
-
-                    $widgets = $widgets->whereIn('menu_id', $assignment);
-                    Widget::addGlobalScope('menu_assignment', function ($query) use ($widgets) {
-                        $query->whereIn('id', $widgets->pluck('widget_id'));
                     });
                 });
             });
@@ -60,12 +48,12 @@ class DynamicMenusBuilder
     /**
      * Generate the menu.
      *
-     * @param \Caffeinated\Menus\Builder|\Caffeinated\Menus\Item $parentMenu
+     * @param \Caffeinated\Menus\Builder|\Caffeinated\Menus\Item $menuBuilder
      * @param \Yajra\CMS\Entities\Menu $menu
      */
-    protected function generateMenu($parentMenu, $menu)
+    protected function generateMenu($menuBuilder, $menu)
     {
-        $subMenu = $this->registerMenu($parentMenu, $menu);
+        $subMenu = $this->registerMenu($menuBuilder, $menu);
         $menu->children->each(function (Menu $subItem) use ($subMenu) {
             $subMenuChild = $this->registerMenu($subMenu, $subItem);
             if (count($subItem->children)) {
@@ -77,12 +65,12 @@ class DynamicMenusBuilder
     /**
      * Register a menu.
      *
-     * @param \Caffeinated\Menus\Builder|\Caffeinated\Menus\Item $parentMenu
+     * @param \Caffeinated\Menus\Builder|\Caffeinated\Menus\Item $menuBuilder
      * @param \Yajra\CMS\Entities\Menu $menu
      * @return \Caffeinated\Menus\Builder|bool
      * @throws \Laracasts\Presenter\Exceptions\PresenterException
      */
-    protected function registerMenu($parentMenu, Menu $menu)
+    protected function registerMenu($menuBuilder, Menu $menu)
     {
         if (! $menu->published) {
             return false;
@@ -112,14 +100,35 @@ class DynamicMenusBuilder
             }
         }
 
-        $item = $parentMenu->add($menu->title, $menu->present()->url)
-                           ->attribute('target', $menu->present()->target)
-                           ->attribute('title', $menu->present()->linkTitle);
+        $item = $menuBuilder->add($menu->title, $menu->present()->url)
+                            ->attribute('target', $menu->present()->target)
+                            ->attribute('title', $menu->present()->linkTitle);
 
         if ($menu->present()->linkStyle) {
             $item->attribute('style', $menu->present()->linkStyle);
         }
 
+        if ($menu->isActive()) {
+            $this->setWidgetGlobalScope($menu->id);
+            session()->flash('active_menu', $menu);
+        }
+
         return $item;
+    }
+
+    /**
+     * Set global scope for widgets.
+     *
+     * @param int $activeMenuId
+     */
+    protected function setWidgetGlobalScope($activeMenuId)
+    {
+        $assignment = [0, $activeMenuId];
+        $widget     = new Widget;
+        $widgets    = $widget->getConnection()->table('widget_menu');
+        $widgets    = $widgets->whereIn('menu_id', $assignment);
+        Widget::addGlobalScope('menu_assignment', function ($query) use ($widgets) {
+            $query->whereIn('id', $widgets->pluck('widget_id'));
+        });
     }
 }
