@@ -50,7 +50,7 @@ class MenuPresenter extends Presenter
             }
         }
 
-        return url($this->entity->url);
+        return $this->entity->url;
     }
 
     /**
