@@ -72,6 +72,10 @@ class DynamicMenusBuilder
      */
     protected function registerMenu($menuBuilder, Menu $menu)
     {
+        if (! $menuBuilder) {
+            return false;
+        }
+
         if (! $menu->published) {
             return false;
         }
