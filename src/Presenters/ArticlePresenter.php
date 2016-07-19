@@ -92,7 +92,10 @@ class ArticlePresenter extends Presenter
      */
     public function title()
     {
-        $heading = session('active_menu')->param('page_heading');
+        $heading = null;
+        if (session()->has('active_menu')) {
+            $heading = session('active_menu')->param('page_heading');
+        }
 
         return $heading ? $heading : $this->entity->title;
     }
