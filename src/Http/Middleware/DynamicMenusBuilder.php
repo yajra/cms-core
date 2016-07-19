@@ -104,7 +104,7 @@ class DynamicMenusBuilder
             }
         }
 
-        $item = $menuBuilder->add($menu->title, $menu->present()->url)
+        $item = $menuBuilder->add($menu->title, url($menu->present()->url))
                             ->attribute('target', $menu->present()->target)
                             ->attribute('title', $menu->present()->linkTitle);
 
