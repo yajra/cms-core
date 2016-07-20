@@ -126,7 +126,7 @@ class ArticlesController extends Controller
         $article->togglePublishedState();
 
         return $this->notifySuccess(trans(
-                'article.update.publish', [
+                'cms::article.update.publish', [
                 'task' => $article->published ? 'published' : 'unpublished',
             ])
         );
