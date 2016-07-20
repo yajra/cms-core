@@ -150,4 +150,14 @@ class Category extends Node implements UrlGenerator
     {
         return 'category/' . $this->present()->alias . '/' . $args;
     }
+
+    /**
+     * Get category's route name.
+     *
+     * @return string
+     */
+    public function getRouteName()
+    {
+        return 'category.' . implode('.', explode('/', $this->present()->alias));
+    }
 }
