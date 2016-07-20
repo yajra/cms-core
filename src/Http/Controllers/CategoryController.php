@@ -3,7 +3,6 @@
 namespace Yajra\CMS\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use Illuminate\Http\Request;
 use Yajra\CMS\Entities\Category;
 
@@ -19,14 +18,10 @@ class CategoryController extends Controller
     public function show(Category $category, Request $request)
     {
         $category->increment('hits');
-        $layout = $request->query('layout', 'blog');
 
+        $layout   = $request->query('layout', 'blog');
         $limit    = $request->get('limit', $layout == 'list' ? 10 : 5);
         $articles = $category->articles()->paginate($limit);
-
-        if ($request->has('limit')) {
-            $articles->setPath('?limit=' . $limit);
-        }
 
         return view('category.' . $layout, compact('category', 'articles', 'limit'));
     }

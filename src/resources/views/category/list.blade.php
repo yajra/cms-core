@@ -28,9 +28,9 @@
 
     <table class="table table-bordered">
         <caption>
+            {!! form()->open(['class' => 'form-horizontal', 'id' => 'limit-form', 'method' => 'get']) !!}
             <div class="row">
                 <div class="col-md-3">
-                    {!! form()->open(['class' => 'form-horizontal', 'id' => 'limit-form', 'method' => 'get']) !!}
                     <div class="form-group">
                         <label class="control-label col-md-2" for="limit">Limit</label>
 
@@ -40,6 +40,7 @@
                     </div>
                 </div>
             </div>
+            {{ form()->hidden('layout', 'list') }}
             {!! form()->close() !!}
         </caption>
         <thead>
@@ -65,9 +66,9 @@
 
 @push('scripts')
 <script>
-    $(function(){
-        $('select[name=limit]').on('change', function(){
-           $('#limit-form').submit();
+    $(function () {
+        $('select[name=limit]').on('change', function () {
+            $('#limit-form').submit();
         });
     });
 </script>
