@@ -30,7 +30,7 @@
             <hr>
 
             <div id="menu-item-selected-container">
-                @include($menu->extension->param('template'))
+                {{--@include($menu->extension->param('template'))--}}
             </div>
         </div>
     </div>
