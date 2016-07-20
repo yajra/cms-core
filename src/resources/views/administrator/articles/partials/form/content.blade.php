@@ -19,7 +19,7 @@
                 {{trans('cms::article.form.field.category')}}
                 @tooltip('cms::article.form.tooltip.category')
             </label>
-            {!! form()->select('category_id', $categories, null, ['class' => 'form-control']) !!}
+            {!! form()->categories('category_id', null, ['class' => 'form-control']) !!}
             {!! $errors->first('category_id', '<span class="help-block">:message</span>') !!}
         </div>
 

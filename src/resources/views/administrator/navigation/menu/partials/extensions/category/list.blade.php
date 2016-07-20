@@ -30,7 +30,7 @@
 <script>
     $(function () {
         $('#select-category').on('change', function() {
-            var slug = $(this).find(':selected').text();
+            var slug = $(this).find(':selected').data('alias');
             $('#url').val('category/' + slug.toLowerCase());
         }).select2().change();
     });

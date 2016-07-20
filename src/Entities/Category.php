@@ -2,16 +2,16 @@
 
 namespace Yajra\CMS\Entities;
 
-use Yajra\CMS\Contracts\UrlGenerator;
-use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
-use Yajra\CMS\Entities\Traits\HasParameters;
-use Yajra\CMS\Entities\Traits\PublishableTrait;
-use Yajra\CMS\Presenters\CategoryPresenter;
 use Baum\Node;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Yajra\Auditable\AuditableTrait;
+use Yajra\CMS\Contracts\UrlGenerator;
+use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
+use Yajra\CMS\Entities\Traits\HasParameters;
+use Yajra\CMS\Entities\Traits\PublishableTrait;
+use Yajra\CMS\Presenters\CategoryPresenter;
 
 /**
  * @property int depth
@@ -57,21 +57,11 @@ class Category extends Node implements UrlGenerator
     /**
      * Get lists of categories.
      *
-     * @return array
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public static function lists()
     {
-        $root  = static::root();
-        $items = [];
-
-        foreach ($root->descendants()->orderBy('lft')->get() as $category) {
-            $items[] = [
-                'title' => $category->present()->indentedTitle(),
-                'id'    => $category->id,
-            ];
-        }
-
-        return array_pluck($items, 'title', 'id');
+        return static::root()->descendants()->orderBy('lft')->get();
     }
 
     /**
