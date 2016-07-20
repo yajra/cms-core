@@ -10,16 +10,11 @@
     <div class="row">
         <div class="col-md-6">
             @include('administrator.dashboard.latest')
+            @include('administrator.dashboard.config')
         </div>
 
         <div class="col-md-6">
             @include('administrator.dashboard.popular')
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            @include('administrator.dashboard.config')
         </div>
     </div>
 @endsection
