@@ -3,6 +3,7 @@
     "type": "widget",
     "description": "Displays a Login form.",
     "version": "1.0.0",
+    "protected": true,
     "parameters": {
         "class": "Yajra\\CMS\\Widgets\\Login",
         "form": "widgets.forms.login",
