@@ -23,6 +23,17 @@ class CategoryController extends Controller
         $limit    = $request->get('limit', $layout == 'list' ? 10 : 5);
         $articles = $category->articles()->paginate($limit);
 
-        return view('category.' . $layout, compact('category', 'articles', 'limit'));
+        $path = null;
+        if ($layout === 'list') {
+            $path .= '?layout=list';
+            $articles->setPath($path);
+        }
+
+        if ($request->has('limit')) {
+            $path .= '&limit=' . $limit;
+            $articles->setPath($path);
+        }
+
+        return view("category.$layout", compact('category', 'articles', 'limit'));
     }
 }
