@@ -5,6 +5,7 @@ namespace Yajra\CMS\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\CMS\Entities\Category;
+use Yajra\CMS\Events\CategoryWasViewed;
 
 class CategoryController extends Controller
 {
@@ -33,6 +34,8 @@ class CategoryController extends Controller
             $path .= '&limit=' . $limit;
             $articles->setPath($path);
         }
+
+        event(new CategoryWasViewed($category));
 
         return view("category.$layout", compact('category', 'articles', 'limit'));
     }

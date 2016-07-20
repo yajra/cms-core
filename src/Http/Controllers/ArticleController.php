@@ -2,9 +2,9 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Yajra\CMS\Entities\Article;
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
+use Yajra\CMS\Entities\Article;
+use Yajra\CMS\Events\ArticleWasViewed;
 
 class ArticleController extends Controller
 {
@@ -17,6 +17,7 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $article->increment('hits');
+        event(new ArticleWasViewed($article));
 
         return view('article.show', compact('article'));
     }
