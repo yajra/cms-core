@@ -133,7 +133,7 @@ class RouteServiceProvider extends ServiceProvider
                     $middleware[] = 'auth';
                 }
 
-                $router->get('category/' . $category->present()->alias,
+                $router->get($category->present()->slug,
                     function () use ($category, $router) {
                         return $this->app->call(CategoryController::class . '@show', [
                             'category'   => $category,

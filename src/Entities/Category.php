@@ -150,7 +150,7 @@ class Category extends Node implements UrlGenerator
     {
         $layout = $layout ? '?layout=' . $layout : '';
 
-        return url('category/' . $this->present()->alias) . $layout;
+        return url($this->present()->alias) . $layout;
     }
 
     /**
@@ -160,6 +160,6 @@ class Category extends Node implements UrlGenerator
      */
     public function getRouteName()
     {
-        return 'category.' . implode('.', explode('/', $this->present()->alias));
+        return implode('.', explode('/', $this->present()->alias));
     }
 }

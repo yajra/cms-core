@@ -32,4 +32,14 @@ class CategoryPresenter extends Presenter
 
         return implode('/', $alias);
     }
+
+    /**
+     * Category's slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return $this->alias();
+    }
 }
