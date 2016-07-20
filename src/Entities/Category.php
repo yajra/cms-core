@@ -148,6 +148,6 @@ class Category extends Node implements UrlGenerator
      */
     public function getUrl($args)
     {
-        return 'category/' . $this->alias . '/' . $args;
+        return 'category/' . $this->present()->alias . '/' . $args;
     }
 }

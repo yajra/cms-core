@@ -26,7 +26,7 @@ class FormServiceProvider extends ServiceProvider
                     $selected = ((string) $category->id == (string) $selected) ? 'selected' : null;
                 }
 
-                $options = ['value' => $category->id, 'selected' => $selected, 'data-alias' => $category->alias];
+                $options = ['value' => $category->id, 'selected' => $selected, 'data-alias' => $category->present()->alias];
 
                 $html[] = new HtmlString('<option ' . html()->attributes($options) . '>' . e($category->present()->indentedTitle) . '</option>');
             });

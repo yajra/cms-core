@@ -135,27 +135,42 @@ class RouteServiceProvider extends ServiceProvider
                     $middleware[] = 'auth';
                 }
 
-                $router->get('category/' . $category->alias . '/{layout?}',
+                $routeName = $this->getRouteName($category);
+                $router->get('category/' . $category->present()->alias . '/{layout?}',
                     function ($layout = 'list') use ($category, $router) {
                         return $this->app->call(CategoryController::class . '@show', [
                             'category'   => $category,
                             'layout'     => $layout,
                             'parameters' => $router->current()->parameters(),
                         ]);
-                    })->middleware($middleware)->name('category.' . $category->alias);
+                    })->middleware($middleware)->name($routeName);
 
                 /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
-                $breadcrumb->register('category.' . $category->alias,
-                    function (\DaveJamesMiller\Breadcrumbs\Generator $breadcrumbs) use ($category) {
-                        $breadcrumbs->parent('home');
-                        $breadcrumbs->push($category->title, route('category.' . $category->alias));
+                $breadcrumb->register($routeName,
+                    function (\DaveJamesMiller\Breadcrumbs\Generator $breadcrumbs) use ($category, $routeName) {
+                        if ($category->isChild() && $category->depth > 1) {
+                            $parent = $category->ancestors()->where('depth', '<>', 0)->first();
+                            $breadcrumbs->parent($this->getRouteName($parent));
+                        } else {
+                            $breadcrumbs->parent('home');
+                        }
+                        $breadcrumbs->push($category->title, route($routeName));
                     }
                 );
             });
         } catch (QueryException $e) {
             // \\_(",)_//
         }
+    }
+
+    /**
+     * @param \Yajra\CMS\Entities\Category $category
+     * @return string
+     */
+    protected function getRouteName(Category $category)
+    {
+        return 'category.' . implode('.', explode('/', $category->present()->alias));
     }
 
     /**
