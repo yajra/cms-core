@@ -61,11 +61,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes(Router $router)
     {
         $this->mapArticleRoutes($router);
-
         $this->mapCategoryRoutes($router);
-
         $this->mapAdministratorAuthenticationRoutes($router);
-
         $this->mapAdministratorRoutes($router);
     }
 
@@ -98,19 +95,20 @@ class RouteServiceProvider extends ServiceProvider
                     }
                 }
 
-                $router->get($article->alias, function () use ($article, $router) {
-                    return $this->app->call(ArticleController::class . '@show', [
-                        'article'    => $article,
-                        'parameters' => $router->current()->parameters(),
-                    ]);
-                })->middleware($middleware)->name($article->alias);
+                $router->get($article->present()->slug,
+                    function () use ($article, $router) {
+                        return $this->app->call(ArticleController::class . '@show', [
+                            'article'    => $article,
+                            'parameters' => $router->current()->parameters(),
+                        ]);
+                    })->middleware($middleware)->name($article->getRouteName());
 
                 /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
-                $breadcrumb->register($article->alias,
+                $breadcrumb->register($article->getRouteName(),
                     function (\DaveJamesMiller\Breadcrumbs\Generator $breadcrumbs) use ($article) {
-                        $breadcrumbs->parent('home');
-                        $breadcrumbs->push($article->title, route($article->alias));
+                        $breadcrumbs->parent($article->category->getRouteName());
+                        $breadcrumbs->push($article->title, route($article->getRouteName()));
                     }
                 );
             });
@@ -135,11 +133,10 @@ class RouteServiceProvider extends ServiceProvider
                     $middleware[] = 'auth';
                 }
 
-                $router->get('category/' . $category->present()->alias . '/{layout?}',
-                    function ($layout = 'list') use ($category, $router) {
+                $router->get('category/' . $category->present()->alias,
+                    function () use ($category, $router) {
                         return $this->app->call(CategoryController::class . '@show', [
                             'category'   => $category,
-                            'layout'     => $layout,
                             'parameters' => $router->current()->parameters(),
                         ]);
                     })->middleware($middleware)->name($category->getRouteName());

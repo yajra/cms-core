@@ -14,7 +14,7 @@ class EloquentRepository extends RepositoryAbstract implements Repository
      */
     public function getAllPublished()
     {
-        return $this->getModel()->published()->orderBy('depth', 'desc')->get();
+        return $this->getModel()->published()->where('depth', '<>', 0)->orderBy('depth', 'desc')->get();
     }
 
     /**

@@ -7,7 +7,8 @@
             <label class="form-label-style col-md-3">Choose a Category</label>
 
             <div class="input-control col-md-9">
-                {!! form()->categories('parameters[id]', null, ['id' => 'select-category', 'class' => 'select2 form-control']) !!}
+                {{ form()->categories('parameters[id]', null, ['id' => 'select-category', 'class' => 'select2 form-control']) }}
+                {{ form()->hidden('parameters[data]', 'list') }}
             </div>
         </div>
 
@@ -19,7 +20,7 @@
             <div class="input-control col-md-9">
                 <div class="input-group">
                     <span class="input-group-addon site-label">{{ url('/') }}/</span>
-                    {!! form()->input('text', 'url', null, ['id'=>'url','class'=>'form-control','placeholder'=>'URL','readonly']) !!}
+                    {{ form()->input('text', 'url', null, ['id'=>'url','class'=>'form-control','placeholder'=>'URL','readonly']) }}
                 </div>
                 {!! $errors->first('url', '<span class="help-block">:message</span>') !!}
             </div>
@@ -31,7 +32,7 @@
     $(function () {
         $('#select-category').on('change', function() {
             var slug = $(this).find(':selected').data('alias');
-            $('#url').val('category/' + slug.toLowerCase());
+            $('#url').val('category/' + slug.toLowerCase() + '?layout=list');
         }).select2().change();
     });
 </script>

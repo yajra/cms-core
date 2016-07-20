@@ -33,6 +33,7 @@ use Yajra\CMS\Presenters\ArticlePresenter;
  * @property string parameters
  * @property string authorization
  * @property string author_alias
+ * @property Category category
  */
 class Article extends Model implements UrlGenerator
 {
@@ -145,8 +146,18 @@ class Article extends Model implements UrlGenerator
      * @param mixed $args
      * @return string
      */
-    public function getUrl($args)
+    public function getUrl($args = null)
     {
-        return $this->alias;
+        return url($this->category->getUrl($args) . '/' . $this->alias);
+    }
+
+    /**
+     * Get article's route name.
+     *
+     * @return string
+     */
+    public function getRouteName()
+    {
+        return $this->category->getRouteName() . '.' . $this->alias;
     }
 }

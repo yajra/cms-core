@@ -143,12 +143,14 @@ class Category extends Node implements UrlGenerator
     /**
      * Get url from implementing class.
      *
-     * @param mixed $args
+     * @param mixed $layout
      * @return string
      */
-    public function getUrl($args)
+    public function getUrl($layout = null)
     {
-        return 'category/' . $this->present()->alias . '/' . $args;
+        $layout = $layout ? '?layout=' . $layout : '';
+
+        return url('category/' . $this->present()->alias) . $layout;
     }
 
     /**

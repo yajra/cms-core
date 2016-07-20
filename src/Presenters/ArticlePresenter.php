@@ -99,4 +99,14 @@ class ArticlePresenter extends Presenter
 
         return $heading ? $heading : $this->entity->title;
     }
+
+    /**
+     * Get article's slug.
+     *
+     * @return string
+     */
+    public function slug()
+    {
+        return implode('/', explode('.', $this->entity->getRouteName()));
+    }
 }
