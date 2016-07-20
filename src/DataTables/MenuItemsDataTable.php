@@ -25,9 +25,6 @@ class MenuItemsDataTable extends DataTable
             ->editColumn('alias', function (Menu $menu) {
                 return '<span class="label bg-primary">' . $menu->alias . '</span>';
             })
-            ->editColumn('title', function (Menu $menu) {
-                return $menu->present()->indentedTitle();
-            })
             ->editColumn('published', function (Menu $menu) {
                 return dt_check($menu->published);
             })
