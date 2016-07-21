@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Presenters;
 
+use Carbon\Carbon;
 use Laracasts\Presenter\Presenter;
 
 class ArticlePresenter extends Presenter
@@ -33,7 +34,7 @@ class ArticlePresenter extends Presenter
      */
     public function datePublished()
     {
-        return $this->entity->created_at->format('d M Y');
+        return $this->entity->created_at->diffForHumans();
     }
 
     /**
