@@ -1,4 +1,4 @@
 <section class="category-article">
-    @include('article.blog', ['article' => $article])
+    @include('article.partials.header', ['article' => $article])
 </section>
 <hr>
