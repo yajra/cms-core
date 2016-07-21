@@ -15,9 +15,9 @@ class ThemeChanger
      */
     public function handle($request, Closure $next)
     {
-        if ($request->query('tmpl')) {
-            $finder   = app('theme.view.finder');
-            $basePath = config('theme.path', base_path('themes')) . DIRECTORY_SEPARATOR . $request->query('tmpl');
+        if ($request->query('cms_theme')) {
+            $finder   = app('themes.view.finder');
+            $basePath = config('theme.path', base_path('themes')) . DIRECTORY_SEPARATOR . $request->query('cms_theme');
             $finder->setBasePath($basePath);
         }
 
