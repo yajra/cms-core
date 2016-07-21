@@ -22,7 +22,7 @@ class CategoryController extends Controller
 
         $layout   = $request->query('layout', 'blog');
         $limit    = $request->get('limit', $layout == 'list' ? 10 : 5);
-        $articles = $category->articles()->simplePaginate($limit);
+        $articles = $category->articles()->latest()->simplePaginate($limit);
 
         $path = null;
         if ($layout === 'list') {
