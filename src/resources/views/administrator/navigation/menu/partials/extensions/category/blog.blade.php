@@ -31,7 +31,7 @@
     $(function () {
         $('#select-category').on('change', function() {
             var slug = $(this).find(':selected').data('alias');
-            $('#url').val('category/' + slug.toLowerCase());
+            $('#url').val(slug.toLowerCase());
         }).select2().change();
     });
 </script>

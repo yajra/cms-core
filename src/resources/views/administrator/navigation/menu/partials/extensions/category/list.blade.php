@@ -32,7 +32,7 @@
     $(function () {
         $('#select-category').on('change', function() {
             var slug = $(this).find(':selected').data('alias');
-            $('#url').val('category/' + slug.toLowerCase() + '?layout=list');
+            $('#url').val(slug.toLowerCase() + '?layout=list');
         }).select2().change();
     });
 </script>
