@@ -21,7 +21,7 @@ class ExtensionsDataTable extends DataTable
                 return "<h3 class=\"lead no-margin text-blue\">{$extension->name} <small>{$extension->version}</small></h3>
                             <p>{$extension->description}</p>";
             })
-            ->editColumn('type', function($extension) {
+            ->editColumn('type', function ($extension) {
                 return dt_label($extension->type, 'danger');
             })
             ->editColumn('enabled', function ($extension) {
@@ -53,7 +53,15 @@ class ExtensionsDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->ajax('')
                     ->addAction(['width' => '80px'])
-                    ->parameters($this->getBuilderParameters());
+                    ->parameters([
+                        'order'   => [[0, 'desc']],
+                        'buttons' => [
+                            'export',
+                            'print',
+                            'reset',
+                            'reload',
+                        ],
+                    ]);
     }
 
     /**
@@ -61,7 +69,7 @@ class ExtensionsDataTable extends DataTable
      *
      * @return array
      */
-    private function getColumns()
+    protected function getColumns()
     {
         return [
             'id'      => ['width' => '20px', 'title' => trans('cms::extension.table.id')],
