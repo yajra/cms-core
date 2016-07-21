@@ -61,5 +61,5 @@ return [
         'content'    => 'Category',
         'publishing' => 'Publishing',
     ],
-    'no-articles' => 'No articles found!',
+    'no-articles' => 'Whoops, there are no articles here yet :/',
 ];
