@@ -15,13 +15,13 @@ class ThemeChanger
      */
     public function handle($request, Closure $next)
     {
-        if ($theme = $request->query('cms_theme')) {
+        if ($theme = $request->query('cms-theme')) {
             $finder   = app('themes.view.finder');
-            $basePath = config('theme.path', base_path('themes/frontend')) . DIRECTORY_SEPARATOR . $theme;
+            $basePath = config('themes.path.frontend', base_path('themes/frontend'));
+            $finder->removeBasePath();
+            $finder->setBasePath($basePath . DIRECTORY_SEPARATOR . $theme);
 
             config(['themes.frontend' => $theme]);
-
-            $finder->setBasePath($basePath);
         }
 
         return $next($request);
