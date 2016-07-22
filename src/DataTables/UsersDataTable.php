@@ -14,20 +14,22 @@ class UsersDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->editColumn('created_at', '{{ $created_at->diffForHumans() }}')
-            ->editColumn('email', function ($user) {
+            ->editColumn('created_at', function(User $user) {
+                return $user->created_at->diffForHumans();
+            })
+            ->editColumn('email', function (User $user) {
                 return $this->datatables->getHtmlBuilder()->html->mailto($user->email)->toHtml();
             })
-            ->editColumn('blocked', function ($user) {
+            ->editColumn('blocked', function (User $user) {
                 return dt_check($user->blocked);
             })
-            ->editColumn('confirmed', function ($user) {
+            ->editColumn('confirmed', function (User $user) {
                 return dt_check($user->confirmed);
             })
-            ->editColumn('administrator', function ($user) {
+            ->editColumn('administrator', function (User $user) {
                 return dt_check($user->administrator);
             })
-            ->editColumn('roles', function ($user) {
+            ->editColumn('roles', function (User $user) {
                 return dt_render('administrator.users.datatables.roles', compact('user'));
             })
             ->addColumn('action', 'administrator.users.datatables.action')
