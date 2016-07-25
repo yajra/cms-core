@@ -32,6 +32,9 @@ class ArticlesDataTable extends DataTable
             ->addColumn('plain_title', function (Article $article) {
                 return $article->title;
             })
+            ->addColumn('slug', function(Article $article){
+                return $article->present()->slug;
+            })
             ->make(true);
     }
 

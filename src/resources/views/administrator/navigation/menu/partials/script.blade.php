@@ -44,7 +44,7 @@
                     initComplete: function () {
                         $('#articles-table tbody').on('click', 'tr', function () {
                             var article = articlesDT.row(this).data();
-                            $('#url').val(article.alias);
+                            $('#url').val(article.slug);
                             $('#selected-article-id').val(article.id);
                             $('#selected-article-title').val(article.plain_title);
                             $('#articles-list-modal').modal('hide');
