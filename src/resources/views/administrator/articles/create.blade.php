@@ -22,7 +22,6 @@
             </button>
         </div>
     </div>
-
     @include('administrator.articles.partials.form')
     {!! form()->close() !!}
 @stop
