@@ -27,11 +27,19 @@
 @endpush
 
 <div class="modal fade" tabindex="-1" role="dialog" id="filebrowser-modal">
+    {!! Form::open(['url'=>'/administrator/media/upload/image','id'=>'imageUploadForm','method' => 'POST','files'=>true]) !!}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Image Browser<small>(Click image to select.)</small></h4>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Image Browser
+                    <small>(Click image to select.)</small>
+                </h4>
             </div>
             <div class="modal-body" style="padding-top: 0px;">
                 <div class="row">
@@ -42,37 +50,67 @@
                                     <ul class="nav nav-pills nav-stacked">
                                         <li class="active">
                                             <div style="padding: 8px 0px;">
-                                                {!! form()->select('parameters[image_float]', $mediaDirectories, $article->param('image_float', 0), [
+                                                {!! form()->select('directory', $mediaDirectories, null, [
                                                     'id'        => 'mediaFiles',
                                                     'class'     => 'form-control',
                                                     'style'     => 'width:90%; display:inline-block'
                                                 ]) !!}
-                                                <button id="btn-up" v-on:click="selectUp" type="button" class="btn btn-primary">Up</button>
+                                                <button id="btn-up"
+                                                        v-on:click="selectUp"
+                                                        type="button"
+                                                        class="btn btn-primary">Up
+                                                </button>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
-                                <div><ul id="file-image-container"></ul></div>
+                                <div>
+                                    <ul id="file-image-container"></ul>
+                                </div>
                                 <div>
                                     <ul class="nav nav-pills nav-stacked">
                                         <li class="active">
                                             <div style="padding: 8px;">
                                                 <div class="form-group">
-                                                    <label for="category_id" class="form-label-style block">Image URL</label>
+                                                    <label for="category_id"
+                                                           class="form-label-style block">Image URL</label>
                                                     {!! form()->input('text', 'image_url', null, ['id'=>'image_url','class'=>'form-control','placeholder'=>'Image url here.']) !!}
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6 text-left">
-                                                        <button id="insert-img-btn" type="button" data-attr="" v-on:click="InsetSelectedImage" class="btn btn-primary">Insert</button>
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">Cancel</button>
-                                                   </div>
-                                                    <div class="col-md-6 text-right"><button type="button" class="btn btn-default">Upload New Image</button></div>
+                                                        <button id="insert-img-btn"
+                                                                type="button"
+                                                                data-attr=""
+                                                                v-on:click="InsetSelectedImage"
+                                                                class="btn btn-primary">
+                                                            Insert
+                                                        </button>
+                                                        <button type="button"
+                                                                class="btn btn-default"
+                                                                data-dismiss="modal"
+                                                                aria-label="Close">Cancel
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-6 text-right">
+                                                        <button v-on:click="showUploader"
+                                                                type="button"
+                                                                class="btn btn-default">
+                                                            Upload New Image
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <div id="uploader-container">
-                                                    <div class="col-md-6 text-left"><input type="file"></div>
+                                                    <div class="col-md-6 text-left">
+                                                        <input type="file" name="image" id="image">
+                                                    </div>
                                                     <div class="col-md-6 text-right">
-                                                        <button type="button" class="btn btn-danger"><i class="fa fa-upload"></i>&nbsp;Start Upload</button>
-                                                        <button type="button" class="btn btn-default" v-on:click="hideUploader">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="fa fa-upload"></i>&nbsp;Start Upload
+                                                        </button>
+                                                        <button type="button"
+                                                                class="btn btn-default"
+                                                                v-on:click="hideUploader">Cancel
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,6 +124,7 @@
             </div>
         </div>
     </div>
+    {!! Form::close() !!}
 </div>
 
 @push('scripts')
@@ -108,13 +147,46 @@
                         $('#filebrowser-modal').modal('show');
                     });
                 })
+                $('#imageUploadForm').on('submit', (function (e) {
+                    e.preventDefault();
+                    $.blockUI();
+                    var formData = new FormData(this);
+                    $.ajax({
+                        type: 'POST',
+                        url: $(this).attr('action'),
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            $('#mediaFiles').val($('#mediaFiles').val()).change();
+                            var fileInput = $('#image');
+                            fileInput.replaceWith(fileInput.val('').clone(true));
+                            $('#uploader-container').css('display', 'none');
+                            $.unblockUI();
+                            swal({
+                                title: data.title,
+                                text: data.text,
+                                type: data.type,
+                            });
+                        },
+                        error: function (data) {
+                            response = JSON.parse(data.responseText);
+                            swal({
+                                title: "Oops!",
+                                text: response.image[0],
+                                type: "error",
+                            });
+                        }
+                    });
+                }));
             },
             methods: {
                 showFileBrowser: function (input) {
                     $('#image_url').val('');
                     $('#mediaFiles').val('/').change();
                     $('#uploader-container').css('display', 'none');
-                    $('#insert-img-btn').attr('data-attr',input);
+                    $('#insert-img-btn').attr('data-attr', input);
                 },
                 selectUp: function () {
                     var $op = $('#mediaFiles option:selected'), $this = $(this);
@@ -124,7 +196,7 @@
                 },
                 InsetSelectedImage: function () {
                     var container = $('#insert-img-btn').attr('data-attr');
-                    $('#'+container).val($('#image_url').val());
+                    $('#' + container).val($('#image_url').val());
                     $('#filebrowser-modal').modal('hide');
                 },
                 clearContent: function (file) {
@@ -135,7 +207,7 @@
                 },
                 hideUploader: function () {
                     $('#uploader-container').css('display', 'none');
-                }
+                },
             }
         })
     });

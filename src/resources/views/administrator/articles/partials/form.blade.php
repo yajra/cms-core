@@ -58,7 +58,6 @@
         </div>
         <div class="tab-pane" id="article-images-links">
             @include('administrator.articles.partials.form.images-links')
-            @include('administrator.file-browser.modal')
         </div>
         <div class="tab-pane" id="article-options">
             @include('administrator.articles.partials.form.options')

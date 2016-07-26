@@ -2,7 +2,11 @@
     <div class="col-md-6">
         <label class="form-label-style block" for="parameters[intro_image]">Intro Image</label>
         <div class="input-group input-group-sm">
-            {!! form()->imageBrowser('intro_image',['id'=>'intro_image','label'=>'Select', 'vueEvent'=>'v-on:click=showFileBrowser(\'intro_image\')' ]) !!}
+            {!! form()->imageBrowser('parameters[intro_image]',[
+                'id'        => 'intro_image',
+                'label'     => 'Select',
+                'value'     => '',
+            ]) !!}
             {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
         </div>
         <br>
@@ -29,10 +33,13 @@
             {!! form()->text('parameters[image_intro_caption]', $article->param('image_intro_caption'), ['placeholder' => trans('cms::article.form.field.image_intro_caption_placeholder'), 'class' => 'form-control']) !!}
         </div>
         <hr>
-        <label class="form-label-style block" for="parameters[image_fulltext]">Full Article Image</label>
         <div class="input-group input-group-sm">
-            {!! form()->imageBrowser('image_fulltext',['id'=>'image_fulltext','label'=>'Select', 'vueEvent'=>'v-on:click=showFileBrowser(\'image_fulltext\')' ]) !!}
-            {!! $errors->first('parameters[image_fulltext]', '<span class="help-block">:message</span>') !!}
+            {!! form()->imageBrowser('parameters[image_fulltext]',[
+                'id'        => 'image_fulltext',
+                'label'     => 'Select',
+                'value'     => '',
+            ]) !!}
+            {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
         </div>
         <br>
         <div class="form-group {{ $errors->has('parameters[image_float_fulltext]') ? 'has-error' : '' }}">

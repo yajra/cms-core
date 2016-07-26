@@ -9,9 +9,17 @@ use Yajra\Acl\Models\Permission;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Configuration;
 use Yajra\CMS\Entities\Menu;
+use Symfony\Component\Finder\Finder;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
+    /**
+     * Media public storage.
+     *
+     * @var string
+     */
+    public $mediaPath = 'app/public/media';
+
     /**
      * Bootstrap the application services.
      *
@@ -55,6 +63,40 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer(['administrator.partials.permissions'], function (View $view) {
             $view->with('permissions', Permission::all());
         });
+
+        view()->composer(['system.macro.image-browser'], function (View $view) {
+            $view->with('mediaDirectories', $this->getFileDirectories());
+        });
+    }
+
+    /**
+     * Show all directories on media path.
+     *
+     * @return array
+     */
+    protected function getFileDirectories()
+    {
+        $mediaFiles['/'] = '/';
+        $path            = storage_path($this->mediaPath);
+        foreach ($this->getFiles($path)->directories() as $file) {
+            $strFile              = str_replace($path, '', $file->getRealPath());
+            $mediaFiles[$strFile] = $strFile;
+        }
+
+        return $mediaFiles;
+    }
+
+    /**
+     * Symfony file finder.
+     * Show all files in selected $path directory.
+     * Sort by file type.
+     *
+     * @param string $path
+     * @return \Symfony\Component\Finder\Finder
+     */
+    protected function getFiles($path)
+    {
+        return Finder::create()->in($path)->sortByType();
     }
 
     /**

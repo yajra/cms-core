@@ -50,7 +50,7 @@ class ArticlesController extends Controller
     {
         $article->published = true;
         $mediaDirectories   = $this->getFileDirectories();
-        
+
         return view('administrator.articles.create', compact('article', 'mediaDirectories'));
     }
 
@@ -82,7 +82,9 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('administrator.articles.edit', compact('article'));
+        $mediaDirectories = $this->getFileDirectories();
+
+        return view('administrator.articles.edit', compact('article','mediaDirectories'));
     }
 
     /**
