@@ -57,15 +57,14 @@ class ImageBrowserController extends Controller
      */
     public function getMediaFiles($currentPath = null, $mediaFiles = [])
     {
-        $path  = storage_path('app/public/media' . $currentPath);
-        $files = Finder::create()
-                       ->in($path)
-                       ->sortByType()
-                       ->notName('*.docx')
-                       ->notName('*.mp3')
-                       ->notName('*.xlsx')
-                       ->depth(0);
-        foreach ($files as $file) {
+        $path       = storage_path('app/public/media' . $currentPath);
+        $imageFiles = $this->getImageFiles($path);
+
+        foreach (Finder::create()->in($path)->sortByType()->directories() as $file) {
+            $imageFiles->name($file->getBaseName());
+        }
+
+        foreach ($imageFiles as $file) {
             $mediaFiles[] = [
                 'filename' => $file->getFilename(),
                 'realPath' => $file->getRealPath(),
@@ -75,5 +74,21 @@ class ImageBrowserController extends Controller
         }
 
         return $mediaFiles;
+    }
+
+    /**
+     * Get image files by path.
+     *
+     * @param string $path
+     * @return Finder
+     */
+    private function getImageFiles($path)
+    {
+        return Finder::create()->in($path)->sortByType()
+                     ->name('*.jpg')
+                     ->name('*.jpeg')
+                     ->name('*.png')
+                     ->name('*.gif')
+                     ->depth(0);
     }
 }
