@@ -203,7 +203,7 @@
     }
     function chooseImage(file) {
         var attrId = $('#currentActive').val() + 'imageUrl';
-        $('#' + attrId).val('/images' + file)
+        $('#' + attrId).val('/media' + file)
     }
 </script>
 @endpush
