@@ -57,8 +57,15 @@ class ImageBrowserController extends Controller
      */
     public function getMediaFiles($currentPath = null, $mediaFiles = [])
     {
-        $path = storage_path('app/public/media' . $currentPath);
-        foreach (Finder::create()->in($path)->sortByType()->depth(0) as $file) {
+        $path  = storage_path('app/public/media' . $currentPath);
+        $files = Finder::create()
+                       ->in($path)
+                       ->sortByType()
+                       ->notName('*.docx')
+                       ->notName('*.mp3')
+                       ->notName('*.xlsx')
+                       ->depth(0);
+        foreach ($files as $file) {
             $mediaFiles[] = [
                 'filename' => $file->getFilename(),
                 'realPath' => $file->getRealPath(),
