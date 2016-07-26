@@ -17,13 +17,6 @@ class ImageBrowserController extends Controller
     use NotificationResponse;
 
     /**
-     * Media public storage.
-     *
-     * @var string
-     */
-    public $mediaPath = 'app/public/media';
-
-    /**
      * Get files by directory path.
      *
      * @param \Illuminate\Http\Request $request
@@ -49,7 +42,8 @@ class ImageBrowserController extends Controller
             'image' => 'required|image',
         ]);
         $filename = $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(storage_path($this->mediaPath . $request->get('directory') . '/'), $filename);
+        $request->file('image')
+                ->move(storage_path('app/' . config('media.root_dir') . $request->get('directory') . '/'), $filename);
 
         return $this->notifySuccess('Image Successfully Uploaded!');
     }

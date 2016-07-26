@@ -14,13 +14,6 @@ use Symfony\Component\Finder\Finder;
 class ViewComposerServiceProvider extends ServiceProvider
 {
     /**
-     * Media public storage.
-     *
-     * @var string
-     */
-    public $mediaPath = 'app/public/media';
-
-    /**
      * Bootstrap the application services.
      *
      * @return void
@@ -29,8 +22,8 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
         $this->bootAdministratorViewComposer();
 
-        view()->composer('*', function(View $view) {
-           $view->with('active_menu', session('active_menu', new Menu));
+        view()->composer('*', function (View $view) {
+            $view->with('active_menu', session('active_menu', new Menu));
         });
     }
 
@@ -77,7 +70,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     protected function getFileDirectories()
     {
         $mediaFiles['/'] = '/';
-        $path            = storage_path($this->mediaPath);
+        $path            = storage_path('app/' . config('media.root_dir'));
         foreach ($this->getFiles($path)->directories() as $file) {
             $strFile              = str_replace($path, '', $file->getRealPath());
             $mediaFiles[$strFile] = $strFile;
