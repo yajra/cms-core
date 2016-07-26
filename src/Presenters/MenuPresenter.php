@@ -46,6 +46,10 @@ class MenuPresenter extends Presenter
         if (class_exists($class)) {
             $entity = app($class)->findOrNew($this->entity->param('id'));
             if ($entity instanceof UrlGenerator) {
+                if (! $entity->exists) {
+                    return '#';
+                }
+
                 return $entity->getUrl($this->entity->param('data'));
             }
         }
