@@ -2,7 +2,6 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Yajra\CMS\Http\Traits\BrowsableTrait;
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Http\Requests\ArticlesFormRequest;
@@ -10,8 +9,6 @@ use App\Http\Requests;
 
 class ArticlesController extends Controller
 {
-    use BrowsableTrait;
-
     /**
      * Controller specific permission ability map.
      *
@@ -49,9 +46,8 @@ class ArticlesController extends Controller
     public function create(Article $article)
     {
         $article->published = true;
-        $mediaDirectories   = $this->getFileDirectories();
 
-        return view('administrator.articles.create', compact('article', 'mediaDirectories'));
+        return view('administrator.articles.create', compact('article'));
     }
 
     /**
@@ -82,9 +78,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        $mediaDirectories = $this->getFileDirectories();
-
-        return view('administrator.articles.edit', compact('article','mediaDirectories'));
+        return view('administrator.articles.edit', compact('article'));
     }
 
     /**
