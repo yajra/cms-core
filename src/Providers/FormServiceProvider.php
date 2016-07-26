@@ -23,10 +23,14 @@ class FormServiceProvider extends ServiceProvider
                 if (is_array($selected)) {
                     $selected = in_array($category->id, $selected) ? 'selected' : null;
                 } else {
-                    $selected = ((string) $category->id == (string) $selected) ? 'selected' : null;
+                    $selected = ((string)$category->id == (string)$selected) ? 'selected' : null;
                 }
 
-                $options = ['value' => $category->id, 'selected' => $selected, 'data-alias' => $category->present()->alias];
+                $options = [
+                    'value'      => $category->id,
+                    'selected'   => $selected,
+                    'data-alias' => $category->present()->alias,
+                ];
 
                 $html[] = new HtmlString('<option ' . html()->attributes($options) . '>' . e($category->present()->indentedTitle) . '</option>');
             });
@@ -37,10 +41,11 @@ class FormServiceProvider extends ServiceProvider
             return new HtmlString("<select{$options}>{$list}</select>");
         });
 
-        form()->macro('imageBrowser', function ($name = 'intro_image', $options = []) {
+        form()->macro('imageBrowser', function ($name, $selected = null, $options = []) {
             return view('system.macro.image-browser', [
-                'name'    => $name,
-                'options' => $options,
+                'name'     => $name,
+                'options'  => $options,
+                'selected' => $selected,
             ]);
         });
     }

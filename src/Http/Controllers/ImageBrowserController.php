@@ -27,7 +27,7 @@ class ImageBrowserController extends Controller
         $path       = $request->get('path');
         $mediaFiles = $this->getMediaFiles($path);
 
-        return view('administrator.file-browser.container', compact('mediaFiles', 'path'))->render();
+        return view('administrator.partials.image-browser.container', compact('mediaFiles', 'path'))->render();
     }
 
     /**

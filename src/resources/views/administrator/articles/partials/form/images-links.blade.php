@@ -2,10 +2,9 @@
     <div class="col-md-6">
         <label class="form-label-style block" for="parameters[intro_image]">Intro Image</label>
         <div class="input-group input-group-sm">
-            {!! form()->imageBrowser('parameters[intro_image]',[
+            {!! form()->imageBrowser('parameters[intro_image]', $article->param('intro_image'),[
                 'id'        => 'intro_image',
-                'label'     => 'Select',
-                'value'     => $article->param('intro_image'),
+                'label'     => 'Select'
             ]) !!}
             {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
         </div>
@@ -34,10 +33,9 @@
         </div>
         <hr>
         <div class="input-group input-group-sm">
-            {!! form()->imageBrowser('parameters[image_fulltext]',[
+            {!! form()->imageBrowser('parameters[image_fulltext]',$article->param('image_fulltext'),[
                 'id'        => 'image_fulltext',
-                'label'     => 'Select',
-                'value'     => $article->param('image_fulltext'),
+                'label'     => 'Select'
             ]) !!}
             {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
         </div>
