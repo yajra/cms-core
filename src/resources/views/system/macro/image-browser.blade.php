@@ -23,11 +23,16 @@
         padding: 10px !important;
         border: 1px solid #e0e0e0 !important;
     }
+
     .img-li {
         list-style: none !important;
         float: left !important;
         margin-bottom: 7px !important;
         margin-right: 6px !important;
+    }
+
+    #{{camel_case($options['id'])}}uploader {
+        display: none;
     }
 </style>
 @endpush
@@ -68,6 +73,7 @@
         </button>
     </span>
     <div class="modal fade" tabindex="-1" role="dialog" id="{{camel_case($options['id'])}}Modal">
+    {!! Form::open(['url'=>'/administrator/media/upload/image','id'=>camel_case($options['id']).'imageUploadForm','method' => 'POST','files'=>true]) !!}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -77,7 +83,7 @@
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Image Browser {{camel_case($options['id'])}}
+                    <h4 class="modal-title">Image Browser
                         <small>(Click image to select.)</small>
                     </h4>
                 </div>
@@ -129,6 +135,13 @@
                                                                 aria-label="Close">Cancel
                                                         </button>
                                                     </div>
+                                                    <div class="col-md-6 text-right">
+                                                        <button v-on:click="{{camel_case($options['id'])}}showUploader"
+                                                                type="button"
+                                                                class="btn btn-default">
+                                                        Upload New Image
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -137,11 +150,25 @@
                             </div>
                         </div>
                     </div>
+                    <div id="{{camel_case($options['id'])}}uploader">
+                        <div class="col-md-6 text-left">
+                            <input type="file" name="{{camel_case($options['id'])}}image" id="{{camel_case($options['id'])}}image">
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button id="{{camel_case($options['id'])}}btnUploader" type="button" class="btn btn-danger">
+                                <i class="fa fa-upload"></i>&nbsp;Start Upload
+                            </button>
+                            <button type="button"
+                                    class="btn btn-default"
+                                    v-on:click="{{camel_case($options['id'])}}hideUploader">Cancel
+                            </button>
+                        </div>
+                    </div>
                 </div>
-
                 </div>
             </div>
         </div>
+    {!! Form::close() !!}
     </div>
 </span>
 @push('scripts')
@@ -166,7 +193,44 @@
                         $('#' + attrId + 'imageContainer').html(response.data);
                         $.unblockUI();
                     });
-                })
+                });
+                $('#' + attrId + 'btnUploader').on('click', (function () {
+                    $.blockUI();
+                    var file_data =  $('#'+attrId+'image').prop("files")[0];
+                    var directory = $('#' + attrId + 'directories').val();
+                    var data = new FormData(this);
+                    data.append("image", file_data);
+                    data.append("directory", directory);
+                    $.ajax({
+                        type: 'POST',
+                        url: '/administrator/media/upload/image',
+                        data: data,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            $('#' + attrId + 'directories').val($('#' + attrId + 'directories').val()).change();
+                            var fileInput = $('#'+attrId+'image');
+                            fileInput.replaceWith(fileInput.val('').clone(true));
+                            $('#' + attrId + 'uploader').css('display', 'none');
+                            $.unblockUI();
+                            swal({
+                                title: data.title,
+                                text: data.text,
+                                type: data.type,
+                            });
+                        },
+                        error: function (data) {
+                            $.unblockUI();
+                            response = JSON.parse(data.responseText);
+                            swal({
+                                title: "Oops!",
+                                text: response.image[0],
+                                type: "error",
+                            });
+                        }
+                    });
+                }));
             },
             methods: {
                 {{camel_case($options['id'])}}showBtn: function () {
@@ -191,8 +255,11 @@
                 {{camel_case($options['id'])}}clear: function () {
                     $('#' + fieldId).val('');
                 },
-                {{camel_case($options['id'])}}showUploader:function () {
-                    
+                {{camel_case($options['id'])}}showUploader: function () {
+                    $('#' + attrId + 'uploader').css('display','block');
+                },
+                {{camel_case($options['id'])}}hideUploader: function () {
+                    $('#' + attrId + 'uploader').css('display','none');
                 }
             }
         })

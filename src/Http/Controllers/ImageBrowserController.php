@@ -17,6 +17,13 @@ class ImageBrowserController extends Controller
     use NotificationResponse;
 
     /**
+     * Media public storage.
+     *
+     * @var string
+     */
+    public $mediaPath = 'app/public/media';
+
+    /**
      * Get files by directory path.
      *
      * @param \Illuminate\Http\Request $request
