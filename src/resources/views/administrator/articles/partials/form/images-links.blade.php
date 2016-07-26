@@ -5,7 +5,7 @@
             {!! form()->imageBrowser('parameters[intro_image]',[
                 'id'        => 'intro_image',
                 'label'     => 'Select',
-                'value'     => '',
+                'value'     => $article->param('intro_image'),
             ]) !!}
             {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
         </div>
@@ -37,7 +37,7 @@
             {!! form()->imageBrowser('parameters[image_fulltext]',[
                 'id'        => 'image_fulltext',
                 'label'     => 'Select',
-                'value'     => '',
+                'value'     => $article->param('image_fulltext'),
             ]) !!}
             {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
         </div>
