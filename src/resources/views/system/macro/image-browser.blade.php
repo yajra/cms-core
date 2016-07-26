@@ -23,6 +23,12 @@
         padding: 10px !important;
         border: 1px solid #e0e0e0 !important;
     }
+    .img-li {
+        list-style: none !important;
+        float: left !important;
+        margin-bottom: 7px !important;
+        margin-right: 6px !important;
+    }
 </style>
 @endpush
 

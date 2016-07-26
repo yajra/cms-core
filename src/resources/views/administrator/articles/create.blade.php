@@ -1,16 +1,5 @@
 @extends('admin::layouts.master')
 
-@push('styles')
-<style>
-    .img-li {
-        list-style: none !important;
-        float: left !important;
-        margin-bottom: 7px !important;
-        margin-right: 6px !important;
-    }
-</style>
-@endpush
-
 @section('title')
 {{trans('cms::article.create.title')}} | @parent
 @stop
