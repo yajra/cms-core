@@ -39,10 +39,10 @@ class ImageBrowserController extends Controller
     public function uploadFile(Request $request)
     {
         $this->validate($request, [
-            'image' => 'required|image',
+            'file' => 'required|image',
         ]);
-        $filename = $request->file('image')->getClientOriginalName();
-        $request->file('image')
+        $filename = $request->file('file')->getClientOriginalName();
+        $request->file('file')
                 ->move(storage_path('app/' . config('media.root_dir') . $request->get('directory') . '/'), $filename);
 
         return $this->notifySuccess('Image Successfully Uploaded!');

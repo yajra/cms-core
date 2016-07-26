@@ -199,7 +199,7 @@
                     var file_data =  $('#'+attrId+'image').prop("files")[0];
                     var directory = $('#' + attrId + 'directories').val();
                     var data = new FormData(this);
-                    data.append("image", file_data);
+                    data.append("file", file_data);
                     data.append("directory", directory);
                     $.ajax({
                         type: 'POST',
@@ -225,7 +225,7 @@
                             response = JSON.parse(data.responseText);
                             swal({
                                 title: "Oops!",
-                                text: response.image[0],
+                                text: response.file[0],
                                 type: "error",
                             });
                         }
