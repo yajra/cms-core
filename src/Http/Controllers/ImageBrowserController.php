@@ -84,11 +84,11 @@ class ImageBrowserController extends Controller
      */
     private function getImageFiles($path)
     {
-        return Finder::create()->in($path)->sortByType()
-                     ->name('*.jpg')
-                     ->name('*.jpeg')
-                     ->name('*.png')
-                     ->name('*.gif')
-                     ->depth(0);
+        $finder = Finder::create()->in($path)->sortByType()->depth(0);
+        foreach (config('media.images_ext') as $file) {
+            $finder->name('*' . $file);
+        }
+
+        return $finder;
     }
 }
