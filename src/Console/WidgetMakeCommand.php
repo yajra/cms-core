@@ -116,4 +116,28 @@ class WidgetMakeCommand extends ArrilotWidgetMakeCommand
 
         $this->info('Views successfully created.');
     }
+
+    /**
+     * Get the destination view path.
+     *
+     * @param string $append
+     * @return string
+     */
+    protected function getViewPath($append = '')
+    {
+        return base_path('resources/views') . '/widgets/' . $this->makeViewName() . $append . '.blade.php';
+    }
+
+    /**
+     * Get widget stub by key.
+     *
+     * @param string $key
+     * @return string
+     */
+    public function getViewStub($key)
+    {
+        $stubPath = $this->laravel->make('config')->get('laravel-widgets.widget_' . $key . '_stub');
+
+        return $this->laravel->basePath() . '/' . $stubPath;
+    }
 }
