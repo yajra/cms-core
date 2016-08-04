@@ -14,9 +14,10 @@ trait NotificationResponse
 
     /**
      * @param mixed $response
+     * @param null $title
      * @return \Illuminate\Http\JsonResponse
      */
-    public function notifyError($response)
+    public function notifyError($response, $title = null)
     {
         if (is_string($response)) {
             $response = ['text' => $response];
@@ -24,7 +25,7 @@ trait NotificationResponse
 
         $default = [
             'status' => false,
-            'title'  => 'Error',
+            'title'  => $title ?: 'Error',
             'text'   => 'Oops! An error occurred and we were not able to process your request!',
         ];
 
@@ -66,9 +67,10 @@ trait NotificationResponse
 
     /**
      * @param mixed $response
+     * @param null|string $title
      * @return \Illuminate\Http\JsonResponse
      */
-    public function notifySuccess($response)
+    public function notifySuccess($response, $title = null)
     {
         if (is_string($response)) {
             $response = ['text' => $response];
@@ -76,7 +78,7 @@ trait NotificationResponse
 
         $default = [
             'status' => true,
-            'title'  => 'Success',
+            'title'  => $title ?: 'Success',
             'text'   => 'Requested process successfully completed!',
         ];
 
