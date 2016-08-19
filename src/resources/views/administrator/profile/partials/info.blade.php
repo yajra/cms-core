@@ -11,7 +11,7 @@
                     {{currentUser()->present()->first_name}} {{currentUser()->present()->last_name}}
                 </h3>
                 <p class="text-muted text-center">{{trans('cms::profile.position')}}</p>
-                <a href="#" class="btn btn-warning btn-block"><b>{{trans('cms::profile.form.button.remove-avatar')}}</b></a>
+                <a href="{{route('administrator.profile.remove-avatar')}}" class="btn btn-warning btn-block"><b>{{trans('cms::profile.form.button.remove-avatar')}}</b></a>
             </div>
         </div>
     </div>
