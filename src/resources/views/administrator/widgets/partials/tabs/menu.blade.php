@@ -23,7 +23,7 @@
                     <li class="list-group-item">
                         <input type="checkbox" id="{{$menu->id}}" value="{{$menu->id}}"
                                name="menu[]"
-                               class="md-check" {!! in_array($menu->id, $widget->menus()->select('menus.id')->lists('id')->all()) ? 'checked' : '' !!}>
+                               class="md-check" {!! in_array($menu->id, $widget->menus()->select('menus.id')->pluck('id')->all()) ? 'checked' : '' !!}>
                         <label for="{{$menu->id}}">
                             {{$menu->present()->indentedTitle()}}
                             <small>(Alias: {{ $menu->present()->url() }})</small>
