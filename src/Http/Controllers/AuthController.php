@@ -4,11 +4,12 @@ namespace Yajra\CMS\Http\Controllers;
 
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, ThrottlesLogins;
 
     /**
      * Where to redirect users after login / registration.
@@ -50,17 +51,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
-    }
-
-    /**
-     * Show the application's login form.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showLoginForm()
-    {
-        return view($this->loginView);
+        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -88,35 +79,15 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        return $this->username;
-    }
-
-    /**
      * Get the needed authorization credentials from the request.
      *
      * @param  \Illuminate\Http\Request $request
      * @return array
      */
-    protected function credentials(Request $request)
+    protected function getCredentials(Request $request)
     {
-        return array_merge($request->only($this->username(), 'password'), [
+        return array_merge($request->only($this->loginUsername(), 'password'), [
             'administrator' => true,
         ]);
-    }
-
-    /**
-     * Get auth guard.
-     *
-     * @return string
-     */
-    protected function getGuard()
-    {
-        return $this->guard;
     }
 }
