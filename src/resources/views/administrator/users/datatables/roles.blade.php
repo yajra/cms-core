@@ -1,3 +1,3 @@
-@foreach($user->roles()->lists('name')->all() as $role)
+@foreach($user->roles()->pluck('name')->all() as $role)
 <span class="badge badge-info">{!! $role !!}</span>&nbsp;
 @endforeach

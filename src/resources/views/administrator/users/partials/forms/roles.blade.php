@@ -5,7 +5,7 @@
 	  <div class="panel-body">
           <div class="row {!! $errors->has('roles') ? 'has-error' : '' !!}">
               <div class="col-md-12">
-                  {!! form()->select('roles[]', $roles->lists('name', 'id') , $selectedRoles , ['id'=>'role-multi-select','class' => 'form-control', 'multiple']) !!}
+                  {!! form()->select('roles[]', $roles->pluck('name', 'id') , $selectedRoles , ['id'=>'role-multi-select','class' => 'form-control', 'multiple']) !!}
                   {!! $errors->first('roles', '<span class="help-block font-red-pink">:message</span>') !!}
               </div>
           </div>

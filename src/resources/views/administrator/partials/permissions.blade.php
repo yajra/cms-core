@@ -47,7 +47,7 @@
                                             <div class="md-checkbox">
                                                 <input type="checkbox" id="{{$permission->id}}" value="{{$permission->id}}"
                                                        name="permissions[]"
-                                                       class="md-check" {!! in_array($permission->id, $model->permissions()->select('permissions.id')->lists('id')->all()) ? 'checked' : '' !!}>
+                                                       class="md-check" {!! in_array($permission->id, $model->permissions()->select('permissions.id')->pluck('id')->all()) ? 'checked' : '' !!}>
                                                 <label for="{{$permission->id}}" style="font-weight: normal">
                                                     &nbsp;{{$permission->name}}
                                                 </label>
