@@ -78,11 +78,11 @@ class CoreServiceProvider extends ServiceProvider
         /** @var BladeCompiler $blade */
         $blade = $this->app['blade.compiler'];
         $blade->directive('tooltip', function ($expression) {
-            return "<?php echo app('Yajra\\CMS\\View\\Directives\\TooltipDirective')->handle({$expression}); ?>";
+            return "<?php echo app('Yajra\\CMS\\View\\Directives\\TooltipDirective')->handle{$expression}; ?>";
         });
 
         $blade->directive('pageHeader', function ($expression) {
-            return "<?php echo app('Yajra\\CMS\\View\\Directives\\PageHeaderDirective')->handle({$expression}); ?>";
+            return "<?php echo app('Yajra\\CMS\\View\\Directives\\PageHeaderDirective')->handle{$expression}; ?>";
         });
     }
 
