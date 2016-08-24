@@ -17,9 +17,9 @@
 <div class="row">
     <div class="col-md-12">
         @foreach($configuration->key("filesystems.disks") as $type)
-            <div class="@if($configuration->key("filesystems.default") == $type['location']) @else hide @endif filesystem-container"
-                 id="{{$type['location']}}-filesystem-container">
-                @include('administrator.configuration.partials.form.filesystems.'.$type['location'])
+            <div class="@if($configuration->key("filesystems.default") == $type['driver']) @else hide @endif filesystem-container"
+                 id="{{$type['driver']}}-filesystem-container">
+                @include('administrator.configuration.partials.form.filesystems.'.$type['driver'])
             </div>
         @endforeach
     </div>
