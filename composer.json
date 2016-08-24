@@ -30,7 +30,7 @@
         "spatie/laravel-fractal": "^1.7",
         "spatie/laravel-backup": "^3.7",
         "spatie/laravel-sluggable": "^1.1",
-        "caffeinated/menus": "^3.0",
+        "caffeinated/menus": "^2.0",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "guzzlehttp/guzzle": "^6.1",
         "arrilot/laravel-widgets": "^3.4",
