@@ -29,3 +29,4 @@ $router->get('navigation/create', NavigationController::class . '@create')->name
 $router->post('navigation', NavigationController::class . '@store')->name('administrator.navigation.store');
 $router->get('navigation/{navigation}', NavigationController::class . '@edit')->name('administrator.navigation.edit');
 $router->put('navigation/{navigation}', NavigationController::class . '@update')->name('administrator.navigation.update');
+$router->delete('navigation/{navigation}', NavigationController::class . '@destroy')->name('administrator.navigation.destroy');

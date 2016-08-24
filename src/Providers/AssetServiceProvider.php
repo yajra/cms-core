@@ -60,7 +60,7 @@ class AssetServiceProvider extends ServiceProvider
     protected function customJsPlugin()
     {
         Blade::directive('js', function ($expression) {
-            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetJsDirective::class)->handle{$expression} ?>";
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetJsDirective::class)->handle({$expression}); ?>";
         });
     }
 
@@ -72,7 +72,7 @@ class AssetServiceProvider extends ServiceProvider
     protected function customCssPlugin()
     {
         Blade::directive('css', function ($expression) {
-            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetCssDirective::class)->handle{$expression} ?>";
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetCssDirective::class)->handle({$expression}); ?>";
         });
     }
 
@@ -84,7 +84,7 @@ class AssetServiceProvider extends ServiceProvider
     protected function addAssetAfter()
     {
         Blade::directive('assetAfter', function ($expression) {
-            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetAddAfterDirective::class)->handle{$expression} ?>";
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetAddAfterDirective::class)->handle({$expression}); ?>";
         });
     }
 
@@ -96,7 +96,7 @@ class AssetServiceProvider extends ServiceProvider
     protected function addAssetBefore()
     {
         Blade::directive('assetBefore', function ($expression) {
-            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetAddBeforeDirective::class)->handle{$expression} ?>";
+            return "<?php echo app(\\Yajra\\CMS\\View\\Directives\\AssetAddBeforeDirective::class)->handle({$expression}); ?>";
         });
     }
 }
