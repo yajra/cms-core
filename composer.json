@@ -19,8 +19,7 @@
     ],
     "require": {
         "php" : ">=7.0.0",
-        "laravel/framework": "5.2.*",
-        "yajra/laravel-oci8": "5.2.*",
+        "laravel/framework": "5.3.*",
         "yajra/laravel-datatables-oracle": "^6.0",
         "yajra/laravel-acl": "^0.1.0",
         "yajra/laravel-auditable": "^0.1.0",
