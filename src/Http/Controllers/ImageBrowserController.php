@@ -2,7 +2,6 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\CMS\Http\NotificationResponse;
 use Symfony\Component\Finder\Finder;

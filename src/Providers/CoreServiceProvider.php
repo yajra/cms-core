@@ -12,7 +12,6 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Laracasts\Flash\FlashServiceProvider;
-use Pingpong\Modules\ModulesServiceProvider;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider;
 use Roumen\Asset\AssetServiceProvider as RoumenAssetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
@@ -23,7 +22,6 @@ use Yajra\CMS\Themes\ThemesServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
 use Yajra\Datatables\DatatablesServiceProvider;
-use Yajra\Oci8\Oci8ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -124,7 +122,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(LaravelLogViewerServiceProvider::class);
         $this->app->register(ArrilotWidgetServiceProvider::class);
         $this->app->register(WidgetServiceProvider::class);
-        $this->app->register(ModulesServiceProvider::class);
         $this->app->register(AssetServiceProvider::class);
         $this->app->register(DatatablesServiceProvider::class);
     }

@@ -25,19 +25,11 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        $router->model('users', \App\User::class);
-        $router->model('roles', \Yajra\Acl\Models\Role::class);
-        $router->model('permissions', Permission::class);
-        $router->model('widgets', \Yajra\CMS\Entities\Widget::class);
-        $router->model('articles', \Yajra\CMS\Entities\Article::class);
-        $router->model('categories', \Yajra\CMS\Entities\Category::class);
-
-        parent::boot($router);
+        parent::boot();
     }
 
     /**
