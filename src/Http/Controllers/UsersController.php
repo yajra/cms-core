@@ -84,7 +84,7 @@ class UsersController extends Controller
      */
     protected function getAllowedRoles()
     {
-        if ($this->request->user('administrator')->is('super-administrator')) {
+        if ($this->request->user('administrator')->isRole('super-administrator')) {
             $roles = $this->role->get();
         } else {
             $roles = $this->role->where('slug', '!=', 'super-administrator')->get();
