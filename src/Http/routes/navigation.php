@@ -17,7 +17,7 @@ $router->get('navigation/menu/articles', MenuItemsController::class . '@articles
 $router->get('navigation/{navigation}/menu', NavigationController::class . '@index')->name('administrator.navigation.menu.index');
 $router->get('navigation/{navigation}/menu/create', NavigationController::class . '@create')->name('administrator.navigation.menu.create');
 $router->post('navigation/{navigation}/menu', NavigationController::class . '@store')->name('administrator.navigation.menu.store');
-$router->get('navigation/{navigation}/menu/{menu}', NavigationController::class . '@edit')->name('administrator.navigation.menu.edit');
+$router->get('navigation/{navigation}/menu/{menu}/edit', NavigationController::class . '@edit')->name('administrator.navigation.menu.edit');
 $router->put('navigation/{navigation}/menu/{menu}', NavigationController::class . '@update')->name('administrator.navigation.menu.update');
 $router->delete('navigation/{navigation}/menu/{menu}', NavigationController::class . '@destroy')->name('administrator.navigation.menu.destroy');
 
@@ -27,6 +27,6 @@ $router->post('navigation/{navigation}/publish', NavigationController::class . '
 $router->get('navigation', NavigationController::class . '@index')->name('administrator.navigation.index');
 $router->get('navigation/create', NavigationController::class . '@create')->name('administrator.navigation.create');
 $router->post('navigation', NavigationController::class . '@store')->name('administrator.navigation.store');
-$router->get('navigation/{navigation}', NavigationController::class . '@edit')->name('administrator.navigation.edit');
+$router->get('navigation/{navigation}/edit', NavigationController::class . '@edit')->name('administrator.navigation.edit');
 $router->put('navigation/{navigation}', NavigationController::class . '@update')->name('administrator.navigation.update');
 $router->delete('navigation/{navigation}', NavigationController::class . '@destroy')->name('administrator.navigation.destroy');
