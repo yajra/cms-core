@@ -7,6 +7,7 @@ use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
 use Yajra\CMS\Entities\Category;
@@ -47,13 +48,11 @@ class UtilitiesController extends Controller
     /**
      * UtilitiesController constructor.
      *
-     * @param \Illuminate\Contracts\Console\Kernel $command
      * @param \Illuminate\Contracts\Logging\Log $log
      * @param \Collective\Html\HtmlBuilder $html
      */
-    public function __construct(Kernel $command, Log $log, HtmlBuilder $html)
+    public function __construct(Log $log, HtmlBuilder $html)
     {
-        $this->command = $command;
         $this->html    = $html;
         $this->log     = $log;
 
@@ -85,7 +84,7 @@ class UtilitiesController extends Controller
             return $this->notifyError($message);
         }
 
-        $this->command->call('backup:' . $task);
+        Artisan::call('backup:' . $task);
         $message = $task == 'clean' ? trans('cms::utilities.backup.cleanup_complete') : trans('cms::utilities.backup.complete');
         $this->log->info($message . trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
 
@@ -109,7 +108,7 @@ class UtilitiesController extends Controller
      */
     public function cache()
     {
-        $this->command->call('cache:clear');
+        Artisan::call('cache:clear');
         $this->log->info(trans('cms::utilities.cache.success') . trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
 
         return $this->notifySuccess(trans('cms::utilities.cache.success'));
@@ -132,7 +131,7 @@ class UtilitiesController extends Controller
 
         $message = $task == 'cache' ? trans('cms::utilities.config.cache') : trans('cms::utilities.config.cache_cleared');
         $this->log->info($message . trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
-        $this->command->call('config:' . $task);
+        Artisan::call('config:' . $task);
 
         return $this->notifySuccess($message);
     }
@@ -144,7 +143,7 @@ class UtilitiesController extends Controller
      */
     public function views()
     {
-        $this->command->call('view:clear');
+        Artisan::call('view:clear');
         $this->log->info(trans('cms::utilities.views.success').trans('cms::utilities.field.executed_by',['name'=>$this->getCurrentUserName()]));
 
         return $this->notifySuccess(trans('cms::utilities.views.success'));
