@@ -9,7 +9,7 @@
 
 use Yajra\CMS\Http\Controllers\DashboardController;
 
-$router->get('/', DashboardController::class . '@index')->name('administrator.index');
+$router->get('/', DashboardController::class . '@index')->name('index');
 
 require_once 'routes/configuration.php';
 require_once 'routes/navigation.php';
