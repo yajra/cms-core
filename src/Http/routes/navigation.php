@@ -12,11 +12,11 @@ use Yajra\CMS\Http\Controllers\NavigationController;
 $router->get('navigation/menu/extensions', MenuItemsController::class . '@extensions')->name('navigation.menu.extension');
 $router->get('navigation/menu/extensions/{menu}', MenuItemsController::class . '@extensions')->name('navigation.menu.extension.menu');
 $router->post('navigation/{navigation}/menu/{menu}/publish', MenuItemsController::class . '@publish')
-       ->name('administrator.navigation.menu.publish');
+       ->name('navigation.menu.publish');
 $router->get('navigation/menu/articles', MenuItemsController::class . '@articles')->name('navigation.menu.articles');
 $router->resource('navigation.menu', MenuItemsController::class);
 
 // Navigation Routes
 $router->post('navigation/{navigation}/publish', NavigationController::class . '@publish')
-       ->name('administrator.navigation.publish');
+       ->name('navigation.publish');
 $router->resource('navigation', NavigationController::class);
