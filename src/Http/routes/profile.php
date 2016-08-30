@@ -7,8 +7,6 @@
 
 use Yajra\CMS\Http\Controllers\ProfileController;
 
-$router->get('user/profile', ProfileController::class . '@edit')
-       ->name('administrator.profile.edit');
-$router->post('user/profile', ProfileController::class . '@update');
-$router->get('user/profile/remove-avatar', ProfileController::class . '@removeAvatar')
-       ->name('administrator.profile.remove-avatar');
+$router->get('user/profile', ProfileController::class . '@edit')->name('profile.edit');
+$router->post('user/profile', ProfileController::class . '@update')->name('profile.update');
+$router->get('user/profile/remove-avatar', ProfileController::class . '@removeAvatar')->name('profile.remove-avatar');

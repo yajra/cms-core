@@ -185,6 +185,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->group([
             'middleware' => 'administrator',
             'prefix'     => 'administrator',
+            'as'         => 'administrator.',
         ], function ($router) {
             require __DIR__ . '/../Http/routes.php';
         });

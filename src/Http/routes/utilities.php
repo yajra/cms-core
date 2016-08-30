@@ -8,21 +8,21 @@
 use Yajra\CMS\Http\Controllers\UtilitiesController;
 
 $router->get('utilities', UtilitiesController::class . '@index')
-       ->name('administrator.utilities.index');
+       ->name('utilities.index');
 
 $router->post('utilities/backup/{task?}', UtilitiesController::class . '@backup')
-       ->name('administrator.utilities.backup');
+       ->name('utilities.backup');
 $router->post('utilities/cache', UtilitiesController::class . '@cache')
-       ->name('administrator.utilities.cache');
+       ->name('utilities.cache');
 $router->post('utilities/views', UtilitiesController::class . '@views')
-       ->name('administrator.utilities.views');
+       ->name('utilities.views');
 $router->post('utilities/rebuild-menu', UtilitiesController::class . '@rebuildMenu')
-       ->name('administrator.utilities.menu.rebuild');
+       ->name('utilities.menu.rebuild');
 $router->post('utilities/rebuild-category', UtilitiesController::class . '@rebuildCategory')
-       ->name('administrator.utilities.category.rebuild');
+       ->name('utilities.category.rebuild');
 
 $router->post('utilities/config/{task}', UtilitiesController::class . '@config')
-       ->name('administrator.utilities.config');
+       ->name('utilities.config');
 
 $router->get('utilities/logs', UtilitiesController::class . '@logs')
-       ->name('administrator.utilities.logs');
+       ->name('utilities.logs');
