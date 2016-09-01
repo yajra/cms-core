@@ -54,7 +54,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
 
         view()->composer(['administrator.partials.permissions'], function (View $view) {
-            $view->with('permissions', Permission::all());
+            $view->with('permissions', Permission::orderBy('resource')->get());
         });
 
         view()->composer(['system.macro.image-browser'], function (View $view) {
