@@ -1,7 +1,6 @@
 @push('styles')
 <style>
     mark {
-        background: orange;
         color: inherit;
         padding: 0;
     }
