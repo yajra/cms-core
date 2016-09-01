@@ -19,8 +19,12 @@
         outline: none;
     }
 
-    .ms-optgroup-label{
+    .ms-optgroup-label {
         color: #236479 !important;
+    }
+
+    .permission-slug {
+
     }
 </style>
 @endpush
@@ -35,13 +39,15 @@
     </div>
     <div class="box-body {!! $errors->has('permissions') ? 'has-error' : '' !!}">
         <div>
-            <select multiple="multiple" id="permissionsSelect" name="agents[]">
+            <select multiple="multiple" id="permissionsSelect" name="permissions[]">
                 @foreach($permissions->groupBy('resource')->chunk(2) as $chunks)
                     @foreach($chunks as $resource)
                         @foreach($resource->chunk(4) as $chunk)
                             <optgroup label='{{ $resource[0]->resource }} Resource'>
                                 @foreach($chunk as $permission)
-                                    <option value='{{$permission->id}}'>{{$permission->name}}</option>
+                                    <option value='{{$permission->id}}' {!! in_array($permission->id, $model->permissions()->select('permissions.id')->pluck('id')->all()) ? 'selected' : '' !!}>
+                                        {{$permission->name}}
+                                    </option>
                                 @endforeach
                             </optgroup>
                         @endforeach
