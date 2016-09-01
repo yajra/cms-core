@@ -1,3 +1,5 @@
+@push('styles')
+@endpush
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title" style="font-size: 15px;">
@@ -19,11 +21,16 @@
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
         </div>
     </div>
+    <div class="box-footer">
+        <div>
+            <input type="text" name="keyword" class="form-control input-sm" placeholder="Search keyword...">
+        </div>
+    </div>
     <div class="box-body {!! $errors->has('permissions') ? 'has-error' : '' !!}">
         @foreach($permissions->groupBy('resource')->chunk(2) as $chunks)
             <div class="row">
             @foreach($chunks as $resource)
-                <div class="col-md-6">
+                <div class="col-md-6 resource-lists">
                     <div class="box box-default">
                         <div class="box-header with-border">
                             <h3 class="box-title" style="font-size: 14px; color: #3c8dbc">
@@ -66,3 +73,24 @@
         @endforeach
     </div>
 </div>
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.0.0/jquery.mark.min.js"></script>
+<script>
+    $(function() {
+        var $input = $("input[name='keyword']"),
+                $context = $(".resource-lists");
+        $input.on("input", function() {
+            var term = $(this).val();
+            $context.show().unmark();
+            if (term) {
+                $context.mark(term, {
+                    done: function() {
+                        $context.not(":has(mark)").hide();
+                    }
+                });
+            }
+        });
+    });
+</script>
+@endpush
