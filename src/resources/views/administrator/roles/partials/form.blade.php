@@ -12,24 +12,24 @@
     </div>
     <div class="box-body">
         <div class="row">
-                <div class="col-md-6 form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-                    <label class="form-label-style" for="name">
-                        {{trans('cms::role.form.field.name')}}
-                    </label>
-                    {!! form()->input('text', 'name', null, ['id'=>'name','class'=>'form-control','placeholder'=>trans('cms::role.form.field.name_placeholder')]) !!}
-                    {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
-                </div>
-                <div class="col-md-6 form-group {!! $errors->has('slug') ? 'has-error' : '' !!}">
-                    <label class="form-label-style" for="slug">
-                        {{trans('cms::role.form.field.slug')}}
-                    </label>
-                    {!! form()->input('text', 'slug', null, ['id'=>'slug','class'=>'form-control','placeholder'=>trans('cms::role.form.field.slug_placeholder')]) !!}
-                    {!! $errors->first('slug', '<span class="help-block">:message</span>') !!}
-                </div>
+            <div class="col-md-6 form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
+                <label class="form-label-style" for="name">
+                    {{trans('cms::role.form.field.name')}}
+                </label>
+                {!! form()->input('text', 'name', null, ['id'=>'name','class'=>'form-control','placeholder'=>trans('cms::role.form.field.name_placeholder')]) !!}
+                {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+            </div>
+            <div class="col-md-6 form-group {!! $errors->has('slug') ? 'has-error' : '' !!}">
+                <label class="form-label-style" for="slug">
+                    {{trans('cms::role.form.field.slug')}}
+                </label>
+                {!! form()->input('text', 'slug', null, ['id'=>'slug','class'=>'form-control','placeholder'=>trans('cms::role.form.field.slug_placeholder')]) !!}
+                {!! $errors->first('slug', '<span class="help-block">:message</span>') !!}
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                @include('administrator.partials.permissions', ['model' => $role])
+                @include('administrator.partials.permissions-multiselect', ['model' => $role])
             </div>
         </div>
     </div>
