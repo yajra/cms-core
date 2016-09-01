@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                @include('administrator.partials.permissions-multiselect', ['model' => $role])
+                @include('administrator.partials.permissions', ['model' => $role])
             </div>
         </div>
     </div>
