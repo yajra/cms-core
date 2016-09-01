@@ -1,5 +1,13 @@
 @push('styles')
+<style>
+    mark {
+        background: orange;
+        color: inherit;
+        padding: 0;
+    }
+</style>
 @endpush
+
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title" style="font-size: 15px;">
@@ -23,7 +31,7 @@
     </div>
     <div class="box-footer">
         <div>
-            <input type="text" name="keyword" class="form-control input-sm" placeholder="Search keyword...">
+            <input type="text" onkeypress="if (event.keyCode == 13) {return false;}" name="keyword" class="form-control input-sm" placeholder="Search keyword...">
         </div>
     </div>
     <div class="box-body {!! $errors->has('permissions') ? 'has-error' : '' !!}">
