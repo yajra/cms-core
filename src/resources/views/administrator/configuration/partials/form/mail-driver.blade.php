@@ -59,7 +59,7 @@
             {!! form()->input('text', 'encryption', $configuration->key("mail.encryption"), [
                 'id'            => 'mail_host',
                 'class'         => 'form-control',
-                'placeholder'   => 'Enter Encryption Port Here',
+                'placeholder'   => 'Enter Encryption Protocol Here',
                 'v-model'       => 'mail.encryption'
             ]) !!}
         </div>
