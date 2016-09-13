@@ -65,6 +65,7 @@ class MenuItemsController extends Controller
     {
         $menu->extension_id = old('extension_id', Extension::MENU_INTERNAL);
         $menu->published    = true;
+        $menu->setHighestOrderNumber();
         $menu->load('extension');
 
         return view('administrator.navigation.menu.create', compact('navigation', 'menu'));

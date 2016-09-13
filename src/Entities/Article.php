@@ -5,6 +5,7 @@ namespace Yajra\CMS\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Yajra\Acl\Models\Permission;
@@ -39,7 +40,12 @@ class Article extends Model implements UrlGenerator
 {
     use AuditableTrait, PublishableTrait, HasSlug;
     use CanRequireAuthentication, HasPermission, PresentableTrait;
-    use HasParameters;
+    use HasParameters, SortableTrait;
+
+    public $sortable = [
+        'order_column_name' => 'order',
+        'sort_when_creating' => true,
+    ];
 
     /**
      * @var \Yajra\CMS\Presenters\ArticlePresenter

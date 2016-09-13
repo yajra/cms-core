@@ -15,6 +15,7 @@ use Laracasts\Flash\FlashServiceProvider;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider;
 use Roumen\Asset\AssetServiceProvider as RoumenAssetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
+use Spatie\EloquentSortable\SortableServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
 use Themsaid\MailPreview\MailPreviewServiceProvider;
 use Yajra\Acl\AclServiceProvider;
@@ -124,6 +125,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(WidgetServiceProvider::class);
         $this->app->register(AssetServiceProvider::class);
         $this->app->register(DatatablesServiceProvider::class);
+        $this->app->register(SortableServiceProvider::class);
     }
 
     /**

@@ -31,6 +31,7 @@
         "spatie/laravel-backup": "^3.7",
         "spatie/laravel-sluggable": "^1.1",
         "caffeinated/menus": "^2.0",
+        "spatie/eloquent-sortable": "^2.1",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "guzzlehttp/guzzle": "^6.1",
         "arrilot/laravel-widgets": "^3.4",

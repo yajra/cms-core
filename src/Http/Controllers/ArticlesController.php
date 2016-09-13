@@ -46,6 +46,7 @@ class ArticlesController extends Controller
     public function create(Article $article)
     {
         $article->published = true;
+        $article->setHighestOrderNumber();
 
         return view('administrator.articles.create', compact('article'));
     }

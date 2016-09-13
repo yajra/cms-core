@@ -28,7 +28,7 @@
                 {{trans('cms::article.form.field.order')}}
                 @tooltip('cms::article.form.tooltip.order')
             </label>
-            {!! form()->select('order', array_combine(range(1, 100), range(1, 100)) , null , ['class' => 'form-control']) !!}
+            {!! form()->text('order', null , ['class' => 'form-control']) !!}
             {!! $errors->first('order', '<span class="help-block">:message</span>') !!}
         </div>
 
