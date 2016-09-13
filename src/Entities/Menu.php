@@ -5,6 +5,7 @@ namespace Yajra\CMS\Entities;
 use Baum\Node;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\EloquentSortable\SortableTrait;
 use Yajra\Acl\Models\Permission;
 use Yajra\Auditable\AuditableTrait;
 use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
@@ -34,7 +35,12 @@ use Yajra\CMS\Presenters\MenuPresenter;
 class Menu extends Node
 {
     use PresentableTrait, PublishableTrait, CanRequireAuthentication;
-    use AuditableTrait, HasParameters, HasOrder;
+    use AuditableTrait, HasParameters, HasOrder, SortableTrait;
+
+    public $sortable = [
+        'order_column_name' => 'order',
+        'sort_when_creating' => true,
+    ];
 
     /**
      * @var array

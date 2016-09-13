@@ -57,7 +57,7 @@
                 Order
                 @tooltip('Display order of the menu.')
             </label>
-            {!! form()->select('order', array_combine(range(1, 100), range(1, 100)) , null , ['class' => 'form-control select2']) !!}
+            {!! form()->text('order',null , ['class' => 'form-control select2']) !!}
             {!! $errors->first('order', '<span class="help-block">:message</span>') !!}
         </div>
 
