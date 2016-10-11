@@ -9,12 +9,19 @@
 
     <div class="row">
         <div class="col-md-6">
-            @include('administrator.dashboard.latest')
-            @include('administrator.dashboard.config')
+            @can('article.view')
+                @include('administrator.dashboard.latest')
+            @endcan
+
+            @can('utilities.view')
+                @include('administrator.dashboard.config')
+            @endcan
         </div>
 
         <div class="col-md-6">
-            @include('administrator.dashboard.popular')
+            @can('article.view')
+                @include('administrator.dashboard.popular')
+            @endcan
         </div>
     </div>
 @endsection
