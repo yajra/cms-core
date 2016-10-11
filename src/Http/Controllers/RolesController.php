@@ -59,12 +59,12 @@ class RolesController extends Controller
     public function store()
     {
         $this->validate($this->request, [
-            'name'        => 'required',
-            'slug'        => 'required|unique:roles,slug',
+            'name' => 'required',
+            'slug' => 'required|unique:roles,slug',
         ]);
 
         $role = Role::create($this->request->all());
-        $role->syncPermissions($this->request->get('permissions'));
+        $role->syncPermissions($this->request->get('permissions', []));
         flash()->success('Role ' . $role->name . ' successfully created!');
 
         return redirect()->route('administrator.roles.index');
