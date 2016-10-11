@@ -93,29 +93,31 @@ class GenerateAdminMenu
                       ]);
 
                 $config = $menu->add('Configurations', '#')->icon('gears')
-                    ->data([
-                        'permission' => ['extension.view', 'utilities.config']
-                    ]);
+                               ->data([
+                                   'permission' => ['extension.view', 'utilities.config']
+                               ]);
                 $config->add('Extensions', route('administrator.extension.index'))->icon('plug')
-                       ->data('permission', 'extension.view');;
+                       ->data('permission', 'extension.view');
                 $config->add('Global', route('administrator.configuration.index'))->icon('globe')
-                       ->data('permission', 'utilities.config');;
+                       ->data('permission', 'utilities.config');
 
                 $menu->add('Utilities', route('administrator.utilities.index'))->icon('wrench')
                      ->data('permission', 'utilities.view');
 
                 $menu->add('Logout', route('administrator.logout'))->icon('power-off');
             })->filter(function ($item) {
-                $permission = $item->data('permission');
-                if (! $permission) {
+                $permissions = $item->data('permission');
+                if (! $permissions) {
                     return true;
                 }
 
-                if (is_array($permission)) {
-                    $permission = implode(',', $permission);
+                foreach ((array) $permissions as $permission) {
+                    if (currentUser()->can($permission)) {
+                        return true;
+                    }
                 }
 
-                return currentUser()->can($permission) ?: false;
+                return false;
             });
         }
 
