@@ -72,7 +72,10 @@ class GenerateAdminMenu
                      ->icon('windows')
                      ->data(['permission' => 'theme.view']);
 
-                $users = $menu->add('Users', '#')->icon('key');
+                $users = $menu->add('Users', '#')->icon('key')
+                              ->data([
+                                  'permission' => ['user.view', 'role.view', 'permission.view']
+                              ]);
                 $users->add('Manage', route('administrator.users.index'))->icon('users')
                       ->data([
                           'permission' => 'user.view',
@@ -89,7 +92,10 @@ class GenerateAdminMenu
                           'append'     => route('administrator.permissions.create'),
                       ]);
 
-                $config = $menu->add('Configurations', '#')->icon('gears');
+                $config = $menu->add('Configurations', '#')->icon('gears')
+                    ->data([
+                        'permission' => ['extension.view', 'utilities.config']
+                    ]);
                 $config->add('Extensions', route('administrator.extension.index'))->icon('plug')
                        ->data('permission', 'extension.view');;
                 $config->add('Global', route('administrator.configuration.index'))->icon('globe')
@@ -100,11 +106,16 @@ class GenerateAdminMenu
 
                 $menu->add('Logout', route('administrator.logout'))->icon('power-off');
             })->filter(function ($item) {
-                if (! $item->data('permission')) {
+                $permission = $item->data('permission');
+                if (! $permission) {
                     return true;
                 }
 
-                return currentUser()->can($item->data('permission')) ?: false;
+                if (is_array($permission)) {
+                    $permission = implode(',', $permission);
+                }
+
+                return currentUser()->can($permission) ?: false;
             });
         }
 
