@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
         if ((null !== $request->file('avatar')) && $request->file('avatar')->isValid()) {
             $fileType = $request->file('avatar')->getClientOriginalExtension();
-            $filename = time() . '-' . $request->file('avatar')->getFilename() . '.' . $fileType;
+            $filename = auth()->user()->id . '-' . $request->file('avatar')->getFilename() . '.' . $fileType;
             $request->file('avatar')->move('img/avatar', $filename);
             $profile->avatar = url('img/avatar/' . $filename);
         }
