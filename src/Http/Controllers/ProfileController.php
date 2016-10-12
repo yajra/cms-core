@@ -34,9 +34,10 @@ class ProfileController extends Controller
         }
 
         if ((null !== $request->file('avatar')) && $request->file('avatar')->isValid()) {
-            $filename = $this->getFilename($request);
-            $request->file('avatar')->move('img/avatar', $filename);
-            $profile->avatar = url('img/avatar/' . $filename);
+            $filename = $request->file('avatar')->getFilename();
+            $fileType = $request->file('avatar')->getClientOriginalExtension();
+            $request->file('avatar')->move('img/avatar', $filename . '.' . $fileType);
+            $profile->avatar = url('img/avatar/' . $filename . '.' . $fileType);
         }
 
         $profile->save();
@@ -65,7 +66,7 @@ class ProfileController extends Controller
      */
     public function removeAvatar()
     {
-        $profile = auth()->user();
+        $profile         = auth()->user();
         $profile->avatar = '';
         $profile->save();
 
