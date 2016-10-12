@@ -34,10 +34,10 @@ class ProfileController extends Controller
         }
 
         if ((null !== $request->file('avatar')) && $request->file('avatar')->isValid()) {
-            $filename = $request->file('avatar')->getFilename();
             $fileType = $request->file('avatar')->getClientOriginalExtension();
-            $request->file('avatar')->move('img/avatar', $filename . '.' . $fileType);
-            $profile->avatar = url('img/avatar/' . $filename . '.' . $fileType);
+            $filename = time() . '-' . $request->file('avatar')->getFilename() . '.' . $fileType;
+            $request->file('avatar')->move('img/avatar', $filename);
+            $profile->avatar = url('img/avatar/' . $filename);
         }
 
         $profile->save();
