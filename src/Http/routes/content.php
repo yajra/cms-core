@@ -9,7 +9,7 @@ use Yajra\CMS\Http\Controllers\ArticlesController;
 use Yajra\CMS\Http\Controllers\CategoriesController;
 
 // Articles Routes
-$router->post('articles/{articles}/publish', ArticlesController::class . '@publish')
+$router->post('articles/{article}/publish', ArticlesController::class . '@publish')
        ->name('articles.publish');
 $router->resource('articles', ArticlesController::class);
 
