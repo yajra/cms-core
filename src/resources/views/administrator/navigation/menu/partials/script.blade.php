@@ -65,7 +65,7 @@
                 });
             }
         },
-        ready: function() {
+        mounted: function() {
             this.generateSelectedItem({{$menu->extension_id}}, '{{$menu->extension->name}}');
         }
     });

@@ -5,6 +5,6 @@
     {!! form()->input('text', 'file', $configuration->key("cache.stores.file.path"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Path Here',
-        'v-model'       => 'cache.storesAAAfileAAApath'
+        'v-model'       => 'cache.stores.file.path'
     ]) !!}
 </div>

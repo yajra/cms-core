@@ -1,7 +1,7 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="new-asset-modal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST" v-on:submit.prevent="submitNewAsset(this.newasset)">
+            <form method="POST" v-on:submit.prevent="submitNewAsset(newasset)">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
@@ -25,7 +25,7 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="edit-asset-modal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST" v-on:submit.prevent="submitEditAsset(this.editasset)">
+            <form method="POST" v-on:submit.prevent="submitEditAsset(editasset)">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>

@@ -5,7 +5,7 @@
     {!! form()->input('text', 'host', $configuration->key("database.connections.mysql.host"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Host Name Here',
-        'v-model'       => 'database.connectionsAAAmysqlAAAhost'
+        'v-model'       => 'database.connections.mysql.host'
     ]) !!}
 </div>
 <div class="row">
@@ -17,7 +17,7 @@
             {!! form()->input('text', 'username', $configuration->key("database.connections.mysql.username"), [
                 'class'         => 'form-control',
                 'placeholder'   => 'Enter Username Name Here',
-                'v-model'       => 'database.connectionsAAAmysqlAAAusername'
+                'v-model'       => 'database.connections.mysql.username'
             ]) !!}
         </div>
     </div>
@@ -29,7 +29,7 @@
             {!! form()->input('password', 'password', '', [
                 'class'         => 'form-control',
                 'placeholder'   => 'Enter Password Here',
-                'v-model'       => 'database.connectionsAAAmysqlAAApassword'
+                'v-model'       => 'database.connections.mysql.password'
             ]) !!}
         </div>
     </div>
@@ -41,6 +41,6 @@
     {!! form()->input('text', 'name', $configuration->key("database.connections.mysql.database"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Database Name Here',
-        'v-model'       => 'database.connectionsAAAmysqlAAAdatabase'
+        'v-model'       => 'database.connections.mysql.database'
     ]) !!}
 </div>

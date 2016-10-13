@@ -1,4 +1,4 @@
-<input type="hidden" v-model="asset.config" value="asset">
+<input type="hidden" v-model="assetManagement.config" value="asset">
 <div class="form-group">
     <label class="form-label-style block" for="title">Default
         @tooltip('Site resource assets.')
@@ -8,7 +8,7 @@
         $configuration->key("asset.default"),[
             'class'     => 'form-control select2',
             'id'        => 'default-asset',
-            'v-model'   => 'asset.default',
+            'v-model'   => 'assetManagement.default',
             'config'    => 'asset.default',
     ]) !!}
 </div>

@@ -5,6 +5,6 @@
     {!! form()->input('text', 'local', $configuration->key("filesystems.disks.local.root"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Local Directory Here',
-        'v-model'       => 'filesystems.disksAAAlocalAAAroot'
+        'v-model'       => 'filesystems.disks.local.root'
     ]) !!}
 </div>

@@ -101,7 +101,7 @@
                 });
             }
         },
-        ready: function () {
+        mounted: function () {
             this.fetchDependencies();
             CKEDITOR.replace('body', {
                 allowedContent: true,

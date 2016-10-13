@@ -5,7 +5,7 @@
     {!! form()->input('text', 'host', $configuration->key("database.connections.pgsql.host"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Host Name Here',
-        'v-model'       => 'database.connectionsAAApgsqlAAAhost'
+        'v-model'       => 'database.connections.pgsql.host'
     ]) !!}
 </div>
 <div class="row">
@@ -17,7 +17,7 @@
             {!! form()->input('text', 'username', $configuration->key("database.connections.pgsql.username"), [
                 'class'         => 'form-control',
                 'placeholder'   => 'Enter Username Name Here',
-                'v-model'       => 'database.connectionsAAApgsqlAAAusername'
+                'v-model'       => 'database.connections.pgsql.username'
             ]) !!}
         </div>
     </div>
@@ -29,7 +29,7 @@
             {!! form()->input('password', 'password', null, [
                 'class'         => 'form-control',
                 'placeholder'   => 'Enter Password Here',
-                'v-model'       => 'database.connectionsAAApgsqlAAApassword'
+                'v-model'       => 'database.connections.pgsql.password'
             ]) !!}
         </div>
     </div>
@@ -41,7 +41,7 @@
     {!! form()->input('text', 'name', $configuration->key("database.connections.pgsql.database"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Databas Name Here',
-        'v-model'       => 'database.connectionsAAApgsqlAAAdatabase'
+        'v-model'       => 'database.connections.pgsql.database'
     ]) !!}
 </div>
 <div class="form-group">
@@ -51,6 +51,6 @@
     {!! form()->input('text', 'name', $configuration->key("database.connections.pgsql.schema"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Schema Name Here',
-        'v-model'       => 'database.connectionsAAApgsqlAAAschema'
+        'v-model'       => 'database.connections.pgsql.schema'
     ]) !!}
 </div>

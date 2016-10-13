@@ -6,7 +6,7 @@
         'id'            => 'app_public',
         'class'         => 'form-control',
         'placeholder'   => 'Enter Public Directory Here',
-        'v-model'       => 'filesystems.disksAAApublicAAAroot'
+        'v-model'       => 'filesystems.disks.public.root'
     ]) !!}
 </div>
 <div class="form-group">
@@ -17,6 +17,6 @@
         'id'            => 'app_visibility',
         'class'         => 'form-control',
         'placeholder'   => 'Enter Visibility Here','disabled',
-        'v-model'       => 'filesystems.disksAAApublicAAAvisibility'
+        'v-model'       => 'filesystems.disks.public.visibility'
     ]) !!}
 </div>

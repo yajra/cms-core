@@ -5,7 +5,7 @@
     {!! form()->input('text', 'key', $configuration->key("filesystems.disks.s3.key"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Key Here',
-        'v-model'       => 'filesystems.disksAAAs3AAAkey'
+        'v-model'       => 'filesystems.disks.s3.key'
     ]) !!}
 </div>
 <div class="form-group">
@@ -15,7 +15,7 @@
     {!! form()->input('text', 'secret', $configuration->key("filesystems.disks.s3.secret"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Secret Here',
-        'v-model'       => 'filesystems.disksAAAs3AAAsecret'
+        'v-model'       => 'filesystems.disks.s3.secret'
     ]) !!}
 </div>
 <div class="form-group">
@@ -25,7 +25,7 @@
     {!! form()->input('text', 'region', $configuration->key("filesystems.disks.s3.region"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Region Here',
-        'v-model'       => 'filesystems.disksAAAs3AAAregion'
+        'v-model'       => 'filesystems.disks.s3.region'
     ]) !!}
 </div>
 <div class="form-group">
@@ -35,6 +35,6 @@
     {!! form()->input('text', 'bucket', $configuration->key("filesystems.disks.s3.bucket"), [
         'class'         => 'form-control',
         'placeholder'   =>' Enter Region Here',
-        'v-model'       => 'filesystems.disksAAAs3AAAbucket'
+        'v-model'       => 'filesystems.disks.s3.bucket'
     ]) !!}
 </div>

@@ -5,7 +5,7 @@
     {!! form()->input('text', 'host', $configuration->key("database.connections.oracle.host"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Host Name Here',
-        'v-model'       => 'database.connectionsAAAoracleAAAhost'
+        'v-model'       => 'database.connections.oracle.host'
     ]) !!}
 </div>
 <div class="row">
@@ -17,7 +17,7 @@
             {!! form()->input('text', 'username', $configuration->key("database.connections.oracle.username"), [
                 'class'         => 'form-control',
                 'placeholder'   => 'Enter Username Name Here',
-                'v-model'       => 'database.connectionsAAAoracleAAAusername'
+                'v-model'       => 'database.connections.oracle.username'
             ]) !!}
         </div>
     </div>
@@ -29,7 +29,7 @@
             {!! form()->input('password', 'password', null, [
                 'class'         => 'form-control',
                 'placeholder'   => 'Enter Password Here',
-                'v-model'       => 'database.connectionsAAAoracleAAApassword'
+                'v-model'       => 'database.connections.oracle.password'
             ]) !!}
         </div>
     </div>
@@ -41,6 +41,6 @@
     {!! form()->input('text', 'name', $configuration->key("database.connections.oracle.database"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Database Name Here',
-        'v-model'       => 'database.connectionsAAAoracleAAAdatabase'
+        'v-model'       => 'database.connections.oracle.database'
     ]) !!}
 </div>

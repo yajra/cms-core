@@ -6,6 +6,6 @@
         'id'            => 'site_author',
         'class'         => 'form-control',
         'placeholder'   => 'Enter Database Name Here',
-        'v-model'       => 'database.connectionsAAAsqliteAAAdatabase'
+        'v-model'       => 'database.connections.sqlite.database'
     ]) !!}
 </div>

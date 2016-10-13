@@ -5,7 +5,7 @@
     {!! form()->input('text', 'database', $configuration->key("cache.stores.database.table"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Database Table Name Here',
-        'v-model'       => 'cache.storesAAAdatabaseAAAtable'
+        'v-model'       => 'cache.stores.database.table'
     ]) !!}
 </div>
 <div class="form-group">
@@ -15,6 +15,6 @@
     {!! form()->input('text', 'connection', $configuration->key("cache.stores.database.connection"), [
         'class'         => 'form-control',
         'placeholder'   => 'Enter Database Connection Here',
-        'v-model'       => 'cache.storesAAAdatabaseAAAconnection'
+        'v-model'       => 'cache.stores.database.connection'
     ]) !!}
 </div>

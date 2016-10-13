@@ -7,7 +7,7 @@
         new Vue({
             el: '#' + container,
             data: {},
-            ready: function () {
+            mounted: function () {
                 $('#' + attrId + 'directories').on('change', function () {
                     if ($(this).val()) {
                         var directory = $(this).val();
