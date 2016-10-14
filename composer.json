@@ -20,7 +20,7 @@
     "require": {
         "php" : ">=7.0.0",
         "yajra/laravel-datatables-oracle": "^6.0",
-        "yajra/laravel-acl": "^0.1.0",
+        "yajra/laravel-acl": "^2.0.0",
         "yajra/laravel-auditable": "^0.1.0",
         "yajra/baum": "^1.1.4",
         "laracasts/flash": "^1.3",
