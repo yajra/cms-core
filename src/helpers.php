@@ -72,11 +72,15 @@ if (! function_exists('currentUser')) {
      * Get current user instance.
      *
      * @param string|null $guard
-     * @return \App\User
+     * @return \App\User|\Illuminate\Contracts\Auth\Authenticatable
      */
     function currentUser($guard = null)
     {
-        return auth($guard)->user();
+        if ($user = auth($guard)->user()) {
+            return $user;
+        }
+
+        return new Yajra\CMS\Entities\Guest;
     }
 }
 
