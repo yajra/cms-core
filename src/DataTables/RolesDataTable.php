@@ -17,9 +17,6 @@ class RolesDataTable extends DataTable
             ->editColumn('system', function (Role $role) {
                 return dt_check($role->system);
             })
-            ->editColumn('slug', function (Role $role) {
-                return '<small>' . $role->slug . '</small>';
-            })
             ->addColumn('users', function (Role $role) {
                 return view('administrator.roles.datatables.users', compact('role'))->render();
             })
