@@ -102,7 +102,7 @@ class UsersController extends Controller
     {
         $this->validate($this->request, [
             'username'   => 'required|alpha_num|max:20|unique:users',
-            'email'      => 'required|email',
+            'email'      => 'required|email|unique:users',
             'first_name' => 'required',
             'last_name'  => 'required',
             'password'   => 'min:4|confirmed',
@@ -182,7 +182,7 @@ class UsersController extends Controller
     {
         $this->validate($this->request, [
             'username'              => 'required|alpha_num|max:20|unique:users,username,' . $user->id,
-            'email'                 => 'required|email',
+            'email'                 => 'required|email|unique:users,email,' . $user->id,
             'first_name'            => 'required',
             'last_name'             => 'required',
             'password'              => 'min:4|confirmed',
