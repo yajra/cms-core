@@ -33,10 +33,7 @@ class DynamicMenusBuilder
             $this->repository->getPublished()->each(function (Navigation $navigation) {
                 MenuFactory::make($navigation->type, function (Builder $builder) use ($navigation) {
                     $navigation->menus->each(function (Menu $menu) use ($builder, &$assignment) {
-                        $menus = $menu->descendantsAndSelf()->with('permissions')->get()->toHierarchy();
-                        foreach ($menus as $menu) {
-                            $this->generateMenu($builder, $menu);
-                        }
+                        $this->generateMenu($builder, $menu);
                     });
                 });
             });
