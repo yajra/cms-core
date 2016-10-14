@@ -106,18 +106,12 @@ class GenerateAdminMenu
 
                 $menu->add('Logout', route('administrator.logout'))->icon('power-off');
             })->filter(function ($item) {
-                $permissions = $item->data('permission');
+                $permissions = (array) $item->data('permission');
                 if (! $permissions) {
                     return true;
                 }
 
-                foreach ((array) $permissions as $permission) {
-                    if (currentUser()->can($permission)) {
-                        return true;
-                    }
-                }
-
-                return false;
+                return currentUser()->canAtLeast($permissions);
             });
         }
 
