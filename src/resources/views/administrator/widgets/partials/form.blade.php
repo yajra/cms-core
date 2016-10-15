@@ -106,7 +106,9 @@
             CKEDITOR.replace('body', {
                 allowedContent: true,
                 filebrowserBrowseUrl: '/administrator/media/browse',
-                filebrowserImageBrowseUrl: '/administrator/media/browse/images'
+                filebrowserImageBrowseUrl: '/administrator/media/browse/images',
+                customConfig: '/plugins/ckeditor/plugins/justify/plugin.js',
+                extraPlugins: 'colorbutton,justify',
             });
         }
     });
