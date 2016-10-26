@@ -68,7 +68,9 @@ class ArticlesController extends Controller
         $article->save();
 
         $article->permissions()->sync($request->get('permissions', []));
-        $article->tag(explode(',', $request->tags));
+        if ($request->tags) {
+            $article->tag(explode(',', $request->tags));
+        }
 
         flash()->success(trans('cms::article.store.success'));
 
@@ -105,7 +107,9 @@ class ArticlesController extends Controller
         $article->save();
 
         $article->permissions()->sync($request->get('permissions', []));
-        $article->retag(explode(',', $request->tags));
+        if ($request->tags) {
+            $article->tag(explode(',', $request->tags));
+        }
 
         flash()->success(trans('cms::article.update.success'));
 
