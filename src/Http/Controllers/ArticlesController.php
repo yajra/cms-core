@@ -108,7 +108,7 @@ class ArticlesController extends Controller
 
         $article->permissions()->sync($request->get('permissions', []));
         if ($request->tags) {
-            $article->tag(explode(',', $request->tags));
+            $article->retag(explode(',', $request->tags));
         }
 
         flash()->success(trans('cms::article.update.success'));
