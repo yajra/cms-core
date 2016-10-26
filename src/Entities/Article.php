@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Entities;
 
+use Conner\Tagging\Taggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Laracasts\Presenter\PresentableTrait;
@@ -40,7 +41,7 @@ class Article extends Model implements UrlGenerator
 {
     use AuditableTrait, PublishableTrait, HasSlug;
     use CanRequireAuthentication, HasPermission, PresentableTrait;
-    use HasParameters, SortableTrait;
+    use HasParameters, SortableTrait, Taggable;
 
     public $sortable = [
         'order_column_name' => 'order',

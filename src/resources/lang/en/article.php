@@ -81,6 +81,7 @@ return [
                 'show_modify_date' => 'Show/Hide the date the article was updated.',
                 'show_hits'        => 'Show/Hide the # of hits the article have.',
             ],
+            'tags'                         => 'Article tags.',
         ],
 
         'field' => [
@@ -141,6 +142,7 @@ return [
                 'show_modify_date' => 'Show Modify Date',
                 'show_hits'        => 'Show Hits',
             ],
+            'tags'                                     => 'Tags',
         ],
     ],
 

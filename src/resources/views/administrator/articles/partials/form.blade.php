@@ -91,6 +91,26 @@
 @push('scripts')
 <script>
     $(function () {
+        var tags = [
+            @foreach ($tags as $tag)
+            {tag: "{{$tag}}" },
+            @endforeach
+        ];
+
+        $('#tags').selectize({
+            delimiter: ',',
+            persist: false,
+            valueField: 'tag',
+            labelField: 'tag',
+            searchField: 'tag',
+            options: tags,
+            create: function(input) {
+                return {
+                    tag: input
+                }
+            }
+        });
+
         CKEDITOR.replace('body', {
             allowedContent: true,
             filebrowserBrowseUrl: '/administrator/media/browse',

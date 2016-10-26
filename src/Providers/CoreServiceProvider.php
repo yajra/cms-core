@@ -7,6 +7,7 @@ use Barryvdh\Debugbar\ServiceProvider as DebugbarServiceProvider;
 use Barryvdh\Snappy\ServiceProvider as SnappyServiceProvider;
 use Baum\Providers\BaumServiceProvider;
 use Caffeinated\Menus\MenusServiceProvider;
+use Conner\Tagging\Providers\TaggingServiceProvider;
 use DaveJamesMiller\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
@@ -126,6 +127,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(AssetServiceProvider::class);
         $this->app->register(DatatablesServiceProvider::class);
         $this->app->register(SortableServiceProvider::class);
+        $this->app->register(TaggingServiceProvider::class);
     }
 
     /**

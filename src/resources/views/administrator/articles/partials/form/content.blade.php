@@ -67,5 +67,14 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-group {!! $errors->has('tags') ? 'has-error' : '' !!}">
+            <label class="form-label-style block" for="tags">
+                {{trans('cms::article.form.field.tags')}}
+                @tooltip('cms::article.form.tooltip.tags')
+            </label>
+            {!! form()->text('tags', $selectedTags ?? null, ['class' => 'form-control', 'id' => 'tags']) !!}
+            {!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
+        </div>
     </div>
 </div>

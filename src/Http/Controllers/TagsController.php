@@ -5,25 +5,15 @@ namespace Yajra\CMS\Http\Controllers;
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Http\Requests\ArticlesFormRequest;
-use App\Http\Requests;
 
-class ArticlesController extends Controller
+class TagsController extends Controller
 {
-    /**
-     * Controller specific permission ability map.
-     *
-     * @var array
-     */
-    protected $customPermissionMap = [
-        'publish' => 'update',
-    ];
-
     /**
      * ArticlesController constructor.
      */
     public function __construct()
     {
-        $this->authorizePermissionResource('article');
+        $this->authorizePermissionResource('tag');
     }
 
     /**
@@ -32,7 +22,7 @@ class ArticlesController extends Controller
      * @param \Yajra\CMS\DataTables\ArticlesDataTable $dataTable
      * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function index(ArticlesDataTable $dataTable)
+    public function index(TagsDataTable $dataTable)
     {
         return $dataTable->render('administrator.articles.index');
     }
@@ -47,9 +37,8 @@ class ArticlesController extends Controller
     {
         $article->published = true;
         $article->setHighestOrderNumber();
-        $tags = Article::existingTags()->pluck('name');
 
-        return view('administrator.articles.create', compact('article', 'tags'));
+        return view('administrator.articles.create', compact('article'));
     }
 
     /**
@@ -66,10 +55,7 @@ class ArticlesController extends Controller
         $article->featured      = $request->get('featured', false);
         $article->authenticated = $request->get('authenticated', false);
         $article->save();
-
         $article->permissions()->sync($request->get('permissions', []));
-        $article->tag(explode(',', $request->tags));
-
         flash()->success(trans('cms::article.store.success'));
 
         return redirect()->route('administrator.articles.index');
@@ -83,10 +69,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        $tags = Article::existingTags()->pluck('name');
-        $selectedTags = implode(',', $article->tagNames());
-
-        return view('administrator.articles.edit', compact('article', 'tags', 'selectedTags'));
+        return view('administrator.articles.edit', compact('article'));
     }
 
     /**
@@ -103,10 +86,7 @@ class ArticlesController extends Controller
         $article->featured      = $request->get('featured', false);
         $article->authenticated = $request->get('authenticated', false);
         $article->save();
-
         $article->permissions()->sync($request->get('permissions', []));
-        $article->retag(explode(',', $request->tags));
-
         flash()->success(trans('cms::article.update.success'));
 
         return redirect()->route('administrator.articles.index');
