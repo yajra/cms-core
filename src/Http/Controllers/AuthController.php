@@ -73,15 +73,15 @@ class AuthController extends Controller
     public function authenticated(Request $request, User $user)
     {
         if ($user->blocked || ! $user->confirmed) {
-            $request->user($this->getGuard())->logout();
             if ($user->blocked) {
                 $message = 'Your account is currently banned from accessing the site!';
             } else {
                 $message = 'Your account is not yet activated!';
             }
+            auth($this->getGuard())->logout();
             flash()->error($message);
 
-            return redirect()->to('administrator/login');
+            return redirect()->to('administrator/login')->withErrors($message);
         }
 
         return redirect()->intended($this->redirectPath);
