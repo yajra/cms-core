@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Yajra\Acl\Models\Role;
+use Yajra\CMS\Contracts\Validators\StoreUserValidator;
+use Yajra\CMS\Contracts\Validators\UpdateUserValidator;
 use Yajra\CMS\DataTables\UsersDataTable;
 
 class UsersController extends Controller
@@ -96,19 +98,11 @@ class UsersController extends Controller
     /**
      * Store a newly created user.
      *
+     * @param \Yajra\CMS\Contracts\Validators\StoreUserValidator $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store()
+    public function store(StoreUserValidator $request)
     {
-        $this->validate($this->request, [
-            'username'   => 'required|alpha_num|max:20|unique:users',
-            'email'      => 'required|email|unique:users',
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'password'   => 'min:4|confirmed',
-            'roles'      => 'required',
-        ]);
-
         $user                = new User($this->request->all());
         $user->password      = bcrypt($this->request->get('password'));
         $user->confirmed     = $this->request->get('confirmed', false);
@@ -176,20 +170,11 @@ class UsersController extends Controller
 
     /**
      * @param \App\User $user
+     * @param \Yajra\CMS\Contracts\Validators\UpdateUserValidator $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(User $user)
+    public function update(User $user, UpdateUserValidator $request)
     {
-        $this->validate($this->request, [
-            'username'              => 'required|alpha_num|max:20|unique:users,username,' . $user->id,
-            'email'                 => 'required|email|unique:users,email,' . $user->id,
-            'first_name'            => 'required',
-            'last_name'             => 'required',
-            'password'              => 'min:4|confirmed',
-            'password_confirmation' => 'min:4',
-            'roles'                 => 'required',
-        ]);
-
         $user->fill($this->request->except('password'));
         $password = $this->request->get('password');
         if (! empty($password)) {
