@@ -26,7 +26,7 @@ class UsersController extends Controller
      * @var array
      */
     protected $customPermissionMap = [
-        'activate'       => 'lists',
+        'activate'       => 'update',
         'ban'            => 'update',
         'forceDelete'    => 'delete',
         'restore'        => 'update',
