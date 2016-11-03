@@ -91,7 +91,7 @@
     				<div id="stack-details"></div>
     			</div>
     			<div class="modal-footer">
-    				<button type="button" class="btn btn-default" data-dismiss="modal">{{trans('button.close')}}</button>
+    				<button type="button" class="btn btn-default" data-dismiss="modal">{{trans('cms::button.close')}}</button>
     			</div>
     		</div>
     	</div>
