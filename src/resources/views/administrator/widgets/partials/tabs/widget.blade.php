@@ -22,11 +22,8 @@
                             {{trans('cms::widget.field.template')}}
                             @tooltip('cms::widget.tooltip.template')
                         </label>
-                        <select name="template" class="form-control" v-model="widget.template">
-                            <option v-for="template in templates"
-                                    v-bind:value="template.key">
-                                @{{ template.value }}
-                            </option>
+                        <select name="template" class="form-control select-menu" v-model="widget.template">
+                            <option v-for="template in templates" v-bind:value="template.key">@{{ template.value }}</option>
                         </select>
                         {!! $errors->first('template', '<span class="help-block">:message</span>') !!}
                     </div>

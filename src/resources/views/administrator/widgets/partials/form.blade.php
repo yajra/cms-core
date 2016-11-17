@@ -98,6 +98,7 @@
                     var json = response.data;
                     this.templates = json.data;
                     this.widget.extension_id = json.selected;
+                    $('.select-menu').select2();
                 });
             }
         },
