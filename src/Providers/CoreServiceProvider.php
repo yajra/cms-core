@@ -98,6 +98,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerProviders();
         $this->registerBindings();
         $this->registerAliases();
+        $this->registerMigrations();
     }
 
     /**
@@ -155,5 +156,13 @@ class CoreServiceProvider extends ServiceProvider
         $loader->alias('AsyncWidget', \Arrilot\Widgets\AsyncFacade::class);
         $loader->alias('Module', \Pingpong\Modules\Facades\Module::class);
         $loader->alias('Asset', \Roumen\Asset\Asset::class);
+    }
+
+    /**
+     * Register core migration files.
+     */
+    protected function registerMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../../migrations');
     }
 }
