@@ -8,6 +8,7 @@ use Illuminate\Routing\Router;
 use Yajra\Acl\Models\Permission;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Entities\Category;
+use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Http\Controllers\ArticleController;
 use Yajra\CMS\Http\Controllers\AuthController;
 use Yajra\CMS\Http\Controllers\CategoryController;
@@ -40,6 +41,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
+        $router->bind('widget', function ($id) use ($router) {
+            if ($router->is('administrator*')) {
+                return Widget::withoutGlobalScope('menu_assignment')->findOrFail($id);
+            }
+
+            return Widget::findOrFail($id);
+        });
+
         $this->mapWebRoutes($router);
     }
 
