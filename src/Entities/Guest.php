@@ -3,6 +3,7 @@
 namespace Yajra\CMS\Entities;
 
 use App\User;
+use Yajra\Acl\Models\Role;
 
 class Guest extends User
 {
