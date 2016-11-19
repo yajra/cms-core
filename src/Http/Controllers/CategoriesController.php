@@ -2,11 +2,9 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Illuminate\Database\QueryException;
 use Yajra\CMS\DataTables\CategoriesDataTable;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Http\Requests\CategoriesFormRequest;
-use App\Http\Requests;
 
 class CategoriesController extends Controller
 {
@@ -127,8 +125,7 @@ class CategoriesController extends Controller
      * Button Response from DataTable request to publish status.
      *
      * @param  \Yajra\CMS\Entities\Category $category
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @return \Illuminate\Http\JsonResponse
      */
     public function publish(Category $category)
     {
