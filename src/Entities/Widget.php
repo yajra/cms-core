@@ -73,13 +73,13 @@ class Widget extends Model implements Cacheable
         parent::boot();
 
         static::addGlobalScope('menu_assignment', function(Builder $builder) {
-            $widget     = new Widget;
+            $connection = $builder->getModel()->getConnection();
             $assignment = [0];
             if (session()->has('active_menu')) {
                 $assignment[] = session('active_menu')->id;
             }
 
-            $widgets    = $widget->getConnection()->table('widget_menu');
+            $widgets    = $connection->table('widget_menu');
             $widgets    = $widgets->whereIn('menu_id', $assignment);
             $builder->whereIn('id', $widgets->pluck('widget_id'));
         });
