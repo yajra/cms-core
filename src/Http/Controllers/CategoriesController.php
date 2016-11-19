@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Yajra\CMS\DataTables\CategoriesDataTable;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Http\Requests\CategoriesFormRequest;
@@ -105,8 +106,7 @@ class CategoriesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \Yajra\CMS\Entities\Category $category
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Category $category)
     {
@@ -114,9 +114,13 @@ class CategoriesController extends Controller
             abort(404);
         }
 
+        if ($category->has('articles')) {
+            return $this->notifyError(trans('cms::categories.destroy.error'));
+        }
+
         $category->delete();
 
-        return flash()->success(trans('cms::categories.alert.success', ['stat' => 'Updated']));
+        return $this->notifySuccess(trans('cms::categories.destroy.success'));
     }
 
     /**
