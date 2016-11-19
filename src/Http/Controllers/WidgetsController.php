@@ -182,7 +182,7 @@ class WidgetsController extends Controller
      */
     public function parameters($id, $widget)
     {
-        $widget    = Widget::query()->findOrNew($widget);
+        $widget    = Widget::withoutGlobalScope('menu_assignment')->findOrNew($widget);
         $extension = $this->repository->findOrFail($id);
         $formView  = $extension->param('form');
 
