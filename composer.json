@@ -28,7 +28,7 @@
     "laracasts/presenter": "^0.2.1",
     "barryvdh/laravel-snappy": "^0.3",
     "barryvdh/laravel-debugbar": "^2.2",
-    "spatie/laravel-fractal": "^1.7",
+    "spatie/laravel-fractal": "^2.0",
     "spatie/laravel-backup": "^3.7",
     "spatie/laravel-sluggable": "^1.1",
     "spatie/eloquent-sortable": "^2.1",
