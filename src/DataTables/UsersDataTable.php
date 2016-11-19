@@ -43,15 +43,15 @@ class UsersDataTable extends DataTable
     {
         $users = User::query();
 
-        if ($this->datatables->request->get('deleted') == 'true') {
+        if ($this->datatables->getRequest()->get('deleted') == 'true') {
             $users->onlyTrashed();
         }
 
-        if ($status = $this->datatables->request->get('status')) {
+        if ($status = $this->datatables->getRequest()->get('status')) {
             $users->whereIn('confirmed', $status);
         }
 
-        if ($roles = $this->datatables->request->get('roles')) {
+        if ($roles = $this->datatables->getRequest()->get('roles')) {
             $users->havingRoles($roles);
         }
 
