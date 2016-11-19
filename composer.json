@@ -19,7 +19,8 @@
     ],
     "require": {
         "php" : ">=7.0.0",
-        "yajra/laravel-datatables-oracle": "^6.0",
+        "yajra/laravel-datatables-oracle": "dev-master",
+        "yajra/laravel-datatables-buttons": "dev-master",
         "yajra/laravel-acl": "^3.0.0",
         "yajra/laravel-auditable": "^1.0",
         "yajra/baum": "^1.1.4",
