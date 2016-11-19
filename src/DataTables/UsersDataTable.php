@@ -41,7 +41,7 @@ class UsersDataTable extends DataTable
      */
     public function query()
     {
-        $users = User::query();
+        $users = User::with('roles');
 
         if ($this->datatables->getRequest()->get('deleted') == 'true') {
             $users->onlyTrashed();
@@ -71,7 +71,7 @@ class UsersDataTable extends DataTable
                 'last_name',
                 'email',
                 'username',
-                'roles'         => ['searchable' => false, 'orderable' => false],
+                'roles'         => ['name' => 'roles.name', 'orderable' => false],
                 'administrator' => [
                     'width' => '20px',
                     'title' => '<i class="fa fa-shield" data-toggle="tooltip" data-title="IsAdministrator"></i>',
