@@ -5,23 +5,17 @@
     {!! csrf_field() !!}
 
     @if(config('site.login.backend.username', 'username') === 'email')
-        <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-            <input type="email"
-                   name="email"
-                   value="{{ old('email') }}"
-                   class="form-control"
-                   placeholder="{{trans('cms::auth.placeholder.email')}}">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+            <label class="control-label">Email</label>
+
+            <input type="email" class="form-control" name="email" value="{{ old('email') }}" title="email">
             {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
         </div>
     @else
-        <div class="form-group has-feedback {{ $errors->has('username') ? 'has-error' : '' }}">
-            <input type="text"
-                   name="username"
-                   value="{{ old('username') }}"
-                   class="form-control"
-                   placeholder="{{trans('cms::auth.placeholder.username')}}">
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
+            <label class="control-label">Username</label>
+
+            <input type="text" class="form-control" name="username" value="{{ old('username') }}" title="username">
             {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
         </div>
     @endif
