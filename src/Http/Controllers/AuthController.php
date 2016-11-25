@@ -94,7 +94,7 @@ class AuthController extends Controller
      */
     public function username()
     {
-        return $this->username;
+        return config('site.login.backend.username', $this->username);
     }
 
     /**
@@ -105,9 +105,11 @@ class AuthController extends Controller
      */
     protected function credentials(Request $request)
     {
-        return array_merge($request->only($this->username(), 'password'), [
+        $options = config('site.login.backend.options', [
             'administrator' => true,
         ]);
+
+        return array_merge($request->only($this->username(), 'password'), $options);
     }
 
     /**

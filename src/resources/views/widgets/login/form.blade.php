@@ -4,17 +4,27 @@
 <form class="form-vertical" role="form" method="POST" action="{{ url('/login') }}">
     {!! csrf_field() !!}
 
-    <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-        <label class="control-label" for="username">Username</label>
-
-        <input type="text"
-               id="username"
-               class="form-control"
-               name="username"
-               value="{{ old('username') }}">
-
-        {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
-    </div>
+    @if(config('site.login.backend.username', 'username') === 'email')
+        <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+            <input type="email"
+                   name="email"
+                   value="{{ old('email') }}"
+                   class="form-control"
+                   placeholder="{{trans('cms::auth.placeholder.email')}}">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+        </div>
+    @else
+        <div class="form-group has-feedback {{ $errors->has('username') ? 'has-error' : '' }}">
+            <input type="text"
+                   name="username"
+                   value="{{ old('username') }}"
+                   class="form-control"
+                   placeholder="{{trans('cms::auth.placeholder.username')}}">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
+        </div>
+    @endif
 
     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
         <label class="control-label" for="password">Password</label>
