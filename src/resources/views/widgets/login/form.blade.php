@@ -4,7 +4,7 @@
 <form class="form-vertical" role="form" method="POST" action="{{ url('/login') }}">
     {!! csrf_field() !!}
 
-    @if(config('site.login.backend.username', 'username') === 'email')
+    @if(config('site.login.frontend.username', 'username') === 'email')
         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
             <label class="control-label">Email</label>
 
