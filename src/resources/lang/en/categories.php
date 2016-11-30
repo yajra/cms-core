@@ -13,17 +13,19 @@ return [
     |
     */
 
-    'index'   => [
+    'index' => [
         'title'      => 'Categories Manager',
         'page-title' => 'Categories Manager',
         'page-desc'  => 'Manage article categories publication.',
         'box-title'  => 'Category Lists',
     ],
+
     'destroy' => [
         'success' => 'Category successfully deleted',
         'error'   => 'Unable to delete category because it is being used by some articles.',
     ],
-    'form'    => [
+
+    'form' => [
         'fields' => [
             'title'                        => 'Title',
             'parent'                       => 'Parent',
@@ -38,13 +40,15 @@ return [
             'meta_keywords_placeholder'    => 'Enter meta description here',
         ],
     ],
-    'edit'    => [
+
+    'edit' => [
         'title'      => 'Edit Panel',
         'page-title' => 'Update Category',
         'page-desc'  => 'Update category publication details.',
         'require'    => 'Fill-up all the required fields.',
     ],
-    'create'  => [
+
+    'create' => [
         'title'      => 'Create Panel',
         'page-title' => 'Create Category',
         'page-desc'  => 'Create category publication details.',
@@ -58,9 +62,25 @@ return [
         'meta_keywords'    => 'An optional comma separated list of keywords and/or phrases to be used in the HTML output.',
     ],
 
-    'tab'         => [
+    'tab' => [
         'content'    => 'Category',
         'publishing' => 'Publishing',
     ],
+
     'no-articles' => 'Whoops, there are no articles here yet :/',
+
+    'datatable' => [
+        'columns' => [
+            'lft'           => 'Nested Order',
+            'status'        => 'Publication Status',
+            'authenticated' => 'Authentication Required',
+            'pub'           => '# Published Articles',
+            'unpub'         => '# Unpublished Articles',
+            'hits'          => 'Hits',
+        ],
+        'buttons' => [
+            'create' => 'New Category',
+        ],
+    ],
+
 ];

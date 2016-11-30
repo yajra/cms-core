@@ -62,4 +62,14 @@ return [
 
     'form_header' => 'Fill-up all the required fields.',
 
+    'datatable' => [
+        'columns' => [
+            'menus'     => 'Number of Menu Items',
+            'published' => 'Published',
+        ],
+        'buttons' => [
+            'create' => 'New Navigation'
+        ],
+    ],
+
 ];

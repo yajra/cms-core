@@ -46,4 +46,7 @@ return [
         'enable'    => 'Enable',
         'disable'   => 'Disable',
     ],
+
+    'datatable' => [],
+
 ];

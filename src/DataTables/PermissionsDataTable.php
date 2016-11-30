@@ -85,7 +85,7 @@ class PermissionsDataTable extends DataTable
             'buttons'   => [
                 [
                     'extend' => 'create',
-                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;NEW PERMISSION',
+                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::permission.datatable.buttons.create'),
                 ],
                 'export',
                 'print',

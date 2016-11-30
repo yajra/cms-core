@@ -129,4 +129,16 @@ return [
             'pre_text'      => 'This is a text or HTML that will displayed above the login form.',
         ],
     ],
+
+    'datatable' => [
+        'columns' => [
+            'extensionName' => 'Widget Extension',
+            'published'     => 'Published',
+            'authenticated' => 'Authentication Required',
+            'order'         => 'Sort/Order',
+        ],
+        'buttons' => [
+            'create' => 'New Widget',
+        ],
+    ],
 ];

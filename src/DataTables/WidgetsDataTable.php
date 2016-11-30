@@ -72,19 +72,19 @@ class WidgetsDataTable extends DataTable
             'position'       => ['width' => '80px'],
             'extension.name' => [
                 'width' => '60px',
-                'title' => '<i class="fa fa-plug" data-toggle="tooltip" data-title="Widget Extension"></i> Ext.',
+                'title' => '<i class="fa fa-plug" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.extensionName') . '"></i> Ext.',
             ],
             'published'      => [
                 'width' => '20px',
-                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="Published"></i>',
+                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.published') . '"></i>',
             ],
             'authenticated'  => [
                 'width' => '20px',
-                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="Authentication Required"></i>',
+                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.authenticated') . '"></i>',
             ],
             'order'          => [
                 'width' => '20px',
-                'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="Sort/Order"></i>',
+                'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.order') . '"></i>',
                 'name'  => 'widgets.order',
             ],
             'updated_at'     => [
@@ -105,7 +105,7 @@ class WidgetsDataTable extends DataTable
             'buttons'   => [
                 [
                     'extend' => 'create',
-                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;New Widget',
+                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::widget.datatable.buttons.create'),
                 ],
                 'export',
                 'print',

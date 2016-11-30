@@ -92,4 +92,17 @@ return [
         'canAtLeast' => 'Must have at least one of selected permissions',
     ],
 
+    'datatable' => [
+        'columns' => [
+            'lft'           => 'Nested Order',
+            'published'     => 'Published',
+            'authenticated' => 'Authentication Required',
+            'order'         => 'Display Order',
+            'depth'         => 'Depth',
+        ],
+        'buttons' => [
+            'create' => 'New Menu',
+        ],
+    ],
+
 ];

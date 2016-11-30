@@ -14,7 +14,7 @@ class UsersDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->editColumn('created_at', function(User $user) {
+            ->editColumn('created_at', function (User $user) {
                 return $user->created_at->diffForHumans();
             })
             ->editColumn('email', function (User $user) {
@@ -74,15 +74,15 @@ class UsersDataTable extends DataTable
                 'roles'         => ['name' => 'roles.name', 'orderable' => false],
                 'administrator' => [
                     'width' => '20px',
-                    'title' => '<i class="fa fa-shield" data-toggle="tooltip" data-title="IsAdministrator"></i>',
+                    'title' => '<i class="fa fa-shield" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.administrator') . '"></i>',
                 ],
                 'confirmed'     => [
                     'width' => '20px',
-                    'title' => '<i class="fa fa-check" data-toggle="tooltip" data-title="IsActivated"></i>',
+                    'title' => '<i class="fa fa-check" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.confirmed') . '"></i>',
                 ],
                 'blocked'       => [
                     'width' => '20px',
-                    'title' => '<i class="fa fa-ban" data-toggle="tooltip" data-title="IsBlocked"></i>',
+                    'title' => '<i class="fa fa-ban" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.blocked') . '"></i>',
                 ],
                 'created_at',
             ])
@@ -93,7 +93,7 @@ class UsersDataTable extends DataTable
                 'buttons'   => [
                     [
                         'extend' => 'create',
-                        'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;New User',
+                        'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::user.datatable.buttons.create'),
                     ],
                     'export',
                     'print',

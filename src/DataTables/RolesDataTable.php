@@ -60,7 +60,7 @@ class RolesDataTable extends DataTable
                 'buttons'   => [
                     [
                         'extend' => 'create',
-                        'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;NEW ROLE',
+                        'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::role.datatable.buttons.create'),
                     ],
                     'export',
                     'print',

@@ -83,12 +83,30 @@ return [
         'advanced' => 'Advanced Parameters',
     ],
 
-    'edit-user'       => 'Edit User',
+    'edit-user' => 'Edit User',
+
     'change-password' => 'Change Password',
-    'activate'        => 'Activate User',
-    'deactivate'      => 'Deactivate User',
-    'unblock'         => 'Un-block User',
-    'block'           => 'Block User',
-    'delete'          => 'Delete User',
-    'view'            => 'View Profile',
+
+    'activate' => 'Activate User',
+
+    'deactivate' => 'Deactivate User',
+
+    'unblock' => 'Un-block User',
+
+    'block' => 'Block User',
+
+    'delete' => 'Delete User',
+
+    'view' => 'View Profile',
+
+    'datatable' => [
+        'columns' => [
+            'administrator' => 'Number of Menu Items',
+            'confirmed'     => 'Published',
+            'blocked'       => 'Published',
+        ],
+        'buttons' => [
+            'create' => 'New User',
+        ],
+    ],
 ];

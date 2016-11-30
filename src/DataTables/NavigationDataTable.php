@@ -68,12 +68,12 @@ class NavigationDataTable extends DataTable
                 'name'       => 'menus',
                 'searchable' => false,
                 'width'      => '25px',
-                'title'      => '<i class="fa fa-clone" data-toggle="tooltip" data-title="Number of Menu Items"></i>',
+                'title'      => '<i class="fa fa-clone" data-toggle="tooltip" data-title="' . trans('cms::navigation.datatable.columns.menus') . '"></i>',
             ],
             'published'  => [
                 'name'  => 'published',
                 'width' => '20px',
-                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="Published"></i>',
+                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::navigation.datatable.columns.published') . '"></i>',
             ],
             'created_at' => ['width' => '120px'],
             'updated_at' => ['width' => '120px'],
@@ -90,7 +90,7 @@ class NavigationDataTable extends DataTable
             'buttons'   => [
                 [
                     'extend' => 'create',
-                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;New Navigation',
+                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::navigation.datatable.buttons.create'),
                 ],
                 'export',
                 'print',

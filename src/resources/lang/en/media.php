@@ -52,4 +52,5 @@ return [
         'dropzone_text' => 'Drop files here to upload'
     ],
 
+    'datatable' => [],
 ];

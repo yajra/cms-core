@@ -54,4 +54,10 @@ return [
             'resource_placeholder' => 'Enter permission resource name',
         ],
     ],
+
+    'datatable' => [
+        'buttons' => [
+            'create' => 'New Permission',
+        ],
+    ],
 ];

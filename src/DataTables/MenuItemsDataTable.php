@@ -86,26 +86,26 @@ class MenuItemsDataTable extends DataTable
         return [
             'lft'           => [
                 'width' => '20px',
-                'title' => '<i class="fa fa-tree" data-toggle="tooltip" data-title="Nested Order"></i>',
+                'title' => '<i class="fa fa-tree" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.lft') . '"></i>',
             ],
             'id'            => ['width' => '20px'],
             'title',
             'url'           => ['visible' => false],
             'published'     => [
                 'width' => '20px',
-                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="Published"></i>',
+                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.published') . '"></i>',
             ],
             'authenticated' => [
                 'width' => '20px',
-                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="Authentication Required"></i>',
+                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.authenticated') . '"></i>',
             ],
             'order'         => [
                 'width' => '20px',
-                'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="Display Order"></i>',
+                'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.order') . '"></i>',
             ],
             'depth'         => [
                 'width' => '20px',
-                'title' => '<i class="fa fa-sitemap" data-toggle="tooltip" data-title="Depth"></i>',
+                'title' => '<i class="fa fa-sitemap" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.depth') . '"></i>',
             ],
             'created_at'    => ['width' => '100px'],
             'updated_at'    => ['width' => '100px'],
@@ -123,7 +123,7 @@ class MenuItemsDataTable extends DataTable
             'buttons'   => [
                 [
                     'extend' => 'create',
-                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;New Menu',
+                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::menu.datatable.buttons.create'),
                 ],
                 'export',
                 'print',

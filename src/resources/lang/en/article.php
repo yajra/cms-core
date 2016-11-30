@@ -159,4 +159,16 @@ return [
         'canAtLeast' => 'Must have at least one of selected permissions',
     ],
 
+    'datatable' => [
+        'columns' => [
+            'published'     => 'Published',
+            'authenticated' => 'Authentication Required',
+            'order'         => 'Sort/Order',
+            'hits'          => 'Hits',
+        ],
+        'buttons' => [
+            'create' => 'New Article',
+        ],
+    ],
+
 ];

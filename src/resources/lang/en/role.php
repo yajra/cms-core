@@ -44,4 +44,10 @@ return [
             'slug_placeholder'     => 'Enter permission slug',
         ],
     ],
+
+    'datatable' => [
+        'buttons' => [
+            'create' => 'New Role',
+        ],
+    ],
 ];

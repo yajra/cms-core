@@ -32,7 +32,7 @@ class ArticlesDataTable extends DataTable
             ->addColumn('plain_title', function (Article $article) {
                 return $article->title;
             })
-            ->addColumn('slug', function(Article $article){
+            ->addColumn('slug', function (Article $article) {
                 return $article->present()->slug;
             })
             ->make(true);
@@ -80,22 +80,22 @@ class ArticlesDataTable extends DataTable
             'published'        => [
                 'name'  => 'articles.published',
                 'width' => '20px',
-                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="Published"></i>',
+                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.published') . '"></i>',
             ],
             'authenticated'    => [
                 'name'  => 'articles.authenticated',
                 'width' => '20px',
-                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="Authentication Required"></i>',
+                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.authenticated') . '"></i>',
             ],
             'order'            => [
                 'name'  => 'articles.order',
                 'width' => '20px',
-                'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="Sort/Order"></i>',
+                'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.order') . '"></i>',
             ],
             'hits'             => [
                 'name'  => 'articles.hits',
                 'width' => '20px',
-                'title' => '<i class="fa fa-eye" data-toggle="tooltip" data-title="Hits"></i>',
+                'title' => '<i class="fa fa-eye" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.hits') . '"></i>',
             ],
             'created_at'       => ['name' => 'articles.created_at', 'width' => '100px'],
             'updated_at'       => ['name' => 'articles.updated_at', 'width' => '100px'],
@@ -112,7 +112,7 @@ class ArticlesDataTable extends DataTable
             'buttons'   => [
                 [
                     'extend' => 'create',
-                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;New Article',
+                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::article.datatable.buttons.create'),
                 ],
                 'export',
                 'print',
