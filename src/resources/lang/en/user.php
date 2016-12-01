@@ -101,9 +101,9 @@ return [
 
     'datatable' => [
         'columns' => [
-            'administrator' => 'Number of Menu Items',
-            'confirmed'     => 'Published',
-            'blocked'       => 'Published',
+            'administrator' => 'IsAdministrator',
+            'confirmed'     => 'IsActivated',
+            'blocked'       => 'IsBlocked',
         ],
         'buttons' => [
             'create' => 'New User',
