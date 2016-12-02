@@ -11,11 +11,11 @@
 @endpush
 
 @section('title')
-    Media Manager | @parent
+    {{trans('cms::media.index.title')}} | @parent
 @stop
 
 @section('page-title')
-    @pageHeader('Media Manager', 'Manage site assets.', 'fa fa-file-image-o')
+    @pageHeader('cms::media.index.page-title', 'cms::media.index.page-desc', 'fa fa-file-image-o')
 @stop
 
 @section('content')
