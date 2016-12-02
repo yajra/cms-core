@@ -14,10 +14,10 @@ return [
     */
 
     'index' => [
-        'title'       => 'Media Manager',
-        'description' => 'Manage sites assets.',
-        'icon'        => 'fa fa-file-image-o',
-        'lists'       => 'Directories',
+        'title'      => 'Media Manager',
+        'page-title' => 'Media Manager',
+        'page-desc'  => 'Manage sites assets.',
+        'box-title'  => 'Directories',
     ],
 
     'destroy' => [
@@ -49,7 +49,7 @@ return [
         'insert'        => 'Insert',
         'select'        => 'Select',
         'preview'       => 'Preview',
-        'dropzone_text' => 'Drop files here to upload'
+        'dropzone_text' => 'Drop files here to upload',
     ],
 
     'datatable' => [],

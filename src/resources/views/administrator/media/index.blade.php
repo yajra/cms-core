@@ -23,7 +23,7 @@
         <div class="col-md-3 col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <div class="box-title"><i class="fa fa-server"></i> Directories</div>
+                    <div class="box-title"><i class="fa fa-server"></i> {{trans('cms::media.index.box-title')}}</div>
                 </div>
                 <div class="box-body">
                     <strong>
