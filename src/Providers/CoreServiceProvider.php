@@ -14,7 +14,6 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Laracasts\Flash\FlashServiceProvider;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider;
-use Roumen\Asset\AssetServiceProvider as RoumenAssetServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
 use Spatie\EloquentSortable\SortableServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
@@ -110,7 +109,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(ConfigurationServiceProvider::class);
         $this->app->register(ThemesServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
-        $this->app->register(RoumenAssetServiceProvider::class);
         $this->app->register(ViewComposerServiceProvider::class);
         $this->app->register(AclServiceProvider::class);
         $this->app->register(MenusServiceProvider::class);
@@ -126,7 +124,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(LaravelLogViewerServiceProvider::class);
         $this->app->register(ArrilotWidgetServiceProvider::class);
         $this->app->register(WidgetServiceProvider::class);
-        $this->app->register(AssetServiceProvider::class);
         $this->app->register(DatatablesServiceProvider::class);
         $this->app->register(ButtonsServiceProvider::class);
         $this->app->register(SortableServiceProvider::class);
@@ -157,7 +154,6 @@ class CoreServiceProvider extends ServiceProvider
         $loader->alias('Widget', \Arrilot\Widgets\Facade::class);
         $loader->alias('AsyncWidget', \Arrilot\Widgets\AsyncFacade::class);
         $loader->alias('Module', \Pingpong\Modules\Facades\Module::class);
-        $loader->alias('Asset', \Roumen\Asset\Asset::class);
     }
 
     /**

@@ -38,7 +38,6 @@
                     <ul class="list-group list-group-unbordered">
                         @include('administrator.configuration.partials.list-item',['title' => 'Site Management','key'=>'site-mgmt','icon' => 'fa-cog'])
                         @include('administrator.configuration.partials.list-item',['title' => 'Application Environment','key'=>'app-env','icon' => 'fa-laptop'])
-                        @include('administrator.configuration.partials.list-item',['title' => 'Asset Management','key'=>'asset-mgmt','icon' => 'fa-magic'])
                         @include('administrator.configuration.partials.list-item',['title' => 'Database Connection','key'=>'db-conn','icon' => 'fa-database'])
                         @include('administrator.configuration.partials.list-item',['title' => 'Mail Driver','key'=>'mail-driver','icon' => 'fa-envelope'])
                         @include('administrator.configuration.partials.list-item',['title' => 'Cache Store','key'=>'cache-store','icon' => 'fa-cloud-download'])
@@ -53,7 +52,6 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     @include('administrator.configuration.partials.tab-list-item',['title' => 'Site Management','key' => 'site-mgmt', 'icon' =>'fa-cog'])
-                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Asset Management','key' => 'asset-mgmt', 'icon' =>'fa-magic'])
                     @include('administrator.configuration.partials.tab-list-item',['title' => 'Application Environment','key' => 'app-env', 'icon' =>'fa-laptop'])
                     @include('administrator.configuration.partials.tab-list-item',['title' => 'Database Connection','key' => 'db-conn', 'icon' =>'fa-database'])
                     @include('administrator.configuration.partials.tab-list-item',['title' => 'Mail Driver','key' => 'mail-driver', 'icon' =>'fa-envelope'])
@@ -64,7 +62,6 @@
 
                 <div class="tab-content padding-0">
                     @include('administrator.configuration.partials.tab-content', ['key' => 'site-mgmt', 'vueKey' => 'site','swalTitle'=>'site management','form'=>'administrator.configuration.partials.form.site-management'])
-                    @include('administrator.configuration.partials.tab-content', ['key' => 'asset-mgmt', 'vueKey' => 'assetManagement','swalTitle'=>'asset management','form'=>'administrator.configuration.partials.form.asset-management'])
                     @include('administrator.configuration.partials.tab-content', ['key' => 'app-env', 'vueKey' => 'app','swalTitle'=>'application environment','form'=>'administrator.configuration.partials.form.app-environment'])
                     @include('administrator.configuration.partials.tab-content', ['key' => 'db-conn', 'vueKey' => 'database','swalTitle'=>'database connection','form'=>'administrator.configuration.partials.form.database-connection'])
                     @include('administrator.configuration.partials.tab-content', ['key' => 'mail-driver', 'vueKey' => 'mail','swalTitle'=>'mail driver','form'=>'administrator.configuration.partials.form.mail-driver'])
@@ -74,7 +71,6 @@
                 </div><!-- /.tab-content -->
             </div><!-- /.nav-tabs-custom -->
         </div><!-- /.col -->
-        @include('administrator.configuration.modal.new-asset')
     </div><!-- /.row -->
 @stop
 
@@ -120,10 +116,6 @@
                         database: '{{$configuration->key("database.connections.sqlite.database")}}',
                     }
                 }
-            },
-            assetManagement: {
-                config: 'asset',
-                default: '{{$configuration->key("asset.default")}}',
             },
             site: {
                 config: 'site',
@@ -190,20 +182,6 @@
                         bucket: '{{$configuration->key("filesystems.disks.s3.bucket")}}',
                     },
                 }
-            },
-            assetDt: '',
-            newasset: {
-                name: '',
-                type: '',
-                category: '',
-                url: '',
-            },
-            editasset: {
-                id: '',
-                name: '',
-                type: '',
-                category: '',
-                url: '',
             }
         },
         mounted: function () {
@@ -246,61 +224,6 @@
                 $('.filesystem-container').removeClass('hide').addClass('hide');
                 $('#' + $(this).val() + '-filesystem-container').removeClass('hide');
             });
-            // File assets datatable.
-            assetDt = $('#css-assets-table').DataTable({
-                order: [[1, 'asc']],
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: '/administrator/configuration/assets/' + that.assetManagement.default,
-                    type: "get",
-                },
-                columns: [
-                    {data: 'name', name: 'name'},
-                    {data: 'type', name: 'type'},
-                    {data: 'url', name: 'url'},
-                    {data: 'action', name: 'action', 'searchable': false, 'orderable': false, 'width': '67px'},
-                ],
-                drawCallback: function () {
-                    $('.btn-delete-asset').on('click', function () {
-                        var that = this;
-                        var assetId = $(this).attr('id');
-                        swal({
-                                title: "Are you sure?",
-                                text: "Delete selected asset.",
-                                type: "info",
-                                showCancelButton: true,
-                                closeOnConfirm: false,
-                                showLoaderOnConfirm: true,
-                            },
-                            function () {
-                                Vue.http.post('/administrator/configuration/asset/delete/' + assetId).then(function (response) {
-                                    assetDt.ajax.url('/administrator/configuration/assets/' + $('#default-asset').val()).load();
-                                    swal({
-                                        title: "Success!",
-                                        type: "success",
-                                        text: "Asset successfully deleted.",
-                                        html: true
-                                    });
-                                });
-                            });
-                    });
-
-                    $('.btn-edit-asset').on('click', function () {
-                        $.blockUI();
-                        var assetId = $(this).attr('id');
-                        Vue.http.get('/administrator/configuration/asset/edit/' + assetId).then(function (response) {
-                            config.editasset.id = response.data.id;
-                            config.editasset.name = response.data.name;
-                            config.editasset.url = response.data.url;
-                            $("#edit-asset-type").val(response.data.type).change();
-                            $("#edit-asset-category").val(response.data.category).change();
-                            $('#edit-asset-modal').modal('show');
-                            $.unblockUI();
-                        });
-                    });
-                }
-            });
             // select2 on change. Set vue object value.
             var $eventSelect = $('select');
             $eventSelect.on("change", function () {
@@ -337,32 +260,6 @@
                         break;
                     case 'filesystems.default':
                         that.filesystems.default = selected;
-                    case 'asset.default':
-                        that.assetManagement.default = selected;
-                        assetDt.ajax.url('/administrator/configuration/assets/' + selected).load();
-                        break;
-                    case 'newasset.type':
-                        that.newasset.type = selected;
-                        break;
-                    case 'editasset.type':
-                        that.editasset.type = selected;
-                        break;
-                    case 'newasset.category':
-                        that.newasset.category = selected;
-                        if (selected == 'cdn') {
-                            $('#asset-url-label').text('URL');
-                        } else {
-                            $('#asset-url-label').text('Path');
-                        }
-                        break;
-                    case 'editasset.category':
-                        that.editasset.category = selected;
-                        if (selected == 'cdn') {
-                            $('#edit-asset-url-label').text('URL');
-                        } else {
-                            $('#edit-asset-url-label').text('Path');
-                        }
-                        break;
                 }
             });
         },
@@ -404,76 +301,6 @@
                                 text: "Your " + config_title + " configuration successfully updated! <br><small>You may need to refresh the page to reflect some changes.</small>",
                                 html: true
                             });
-                        });
-                    });
-            },
-            showModal: function (name) {
-                var that = this;
-                $('#' + name).modal('show');
-                $("#asset-category").val(that.assetManagement.default).change();
-                that.newasset.category = that.assetManagement.default;
-
-            },
-            submitNewAsset: function (values) {
-                var that = this;
-                swal({
-                        title: "Are you sure?",
-                        text: "Save and add new asset.",
-                        type: "info",
-                        showCancelButton: true,
-                        closeOnConfirm: false,
-                        showLoaderOnConfirm: true,
-                    },
-                    function () {
-                        Vue.http.post('/administrator/configuration/asset/store', values).then(function (response) {
-                            $('#new-asset-modal').modal('hide');
-                            that.newasset.name = '';
-                            that.newasset.url = '';
-                            swal({
-                                title: "Success!",
-                                type: "success",
-                                text: "Asset successfully added.",
-                                html: true
-                            });
-                            assetDt.ajax.url('/administrator/configuration/assets/' + that.assetManagement.default).load();
-                        }, function (response) {
-                            if (response.data.name) {
-                                var textwarning = response.data.name;
-                            } else if (response.data.url) {
-                                var textwarning = response.data.url;
-                            }
-                            sweetAlert("Oops...", textwarning, "error");
-                        });
-                    });
-            },
-            submitEditAsset: function (values) {
-                var that = this;
-                swal({
-                        title: "Are you sure?",
-                        text: "Save and update selected asset.",
-                        type: "info",
-                        showCancelButton: true,
-                        closeOnConfirm: false,
-                        showLoaderOnConfirm: true,
-                    },
-                    function () {
-                        Vue.http.post('/administrator/configuration/asset/update/' + values.id, values).then(function (response) {
-                            $('#edit-asset-modal').modal('hide');
-                            swal({
-                                title: "Success!",
-                                type: "success",
-                                text: "Selected asset successfully updated.",
-                                html: true
-                            });
-                            assetDt.ajax.url('/administrator/configuration/assets/' + that.assetManagement.default).load();
-
-                        }, function (response) {
-                            if (response.data.name) {
-                                var textwarning = response.data.name;
-                            } else if (response.data.url) {
-                                var textwarning = response.data.url;
-                            }
-                            sweetAlert("Oops...", textwarning, "error");
                         });
                     });
             }
