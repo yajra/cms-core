@@ -5,9 +5,7 @@
 @push('styles')
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css"/>
-<style>.table-container {
-        margin-top: 0 !important;
-    }</style>
+<style>.table-container {margin-top: 0 !important;}</style>
 @endpush
 
 @section('title')
@@ -59,8 +57,6 @@
         </div>
     </div>
 @stop
-
-@js(['dropzone','jstree'])
 
 @push('scripts')
 <script>
