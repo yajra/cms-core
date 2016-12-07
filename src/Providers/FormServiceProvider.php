@@ -40,14 +40,6 @@ class FormServiceProvider extends ServiceProvider
 
             return new HtmlString("<select{$options}>{$list}</select>");
         });
-
-        form()->macro('imageBrowser', function ($name, $selected = null, $options = []) {
-            return view('system.macro.image-browser', [
-                'name'     => $name,
-                'options'  => $options,
-                'selected' => $selected,
-            ]);
-        });
     }
 
     /**
