@@ -29,6 +29,7 @@ class CreateArticlesTable extends Migration
             $table->boolean('published')->default(false)->index();
             $table->boolean('authenticated')->default(false);
             $table->boolean('featured')->default(false);
+            $table->boolean('is_page')->default(false);
             $table->string('authorization', 20)->default('can');
             $table->unsignedInteger('created_by')->nullable()->index();
             $table->unsignedInteger('updated_by')->nullable()->index();
