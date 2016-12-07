@@ -22,27 +22,12 @@ class ImageBrowserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function getFiles(Request $request)
+    public function index(Request $request)
     {
-        $path = $request->get('path');
-
-        return $this->getMediaFiles($path);
-
-        return view('administrator.partials.image-browser.container', compact('mediaFiles', 'path'))->render();
-    }
-
-    /**
-     * Show all files on selected path.
-     *
-     * @param string $currentPath
-     * @param array $mediaFiles
-     * @return array
-     */
-    public function getMediaFiles($currentPath = null, $mediaFiles = [])
-    {
-        $basePath   = storage_path('app/public/' . config('media.root_dir'));
-        $dir        = storage_path('app/public/' . $currentPath);
-        $imageFiles = $this->getImageFiles($dir);
+        $currentPath = $request->get('path');
+        $basePath    = storage_path('app/public/' . config('media.root_dir'));
+        $dir         = storage_path('app/public/' . $currentPath);
+        $imageFiles  = $this->getImageFiles($dir);
 
         foreach (Finder::create()->in($dir)->sortByType()->directories() as $file) {
             $imageFiles->name($file->getBaseName());
@@ -79,7 +64,7 @@ class ImageBrowserController extends Controller
      * @param string $path
      * @return Finder
      */
-    private function getImageFiles($path)
+    protected function getImageFiles($path)
     {
         $finder = Finder::create()->in($path)->sortByType()->depth(0);
         foreach (config('media.images_ext') as $file) {
@@ -87,24 +72,5 @@ class ImageBrowserController extends Controller
         }
 
         return $finder;
-    }
-
-    /**
-     * Upload image file.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    public function uploadFile(Request $request)
-    {
-        $this->validate($request, [
-            'file' => 'required|image',
-        ]);
-        $filename = $request->file('file')->getClientOriginalName();
-        $basePath = config('media.root_dir');
-        $request->file('file')
-                ->move(storage_path('app/' . $basePath . $request->get('directory') . '/'), $filename);
-
-        return $this->notifySuccess('Image Successfully Uploaded!');
     }
 }

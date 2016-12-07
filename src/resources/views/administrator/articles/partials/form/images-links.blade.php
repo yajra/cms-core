@@ -1,9 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-        <image-browser :name="'parameters[intro_image]'"
-                       :value="'{{$article->param('intro_image')}}'"
-        >Intro Image
-        </image-browser>
+        <image-browser name="parameters[intro_image]" value="{{$article->param('intro_image')}}">Intro Image</image-browser>
         {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
         <br>
         <div class="form-group {{ $errors->has('parameters[image_float]') ? 'has-error' : '' }}">
@@ -30,7 +27,7 @@
         </div>
         <hr>
         <div class="form-group">
-            <image-browser :name="'parameters[image_fulltext]'" :value="'{{$article->param('image_fulltext')}}'">Article Image</image-browser>
+            <image-browser name="parameters[image_fulltext]" value="{{$article->param('image_fulltext')}}">Article Image</image-browser>
             {!! $errors->first('parameters[image_fulltext]', '<span class="help-block">:message</span>') !!}
         </div>
         <br>
