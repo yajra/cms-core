@@ -125,7 +125,7 @@ class MediaController extends Controller
      */
     protected function getRootDir()
     {
-        return $this->config->get('media.root_dir', 'public/media');
+        return 'public/' . $this->config->get('media.root_dir', 'media');
     }
 
     /**

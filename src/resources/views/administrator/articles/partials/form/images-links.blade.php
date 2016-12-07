@@ -1,13 +1,10 @@
 <div class="row">
     <div class="col-md-6">
-        <label class="form-label-style block" for="parameters[intro_image]">Intro Image</label>
-        <div class="input-group input-group-sm">
-            {!! form()->imageBrowser('parameters[intro_image]', $article->param('intro_image'),[
-                'id'        => 'intro_image',
-                'label'     => 'Select'
-            ]) !!}
-            {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
-        </div>
+        <image-browser :name="'parameters[intro_image]'"
+                       :value="'{{$article->param('intro_image')}}'"
+        >Intro Image
+        </image-browser>
+        {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
         <br>
         <div class="form-group {{ $errors->has('parameters[image_float]') ? 'has-error' : '' }}">
             <label class="form-label-style block" for="parameters[image_float]">
@@ -32,12 +29,9 @@
             {!! form()->text('parameters[image_intro_caption]', $article->param('image_intro_caption'), ['placeholder' => trans('cms::article.form.field.image_intro_caption_placeholder'), 'class' => 'form-control']) !!}
         </div>
         <hr>
-        <div class="input-group input-group-sm">
-            {!! form()->imageBrowser('parameters[image_fulltext]',$article->param('image_fulltext'),[
-                'id'        => 'image_fulltext',
-                'label'     => 'Select'
-            ]) !!}
-            {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
+        <div class="form-group">
+            <image-browser :name="'parameters[image_fulltext]'" :value="'{{$article->param('image_fulltext')}}'">Article Image</image-browser>
+            {!! $errors->first('parameters[image_fulltext]', '<span class="help-block">:message</span>') !!}
         </div>
         <br>
         <div class="form-group {{ $errors->has('parameters[image_float_fulltext]') ? 'has-error' : '' }}">
