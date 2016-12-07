@@ -1,0 +1,12 @@
+{
+	"type": "menu",
+	"name": "Category Blog",
+	"version": "1.0.0",
+	"public": true,
+	"description": "Displays article introductions in a single or multi-column layout.",
+	"parameters": {
+		"class": "Yajra\\CMS\\Entities\\Category",
+		"template": "administrator.navigation.menu.partials.extensions.category.blog",
+		"data": "blog"
+	}
+}

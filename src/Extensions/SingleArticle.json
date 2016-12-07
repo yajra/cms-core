@@ -1,0 +1,11 @@
+{
+	"type": "menu",
+	"name": "Single Article",
+	"version": "1.0.0",
+	"public": true,
+	"description": "Displays a single article",
+	"parameters": {
+		"class": "Yajra\\CMS\\Entities\\Article",
+		"template": "administrator.navigation.menu.partials.extensions.article.single"
+	}
+}

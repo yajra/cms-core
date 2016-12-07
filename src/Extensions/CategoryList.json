@@ -1,0 +1,11 @@
+{
+	"type": "menu",
+	"name": "Category List",
+	"version": "1.0.0",
+	"public": true,
+	"description": "Displays a list of articles in a category.",
+	"parameters": {
+		"class": "Yajra\\CMS\\Entities\\Category",
+		"template": "administrator.navigation.menu.partials.extensions.category.list"
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"type": "menu",
+	"name": "Internal URL",
+	"version": "1.0.0",
+	"public": true,
+	"description": "An internal URL.",
+	"parameters": {
+		"template": "administrator.navigation.menu.partials.extensions.url.internal"
+	}
+}
