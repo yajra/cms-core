@@ -23,6 +23,9 @@ class ArticlesDataTable extends DataTable
             ->editColumn('authenticated', function (Article $article) {
                 return dt_check($article->authenticated);
             })
+            ->editColumn('is_page', function (Article $article) {
+                return dt_check($article->is_page);
+            })
             ->editColumn('hits', function (Article $article) {
                 return '<span class="label bg-purple">' . $article->hits . '</span>';
             })
@@ -61,7 +64,6 @@ class ArticlesDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '134px', 'className' => 'text-center'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -73,32 +75,71 @@ class ArticlesDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'id'               => ['name' => 'articles.id', 'width' => '20px'],
-            'title'            => ['name' => 'articles.title'],
-            'alias'            => ['name' => 'articles.alias', 'visible' => false],
-            'categories.title' => ['title' => 'Category', 'visible' => false, 'data' => 'category_title'],
-            'published'        => [
+            [
+                'data'  => 'id',
+                'name'  => 'articles.id',
+                'title' => trans('cms::article.datatable.columns.id'),
+                'width' => '20px',
+            ],
+            [
+                'data'  => 'title',
+                'name'  => 'articles.title',
+                'title' => trans('cms::article.datatable.columns.title'),
+            ],
+            [
+                'data'    => 'alias',
+                'name'    => 'articles.alias',
+                'visible' => false,
+            ],
+            [
+                'data'    => 'categories.title',
+                'title'   => trans('cms::article.datatable.columns.categories.title'),
+                'visible' => false,
+                'data'    => 'category_title',
+            ],
+            [
+                'data'  => 'published',
                 'name'  => 'articles.published',
                 'width' => '20px',
                 'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.published') . '"></i>',
             ],
-            'authenticated'    => [
+            [
+                'data'  => 'authenticated',
                 'name'  => 'articles.authenticated',
                 'width' => '20px',
                 'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.authenticated') . '"></i>',
             ],
-            'order'            => [
+            [
+                'data'  => 'order',
                 'name'  => 'articles.order',
                 'width' => '20px',
                 'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.order') . '"></i>',
             ],
-            'hits'             => [
+            [
+                'data'  => 'hits',
                 'name'  => 'articles.hits',
                 'width' => '20px',
                 'title' => '<i class="fa fa-eye" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.hits') . '"></i>',
             ],
-            'created_at'       => ['name' => 'articles.created_at', 'width' => '100px'],
-            'updated_at'       => ['name' => 'articles.updated_at', 'width' => '100px'],
+            [
+                'data'  => 'is_page',
+                'name'  => 'articles.is_page',
+                'title' => trans('cms::article.datatable.columns.is_page'),
+            ],
+            [
+                'data'  => 'updated_at',
+                'name'  => 'articles.updated_at',
+                'title' => trans('cms::article.datatable.columns.updated_at'),
+                'width' => '100px',
+            ],
+            [
+                'data'       => 'action',
+                'title'      => trans('cms::article.datatable.columns.action'),
+                'width'      => '134px',
+                'searchable' => false,
+                'orderable'  => false,
+                'className'  => 'text-center',
+            ],
         ];
     }
 

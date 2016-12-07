@@ -163,10 +163,16 @@ return [
 
     'datatable' => [
         'columns' => [
+            'id'            => 'Id',
+            'title'         => 'Title',
             'published'     => 'Published',
             'authenticated' => 'Authentication Required',
             'order'         => 'Sort/Order',
             'hits'          => 'Hits',
+            'created_at'    => 'Created At',
+            'updated_at'    => 'Updated At',
+            'is_page'       => 'Is Page',
+            'action'        => 'Action',
         ],
         'buttons' => [
             'create' => 'New Article',
