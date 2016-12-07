@@ -5,7 +5,6 @@ namespace Yajra\CMS\Http\Controllers;
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Http\Requests\ArticlesFormRequest;
-use App\Http\Requests;
 
 class ArticlesController extends Controller
 {
@@ -65,6 +64,7 @@ class ArticlesController extends Controller
         $article->published     = $request->get('published', false);
         $article->featured      = $request->get('featured', false);
         $article->authenticated = $request->get('authenticated', false);
+        $article->is_page       = $request->get('is_page', false);
         $article->save();
 
         $article->permissions()->sync($request->get('permissions', []));
@@ -85,7 +85,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        $tags = Article::existingTags()->pluck('name');
+        $tags         = Article::existingTags()->pluck('name');
         $selectedTags = implode(',', $article->tagNames());
 
         return view('administrator.articles.edit', compact('article', 'tags', 'selectedTags'));

@@ -44,7 +44,7 @@ class Article extends Model implements UrlGenerator
     use HasParameters, SortableTrait, Taggable;
 
     public $sortable = [
-        'order_column_name' => 'order',
+        'order_column_name'  => 'order',
         'sort_when_creating' => true,
     ];
 
@@ -120,7 +120,7 @@ class Article extends Model implements UrlGenerator
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
                           ->generateSlugsFrom('title')
@@ -155,6 +155,10 @@ class Article extends Model implements UrlGenerator
      */
     public function getUrl($args = null)
     {
+        if ($this->is_page) {
+            return url($this->alias);
+        }
+
         return url($this->category->getUrl($args) . '/' . $this->alias);
     }
 
@@ -165,6 +169,10 @@ class Article extends Model implements UrlGenerator
      */
     public function getRouteName()
     {
+        if ($this->is_page) {
+            return $this->alias;
+        }
+
         return $this->category->getRouteName() . '.' . $this->alias;
     }
 }

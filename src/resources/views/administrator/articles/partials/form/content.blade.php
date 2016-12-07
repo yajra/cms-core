@@ -76,5 +76,15 @@
             {!! form()->text('tags', $selectedTags ?? null, ['class' => 'form-control', 'id' => 'tags']) !!}
             {!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
         </div>
+
+        <div class="form-group {!! $errors->has('is_page') ? 'has-error' : '' !!}">
+            <label class="form-label-style" for="featured">
+                {{trans('cms::article.form.field.is_page')}}
+                @tooltip('cms::article.form.tooltip.is_page')
+            </label>
+            <br>
+            {!! form()->checkbox('is_page', $value = 1, $checked = null, ['name' =>'is_page','id'=>'is_page','class'=>'form-control bootstrap-checkbox']) !!}
+            {!! $errors->first('is_page', '<span class="help-block">:message</span>') !!}
+        </div>
     </div>
 </div>

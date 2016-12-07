@@ -82,6 +82,7 @@ return [
                 'show_hits'        => 'Show/Hide the # of hits the article have.',
             ],
             'tags'                         => 'Article tags.',
+            'is_page'                      => 'A page article will have a route without category.',
         ],
 
         'field' => [
@@ -143,6 +144,7 @@ return [
                 'show_hits'        => 'Show Hits',
             ],
             'tags'                                     => 'Tags',
+            'is_page'                                  => 'Is a Page',
         ],
     ],
 
