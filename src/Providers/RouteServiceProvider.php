@@ -108,7 +108,11 @@ class RouteServiceProvider extends ServiceProvider
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($article->getRouteName(),
                     function (\DaveJamesMiller\Breadcrumbs\Generator $breadcrumbs) use ($article) {
-                        $breadcrumbs->parent($article->category->getRouteName());
+                        if ($article->is_page) {
+                            $breadcrumbs->parent('home');
+                        } else {
+                            $breadcrumbs->parent($article->category->getRouteName());
+                        }
                         $breadcrumbs->push($article->title, route($article->getRouteName()));
                     }
                 );
