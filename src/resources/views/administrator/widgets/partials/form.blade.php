@@ -86,7 +86,7 @@
 
             fetchParametersView: function () {
                 var url = '/administrator/widgets/' + this.widget.extension_id + '/parameters/' + (this.widget.id | 0);
-                this.$http.get(url).then(function (response) {
+                axios.get(url).then(function (response) {
                     $('#widget-custom-form').html(response.data);
                     $.unblockUI();
                 });
@@ -94,7 +94,7 @@
 
             fetchTemplates: function () {
                 var url = '/administrator/widgets/' + this.widget.extension_id + '/templates';
-                this.$http.get(url, {}).then(function (response) {
+                axios.get(url, {}).then(function (response) {
                     var json = response.data;
                     this.templates = json.data;
                     this.widget.extension_id = json.selected;

@@ -294,7 +294,7 @@
                         showLoaderOnConfirm: true,
                     },
                     function () {
-                        Vue.http.post('/administrator/configuration', values).then(function (response) {
+                        axios.post('/administrator/configuration', values).then(function (response) {
                             swal({
                                 title: "Updated!",
                                 type: "success",
