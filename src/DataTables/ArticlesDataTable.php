@@ -93,7 +93,7 @@ class ArticlesDataTable extends DataTable
             ],
             [
                 'data'    => 'categories.title',
-                'title'   => trans('cms::article.datatable.columns.categories.title'),
+                'title'   => trans('cms::article.datatable.columns.category'),
                 'visible' => false,
                 'data'    => 'category_title',
             ],

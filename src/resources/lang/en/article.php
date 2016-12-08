@@ -169,6 +169,7 @@ return [
             'authenticated' => 'Authentication Required',
             'order'         => 'Sort/Order',
             'hits'          => 'Hits',
+            'category'      => 'Category',
             'created_at'    => 'Created At',
             'updated_at'    => 'Updated At',
             'is_page'       => 'Is Page',
