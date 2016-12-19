@@ -1,4 +1,3 @@
-<input type="hidden" id="menu-id" value="{{ $menu->id }}">
 <div class="nav-tabs-custom" style="margin-top: 30px">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#menu-details" data-toggle="tab">

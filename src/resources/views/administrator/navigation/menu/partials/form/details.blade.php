@@ -10,14 +10,16 @@
 
         <div id="menu-item-container">
             <div class="input-group">
-                <input type="hidden" id="selected-type-key" name="extension_id"
+                <input type="hidden"
+                       v-model="extension.id"
+                       name="extension_id"
                        value="{{ old('extension_id', $menu->extension->id) }}"/>
                 <input type="text"
-                       id="selected-type-value"
                        title="Menu Type"
                        class="form-control"
-                       name="type_value"
-                       value="{{ old('type_value', $menu->extension->name) }}"
+                       name="extension_name"
+                       v-model="extension.name"
+                       value="{{ old('extension_name', $menu->extension->name) }}"
                        readonly/>
                 <div class="input-group-btn">
                     <button data-toggle="modal" data-target="#menu-items-modal" class="btn btn-primary btn-flat"
@@ -29,9 +31,7 @@
 
             <hr>
 
-            <div id="menu-item-selected-container">
-                {{--@include($menu->extension->param('template'))--}}
-            </div>
+            <div id="menu-item-selected-container"></div>
         </div>
     </div>
     <div class="col-md-4">

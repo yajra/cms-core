@@ -12,21 +12,13 @@
             </div>
             <div id="assets-body" class="modal-body">
                 <ul class="nav nav-pills nav-stacked">
-                    @foreach($extensions as $extension)
-                        <li>
-                            <a @click="generateSelectedItem('{{$extension->id}}','{{$extension->name}}')"
-                                href="javascript:void(0)">
-                                <i class="fa fa-file-text-o"></i>
-                                {{$extension->name}}
-                                &nbsp; / &nbsp;
-                                <small class="text-muted">
-                                    {{ $extension->description }}
-                                </small>
-                            </a>
-                        </li>
-                    @endforeach
+                    <li v-for="extension in extensions">
+                        <a v-on:click="setExtension(extension)">
+                            <span v-text="extension.name"></span> / <small v-text="extension.manifest.description"></small>
+                        </a>
+                    </li>
                 </ul>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>

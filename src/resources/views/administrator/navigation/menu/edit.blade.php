@@ -30,7 +30,7 @@
 @stop
 
 @section('content')
-    {!! form()->model($menu, ['url' => route('administrator.navigation.menu.update', [$navigation->id,$menu->id]), 'method' => 'PUT', "id"=>"form-container"]) !!}
+    {!! form()->model($menu, ['url' => route('administrator.navigation.menu.update', [$navigation->id,$menu->id]), 'method' => 'PUT', "id"=>"menu-app"]) !!}
     <div class="box box-primary">
         <div class="box-body">
             <a href="{{ route('administrator.navigation.menu.index', $navigation->id) }}"
@@ -44,12 +44,15 @@
     </div>
 
     @include('administrator.navigation.menu.partials.form')
+    @include('administrator.navigation.menu.partials.modal.articles')
 
     {!! form()->close() !!}
-
-    @include('administrator.navigation.menu.partials.modal.articles')
 @stop
 
 @push('scripts')
+<script>
+    window.menu = {!! $menu !!};
+    window.extensions = {!! $extensions !!};
+</script>
 @include('administrator.navigation.menu.partials.script')
 @endpush

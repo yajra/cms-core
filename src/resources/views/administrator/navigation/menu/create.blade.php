@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    {!! form()->model($menu, ['url' => route('administrator.navigation.menu.store', $navigation->id), "id"=>"form-container"]) !!}
+    {!! form()->model($menu, ['url' => route('administrator.navigation.menu.store', $navigation->id), "id"=>"menu-app"]) !!}
     <div class="box box-solid">
         <div class="box-body">
             <a href="{{ route('administrator.navigation.menu.index', $navigation->id) }}"
@@ -26,11 +26,13 @@
     </div>
 
     @include('administrator.navigation.menu.partials.form')
-    {!! form()->close() !!}
-
     @include('administrator.navigation.menu.partials.modal.articles')
+
+    {!! form()->close() !!}
 @stop
 
 @push('scripts')
+<script>window.menu = {!! $menu !!}</script>
+<script>window.extensions = {!! $extensions !!}</script>
 @include('administrator.navigation.menu.partials.script')
 @endpush
