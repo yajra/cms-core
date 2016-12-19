@@ -70,10 +70,15 @@
 
 @push('scripts')
 <script>
+    window.widget = {!! $widget !!};
+    window.extensions = {!! $extensions !!};
+</script>
+<script>
     new Vue({
         el: '#widget-form',
         data: {
-            widget: {!! $widget->toJson() !!},
+            widget: window.widget,
+            extensions: window.extensions,
             types: [],
             templates: []
         },
@@ -93,11 +98,12 @@
             },
 
             fetchTemplates: function () {
+                var vm = this;
                 var url = '/administrator/widgets/' + this.widget.extension_id + '/templates';
                 axios.get(url, {}).then(function (response) {
                     var json = response.data;
-                    this.templates = json.data;
-                    this.widget.extension_id = json.selected;
+                    vm.templates = json.data;
+                    vm.widget.extension_id = json.selected;
                     $('.select-menu').select2();
                 });
             }

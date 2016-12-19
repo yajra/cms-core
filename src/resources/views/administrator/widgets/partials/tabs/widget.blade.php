@@ -8,10 +8,11 @@
                             {{trans('cms::widget.field.type')}}
                             @tooltip('cms::widget.tooltip.type')
                         </label>
-                        <select name="extension_id" class="form-control" v-model="widget.extension_id" @change="fetchDependencies">
-                            @foreach($extensions as $extension)
-                            <option value="{{$extension->id}}">{{$extension->name}}</option>
-                            @endforeach
+                        <select name="extension_id" class="form-control" v-model="widget.extension_id" v-on:change="fetchDependencies">
+                            <option v-for="extension in extensions"
+                                    :value="extension.id"
+                                    v-text="extension.name"
+                            ></option>
                         </select>
                         {!! $errors->first('type', '<span class="help-block">:message</span>') !!}
                     </div>
@@ -23,7 +24,9 @@
                             @tooltip('cms::widget.tooltip.template')
                         </label>
                         <select name="template" class="form-control select-menu" v-model="widget.template">
-                            <option v-for="template in templates" v-bind:value="template.key">@{{ template.value }}</option>
+                            <option v-for="template in templates"
+                                    :value="template.key" v-text="template.value"
+                            ></option>
                         </select>
                         {!! $errors->first('template', '<span class="help-block">:message</span>') !!}
                     </div>
