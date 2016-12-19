@@ -8,7 +8,11 @@
                             {{trans('cms::widget.field.type')}}
                             @tooltip('cms::widget.tooltip.type')
                         </label>
-                        <select name="extension_id" class="form-control" v-model="widget.extension_id" v-on:change="fetchDependencies">
+                        <select name="extension_id"
+                                class="form-control"
+                                v-model="widget.extension_id"
+                                v-on:change="fetchDependencies"
+                        >
                             <option v-for="extension in extensions"
                                     :value="extension.id"
                                     v-text="extension.name"
