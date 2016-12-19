@@ -104,7 +104,6 @@
                     var json = response.data;
                     vm.templates = json.data;
                     vm.widget.extension_id = json.selected;
-                    $('.select-menu').select2();
                 });
             }
         },
