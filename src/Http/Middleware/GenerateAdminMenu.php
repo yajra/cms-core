@@ -65,7 +65,7 @@ class GenerateAdminMenu
                 $contents->add('Media', route('administrator.media.index'))->icon('image')
                          ->data('permission', 'media.view');
 
-                $modules = $menu->add('Modules', '#')->icon('plug')->data('permission', 'module.view');
+                $modules = $menu->add('Modules', '#')->icon('cubes')->data('permission', 'module.view');
                 $modules->add('Manage', route('administrator.modules.index'))->icon('cogs')->data('permission', 'module.view');
                 event('admin.menu.build', $modules);
 

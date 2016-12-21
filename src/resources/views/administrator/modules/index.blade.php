@@ -5,7 +5,7 @@
 @stop
 
 @section('page-title')
-    @pageHeader('cms::module.index.title', 'cms::module.index.description', 'fa fa-file-text')
+    @pageHeader('cms::module.index.title', 'cms::module.index.description', 'fa fa-cubes')
 @stop
 
 @section('content')
