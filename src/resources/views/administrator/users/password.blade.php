@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label for="name" class="control-label col-md-3">User</label>
                         <div class="input-control col-md-9">
-                            <input type="text" class="form-control input-sm" id="name" value="{{ $user->name  }}"
+                            <input type="text" class="form-control input-sm" id="name" value="{{ $user->present()->name  }}"
                                    readonly>
                         </div>
                     </div>
