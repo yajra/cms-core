@@ -16,14 +16,6 @@
             {!! form()->input('text', 'last_name', null, ['id'=>'last_name','class'=>'form-control input-sm','placeholder'=>trans('cms::user.form.placeholder.last_name')]) !!}
             {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
         </div>
-        <div class="form-group {!! $errors->has('username') ? 'has-error' : '' !!}">
-            <label class="form-label-style block" for="username">
-                {{trans('cms::user.form.field.username')}}
-                @tooltip('cms::user.form.tooltip.username')
-            </label>
-            {!! form()->input('text', 'username', null, ['id'=>'username','class'=>'form-control input-sm','placeholder'=>trans('cms::user.form.placeholder.username')]) !!}
-            {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
-        </div>
         <div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
             <label class="form-label-style block" for="email">
                 {{trans('cms::user.form.field.email')}}
