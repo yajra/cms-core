@@ -84,13 +84,13 @@ class DynamicMenusBuilder
         if (count($menu->permissions)) {
             if ($menu->authorization === 'can') {
                 foreach ($menu->permissions as $permission) {
-                    if (! currentUser()->can($permission->slug)) {
+                    if (! current_user()->can($permission->slug)) {
                         return false;
                     }
                 }
             } else {
                 $permissions = $menu->permissions->pluck('slug')->toArray();
-                if (! currentUser()->canAtLeast($permissions)) {
+                if (! current_user()->canAtLeast($permissions)) {
                     return false;
                 }
             }

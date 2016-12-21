@@ -17,7 +17,7 @@
 @stop
 
 @section('content')
-    {!! form()->model(currentUser(), ['files'  => true]) !!}
+    {!! form()->model(current_user(), ['files'  => true]) !!}
     @include('administrator.profile.partials.info')
     {!! form()->close() !!}
 @stop

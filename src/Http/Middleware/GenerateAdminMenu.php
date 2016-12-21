@@ -111,7 +111,7 @@ class GenerateAdminMenu
                     return true;
                 }
 
-                return currentUser()->canAtLeast($permissions);
+                return current_user()->canAtLeast($permissions);
             });
         }
 

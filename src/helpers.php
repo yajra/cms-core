@@ -80,14 +80,14 @@ if (! function_exists('admin_prefix')) {
     }
 }
 
-if (! function_exists('currentUser')) {
+if (! function_exists('current_user')) {
     /**
      * Get current user instance.
      *
      * @param string|null $guard
      * @return \App\User|\Illuminate\Contracts\Auth\Authenticatable
      */
-    function currentUser($guard = null)
+    function current_user($guard = null)
     {
         if ($user = auth($guard)->user()) {
             return $user;

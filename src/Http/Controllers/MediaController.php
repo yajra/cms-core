@@ -150,8 +150,8 @@ class MediaController extends Controller
             $item['icon']      = 'fa-reply';
             $item['path']      = $this->currentDir;
             $item['url']       = '?folder=' . $back_directory;
-            $item['delete']    = currentUser()->can('media.delete');
-            $item['select']    = currentUser()->can('media.view');
+            $item['delete']    = current_user()->can('media.delete');
+            $item['select']    = current_user()->can('media.view');
             $collection->add($item);
         }
 
@@ -167,8 +167,8 @@ class MediaController extends Controller
             $item['type']      = 'directory';
             $item['icon']      = 'fa-folder';
             $item['url']       = '?folder=' . $directory;
-            $item['delete']    = currentUser()->can('media.delete');
-            $item['select']    = currentUser()->can('media.view');
+            $item['delete']    = current_user()->can('media.delete');
+            $item['select']    = current_user()->can('media.view');
 
             $collection->add($item);
         }
@@ -193,8 +193,8 @@ class MediaController extends Controller
             $item['size']     = $size;
             $item['url']      = preg_replace("/^public/", '', $path);
             $item['path']     = $path;
-            $item['delete']   = currentUser()->can('media.delete');
-            $item['select']   = currentUser()->can('media.view');
+            $item['delete']   = current_user()->can('media.delete');
+            $item['select']   = current_user()->can('media.view');
             $collection->add($item);
         }
 

@@ -3,12 +3,12 @@
         <div class="box box-primary">
             <div class="box-body box-profile">
                 {{ html()->image(
-                    currentUser()->present()->avatar ,
+                    current_user()->present()->avatar ,
                     'alt',
                     array( 'class' => 'profile-user-img img-responsive img-circle', 'style' => "" ))
                 }}
                 <h3 class="profile-username text-center">
-                    {{currentUser()->present()->first_name}} {{currentUser()->present()->last_name}}
+                    {{current_user()->present()->first_name}} {{current_user()->present()->last_name}}
                 </h3>
                 <p class="text-muted text-center">{{trans('cms::profile.position')}}</p>
                 <a href="{{route('administrator.profile.remove-avatar')}}" class="btn btn-warning btn-block"><b>{{trans('cms::profile.form.button.remove-avatar')}}</b></a>
