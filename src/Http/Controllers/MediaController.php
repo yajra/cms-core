@@ -275,7 +275,7 @@ class MediaController extends Controller
         $html = '<ul>';
         $directories->each(function ($dir) use (&$html, $parent) {
             $subParent = $parent . '/' . $dir;
-            $url       = request()->url() . '?folder=' . $subParent;
+            $url       = request()->url() . '?folder=' . $dir;
 
             $html .= "<li>";
             $html .= "<a href='{$url}'>{$dir}</a>";
