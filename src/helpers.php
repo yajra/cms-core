@@ -67,6 +67,19 @@ if (! function_exists('dt_check')) {
     }
 }
 
+if (! function_exists('admin_prefix')) {
+    /**
+     * Display a checkbox view.
+     *
+     * @param bool $checked
+     * @return string
+     */
+    function admin_prefix()
+    {
+        return config('site.admin_prefix', 'administrator');
+    }
+}
+
 if (! function_exists('currentUser')) {
     /**
      * Get current user instance.

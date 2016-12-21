@@ -42,7 +42,7 @@ class RouteServiceProvider extends ServiceProvider
     public function map(Router $router)
     {
         $router->bind('widget', function ($id) use ($router) {
-            if ($router->is('administrator*')) {
+            if ($router->is(admin_prefix() . '*')) {
                 return Widget::withoutGlobalScope('menu_assignment')->findOrFail($id);
             }
 
@@ -172,20 +172,22 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdministratorAuthenticationRoutes(Router $router)
     {
-        $router->get('administrator/login', [
-            'middleware' => 'web',
-            'uses'       => AuthController::class . '@showLoginForm',
-        ])->name('administrator.login');
+        $router->group(['prefix' => admin_prefix()], function () use ($router) {
+            $router->get('login', [
+                'middleware' => 'web',
+                'uses'       => AuthController::class . '@showLoginForm',
+            ])->name('administrator.login');
 
-        $router->get('administrator/logout', [
-            'middleware' => 'web',
-            'uses'       => AuthController::class . '@logout',
-        ])->name('administrator.logout');
+            $router->get('logout', [
+                'middleware' => 'web',
+                'uses'       => AuthController::class . '@logout',
+            ])->name('administrator.logout');
 
-        $router->post('administrator/login', [
-            'middleware' => 'web',
-            'uses'       => AuthController::class . '@login',
-        ]);
+            $router->post('login', [
+                'middleware' => 'web',
+                'uses'       => AuthController::class . '@login',
+            ])->name('administrator.login');
+        });
     }
 
     /**
@@ -197,7 +199,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $router->group([
             'middleware' => 'administrator',
-            'prefix'     => 'administrator',
+            'prefix'     => admin_prefix(),
             'as'         => 'administrator.',
         ], function ($router) {
             require __DIR__ . '/../Http/routes.php';

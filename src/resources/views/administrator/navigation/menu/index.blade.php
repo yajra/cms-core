@@ -12,7 +12,7 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <a href="/administrator/navigation" style="font-size: 15px">
+                <a href="{{route('administrator.navigation.index')}}" style="font-size: 15px">
                     <i class="fa fa-arrow-circle-left"></i>&nbsp;
                     {{trans('cms::menu.index.back')}}
                 </a>

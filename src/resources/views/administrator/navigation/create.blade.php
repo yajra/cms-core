@@ -23,7 +23,7 @@
                     @include('administrator.navigation.partials.form')
                 </div>
                 <div class="box-footer">
-                    <a href="/administrator/navigation" class="btn btn-warning text-bold text-uppercase">
+                    <a href="{{route('administrator.navigation.index')}}" class="btn btn-warning text-bold text-uppercase">
                         {{trans('cms::button.cancel')}}
                     </a>
                     <button type="submit" class="btn btn-primary text-bold text-uppercase">

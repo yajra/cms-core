@@ -19,7 +19,7 @@ class DynamicWidgetsBuilder
     public function handle($request, Closure $next)
     {
         // skip dynamic widgets on administrator pages.
-        if ($request->is('administrator*')) {
+        if ($request->is(admin_prefix() . '*')) {
             return $next($request);
         }
 

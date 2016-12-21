@@ -28,7 +28,7 @@ class DynamicMenusBuilder
     {
         session()->forget('active_menu');
 
-        if (! $request->is('administrator*')) {
+        if (! $request->is(admin_prefix() . '*')) {
             $this->repository = app(Repository::class);
             $this->repository->getPublished()->each(function (Navigation $navigation) {
                 MenuFactory::make($navigation->type, function (Builder $builder) use ($navigation) {

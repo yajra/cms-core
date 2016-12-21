@@ -17,7 +17,7 @@ class GenerateAdminMenu
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && $request->is('administrator*')) {
+        if (auth()->check() && $request->is(admin_prefix() . '*')) {
             Menu::make('admin', function (Builder $menu) {
                 $menu->add('Dashboard', route('administrator.index'))->icon('home');
 

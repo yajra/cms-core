@@ -74,7 +74,7 @@ class AuthController extends Controller
             auth($this->getGuard())->logout();
             flash()->error($message);
 
-            return redirect()->to('administrator/login')->withErrors($message);
+            return redirect()->route('administrator.login')->withErrors($message);
         }
 
         return redirect()->intended($this->redirectPath);

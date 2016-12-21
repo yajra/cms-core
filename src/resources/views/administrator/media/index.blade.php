@@ -142,7 +142,7 @@
                 closeOnConfirm: false
             }, function () {
                 $.ajax({
-                    url: '{{ url('administrator/media/delete-media') }}',
+                    url: '{{ route('administrator.media.destroy') }}',
                     data: {s: filePath},
                     type: 'POST',
                     dataType: 'json',

@@ -16,7 +16,7 @@
                 $.blockUI();
                 this.extension = extension;
                 $('#menu-items-modal').modal('hide');
-                axios.get('/administrator/navigation/menu/extensions/' + this.menuId + '?key=' + extension.id)
+                axios.get(YajraCMS.adminPath + '/navigation/menu/extensions/' + this.menuId + '?key=' + extension.id)
                     .then(function (response) {
                         $('#menu-item-selected-container').html(response.data);
                         $('#menutype').val(extension.id);
@@ -29,7 +29,7 @@
             var articlesDT = $('#articles-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/administrator/navigation/menu/articles',
+                ajax: YajraCMS.adminPath + '/navigation/menu/articles',
                 columns: [
                     {data: 'id', name: 'articles.id', width: '20px'},
                     {data: 'title', name: 'articles.title'},

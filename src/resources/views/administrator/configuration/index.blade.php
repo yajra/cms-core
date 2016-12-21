@@ -136,7 +136,7 @@
                 }.bind(this));
             },
             fetchConfig: function (key) {
-                axios.get('/administrator/configuration/' + key).then(function (response) {
+                axios.get(YajraCMS.adminPath + '/configuration/' + key).then(function (response) {
                     this.$set(this, key, response.data);
                 }.bind(this));
             },
@@ -174,7 +174,7 @@
                         var json = {};
                         json.config = config;
                         json.data = vm[config];
-                        axios.post('/administrator/configuration', json).then(function (response) {
+                        axios.post(YajraCMS.adminPath + '/configuration', json).then(function (response) {
                             pushNotification(response.data);
                         });
                     });

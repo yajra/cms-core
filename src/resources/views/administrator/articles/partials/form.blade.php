@@ -117,8 +117,8 @@
 
             CKEDITOR.replace('body', {
                 allowedContent: true,
-                filebrowserBrowseUrl: '/administrator/media/browse',
-                filebrowserImageBrowseUrl: '/administrator/media/browse/images',
+                filebrowserBrowseUrl: YajraCMS.adminPath + '/media/browse',
+                filebrowserImageBrowseUrl: YajraCMS.adminPath + '/media/browse/images',
                 customConfig: '/plugins/ckeditor/plugins/justify/plugin.js',
                 extraPlugins: 'colorbutton,justify',
             });

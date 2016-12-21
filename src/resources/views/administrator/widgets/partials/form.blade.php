@@ -90,7 +90,7 @@
             },
 
             fetchParametersView: function () {
-                var url = '/administrator/widgets/' + this.widget.extension_id + '/parameters/' + (this.widget.id | 0);
+                var url = YajraCMS.adminPath + '/widgets/' + this.widget.extension_id + '/parameters/' + (this.widget.id | 0);
                 axios.get(url).then(function (response) {
                     $('#widget-custom-form').html(response.data);
                     $.unblockUI();
@@ -99,7 +99,7 @@
 
             fetchTemplates: function () {
                 var vm = this;
-                var url = '/administrator/widgets/' + this.widget.extension_id + '/templates';
+                var url = YajraCMS.adminPath + '/widgets/' + this.widget.extension_id + '/templates';
                 axios.get(url, {}).then(function (response) {
                     var json = response.data;
                     vm.templates = json.data;
@@ -111,8 +111,8 @@
             this.fetchDependencies();
             CKEDITOR.replace('body', {
                 allowedContent: true,
-                filebrowserBrowseUrl: '/administrator/media/browse',
-                filebrowserImageBrowseUrl: '/administrator/media/browse/images',
+                filebrowserBrowseUrl: YajraCMS.adminPath + '/media/browse',
+                filebrowserImageBrowseUrl: YajraCMS.adminPath + '/media/browse/images',
                 customConfig: '/plugins/ckeditor/plugins/justify/plugin.js',
                 extraPlugins: 'colorbutton,justify',
             });

@@ -15,7 +15,9 @@ class AdministratorUserResolver
      */
     public function handle($request, Closure $next)
     {
-        if ($request->is('administrator/*') || $request->is('administrator')) {
+        $prefix = admin_prefix();
+
+        if ($request->is("$prefix/*") || $request->is($prefix)) {
             config()->set('auth.defaults.guard', 'administrator');
         }
 
