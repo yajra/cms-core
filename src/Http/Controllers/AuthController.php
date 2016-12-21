@@ -39,13 +39,6 @@ class AuthController extends Controller
     protected $redirectAfterLogout = '/administrator';
 
     /**
-     * Username to use for login.
-     *
-     * @var string
-     */
-    protected $username = 'username';
-
-    /**
      * Create a new authentication controller instance.
      */
     public function __construct()
@@ -85,16 +78,6 @@ class AuthController extends Controller
         }
 
         return redirect()->intended($this->redirectPath);
-    }
-
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        return config('site.login.backend.username', $this->username);
     }
 
     /**

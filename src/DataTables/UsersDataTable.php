@@ -70,7 +70,6 @@ class UsersDataTable extends DataTable
                 'first_name',
                 'last_name',
                 'email',
-                'username',
                 'roles'         => ['name' => 'roles.name', 'orderable' => false],
                 'administrator' => [
                     'width' => '20px',

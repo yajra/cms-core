@@ -4,21 +4,12 @@
 <form class="form-vertical" role="form" method="POST" action="{{ url('/login') }}">
     {!! csrf_field() !!}
 
-    @if(config('site.login.frontend.username', 'username') === 'email')
-        <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-            <label class="control-label">Email</label>
+    <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+        <label class="control-label" for="email">Email</label>
 
-            <input type="email" class="form-control" name="email" value="{{ old('email') }}" title="email">
-            {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
-        </div>
-    @else
-        <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
-            <label class="control-label">Username</label>
-
-            <input type="text" class="form-control" name="username" value="{{ old('username') }}" title="username">
-            {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
-        </div>
-    @endif
+        <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email">
+        {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+    </div>
 
     <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
         <label class="control-label" for="password">Password</label>
