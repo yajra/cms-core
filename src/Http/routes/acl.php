@@ -10,13 +10,13 @@ use Yajra\CMS\Http\Controllers\RolesController;
 use Yajra\CMS\Http\Controllers\UsersController;
 
 // Users Routes
-$router->get('users/{users}/password', UsersController::class . '@password')
+$router->get('users/{user}/password', UsersController::class . '@password')
        ->name('users.password');
-$router->post('users/{users}/password', UsersController::class . '@updatePassword')
+$router->post('users/{user}/password', UsersController::class . '@updatePassword')
        ->name('users.password.update');
-$router->post('users/{users}/activate', UsersController::class . '@activate')
+$router->post('users/{user}/activate', UsersController::class . '@activate')
        ->name('users.activate');
-$router->post('users/{users}/block', UsersController::class . '@ban')
+$router->post('users/{user}/block', UsersController::class . '@ban')
        ->name('users.block');
 $router->delete('users/{id}/force', UsersController::class . '@forceDelete')
        ->name('users.destroy.force');
