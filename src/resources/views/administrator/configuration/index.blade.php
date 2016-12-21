@@ -29,191 +29,90 @@
 @stop
 
 @section('content')
-    <div class="row" id="config-container">
+    <div class="row" id="config-app">
         <div class="col-md-3">
-            <!-- Site Links -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <p class="text-muted text-center">{!! $configuration->key("site.name") !!}</p>
+                    <p class="text-muted text-center">{!! config("site.name") !!}</p>
                     <ul class="list-group list-group-unbordered">
-                        @include('administrator.configuration.partials.list-item',['title' => 'Site Management','key'=>'site-mgmt','icon' => 'fa-cog'])
-                        @include('administrator.configuration.partials.list-item',['title' => 'Application Environment','key'=>'app-env','icon' => 'fa-laptop'])
-                        @include('administrator.configuration.partials.list-item',['title' => 'Database Connection','key'=>'db-conn','icon' => 'fa-database'])
-                        @include('administrator.configuration.partials.list-item',['title' => 'Mail Driver','key'=>'mail-driver','icon' => 'fa-envelope'])
-                        @include('administrator.configuration.partials.list-item',['title' => 'Cache Store','key'=>'cache-store','icon' => 'fa-cloud-download'])
-                        @include('administrator.configuration.partials.list-item',['title' => 'Session Driver','key'=>'session-driver','icon' => 'fa-comment-o'])
-                        @include('administrator.configuration.partials.list-item',['title' => 'File System','key'=>'file-system','icon' => 'fa-briefcase'])
+                        @foreach($config as $c)
+                            @include('administrator.configuration.partials.list-item', $c)
+                        @endforeach
                     </ul>
-                </div><!-- /.box-body -->
-            </div><!-- /.box -->
-
-        </div><!-- /.col -->
+                </div>
+            </div>
+        </div>
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Site Management','key' => 'site-mgmt', 'icon' =>'fa-cog'])
-                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Application Environment','key' => 'app-env', 'icon' =>'fa-laptop'])
-                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Database Connection','key' => 'db-conn', 'icon' =>'fa-database'])
-                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Mail Driver','key' => 'mail-driver', 'icon' =>'fa-envelope'])
-                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Cache Store','key' => 'cache-store', 'icon' =>'fa-cloud-download'])
-                    @include('administrator.configuration.partials.tab-list-item',['title' => 'Session Driver','key' => 'session-driver', 'icon' =>'fa-comment-o'])
-                    @include('administrator.configuration.partials.tab-list-item',['title' => 'File System','key' => 'file-system', 'icon' =>'fa-briefcase'])
+                    @foreach($config as $c)
+                        @include('administrator.configuration.partials.tab-list-item', $c)
+                    @endforeach
                 </ul>
 
                 <div class="tab-content padding-0">
-                    @include('administrator.configuration.partials.tab-content', ['key' => 'site-mgmt', 'vueKey' => 'site','swalTitle'=>'site management','form'=>'administrator.configuration.partials.form.site-management'])
-                    @include('administrator.configuration.partials.tab-content', ['key' => 'app-env', 'vueKey' => 'app','swalTitle'=>'application environment','form'=>'administrator.configuration.partials.form.app-environment'])
-                    @include('administrator.configuration.partials.tab-content', ['key' => 'db-conn', 'vueKey' => 'database','swalTitle'=>'database connection','form'=>'administrator.configuration.partials.form.database-connection'])
-                    @include('administrator.configuration.partials.tab-content', ['key' => 'mail-driver', 'vueKey' => 'mail','swalTitle'=>'mail driver','form'=>'administrator.configuration.partials.form.mail-driver'])
-                    @include('administrator.configuration.partials.tab-content', ['key' => 'cache-store', 'vueKey' => 'cache','swalTitle'=>'cache setup','form'=>'administrator.configuration.partials.form.cache-store'])
-                    @include('administrator.configuration.partials.tab-content', ['key' => 'session-driver', 'vueKey' => 'session','swalTitle'=>'session driver','form'=>'administrator.configuration.partials.form.session-driver'])
-                    @include('administrator.configuration.partials.tab-content', ['key' => 'file-system', 'vueKey' => 'filesystems','swalTitle'=>'file system','form'=>'administrator.configuration.partials.form.file-system'])
-                </div><!-- /.tab-content -->
-            </div><!-- /.nav-tabs-custom -->
-        </div><!-- /.col -->
-    </div><!-- /.row -->
+                    @foreach($config as $c)
+                        @include('administrator.configuration.partials.tab-content', $c)
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @push('scripts')
 <script type="text/javascript">
-    var config = new Vue({
-        el: '#config-container',
+    new Vue({
+        el: '#config-app',
         data: {
-            app: {
-                config: 'app',
-                debug: '{{$configuration->key("app.debug")}}',
-                env: '{{$configuration->key("app.env")}}',
-                url: '{{$configuration->key("app.url")}}',
-                timezone: '{{$configuration->key("app.timezone")}}',
-                locale: '{{$configuration->key("app.locale")}}',
-                log: '{{$configuration->key("app.log")}}',
-                debugbar: '{{$configuration->key("app.debugbar")}}',
-            },
+            configs: ['app', 'database', 'site', 'mail', 'cache', 'session', 'filesystems'],
+            tabs: [],
+            app: {},
             database: {
-                config: 'database',
-                default: '{{$configuration->key("database.default")}}',
                 connections: {
-                    mysql: {
-                        host: '{{$configuration->key("database.connections.mysql.host")}}',
-                        username: '{{$configuration->key("database.connections.mysql.username")}}',
-                        password: '{{$configuration->key("database.connections.mysql.password")}}',
-                        database: '{{$configuration->key("database.connections.mysql.database")}}',
-                    },
-                    oracle: {
-                        host: '{{$configuration->key("database.connections.oracle.host")}}',
-                        username: '{{$configuration->key("database.connections.oracle.username")}}',
-                        password: '{{$configuration->key("database.connections.oracle.password")}}',
-                        database: '{{$configuration->key("database.connections.oracle.database")}}',
-                    },
-                    pgsql: {
-                        host: '{{$configuration->key("database.connections.pgsql.host")}}',
-                        username: '{{$configuration->key("database.connections.pgsql.username")}}',
-                        password: '{{$configuration->key("database.connections.pgsql.password")}}',
-                        database: '{{$configuration->key("database.connections.pgsql.database")}}',
-                        schema: '{{$configuration->key("database.connections.pgsql.schema")}}',
-                    },
-                    sqlite: {
-                        database: '{{$configuration->key("database.connections.sqlite.database")}}',
-                    }
+                    mysql: {},
+                    oracle: {},
+                    pgsql: {},
+                    sqlite: {},
                 }
             },
-            site: {
-                config: 'site',
-                name: '{{$configuration->key("site.name")}}',
-                version: '{{$configuration->key("site.version")}}',
-                keywords: '{{$configuration->key("site.keywords")}}',
-                author: '{{$configuration->key("site.author")}}',
-                description: '{{$configuration->key("site.description")}}',
-                admin_theme: '{{$configuration->key("site.admin_theme")}}',
-                registration: '{{$configuration->key("site.registration")}}',
-            },
-            mail: {
-                config: 'mail',
-                driver: '{{$configuration->key("mail.driver")}}',
-                host: '{{$configuration->key("mail.host")}}',
-                port: '{{$configuration->key("mail.port")}}',
-                encryption: '{{$configuration->key("mail.encryption")}}',
-                username: '{{$configuration->key("mail.username")}}',
-                password: '{{$configuration->key("mail.password")}}',
-            },
+            site: {},
+            mail: {},
             cache: {
-                config: 'cache',
-                default: '{{$configuration->key("cache.default")}}',
                 stores: {
-                    apc: {
-                        driver: '{{$configuration->key("cache.stores.apc.driver")}}'
+                    apc: {},
+                    array: {},
+                    database: {},
+                    file: {},
+                    memcached: {
+                        servers: [
+                            {host: '', port: '', weight: ''},
+                            {host: '', port: '', weight: ''},
+                        ]
                     },
-                    array: {
-                        driver: '{{$configuration->key("cache.stores.array.driver")}}'
-                    },
-                    database: {
-                        driver: '{{$configuration->key("cache.stores.database.driver")}}',
-                        table: '{{$configuration->key("cache.stores.database.table")}}',
-                        connection: '{{$configuration->key("cache.stores.database.connection")}}'
-                    },
-                    file: {
-                        driver: '{{$configuration->key("cache.stores.file.driver")}}',
-                        path: '{{$configuration->key("cache.stores.file.path")}}',
-                    },
+                    redis: {}
                 }
             },
-            session: {
-                config: 'session',
-                driver: '{{$configuration->key("session.driver")}}',
-                lifetime: '{{$configuration->key("session.lifetime")}}',
-                files: '{{$configuration->key("session.files")}}',
-                table: '{{$configuration->key("session.table")}}',
-            },
+            session: {},
             filesystems: {
-                config: 'filesystems',
-                default: '{{$configuration->key("filesystems.default")}}',
                 disks: {
-                    local: {
-                        root: '{{$configuration->key("filesystems.disks.local.root")}}',
-                    },
-                    public: {
-                        root: '{{$configuration->key("filesystems.disks.public.root")}}',
-                        visibility: '{{$configuration->key("filesystems.disks.public.visibility")}}',
-                    },
-                    s3: {
-                        key: '{{$configuration->key("filesystems.disks.s3.key")}}',
-                        secret: '{{$configuration->key("filesystems.disks.s3.secret")}}',
-                        region: '{{$configuration->key("filesystems.disks.s3.region")}}',
-                        bucket: '{{$configuration->key("filesystems.disks.s3.bucket")}}',
-                    },
+                    local: {},
+                    public: {},
+                    s3: {}
                 }
             }
         },
         mounted: function () {
-            var that = this;
+            this.fetchConfigs();
             // Focus tab depends on url active.
             if (window.location.hash) {
                 localStorage.activeTab = window.location.hash.substring(1).replace("setup-", "");
                 window.location = '#setup-' + localStorage.activeTab;
-                that.checkTab(localStorage.activeTab);
+                this.checkTab(localStorage.activeTab);
             } else {
-                localStorage.activeTab = 'site-mgmt';
-                that.checkTab(localStorage.activeTab);
+                localStorage.activeTab = 'site';
+                this.checkTab(localStorage.activeTab);
             }
-            $('#app_debug').on('change', function () {
-                if (that.app.debug == 1) {
-                    that.app.debug = 0;
-                } else {
-                    that.app.debug = 1;
-                }
-            });
-            $('#app_debugbar').on('change', function () {
-                if (that.app.debugbar == 1) {
-                    that.app.debugbar = 0;
-                } else {
-                    that.app.debugbar = 1;
-                }
-            });
-            // Global config change container on select database type.
-            $('#default-db').on('change', function () {
-                $('.db-container').removeClass('hide').addClass('hide');
-                $('#' + $(this).val() + '-db-container').removeClass('hide');
-            });
             // Global config change container on select cache type.
             $('#default-cache').on('change', function () {
                 $('.cache-container').removeClass('hide').addClass('hide');
@@ -224,46 +123,23 @@
                 $('.filesystem-container').removeClass('hide').addClass('hide');
                 $('#' + $(this).val() + '-filesystem-container').removeClass('hide');
             });
-            // select2 on change. Set vue object value.
-            var $eventSelect = $('select');
-            $eventSelect.on("change", function () {
-                var select = $(this).attr('config');
-                var selected = $(this).val();
-
-                switch (select) {
-                    case 'site.admin_theme':
-                        that.site.admin_theme = selected;
-                        break;
-                    case 'app.env':
-                        that.app.env = selected;
-                        break;
-                    case 'app.timezone':
-                        that.app.timezone = selected;
-                        break;
-                    case 'app.locale':
-                        that.app.locale = selected;
-                        break;
-                    case 'app.log':
-                        that.app.log = selected;
-                        break;
-                    case 'database.default':
-                        that.database.default = selected;
-                        break;
-                    case 'mail.driver':
-                        that.mail.driver = selected;
-                        break;
-                    case 'cache.default':
-                        that.cache.default = selected;
-                        break;
-                    case 'session.driver':
-                        that.session.driver = selected;
-                        break;
-                    case 'filesystems.default':
-                        that.filesystems.default = selected;
-                }
+            // Global config change container on select database type.
+            $('#default-db').on('change', function () {
+                $('.db-container').removeClass('hide').addClass('hide');
+                $('#' + $(this).val() + '-db-container').removeClass('hide');
             });
         },
         methods: {
+            fetchConfigs: function () {
+                this.configs.forEach(function (config) {
+                    this.fetchConfig(config);
+                }.bind(this));
+            },
+            fetchConfig: function (key) {
+                axios.get('/administrator/configuration/' + key).then(function (response) {
+                    this.$set(this, key, response.data);
+                }.bind(this));
+            },
             checkTab: function (selectedTab) {
                 window.location = '#setup-' + selectedTab;
                 var activeTab = $('.nav-tabs .active').attr('id');
@@ -284,7 +160,8 @@
                 localStorage.activeTab = selectedTab;
                 $('.select2-container').css('width', '100%');
             },
-            onSubmit: function (values, config_title) {
+            storeConfig: function (config) {
+                var vm = this;
                 swal({
                         title: "Are you sure?",
                         text: "Save and update site configuration.",
@@ -294,13 +171,11 @@
                         showLoaderOnConfirm: true,
                     },
                     function () {
-                        axios.post('/administrator/configuration', values).then(function (response) {
-                            swal({
-                                title: "Updated!",
-                                type: "success",
-                                text: "Your " + config_title + " configuration successfully updated! <br><small>You may need to refresh the page to reflect some changes.</small>",
-                                html: true
-                            });
+                        var json = {};
+                        json.config = config;
+                        json.data = vm[config];
+                        axios.post('/administrator/configuration', json).then(function (response) {
+                            pushNotification(response.data);
                         });
                     });
             }

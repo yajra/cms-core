@@ -1,46 +1,34 @@
 <div class="form-group">
-    <label class="form-label-style block" for="title">Host
+    <label class="form-label-style block">
+        Host
         @tooltip('Mysql host name.')
     </label>
-    {!! form()->input('text', 'host', $configuration->key("database.connections.mysql.host"), [
-        'class'         => 'form-control',
-        'placeholder'   => 'Enter Host Name Here',
-        'v-model'       => 'database.connections.mysql.host'
-    ]) !!}
+    <input type="text" class="form-control" v-model="database.connections.mysql.host">
 </div>
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label class="form-label-style block" for="title">Database Username
+            <label class="form-label-style block">
+                Database Username
                 @tooltip('Mysql database username.')
             </label>
-            {!! form()->input('text', 'username', $configuration->key("database.connections.mysql.username"), [
-                'class'         => 'form-control',
-                'placeholder'   => 'Enter Username Name Here',
-                'v-model'       => 'database.connections.mysql.username'
-            ]) !!}
+            <input type="text" class="form-control" v-model="database.connections.mysql.username">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label class="form-label-style block" for="title">Database Password
+            <label class="form-label-style block">
+                Database Password
                 @tooltip('Mysql database password.')
             </label>
-            {!! form()->input('password', 'password', '', [
-                'class'         => 'form-control',
-                'placeholder'   => 'Enter Password Here',
-                'v-model'       => 'database.connections.mysql.password'
-            ]) !!}
+            <input type="password" class="form-control" v-model="database.connections.mysql.password">
         </div>
     </div>
 </div>
 <div class="form-group">
-    <label class="form-label-style block" for="title">Database Name
+    <label class="form-label-style block">
+        Database Name
         @tooltip('Mysql database name.')
     </label>
-    {!! form()->input('text', 'name', $configuration->key("database.connections.mysql.database"), [
-        'class'         => 'form-control',
-        'placeholder'   => 'Enter Database Name Here',
-        'v-model'       => 'database.connections.mysql.database'
-    ]) !!}
+    <input type="text" class="form-control" v-model="database.connections.mysql.database">
 </div>
