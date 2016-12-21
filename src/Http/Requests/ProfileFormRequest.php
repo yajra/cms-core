@@ -21,14 +21,12 @@ class ProfileFormRequest extends Request
      */
     public function rules()
     {
-        $configUsername = config('site.login.backend.username');
-
         return [
-            'first_name'    => 'required',
-            'last_name'     => 'required',
-            $configUsername => 'required|unique:users,' . $configUsername . ',' . $this->user()->id,
-            'avatar'        => 'image',
-            'password'      => 'min:4|confirmed',
+            'first_name' => 'required',
+            'last_name'  => 'required',
+            'email'      => 'required|unique:users,email,' . $this->user()->id,
+            'avatar'     => 'image',
+            'password'   => 'min:4|confirmed',
         ];
     }
 }

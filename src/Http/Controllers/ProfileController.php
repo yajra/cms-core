@@ -27,7 +27,7 @@ class ProfileController extends Controller
     public function update(ProfileFormRequest $request)
     {
         $profile = $request->user();
-        $profile->fill($request->only(['first_name', 'last_name', 'username', 'email']));
+        $profile->fill($request->only(['first_name', 'last_name', 'email']));
 
         if ($request->get('password')) {
             $profile->password = bcrypt($request->get('password'));

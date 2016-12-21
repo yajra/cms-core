@@ -48,16 +48,6 @@
                         {!! $errors->first('last_name', '<small class="help-inline text-danger">:message</small>') !!}
                     </div>
                     <div class="form-group">
-                        <label class="form-label-style" for="username">{{trans('cms::profile.form.field.username')}}
-                            @tooltip('')
-                        </label>
-                        {{ form()->input('text', 'username', null, [
-                            'class' => 'form-control',
-                            'required'
-                        ]) }}
-                        {!! $errors->first('username', '<small class="help-inline text-danger">:message</small>') !!}
-                    </div>
-                    <div class="form-group">
                         <label class="form-label-style" for="email">{{trans('cms::profile.form.field.email')}}
                             @tooltip('')
                         </label>
