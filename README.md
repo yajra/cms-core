@@ -18,6 +18,12 @@ Via Composer
 $ composer require yajra/cms-core
 ```
 
+or create project directly by
+
+```bash
+$ composer create-project yajra/cms-core
+```
+
 ## Usage
 
 Just register `Yajra\CMS\Providers\CoreServiceProvider::class` on your providers.
