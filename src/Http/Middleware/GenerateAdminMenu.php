@@ -105,7 +105,7 @@ class GenerateAdminMenu
                 $menu->add('Utilities', route('administrator.utilities.index'))->icon('wrench')
                      ->data('permission', 'utilities.view');
 
-                $menu->add('Logout', route('administrator.logout'))->icon('power-off');
+                $menu->add('Logout', route('administrator.logout'))->icon('power-off')->attribute(['name' => 'logout']);
             })->filter(function ($item) {
                 $permissions = (array) $item->data('permission');
                 if (! $permissions) {
