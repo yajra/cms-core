@@ -104,6 +104,7 @@ class ArticlesController extends Controller
         $article->published     = $request->get('published', false);
         $article->featured      = $request->get('featured', false);
         $article->authenticated = $request->get('authenticated', false);
+        $article->is_page       = $request->get('is_page', false);
         $article->save();
 
         $article->permissions()->sync($request->get('permissions', []));

@@ -29,6 +29,7 @@ use Yajra\CMS\Presenters\ArticlePresenter;
  * @property boolean featured
  * @property int category_id
  * @property bool authenticated
+ * @property bool is_page
  * @property Collection permissions
  * @property int hits
  * @property int order
