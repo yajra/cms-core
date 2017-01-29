@@ -27,6 +27,7 @@ class ExtensionsDataTable extends DataTable
             ->editColumn('enabled', function ($extension) {
                 return dt_check($extension->enabled);
             })
+            ->rawColumns(['action', 'name', 'type', 'enabled'])
             ->make(true);
     }
 
