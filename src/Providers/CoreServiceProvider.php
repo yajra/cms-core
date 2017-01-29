@@ -8,7 +8,7 @@ use Barryvdh\Snappy\ServiceProvider as SnappyServiceProvider;
 use Baum\Providers\BaumServiceProvider;
 use Caffeinated\Menus\MenusServiceProvider;
 use Conner\Tagging\Providers\TaggingServiceProvider;
-use DaveJamesMiller\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
+use Yajra\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
