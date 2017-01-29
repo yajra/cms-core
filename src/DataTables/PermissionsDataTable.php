@@ -15,9 +15,6 @@ class PermissionsDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())
             ->addColumn('roles', function (Permission $permission) {
-                return dt_label($permission->roles()->count());
-            })
-            ->addColumn('roles', function (Permission $permission) {
                 return view('administrator.permissions.datatables.roles', compact('permission'))->render();
             })
             ->editColumn('system', function (Permission $permission) {
@@ -27,6 +24,7 @@ class PermissionsDataTable extends DataTable
                 return '<small>' . $permission->slug . '</small>';
             })
             ->addColumn('action', 'administrator.permissions.datatables.action')
+            ->rawColumns(['roles', 'system', 'slug', 'action'])
             ->make(true);
     }
 

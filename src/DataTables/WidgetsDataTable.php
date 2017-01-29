@@ -23,6 +23,7 @@ class WidgetsDataTable extends DataTable
                 return dt_check($widget->authenticated);
             })
             ->addColumn('action', 'administrator.widgets.datatables.action')
+            ->rawColumns(['published', 'authenticated', 'action'])
             ->make(true);
     }
 

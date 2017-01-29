@@ -24,7 +24,7 @@ class RolesDataTable extends DataTable
                 return view('administrator.roles.datatables.permissions', compact('role'))->render();
             })
             ->addColumn('action', 'administrator.roles.datatables.action')
-            ->escapeColumns(['name'])
+            ->rawColumns(['system', 'users', 'permissions', 'action'])
             ->make(true);
     }
 

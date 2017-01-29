@@ -38,6 +38,7 @@ class ArticlesDataTable extends DataTable
             ->addColumn('slug', function (Article $article) {
                 return $article->present()->slug;
             })
+            ->rawColumns(['is_page', 'hits', 'title', 'published', 'authenticated', 'action'])
             ->make(true);
     }
 

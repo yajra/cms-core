@@ -20,6 +20,7 @@ class NavigationDataTable extends DataTable
             ->addColumn('menus', function (Navigation $nav) {
                 return '<span class="badge label-primary">' . $nav->menus()->count() . '</span>';
             })
+            ->rawColumns(['menus', 'published', 'action'])
             ->editColumn('published', function (Navigation $row) {
                 return dt_check($row->published);
             })

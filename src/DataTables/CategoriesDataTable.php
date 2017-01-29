@@ -45,6 +45,7 @@ class CategoriesDataTable extends DataTable
             ->editColumn('title', function (Category $category) {
                 return view('administrator.categories.datatables.title', compact('category'))->render();
             })
+            ->rawColumns(['lft', 'status', 'authenticated', 'hits', 'title', 'action'])
             ->make(true);
     }
 

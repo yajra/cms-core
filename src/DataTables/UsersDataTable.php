@@ -33,6 +33,7 @@ class UsersDataTable extends DataTable
                 return dt_render('administrator.users.datatables.roles', compact('user'));
             })
             ->addColumn('action', 'administrator.users.datatables.action')
+            ->rawColumns(['email', 'blocked', 'confirmed', 'administrator', 'roles', 'action'])
             ->make(true);
     }
 
