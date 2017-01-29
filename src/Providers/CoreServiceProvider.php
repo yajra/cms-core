@@ -17,7 +17,6 @@ use Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
 use Spatie\EloquentSortable\SortableServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
-use Themsaid\MailPreview\MailPreviewServiceProvider;
 use Yajra\Acl\AclServiceProvider;
 use Yajra\CMS\Themes\ThemesServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
@@ -119,7 +118,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(BaumServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
         $this->app->register(BackupServiceProvider::class);
-        $this->app->register(MailPreviewServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
         $this->app->register(LaravelLogViewerServiceProvider::class);
         $this->app->register(ArrilotWidgetServiceProvider::class);
