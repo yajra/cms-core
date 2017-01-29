@@ -104,10 +104,10 @@ class RouteServiceProvider extends ServiceProvider
                         ]);
                     })->middleware($middleware)->name($article->getRouteName());
 
-                /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
+                /** @var \Yajra\Breadcrumbs\Manager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($article->getRouteName(),
-                    function (\DaveJamesMiller\Breadcrumbs\Generator $breadcrumbs) use ($article) {
+                    function (\Yajra\Breadcrumbs\Generator $breadcrumbs) use ($article) {
                         if ($article->is_page) {
                             $breadcrumbs->parent('home');
                         } else {
@@ -146,10 +146,10 @@ class RouteServiceProvider extends ServiceProvider
                         ]);
                     })->middleware($middleware)->name($category->getRouteName());
 
-                /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
+                /** @var \Yajra\Breadcrumbs\Manager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($category->getRouteName(),
-                    function (\DaveJamesMiller\Breadcrumbs\Generator $breadcrumbs) use ($category) {
+                    function (\Yajra\Breadcrumbs\Generator $breadcrumbs) use ($category) {
                         if ($category->isChild() && $category->depth > 1) {
                             $parent = $category->ancestors()->where('depth', '<>', 0)->first();
                             $breadcrumbs->parent($parent->getRouteName());
