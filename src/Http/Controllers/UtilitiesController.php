@@ -199,6 +199,7 @@ class UtilitiesController extends Controller
 
                                   return $html;
                               })
+                              ->rawColumns(['content'])
                               ->make(true);
         }
 
