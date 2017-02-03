@@ -1,8 +1,9 @@
 <?php
 
-namespace Yajra\CMS\Events;
+namespace Yajra\CMS\Events\Articles;
 
 use Yajra\CMS\Entities\Article;
+use Yajra\CMS\Events\Event;
 
 class ArticleWasViewed extends Event
 {

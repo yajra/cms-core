@@ -4,6 +4,8 @@ namespace Yajra\CMS\Http\Controllers;
 
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\Entities\Article;
+use Yajra\CMS\Events\Articles\ArticleWasCreated;
+use Yajra\CMS\Events\Articles\ArticleWasUpdated;
 use Yajra\CMS\Http\Requests\ArticlesFormRequest;
 
 class ArticlesController extends Controller
@@ -72,6 +74,8 @@ class ArticlesController extends Controller
             $article->tag(explode(',', $request->tags));
         }
 
+        event(new ArticleWasCreated($article));
+
         flash()->success(trans('cms::article.store.success'));
 
         return redirect()->route('administrator.articles.index');
@@ -111,6 +115,8 @@ class ArticlesController extends Controller
         if ($request->tags) {
             $article->retag(explode(',', $request->tags));
         }
+
+        event(new ArticleWasUpdated($article));
 
         flash()->success(trans('cms::article.update.success'));
 

@@ -5,7 +5,7 @@ namespace Yajra\CMS\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\CMS\Entities\Article;
-use Yajra\CMS\Events\ArticleWasViewed;
+use Yajra\CMS\Events\Articles\ArticleWasViewed;
 
 class ArticleController extends Controller
 {
