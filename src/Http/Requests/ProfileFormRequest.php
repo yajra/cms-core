@@ -11,7 +11,7 @@ class ProfileFormRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->user();
     }
 
     /**
@@ -26,7 +26,7 @@ class ProfileFormRequest extends Request
             'last_name'  => 'required',
             'email'      => 'required|unique:users,email,' . $this->user()->id,
             'avatar'     => 'image',
-            'password'   => 'min:4|confirmed',
+            'password'   => 'nullable|min:4|confirmed',
         ];
     }
 }
