@@ -2,8 +2,8 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
+use App\User;
 use Illuminate\Database\QueryException;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Yajra\Acl\Models\Role;
 use Yajra\CMS\Contracts\Validators\StoreUserValidator;
@@ -124,6 +124,7 @@ class UsersController extends Controller
     /**
      * Show and edit selected user.
      *
+     * @param \App\User $user
      * @return \Illuminate\View\View
      */
     public function edit(User $user)
@@ -146,6 +147,7 @@ class UsersController extends Controller
     }
 
     /**
+     * @param \App\User $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function updatePassword(User $user)
