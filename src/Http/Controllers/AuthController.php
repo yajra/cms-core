@@ -3,6 +3,7 @@
 namespace Yajra\CMS\Http\Controllers;
 
 use App\User;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -96,12 +97,29 @@ class AuthController extends Controller
     }
 
     /**
-     * Get auth guard.
+     * Log the user out of the application.
      *
-     * @return string
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    protected function getGuard()
+    public function logout(Request $request)
     {
-        return $this->guard;
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect($this->redirectAfterLogout);
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard($this->guard);
     }
 }
