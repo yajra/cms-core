@@ -11,7 +11,7 @@ class CategoriesFormRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->authorizeResource('category');
     }
 
     /**
