@@ -7,4 +7,6 @@
 
 use Yajra\CMS\Http\Controllers\ExtensionsController;
 
-$router->resource('extension', ExtensionsController::class);
+$router->resource('extension', ExtensionsController::class, [
+    'only' => ['index', 'store', 'destroy'],
+]);
