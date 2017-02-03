@@ -11,7 +11,21 @@ class ArticlesFormRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        if ($this->isEditing()) {
+            return $this->user()->can('article.update');
+        }
+
+        return $this->user()->can('article.create');
+    }
+
+    /**
+     * @return \Illuminate\Routing\Route|object|string
+     */
+    protected function isEditing()
+    {
+        $article = $this->route('article');
+
+        return $article;
     }
 
     /**
@@ -21,11 +35,13 @@ class ArticlesFormRequest extends Request
      */
     public function rules()
     {
+        $required = $this->isEditing() ? 'required|' : 'nullable|';
+
         return [
             'title'          => 'required|max:255',
-            'alias'          => 'max:255|alpha_dash',
-            'order'          => 'required|numeric|max:100',
-            'blade_template' => 'view_exists',
+            'alias'          => $required . 'max:255|alpha_dash',
+            'order'          => 'required|numeric',
+            'blade_template' => 'nullable|view_exists',
             'body'           => 'required_without:blade_template',
             'category_id'    => 'required',
         ];
