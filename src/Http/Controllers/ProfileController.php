@@ -2,8 +2,8 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
+use Yajra\CMS\Events\Users\ProfileWasUpdated;
 use Yajra\CMS\Http\Requests\ProfileFormRequest;
-use App\Http\Requests;
 
 class ProfileController extends Controller
 {
@@ -42,7 +42,25 @@ class ProfileController extends Controller
 
         $profile->save();
 
+        event(new ProfileWasUpdated($profile));
+
         flash()->success(trans('cms::profile.alert.success'));
+
+        return redirect()->route('administrator.profile.edit');
+    }
+
+    /**
+     * Remove current user's avatar.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeAvatar()
+    {
+        $profile         = auth()->user();
+        $profile->avatar = '';
+        $profile->save();
+
+        event(new ProfileWasUpdated($profile));
 
         return redirect()->route('administrator.profile.edit');
     }
@@ -57,19 +75,5 @@ class ProfileController extends Controller
         $fileName = $request->user()->id . '.' . $request->file('avatar')->getClientOriginalExtension();
 
         return $fileName;
-    }
-
-    /**
-     * Remove current user's avatar.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function removeAvatar()
-    {
-        $profile         = auth()->user();
-        $profile->avatar = '';
-        $profile->save();
-
-        return redirect()->route('administrator.profile.edit');
     }
 }

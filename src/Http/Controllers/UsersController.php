@@ -9,6 +9,9 @@ use Yajra\Acl\Models\Role;
 use Yajra\CMS\Contracts\Validators\StoreUserValidator;
 use Yajra\CMS\Contracts\Validators\UpdateUserValidator;
 use Yajra\CMS\DataTables\UsersDataTable;
+use Yajra\CMS\Events\Users\PasswordWasUpdated;
+use Yajra\CMS\Events\Users\UserWasCreated;
+use Yajra\CMS\Events\Users\UserWasUpdated;
 
 class UsersController extends Controller
 {
@@ -111,6 +114,8 @@ class UsersController extends Controller
         $user->save();
         $user->syncRoles($this->request->get('roles'));
 
+        event(new UserWasCreated($user));
+
         flash()->success('User ' . $user->first_name . 'successfully created!');
 
         return redirect()->route('administrator.users.index');
@@ -152,8 +157,12 @@ class UsersController extends Controller
             'password_confirmation' => 'required|min:4',
         ]);
 
-        $user->password = bcrypt($this->request->get('password'));
+        $password       = $this->request->get('password');
+        $user->password = bcrypt($password);
         $user->save();
+
+        event(new PasswordWasUpdated($user, $password));
+
         flash()->success($user->name . "'s password successfully updated!");
 
         return redirect()->route('administrator.users.index');
@@ -185,6 +194,9 @@ class UsersController extends Controller
         $user->administrator = $this->request->get('administrator', false);
         $user->save();
         $user->syncRoles($this->request->get('roles'));
+
+        event(new UserWasUpdated($user));
+
         flash()->success('User ' . $user->first_name . ' successfully updated!');
 
         return redirect()->route('administrator.users.index');
