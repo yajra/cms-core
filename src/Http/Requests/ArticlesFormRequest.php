@@ -11,21 +11,7 @@ class ArticlesFormRequest extends Request
      */
     public function authorize()
     {
-        if ($this->isEditing()) {
-            return $this->user()->can('article.update');
-        }
-
-        return $this->user()->can('article.create');
-    }
-
-    /**
-     * @return \Illuminate\Routing\Route|object|string
-     */
-    protected function isEditing()
-    {
-        $article = $this->route('article');
-
-        return $article;
+        return $this->authorizeResource('article');
     }
 
     /**
@@ -35,7 +21,7 @@ class ArticlesFormRequest extends Request
      */
     public function rules()
     {
-        $required = $this->isEditing() ? 'required|' : 'nullable|';
+        $required = $this->isEditing('article') ? 'required|' : 'nullable|';
 
         return [
             'title'          => 'required|max:255',
