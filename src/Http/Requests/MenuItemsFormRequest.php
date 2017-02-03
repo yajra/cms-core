@@ -11,7 +11,7 @@ class MenuItemsFormRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->authorizeResource('menu');
     }
 
     /**
