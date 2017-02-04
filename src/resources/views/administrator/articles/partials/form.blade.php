@@ -87,7 +87,7 @@
 </div>
 
 @push('js-plugins')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.9/ckeditor.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.6.2/ckeditor.js"></script>
 @endpush
 
 @push('scripts')
@@ -120,7 +120,7 @@
                 filebrowserBrowseUrl: YajraCMS.adminPath + '/media/browse',
                 filebrowserImageBrowseUrl: YajraCMS.adminPath + '/media/browse/images',
                 customConfig: '/plugins/ckeditor/plugins/justify/plugin.js',
-                extraPlugins: 'colorbutton,justify',
+                extraPlugins: 'colorbutton,justify,colordialog',
             });
         }
     });
