@@ -2,19 +2,5 @@
 
 All Notable changes to `cms-core` will be documented in this file
 
-## NEXT - YYYY-MM-DD
-
-### Added
-- Nothing
-
-### Deprecated
-- Nothing
-
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
+## v3.0.0 - 2017-02-08
+- First stable version for Laravel 5.4.
