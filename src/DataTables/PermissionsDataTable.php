@@ -8,32 +8,11 @@ use Yajra\Datatables\Services\DataTable;
 class PermissionsDataTable extends DataTable
 {
     /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function ajax()
-    {
-        return $this->datatables
-            ->eloquent($this->query())
-            ->addColumn('roles', function (Permission $permission) {
-                return view('administrator.permissions.datatables.roles', compact('permission'))->render();
-            })
-            ->editColumn('system', function (Permission $permission) {
-                return dt_check($permission->system);
-            })
-            ->editColumn('slug', function (Permission $permission) {
-                return '<small>' . $permission->slug . '</small>';
-            })
-            ->addColumn('action', 'administrator.permissions.datatables.action')
-            ->rawColumns(['roles', 'system', 'slug', 'action'])
-            ->make(true);
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query()
     {
-        return Permission::query();
+        return $this->applyScopes(Permission::query());
     }
 
     /**
@@ -92,6 +71,28 @@ class PermissionsDataTable extends DataTable
             ],
             'stateSave' => true,
         ]);
+    }
+
+    /**
+     * Build DataTable api response.
+     *
+     * @return \Yajra\Datatables\Engines\BaseEngine
+     */
+    protected function dataTable()
+    {
+        return $this->datatables
+            ->eloquent($this->query())
+            ->addColumn('roles', function (Permission $permission) {
+                return view('administrator.permissions.datatables.roles', compact('permission'))->render();
+            })
+            ->editColumn('system', function (Permission $permission) {
+                return dt_check($permission->system);
+            })
+            ->editColumn('slug', function (Permission $permission) {
+                return '<small>' . $permission->slug . '</small>';
+            })
+            ->addColumn('action', 'administrator.permissions.datatables.action')
+            ->rawColumns(['roles', 'system', 'slug', 'action']);
     }
 
     /**
