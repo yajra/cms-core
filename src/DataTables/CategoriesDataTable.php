@@ -91,7 +91,7 @@ class CategoriesDataTable extends DataTable
      *
      * @return array
      */
-    private function getColumns()
+    protected function getColumns()
     {
         return [
             'lft'           => [
