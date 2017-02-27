@@ -62,7 +62,7 @@ class CategoriesController extends Controller
         $category->published     = $request->get('published', false);
         $category->authenticated = $request->get('authenticated', false);
         $category->save();
-        flash()->success(trans('cms::categories.alert.success', ['stat' => 'Created']));
+        flash()->success(trans('cms::categories.store.success'));
 
         return redirect()->route('administrator.categories.index');
     }
@@ -95,7 +95,7 @@ class CategoriesController extends Controller
         $category->published     = $request->get('published', false);
         $category->authenticated = $request->get('authenticated', false);
         $category->save();
-        flash()->success(trans('cms::categories.alert.success', ['stat' => 'Updated']));
+        flash()->success(trans('cms::categories.update.success'));
 
         return redirect()->route('administrator.categories.index');
     }
@@ -138,11 +138,8 @@ class CategoriesController extends Controller
             }
         );
 
-        return $this->notifySuccess(
-            sprintf(
-                'Category successfully %s!',
-                $category->published ? 'published' : 'unpublished'
-            )
-        );
+        $message = $category->published ? trans('cms::categories.publish.success') : trans('cms::categories.publish.error');
+
+        return $this->notifySuccess($message);
     }
 }

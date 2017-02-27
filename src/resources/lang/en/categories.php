@@ -21,8 +21,23 @@ return [
     ],
 
     'destroy' => [
-        'success' => 'Category successfully deleted',
+        'success' => 'Category successfully deleted.',
         'error'   => 'Unable to delete category because it is being used by some articles.',
+    ],
+
+    'store' => [
+        'success' => 'Category successfully added.',
+        'error'   => 'Unable to add category.',
+    ],
+
+    'update' => [
+        'success' => 'Category successfully updated.',
+        'error'   => 'Unable to update category.',
+    ],
+
+    'publish' => [
+        'success' => 'Category successfully published.',
+        'error'   => 'Category successfully unpublished.',
     ],
 
     'form' => [

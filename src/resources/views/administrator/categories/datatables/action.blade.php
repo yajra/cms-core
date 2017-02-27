@@ -1,5 +1,4 @@
 <div class="btn-group">
-
     @if($status)
         <button data-ajax="{!! route('administrator.categories.publish', $id) !!}"
                 class="btn btn-warning btn-xs"
@@ -28,15 +27,15 @@
     >
         &nbsp;&nbsp;<i class="fa fa-pencil"></i>&nbsp;&nbsp;
     </a>
-    </a>
+
     @if($depth >= 1)
-    <button data-remote="{!! route('administrator.categories.destroy', $id) !!}"
-            class="btn btn-xs btn-delete btn-danger"
-            data-toggle="tooltip"
-            data-title="{{trans('cms::button.delete')}}"
-            data-container="body"
-    >
-        &nbsp;&nbsp;<i class="fa fa-trash-o"></i>&nbsp;&nbsp;
-    </button>
+        <button data-remote="{!! route('administrator.categories.destroy', $id) !!}"
+                class="btn btn-xs btn-delete btn-danger"
+                data-toggle="tooltip"
+                data-title="{{trans('cms::button.delete')}}"
+                data-container="body"
+        >
+            &nbsp;&nbsp;<i class="fa fa-trash-o"></i>&nbsp;&nbsp;
+        </button>
     @endif
 </div>
