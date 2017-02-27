@@ -8,11 +8,11 @@ use Yajra\Datatables\Services\DataTable;
 class CategoriesDataTable extends DataTable
 {
     /**
-     * Display ajax response.
+     * Build DataTable class.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Yajra\Datatables\Engines\EloquentEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->eloquent($this->query())
@@ -45,8 +45,7 @@ class CategoriesDataTable extends DataTable
             ->editColumn('title', function (Category $category) {
                 return view('administrator.categories.datatables.title', compact('category'))->render();
             })
-            ->rawColumns(['lft', 'status', 'authenticated', 'hits', 'title', 'action'])
-            ->make(true);
+            ->rawColumns(['lft', 'status', 'authenticated', 'hits', 'title', 'action']);
     }
 
     /**
