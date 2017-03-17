@@ -163,21 +163,31 @@
             storeConfig: function (config) {
                 var vm = this;
                 swal({
-                        title: "Are you sure?",
-                        text: "Save and update site configuration.",
-                        type: "info",
-                        showCancelButton: true,
-                        closeOnConfirm: false,
-                        showLoaderOnConfirm: true,
+                    title: "Are you sure?",
+                    text: "Save and update site configuration.",
+                    type: "info",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                    preConfirm: function () {
+                        return new Promise(function (resolve, reject) {
+                            var json = {};
+                            json.config = config;
+                            json.data = vm[config];
+                            axios.post(YajraCMS.adminPath + '/configuration', json)
+                                .then(function (response) {
+                                    resolve(response.data);
+                                })
+                                .catch(function (error) {
+                                    reject(error);
+                                });
+
+                        })
                     },
-                    function () {
-                        var json = {};
-                        json.config = config;
-                        json.data = vm[config];
-                        axios.post(YajraCMS.adminPath + '/configuration', json).then(function (response) {
-                            pushNotification(response.data);
-                        });
-                    });
+                    allowOutsideClick: false
+                }).then(function (data) {
+                    pushNotification(data);
+                });
             }
         }
     });
