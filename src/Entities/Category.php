@@ -7,6 +7,7 @@ use Laracasts\Presenter\PresentableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Yajra\Auditable\AuditableTrait;
+use Yajra\CMS\Contracts\Cacheable;
 use Yajra\CMS\Contracts\UrlGenerator;
 use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
 use Yajra\CMS\Entities\Traits\HasParameters;
@@ -22,7 +23,7 @@ use Yajra\CMS\Presenters\CategoryPresenter;
  * @property string alias
  * @property int hits
  */
-class Category extends Node implements UrlGenerator
+class Category extends Node implements UrlGenerator, Cacheable
 {
     use AuditableTrait, PresentableTrait, PublishableTrait;
     use HasSlug, CanRequireAuthentication, HasParameters;
@@ -133,7 +134,7 @@ class Category extends Node implements UrlGenerator
     /**
      * Get the options for generating the slug.
      */
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
                           ->generateSlugsFrom('title')
@@ -161,5 +162,17 @@ class Category extends Node implements UrlGenerator
     public function getRouteName()
     {
         return implode('.', explode('/', $this->present()->alias));
+    }
+
+    /**
+     * Get list of keys used for caching.
+     *
+     * @return array
+     */
+    public function getCacheKeys()
+    {
+        return [
+            'categories.published',
+        ];
     }
 }

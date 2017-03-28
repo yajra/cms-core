@@ -8,7 +8,7 @@ use Yajra\CMS\Repositories\RepositoryAbstract;
 class EloquentRepository extends RepositoryAbstract implements Repository
 {
     /**
-     * Get all published articles.
+     * Get all published categories.
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */

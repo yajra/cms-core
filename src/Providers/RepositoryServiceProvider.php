@@ -5,6 +5,7 @@ namespace Yajra\CMS\Providers;
 use Illuminate\Support\ServiceProvider;
 use Yajra\CMS\Contracts\Cacheable;
 use Yajra\CMS\Entities\Article;
+use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
@@ -22,6 +23,7 @@ class RepositoryServiceProvider extends ServiceProvider
         Navigation::class,
         Menu::class,
         Article::class,
+        Category::class,
     ];
 
     /**
@@ -85,7 +87,10 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('categories', function () {
-            return new \Yajra\CMS\Repositories\Category\EloquentRepository;
+            return new \Yajra\CMS\Repositories\Category\CacheRepository(
+                new \Yajra\CMS\Repositories\Category\EloquentRepository,
+                $this->app['cache.store']
+            );
         });
 
         $this->app->singleton('extensions', function () {

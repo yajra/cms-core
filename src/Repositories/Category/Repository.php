@@ -5,7 +5,7 @@ namespace Yajra\CMS\Repositories\Category;
 interface Repository
 {
     /**
-     * Get all published articles.
+     * Get all published categories.
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
