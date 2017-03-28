@@ -25,6 +25,7 @@ use Yajra\CMS\Presenters\ArticlePresenter;
  * @package App
  * @property int id
  * @property string title
+ * @property string body
  * @property string alias
  * @property boolean published
  * @property boolean featured
