@@ -8,11 +8,11 @@ use Yajra\Datatables\Services\DataTable;
 class ExtensionsDataTable extends DataTable
 {
     /**
-     * Display ajax response.
+     * Build DataTable api response.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->eloquent($this->query())
@@ -27,8 +27,7 @@ class ExtensionsDataTable extends DataTable
             ->editColumn('enabled', function ($extension) {
                 return dt_check($extension->enabled);
             })
-            ->rawColumns(['action', 'name', 'type', 'enabled'])
-            ->make(true);
+            ->rawColumns(['action', 'name', 'type', 'enabled']);
     }
 
     /**

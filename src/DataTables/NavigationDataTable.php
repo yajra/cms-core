@@ -8,11 +8,11 @@ use Yajra\Datatables\Services\DataTable;
 class NavigationDataTable extends DataTable
 {
     /**
-     * Display ajax response.
+     * Build DataTable api response.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->eloquent($this->query())
@@ -23,8 +23,7 @@ class NavigationDataTable extends DataTable
             ->rawColumns(['menus', 'published', 'action'])
             ->editColumn('published', function (Navigation $row) {
                 return dt_check($row->published);
-            })
-            ->make(true);
+            });
     }
 
     /**

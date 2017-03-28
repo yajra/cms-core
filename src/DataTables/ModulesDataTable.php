@@ -7,17 +7,18 @@ use Yajra\Datatables\Services\DataTable;
 class ModulesDataTable extends DataTable
 {
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * Build DataTable api response.
+     *
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->collection($this->query())
             ->editColumn('active', function ($module) {
                 return $module['active'] ? 'Yes' : 'No';
             })
-            ->addColumn('action', 'administrator.modules.datatables.action')
-            ->make(true);
+            ->addColumn('action', 'administrator.modules.datatables.action');
     }
 
     /**

@@ -8,16 +8,15 @@ use Yajra\Datatables\Services\DataTable;
 class TagsDataTable extends DataTable
 {
     /**
-     * Display ajax response.
+     * Build DataTable api response.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'administrator.tags.datatables.action')
-            ->make(true);
+            ->addColumn('action', 'administrator.tags.datatables.action');
     }
 
     /**

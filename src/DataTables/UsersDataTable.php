@@ -8,9 +8,11 @@ use Yajra\Datatables\Services\DataTable;
 class UsersDataTable extends DataTable
 {
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * Build DataTable api response.
+     *
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->eloquent($this->query())
@@ -33,8 +35,7 @@ class UsersDataTable extends DataTable
                 return dt_render('administrator.users.datatables.roles', compact('user'));
             })
             ->addColumn('action', 'administrator.users.datatables.action')
-            ->rawColumns(['email', 'blocked', 'confirmed', 'administrator', 'roles', 'action'])
-            ->make(true);
+            ->rawColumns(['email', 'blocked', 'confirmed', 'administrator', 'roles', 'action']);
     }
 
     /**

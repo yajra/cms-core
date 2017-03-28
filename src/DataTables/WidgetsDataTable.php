@@ -8,11 +8,11 @@ use Yajra\Datatables\Services\DataTable;
 class WidgetsDataTable extends DataTable
 {
     /**
-     * Display ajax response.
+     * Build DataTable api response.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->eloquent($this->query())
@@ -23,8 +23,7 @@ class WidgetsDataTable extends DataTable
                 return dt_check($widget->authenticated);
             })
             ->addColumn('action', 'administrator.widgets.datatables.action')
-            ->rawColumns(['published', 'authenticated', 'action'])
-            ->make(true);
+            ->rawColumns(['published', 'authenticated', 'action']);
     }
 
     /**

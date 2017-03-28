@@ -8,11 +8,11 @@ use Yajra\Datatables\Services\DataTable;
 class ArticlesDataTable extends DataTable
 {
     /**
-     * Display ajax response.
+     * Build DataTable api response.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->eloquent($this->query())
@@ -38,8 +38,7 @@ class ArticlesDataTable extends DataTable
             ->addColumn('slug', function (Article $article) {
                 return $article->present()->slug;
             })
-            ->rawColumns(['is_page', 'hits', 'title', 'published', 'authenticated', 'action'])
-            ->make(true);
+            ->rawColumns(['is_page', 'hits', 'title', 'published', 'authenticated', 'action']);
     }
 
     /**

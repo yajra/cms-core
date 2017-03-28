@@ -14,11 +14,11 @@ class MenuItemsDataTable extends DataTable
     protected $navigation;
 
     /**
-     * Display ajax response.
+     * Build DataTable api response.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
         return $this->datatables
             ->eloquent($this->query())
@@ -36,8 +36,7 @@ class MenuItemsDataTable extends DataTable
             })
             ->editColumn('lft', '<i class="fa fa-dot-circle-o"></i>')
             ->addColumn('action', 'administrator.navigation.menu.datatables.action')
-            ->rawColumns(['alias', 'published', 'authenticated', 'title', 'lft', 'action'])
-            ->make(true);
+            ->rawColumns(['alias', 'published', 'authenticated', 'title', 'lft', 'action']);
     }
 
     /**
