@@ -7,7 +7,6 @@ use Caffeinated\Menus\Facades\Menu as MenuFactory;
 use Closure;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
-use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Repositories\Navigation\Repository;
 
 class DynamicMenusBuilder
@@ -29,7 +28,7 @@ class DynamicMenusBuilder
         session()->forget('active_menu');
 
         if (! $request->is(admin_prefix() . '*')) {
-            $this->repository = app(Repository::class);
+            $this->repository = app('navigation');
             $this->repository->getPublished()->each(function (Navigation $navigation) {
                 MenuFactory::make($navigation->type, function (Builder $builder) use ($navigation) {
                     $navigation->menus->each(function (Menu $menu) use ($builder, &$assignment) {
