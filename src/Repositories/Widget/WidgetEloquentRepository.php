@@ -34,6 +34,6 @@ class WidgetEloquentRepository extends RepositoryAbstract implements WidgetRepos
      */
     public function getPublished()
     {
-        return $this->getModel()->query()->published()->get();
+        return $this->getModel()->query()->with('permissions')->published()->get();
     }
 }
