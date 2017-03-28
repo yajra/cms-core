@@ -4,13 +4,11 @@ namespace Yajra\CMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Yajra\CMS\Contracts\Cacheable;
+use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Entities\Extension;
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
 use Yajra\CMS\Entities\Widget;
-use Yajra\CMS\Repositories\Widget\WidgetCacheRepository;
-use Yajra\CMS\Repositories\Widget\WidgetEloquentRepository;
-use Yajra\CMS\Repositories\Widget\WidgetRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -23,6 +21,7 @@ class RepositoryServiceProvider extends ServiceProvider
         Widget::class,
         Navigation::class,
         Menu::class,
+        Article::class,
     ];
 
     /**
@@ -64,8 +63,11 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(WidgetRepository::class, function () {
-            return new WidgetCacheRepository(new WidgetEloquentRepository, $this->app['cache.store']);
+        $this->app->singleton('core.widgets', function () {
+            return new \Yajra\CMS\Repositories\Widget\WidgetCacheRepository(
+                new \Yajra\CMS\Repositories\Widget\WidgetEloquentRepository,
+                $this->app['cache.store']
+            );
         });
 
         $this->app->singleton('navigation', function () {
@@ -76,7 +78,10 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('articles', function () {
-            return new \Yajra\CMS\Repositories\Article\EloquentRepository;
+            return new \Yajra\CMS\Repositories\Article\CacheRepository(
+                new \Yajra\CMS\Repositories\Article\EloquentRepository,
+                $this->app['cache.store']
+            );
         });
 
         $this->app->singleton('categories', function () {
@@ -89,10 +94,11 @@ class RepositoryServiceProvider extends ServiceProvider
                 $this->app['cache.store']
             );
         });
-        
+
         $this->app->alias('articles', \Yajra\CMS\Repositories\Article\Repository::class);
         $this->app->alias('categories', \Yajra\CMS\Repositories\Category\Repository::class);
         $this->app->alias('navigation', \Yajra\CMS\Repositories\Navigation\Repository::class);
         $this->app->alias('extensions', \Yajra\CMS\Repositories\Extension\Repository::class);
+        $this->app->alias('core.widgets', \Yajra\CMS\Repositories\Widget\WidgetRepository::class);
     }
 }

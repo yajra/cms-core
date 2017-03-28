@@ -12,6 +12,7 @@ use Spatie\Sluggable\SlugOptions;
 use Yajra\Acl\Models\Permission;
 use Yajra\Acl\Traits\HasPermission;
 use Yajra\Auditable\AuditableTrait;
+use Yajra\CMS\Contracts\Cacheable;
 use Yajra\CMS\Contracts\UrlGenerator;
 use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
 use Yajra\CMS\Entities\Traits\HasParameters;
@@ -38,7 +39,7 @@ use Yajra\CMS\Presenters\ArticlePresenter;
  * @property string author_alias
  * @property Category category
  */
-class Article extends Model implements UrlGenerator
+class Article extends Model implements UrlGenerator, Cacheable
 {
     use AuditableTrait, PublishableTrait, HasSlug;
     use CanRequireAuthentication, HasPermission, PresentableTrait;
@@ -175,5 +176,17 @@ class Article extends Model implements UrlGenerator
         }
 
         return $this->category->getRouteName() . '.' . $this->alias;
+    }
+
+    /**
+     * Get list of keys used for caching.
+     *
+     * @return array
+     */
+    public function getCacheKeys()
+    {
+        return [
+            'articles.published'
+        ];
     }
 }
