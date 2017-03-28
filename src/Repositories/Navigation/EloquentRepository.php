@@ -19,6 +19,7 @@ class EloquentRepository extends RepositoryAbstract implements Repository
                 $query->limitDepth(1)->orderBy('order', 'asc');
             },
             'menus.permissions',
+            'menus.children',
         ])->published()->get();
     }
 
