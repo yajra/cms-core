@@ -6,12 +6,14 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Yajra\Acl\Models\Permission;
+use Yajra\Breadcrumbs\Generator;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Widget;
 use Yajra\CMS\Http\Controllers\ArticleController;
 use Yajra\CMS\Http\Controllers\AuthController;
 use Yajra\CMS\Http\Controllers\CategoryController;
+use Yajra\CMS\Http\Controllers\TagsController;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -63,6 +65,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapArticleRoutes($router);
         $this->mapCategoryRoutes($router);
+        $this->mapTagsRoutes($router);
         $this->mapAdministratorAuthenticationRoutes($router);
         $this->mapAdministratorRoutes($router);
     }
@@ -107,7 +110,7 @@ class RouteServiceProvider extends ServiceProvider
                 /** @var \Yajra\Breadcrumbs\Manager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($article->getRouteName(),
-                    function (\Yajra\Breadcrumbs\Generator $breadcrumbs) use ($article) {
+                    function (Generator $breadcrumbs) use ($article) {
                         if ($article->is_page) {
                             $breadcrumbs->parent('home');
                         } else {
@@ -149,7 +152,7 @@ class RouteServiceProvider extends ServiceProvider
                 /** @var \Yajra\Breadcrumbs\Manager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($category->getRouteName(),
-                    function (\Yajra\Breadcrumbs\Generator $breadcrumbs) use ($category) {
+                    function (Generator $breadcrumbs) use ($category) {
                         if ($category->isChild() && $category->depth > 1) {
                             $parent = $category->ancestors()->where('depth', '<>', 0)->first();
                             $breadcrumbs->parent($parent->getRouteName());
@@ -163,6 +166,16 @@ class RouteServiceProvider extends ServiceProvider
         } catch (QueryException $e) {
             // \\_(",)_//
         }
+    }
+
+    protected function mapTagsRoutes(Router $router)
+    {
+        $router->get('tags/{tag}', TagsController::class . '@show')->name('tags.show')->middleware('web');
+        /** @var \Yajra\Breadcrumbs\Manager $breadcrumb */
+        $breadcrumb = app('breadcrumbs');
+        $breadcrumb->register('tags.show', function (Generator $breadcrumbs) {
+            $breadcrumbs->parent('home');
+        });
     }
 
     /**
