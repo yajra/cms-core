@@ -17,6 +17,12 @@
       "role": "Developer"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:yajra/baum.git"
+    }
+  ],
   "require": {
     "php": ">=7.0.0",
     "yajra/cms-themes": "^2.3",
