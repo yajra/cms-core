@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateArticlesTable extends Migration
@@ -38,8 +38,7 @@ class CreateArticlesTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
         });
 
-        Schema::create('article_permission', function(Blueprint $table)
-        {
+        Schema::create('article_permission', function (Blueprint $table) {
             $table->unsignedInteger('article_id')->index();
             $table->unsignedInteger('permission_id')->index();
 
