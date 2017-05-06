@@ -8,14 +8,6 @@ use Yajra\Datatables\Services\DataTable;
 class PermissionsDataTable extends DataTable
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function query()
-    {
-        return $this->applyScopes(Permission::query());
-    }
-
-    /**
      * @return \Yajra\Datatables\Html\Builder
      */
     public function html()
@@ -93,6 +85,14 @@ class PermissionsDataTable extends DataTable
             })
             ->addColumn('action', 'administrator.permissions.datatables.action')
             ->rawColumns(['roles', 'system', 'slug', 'action']);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query()
+    {
+        return $this->applyScopes(Permission::query());
     }
 
     /**
