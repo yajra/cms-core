@@ -4,7 +4,7 @@
             <label class="form-label-style block" for="parameters[category_id]">
                 {{__('Category')}}
             </label>
-            {!! form()->select('parameters[category_id]', \Yajra\CMS\Entities\Category::root()->descendants()->pluck('title', 'id'), $widget->param('category_id'), ['class' => 'select2 form-control']) !!}
+            {!! form()->select('parameters[category_id]', \Yajra\CMS\Entities\Category::root()->descendants()->pluck('title', 'id'), $widget->param('category_id'), ['class' => 'form-control']) !!}
             {!! $errors->first('parameters[category_id]', '<span class="help-block">:message</span>') !!}
         </div>
     </div>
