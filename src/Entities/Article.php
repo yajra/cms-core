@@ -176,7 +176,7 @@ class Article extends Model implements UrlGenerator, Cacheable
             return $this->alias;
         }
 
-        return $this->category->getRouteName() . '.' . $this->alias;
+        return $this->category->alias . '.' . $this->alias;
     }
 
     /**
@@ -187,7 +187,7 @@ class Article extends Model implements UrlGenerator, Cacheable
     public function getCacheKeys()
     {
         return [
-            'articles.published'
+            'articles.published',
         ];
     }
 }
