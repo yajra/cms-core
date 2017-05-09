@@ -10,7 +10,7 @@
     "templates": [
       {
         "path": "widgets.breadcrumb",
-        "description": "Default template (widgets.breadcrumb)"
+        "description": "Default Template"
       },
       {
         "path": "custom",

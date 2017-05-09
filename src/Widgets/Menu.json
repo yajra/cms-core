@@ -10,11 +10,11 @@
     "templates": [
       {
         "path": "widgets.menu.bootstrap",
-        "description": "Bootstrap (widgets.menu.bootstrap)"
+        "description": "Bootstrap Menu"
       },
       {
         "path": "widgets.menu.plain",
-        "description": "Bootstrap (no container) (widgets.menu.plain)"
+        "description": "Plain Menu"
       },
       {
         "path": "custom",

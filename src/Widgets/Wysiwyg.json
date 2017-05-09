@@ -10,11 +10,11 @@
     "templates": [
       {
         "path": "widgets.wysiwyg.default",
-        "description": "Bootstrap Panel (widgets.wysiwyg.default)"
+        "description": "Bootstrap Panel"
       },
       {
         "path": "widgets.wysiwyg.raw",
-        "description": "Raw Output (widgets.wysiwyg.raw)"
+        "description": "Raw Output"
       },
       {
         "path": "custom",
