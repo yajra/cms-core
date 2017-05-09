@@ -3,6 +3,7 @@
 namespace Yajra\CMS\Entities;
 
 use Conner\Tagging\Taggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Laracasts\Presenter\PresentableTrait;
@@ -189,5 +190,16 @@ class Article extends Model implements UrlGenerator, Cacheable
         return [
             'articles.published',
         ];
+    }
+
+    /**
+     * Query scope to get only articles.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIsNotPage(Builder $builder)
+    {
+        return $builder->where('is_page', false);
     }
 }
