@@ -37,6 +37,9 @@ class Menu extends Node
     use PresentableTrait, PublishableTrait, CanRequireAuthentication;
     use AuditableTrait, HasParameters, HasOrder, SortableTrait;
 
+    /**
+     * @var array
+     */
     public $sortable = [
         'order_column_name' => 'order',
         'sort_when_creating' => true,
@@ -89,34 +92,24 @@ class Menu extends Node
     /**
      * Get related article.
      *
-     * @return \Yajra\CMS\Entities\Article
+     * @return \Illuminate\Database\Eloquent\Model|\Yajra\CMS\Entities\Article
      */
     public function article()
     {
-        return Article::findOrNew($this->fluentParameters()->get('article_id', 0));
+        return Article::query()->findOrNew($this->fluentParameters()->get('article_id', 0));
     }
 
     /**
      * Get related category.
      *
-     * @return \Yajra\CMS\Entities\Article
+     * @return \Illuminate\Database\Eloquent\Model|\Yajra\CMS\Entities\Article
      */
     public function category()
     {
         $category   = $this->fluentParameters()->get('category_id', 0);
         $categoryId = explode(':', $category)[0];
 
-        return Category::findOrNew($categoryId);
-    }
-
-    /**
-     * Menu type relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function menuType()
-    {
-        return $this->belongsTo(Lookup::class, 'type', 'key');
+        return Category::query()->findOrNew($categoryId);
     }
 
     /**

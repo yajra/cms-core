@@ -37,7 +37,7 @@ class Extension extends Model
      * Get a widget by name.
      *
      * @param string $name
-     * @return $this
+     * @return \Illuminate\Database\Eloquent\Builder|\Yajra\CMS\Entities\Extension
      */
     public static function widget($name)
     {

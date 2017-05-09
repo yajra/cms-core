@@ -2,8 +2,6 @@
 
 namespace Yajra\CMS\Entities\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
-
 trait PublishableTrait
 {
     /**
@@ -51,7 +49,7 @@ trait PublishableTrait
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePublished($query) : Builder
+    public function scopePublished($query)
     {
         return $query->where('published', true);
     }
@@ -62,7 +60,7 @@ trait PublishableTrait
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeUnpublished($query) : Builder
+    public function scopeUnpublished($query)
     {
         return $query->where('published', false);
     }
