@@ -27,7 +27,7 @@
                             {{trans('cms::widget.field.template')}}
                             @tooltip('cms::widget.tooltip.template')
                         </label>
-                        <select name="template" class="form-control select-menu">
+                        <select name="template" v-model="widget.template" class="form-control select-menu">
                             <option v-for="template in templates"
                                     :value="template.key" v-text="template.value"
                             ></option>
