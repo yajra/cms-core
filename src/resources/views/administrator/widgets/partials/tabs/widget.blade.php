@@ -41,7 +41,7 @@
                             {!! trans('cms::widget.field.custom_template') !!}
                             @tooltip('cms::widget.field.custom_template_required')
                         </label>
-                        {!! form()->input('text', 'custom_template', null, ['id'=>'custom_template','class'=>'form-control input-sm','placeholder'=>'path.to.widget.view']) !!}
+                        {!! form()->input('text', 'custom_template', null, ['id'=>'custom_template','class'=>'form-control','placeholder'=>'path.to.widget.view']) !!}
                         {!! $errors->first('custom_template', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
