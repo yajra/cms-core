@@ -177,7 +177,7 @@ class Article extends Model implements UrlGenerator, Cacheable
             return $this->alias;
         }
 
-        return $this->category->alias . '.' . $this->alias;
+        return str_replace('category-', '', $this->category->getRouteName() . '.' . $this->alias);
     }
 
     /**
