@@ -1,0 +1,21 @@
+{
+    "name": "Popular Articles",
+    "type": "widget",
+    "description": "Display popular articles.",
+    "version": "1.0.0",
+    "protected": true,
+    "parameters": {
+        "class": "Yajra\\CMS\\Widgets\\PopularArticles",
+        "form": "widgets.forms.popular-articles",
+        "templates": [
+            {
+              "path": "widgets.popular-articles",
+              "description": "Default Template"
+            },
+            {
+              "path": "custom",
+              "description": "Custom Template"
+            }
+        ]
+    }
+}
