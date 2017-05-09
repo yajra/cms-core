@@ -1,0 +1,21 @@
+{
+    "name": "Latest News",
+    "type": "widget",
+    "description": "Display latest news from the selected category.",
+    "version": "1.0.0",
+    "protected": true,
+    "parameters": {
+        "class": "Yajra\\CMS\\Widgets\\LatestNews",
+        "form": "widgets.forms.latest-news",
+        "templates": [
+            {
+              "path": "widgets.latest-news",
+              "description": "Default Template"
+            },
+            {
+              "path": "custom",
+              "description": "Custom Template"
+            }
+        ]
+    }
+}
