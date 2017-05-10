@@ -3,6 +3,7 @@
 	"name": "Single Article",
 	"version": "1.0.0",
 	"public": true,
+    "protected": true,
 	"description": "Displays a single article",
 	"parameters": {
 		"class": "Yajra\\CMS\\Entities\\Article",

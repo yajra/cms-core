@@ -3,6 +3,7 @@
 	"name": "Category List",
 	"version": "1.0.0",
 	"public": true,
+    "protected": true,
 	"description": "Displays a list of articles in a category.",
 	"parameters": {
 		"class": "Yajra\\CMS\\Entities\\Category",

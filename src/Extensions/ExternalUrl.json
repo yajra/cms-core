@@ -3,6 +3,7 @@
 	"name": "External URL",
 	"version": "1.0.0",
 	"public": true,
+    "protected": true,
 	"description": "An external URL.",
 	"parameters": {
 		"template": "administrator.navigation.menu.partials.extensions.url.external"
