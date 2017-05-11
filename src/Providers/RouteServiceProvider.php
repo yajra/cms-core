@@ -102,7 +102,7 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get($article->present()->slug,
                     function () use ($article, $router) {
                         return $this->app->call(ArticleController::class . '@show', [
-                            'article'    => $article,
+                            'id'         => $article->id,
                             'parameters' => $router->current()->parameters(),
                         ]);
                     })->middleware($middleware)->name($article->getRouteName());
