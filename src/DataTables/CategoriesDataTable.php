@@ -21,9 +21,9 @@ class CategoriesDataTable extends DataTable
             })
             ->editColumn('lft', '<i class="fa fa-dot-circle-o"></i>')
             ->editColumn('status', function (Category $category) {
+                $attr = 'label-danger" title="Unpublished" ><i class="fa fa-remove">';
+
                 if ($category->isPublished()) {
-                    $attr = 'label-danger" title="Unpublished" ><i class="fa fa-remove">';
-                } else {
                     $attr = 'label-success" title="Published" ><i class="fa fa-check">';
                 }
 
