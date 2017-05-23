@@ -22,8 +22,11 @@ class WidgetsDataTable extends DataTable
             ->editColumn('authenticated', function (Widget $widget) {
                 return dt_check($widget->authenticated);
             })
+            ->editColumn('template', function (Widget $widget) {
+                return implode('/', explode('.', $widget->present()->template)) . '.blade.php';
+            })
             ->addColumn('action', 'administrator.widgets.datatables.action')
-            ->rawColumns(['published', 'authenticated', 'action']);
+            ->rawColumns(['published', 'authenticated', 'action', 'template']);
     }
 
     /**
@@ -69,9 +72,10 @@ class WidgetsDataTable extends DataTable
         return [
             'id'             => ['width' => '20px', 'name' => 'widgets.id'],
             'title',
+            'template',
             'position'       => ['width' => '80px'],
             'extension.name' => [
-                'width' => '60px',
+                'width' => '120px',
                 'title' => '<i class="fa fa-plug" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.extensionName') . '"></i> Ext.',
             ],
             'published'      => [
