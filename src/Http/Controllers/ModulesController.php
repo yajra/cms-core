@@ -68,7 +68,7 @@ class ModulesController extends Controller
     public function toggle($module)
     {
         /** @var \Nwidart\Modules\Module $module */
-        $module = $this->modules->find($module);
+        $module = $this->modules->findByAlias($module);
 
         if ($module->disabled()) {
             $module->enable();
