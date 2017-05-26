@@ -35,15 +35,15 @@
         </div>
         <div class="col-md-9 col-xs-12">
             @can('media.create')
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box">
-                        <div class="box-body">
-                            @include('administrator.media.partials.form')
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box">
+                            <div class="box-body">
+                                @include('administrator.media.partials.form')
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endcan
             <div class="row">
                 <div class="col-md-12">
@@ -139,18 +139,25 @@
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Yes, delete it!",
-                closeOnConfirm: false
-            }, function () {
-                $.ajax({
-                    url: '{{ route('administrator.media.destroy') }}',
-                    data: {s: filePath},
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function (json) {
-                        pushNotification(json);
-                        window.location = '{{ request()->url() }}';
-                    }
-                });
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+                preConfirm: function () {
+                    return new Promise(function (resolve, reject) {
+                        $.ajax({
+                            url: '{{ route('administrator.media.destroy') }}',
+                            data: {s: filePath},
+                            type: 'POST',
+                            dataType: 'json',
+                            success: function (json) {
+                                resolve(json);
+                            }
+                        });
+                    })
+                },
+                allowOutsideClick: false
+            }).then(function (data) {
+                pushNotification(data);
+                window.location = '{{ request()->url() }}';
             });
         });
 
@@ -164,7 +171,7 @@
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Yes, delete it!",
                 closeOnConfirm: false
-            }, function () {
+            }).then(function () {
                 $('#delete-media-form').submit();
             });
         });
