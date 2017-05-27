@@ -24,7 +24,7 @@ class LatestNews extends AbstractWidget
     public function run($widget)
     {
         $category = Category::findOrNew($widget->param('category_id'));
-        $articles = $category->articles()->latest()->take((int) $widget->param('limit') ?: 5)->get();
+        $articles = $category->articles()->latest()->published()->take((int) $widget->param('limit') ?: 5)->get();
 
         return view($widget->present()->template(), [
             'config'   => $this->config,

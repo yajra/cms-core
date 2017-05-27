@@ -28,9 +28,9 @@ class PopularArticles extends AbstractWidget
         $limit     = (int) $widget->param('limit') ?: 5;
         $direction = 'desc';
         if ($category->exists) {
-            $articles = $category->articles()->orderBy('hits', $direction)->take($limit)->get();
+            $articles = $category->articles()->published()->orderBy('hits', $direction)->take($limit)->get();
         } else {
-            $articles = Article::query()->orderBy('hits', $direction)->take($limit)->get();
+            $articles = Article::query()->published()->orderBy('hits', $direction)->take($limit)->get();
         }
 
         return view($widget->present()->template(), [
