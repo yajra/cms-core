@@ -16,9 +16,6 @@ class CategoriesDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->editColumn('title', function (Category $category) {
-                return $category->present()->indentedTitle();
-            })
             ->editColumn('lft', '<i class="fa fa-dot-circle-o"></i>')
             ->editColumn('status', function (Category $category) {
                 $attr = 'label-danger" title="Unpublished" ><i class="fa fa-remove">';
@@ -55,19 +52,7 @@ class CategoriesDataTable extends DataTable
      */
     public function query()
     {
-        $category = Category::select([
-            'categories.id',
-            'categories.lft',
-            \DB::raw('categories.published as status'),
-            'categories.title',
-            'categories.depth',
-            'categories.alias',
-            'categories.hits',
-            'categories.authenticated',
-            'categories.published',
-            'categories.created_at',
-            'categories.updated_at',
-        ])->whereNotNull('parent_id');
+        $category = Category::select('*')->addSelect('categories.published as status')->whereNotNull('parent_id');
 
         return $this->applyScopes($category);
     }

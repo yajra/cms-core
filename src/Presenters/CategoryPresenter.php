@@ -21,6 +21,19 @@ class CategoryPresenter extends Presenter
     }
 
     /**
+     * Slash separated sub-categories.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        /** @var \Illuminate\Support\Collection $c */
+        $c = $this->entity->getAncestorsAndSelfWithoutRoot();
+
+        return $c->implode('title', ' / ');
+    }
+
+    /**
      * Category's slug.
      *
      * @return string
@@ -37,12 +50,7 @@ class CategoryPresenter extends Presenter
      */
     public function alias()
     {
-        $alias = [];
-        $this->entity->getAncestorsAndSelfWithoutRoot()->each(function (Category $cat) use (&$alias) {
-            $alias[] = $cat->alias;
-        });
-
-        return implode('/', $alias);
+        return $this->entity->getAncestorsAndSelfWithoutRoot()->implode('alias', '/');
     }
 
     /**
