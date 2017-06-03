@@ -29,6 +29,9 @@ class ArticlesDataTable extends DataTable
             ->editColumn('hits', function (Article $article) {
                 return '<span class="label bg-purple">' . $article->hits . '</span>';
             })
+            ->editColumn('category', function (Article $article) {
+                return $article->category->present()->name;
+            })
             ->editColumn('title', function (Article $article) {
                 return view('administrator.articles.datatables.title', compact('article'))->render();
             })
@@ -48,8 +51,7 @@ class ArticlesDataTable extends DataTable
      */
     public function query()
     {
-        $articles = Article::select('articles.*', 'categories.title as category_title')
-                           ->join('categories', 'categories.id', '=', 'articles.category_id');
+        $articles = Article::query()->with('category')->select('articles.*');
 
         return $this->applyScopes($articles);
     }
@@ -92,10 +94,10 @@ class ArticlesDataTable extends DataTable
                 'visible' => false,
             ],
             [
-                'data'    => 'categories.title',
+                'data'    => 'category.title',
                 'title'   => trans('cms::article.datatable.columns.category'),
-                'visible' => false,
-                'data'    => 'category_title',
+                'visible' => true,
+                'data'    => 'category',
             ],
             [
                 'data'  => 'published',
