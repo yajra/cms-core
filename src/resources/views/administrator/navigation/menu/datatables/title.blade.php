@@ -1,10 +1,11 @@
 <a href="{{url($menu->present()->url)}}"
    target="_blank"
    data-toggle="tooltip"
-   title="Visit Page">
-    <i class="fa fa-globe"></i>
+   title="Visit Page"
+   class="btn btn-primary btn-xs"
+>
+    <i class="fa fa-link"></i>
 </a>
-
 <a href="{{ route('administrator.navigation.menu.edit', [$menu->navigation_id, $menu->id]) }}">
     {{ $menu->present()->name }}
 </a>
