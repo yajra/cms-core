@@ -1,5 +1,12 @@
+<a href="{{url($menu->present()->url)}}"
+   target="_blank"
+   data-toggle="tooltip"
+   title="Visit Page">
+    <i class="fa fa-globe"></i>
+</a>
+
 <a href="{{ route('administrator.navigation.menu.edit', [$menu->navigation_id, $menu->id]) }}">
-    {{ $menu->present()->indentedTitle(1, '|— ') }}
+    {{ $menu->present()->name }}
 </a>
 <small>(URL: {{ $menu->present()->url }})</small>
 <br>

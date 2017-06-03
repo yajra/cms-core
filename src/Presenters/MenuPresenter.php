@@ -8,6 +8,16 @@ use Yajra\CMS\Contracts\UrlGenerator;
 class MenuPresenter extends Presenter
 {
     /**
+     * Slash separated sub-categories.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->entity->getAncestorsAndSelfWithoutRoot()->implode('title', ' / ');
+    }
+
+    /**
      * Link href target window.
      *
      * @return string
