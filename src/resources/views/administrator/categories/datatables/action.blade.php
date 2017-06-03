@@ -1,5 +1,5 @@
 <div class="btn-group">
-    @if($status)
+    @if($published)
         <button data-ajax="{!! route('administrator.categories.publish', $id) !!}"
                 class="btn btn-warning btn-xs"
                 data-toggle="tooltip"

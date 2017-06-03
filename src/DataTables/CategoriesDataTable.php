@@ -17,7 +17,7 @@ class CategoriesDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())
             ->editColumn('lft', '<i class="fa fa-dot-circle-o"></i>')
-            ->editColumn('status', function (Category $category) {
+            ->editColumn('published', function (Category $category) {
                 $attr = 'label-danger" title="Unpublished" ><i class="fa fa-remove">';
 
                 if ($category->isPublished()) {
@@ -42,7 +42,7 @@ class CategoriesDataTable extends DataTable
             ->editColumn('title', function (Category $category) {
                 return view('administrator.categories.datatables.title', compact('category'))->render();
             })
-            ->rawColumns(['lft', 'status', 'authenticated', 'hits', 'title', 'action']);
+            ->rawColumns(['lft', 'published', 'authenticated', 'hits', 'title', 'action']);
     }
 
     /**
@@ -52,7 +52,7 @@ class CategoriesDataTable extends DataTable
      */
     public function query()
     {
-        $category = Category::select('*')->addSelect('categories.published as status')->whereNotNull('parent_id');
+        $category = Category::query()->whereNotNull('parent_id');
 
         return $this->applyScopes($category);
     }
@@ -86,7 +86,7 @@ class CategoriesDataTable extends DataTable
             'id'            => ['width' => '20px'],
             'title',
             'alias'         => ['visible' => false],
-            'status'        => [
+            'published'     => [
                 'width'      => '20px',
                 'searchable' => false,
                 'title'      => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.status') . '"></i>',
