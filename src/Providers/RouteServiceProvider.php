@@ -185,21 +185,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdministratorAuthenticationRoutes(Router $router)
     {
-        $router->group(['prefix' => admin_prefix()], function () use ($router) {
-            $router->get('login', [
-                'middleware' => 'web',
-                'uses'       => AuthController::class . '@showLoginForm',
-            ])->name('administrator.login');
-
-            $router->get('logout', [
-                'middleware' => 'web',
-                'uses'       => AuthController::class . '@logout',
-            ])->name('administrator.logout');
-
-            $router->post('login', [
-                'middleware' => 'web',
-                'uses'       => AuthController::class . '@login',
-            ])->name('administrator.login');
+        $router->group(['prefix' => admin_prefix(), 'middleware' => 'web'], function () use ($router) {
+            $router->get('login', AuthController::class . '@showLoginForm')->name('administrator.login');
+            $router->get('logout', AuthController::class . '@logout')->name('administrator.logout');
+            $router->post('login', AuthController::class . '@login')->name('administrator.login');
         });
     }
 
