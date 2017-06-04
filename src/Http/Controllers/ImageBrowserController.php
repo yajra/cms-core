@@ -25,7 +25,6 @@ class ImageBrowserController extends Controller
     public function index(Request $request)
     {
         $currentPath = $request->get('path');
-        $basePath    = storage_path('app/public/' . config('media.root_dir'));
         $dir         = storage_path('app/public/' . $currentPath);
         $imageFiles  = $this->getImageFiles($dir);
 

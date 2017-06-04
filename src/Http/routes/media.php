@@ -18,11 +18,11 @@ $router->post('media/add-folder', MediaController::class . '@addFolder')
 $router->post('media/add-file', MediaController::class . '@addFile')
 	->name('media.add-file')
 	->middleware('can:media.create');
+$router->post('media/browse/image', ImageBrowserController::class . '@index')
+       ->name('media.browse.image')
+       ->middleware('can:media.view');
 $router->get('media/browse/{filter?}', MediaController::class . '@browse')
 	->name('media.browse')
-	->middleware('can:media.view');
-$router->post('media/browse/image', ImageBrowserController::class . '@index')
-	->name('media.browse.image')
 	->middleware('can:media.view');
 $router->get('media', MediaController::class . '@index')
 	->name('media.index')

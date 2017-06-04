@@ -2,23 +2,15 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Config\Repository;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
+use Storage;
 
 class MediaController extends Controller
 {
-    /**
-     * Filesystem interface.
-     *
-     * @var \Illuminate\Contracts\Filesystem\Filesystem
-     */
-    protected $storage;
-
     /**
      * Image manager.
      *
@@ -55,15 +47,13 @@ class MediaController extends Controller
     protected $currentDir;
 
     /**
-     * @param \Illuminate\Contracts\Filesystem\Filesystem $storage
      * @param \Intervention\Image\ImageManager $image
      * @param \Illuminate\Config\Repository $config
      */
-    public function __construct(Filesystem $storage, ImageManager $image, Repository $config)
+    public function __construct(ImageManager $image, Repository $config)
     {
-        $this->storage = $storage;
-        $this->image   = $image;
-        $this->config  = $config;
+        $this->image  = $image;
+        $this->config = $config;
     }
 
     /**
@@ -92,20 +82,17 @@ class MediaController extends Controller
         $storage_root     = $this->getRootDir();
         $accepted_files   = $this->config->get('media.accepted_files');
         $max_file_size    = $this->config->get('media.max_file_size', 3);
-        $this->currentDir = $this->getRootDir();
+        $this->currentDir = $request->input('folder', $storage_root);
 
-        if ($request->input('folder')) {
-            $this->currentDir = $request->input('folder');
-            if ($this->storage->exists($this->currentDir) === false) {
-                return redirect()->route('administrator.media.index');
-            }
+        if (! Storage::exists($this->currentDir) && $request->has('folder')) {
+            return redirect()->route('administrator.media.index');
         }
 
         $items = $this->buildFileAndDirectoryListing();
 
         $directories = $this->buildDirectory(
-            $this->scanDirectory($this->getRootDir()),
-            $this->getRootDir()
+            $this->scanDirectory($storage_root),
+            $storage_root
         );
 
         return view('administrator.media.index')
@@ -125,7 +112,7 @@ class MediaController extends Controller
      */
     protected function getRootDir()
     {
-        return 'public/' . $this->config->get('media.root_dir', 'media');
+        return 'public/';
     }
 
     /**
@@ -177,7 +164,7 @@ class MediaController extends Controller
             $item     = [];
             $parts    = explode('/', $path);
             $filename = array_pop($parts);
-            $size     = $this->storage->size($path);
+            $size     = Storage::size($path);
             $icon     = file_ext_to_icon(File::extension($path));
 
             $item['type']      = 'file';
@@ -209,7 +196,7 @@ class MediaController extends Controller
      */
     protected function scanFiles($current_directory)
     {
-        $files = collect($this->storage->files($current_directory));
+        $files = collect(Storage::files($current_directory));
         $files = $files->filter(function ($file) {
             $ext = File::extension($file);
 
@@ -238,7 +225,7 @@ class MediaController extends Controller
         foreach ($files as $file) {
             if (file_can_have_thumbnail($file)) {
                 $thumbnails[$file] = (string) $this->image
-                    ->make($this->storage->get($file))
+                    ->make(Storage::get($file))
                     ->resize(20, 20)->encode('data-url');
             }
         }
@@ -254,7 +241,7 @@ class MediaController extends Controller
      */
     protected function scanDirectory($dir)
     {
-        return collect($this->storage->directories($dir));
+        return collect(Storage::directories($dir));
     }
 
     /**
@@ -307,11 +294,11 @@ class MediaController extends Controller
         }
 
         $filename = trim($request->file('file')->getClientOriginalName());
-        if ($this->storage->exists($request->input('current_directory') . '/' . $filename)) {
+        if (Storage::exists($request->input('current_directory') . '/' . $filename)) {
             return response($filename . " already exists.", 500);
         }
 
-        $this->storage->put(
+        Storage::put(
             $request->input('current_directory') . '/' . $filename,
             file_get_contents($request->file('file'))
         );
@@ -341,13 +328,6 @@ class MediaController extends Controller
      */
     public function addFolder(Request $request)
     {
-        // check if public/media is the parent folder
-        if (strpos($request->input('current_directory'), $this->getRootDir()) === false) {
-            flash()->error('Invalid folder!');
-
-            return redirect()->back();
-        }
-
         // check if alphanumeric and no space
         if (! ctype_alnum($request->input('new_directory'))) {
             flash()->error('Invalid folder name! Folder name must be alphanumeric only and no space');
@@ -355,12 +335,9 @@ class MediaController extends Controller
             return redirect()->back();
         }
 
-        $this->storage->makeDirectory(
-            $request->input('current_directory') . '/' . $request->input('new_directory')
-        );
-
-        // new current directory
         $folder = $request->input('current_directory') . '/' . $request->input('new_directory');
+        Storage::makeDirectory($folder);
+
         flash()->success('New Folder added successfully!');
 
         return redirect()->back()->with('folder', $folder);
@@ -385,17 +362,17 @@ class MediaController extends Controller
 
         // if multiple files
         if ($request->has('files')) {
-            $this->storage->delete($request->input('files'));
+            Storage::delete($request->input('files'));
         }
 
         // if multiple directories
         if ($request->has('directories')) {
             if (is_array($request->input('directories'))) {
                 foreach ($request->input('directories') as $directory) {
-                    $this->storage->deleteDirectory($directory);
+                    Storage::deleteDirectory($directory);
                 }
             } else {
-                $this->storage->deleteDirectory($request->input('directories'));
+                Storage::deleteDirectory($request->input('directories'));
             }
         }
 
@@ -418,7 +395,7 @@ class MediaController extends Controller
     {
         try {
             $dir = $request->input('s');
-            $this->storage->deleteDirectory($dir);
+            Storage::deleteDirectory($dir);
 
             return $this->notifySuccess($dir . ' successfully deleted!');
         } catch (\ErrorException $e) {
@@ -436,7 +413,7 @@ class MediaController extends Controller
     {
         try {
             $file = $request->input('s');
-            $this->storage->delete($file);
+            Storage::delete($file);
 
             return $this->notifySuccess($file . ' successfully deleted!');
         } catch (\ErrorException $e) {
