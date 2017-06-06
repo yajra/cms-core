@@ -33,7 +33,7 @@
                 columns: [
                     {data: 'id', name: 'articles.id', width: '20px'},
                     {data: 'title', name: 'articles.title'},
-                    {data: 'category_title', name: 'categories.id'},
+                    {data: 'category', name: 'category.title'},
                     {data: 'published', name: 'articles.published', width: '20px'},
                     {data: 'authenticated', name: 'articles.authenticated', width: '20px'},
                     {data: 'order', name: 'articles.order', width: '20px'},
