@@ -22,17 +22,15 @@ class CategoryController extends Controller
 
         $layout   = $request->query('layout', 'blog');
         $limit    = $request->get('limit', $layout == 'list' ? 10 : 5);
+        /** @var \Illuminate\Contracts\Pagination\Paginator $articles */
         $articles = $category->articles()->isNotPage()->latest()->simplePaginate($limit);
 
-        $path = null;
         if ($layout === 'list') {
-            $path .= '?layout=list';
-            $articles->setPath($path);
+            $articles->appends('layout', 'list');
         }
 
         if ($request->has('limit')) {
-            $path .= '&limit=' . $limit;
-            $articles->setPath($path);
+            $articles->appends('limit', $limit);
         }
 
         event(new CategoryWasViewed($category));
