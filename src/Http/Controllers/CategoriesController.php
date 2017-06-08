@@ -112,7 +112,7 @@ class CategoriesController extends Controller
             abort(404);
         }
 
-        if ($category->has('articles')) {
+        if ($category->articles()->count()) {
             return $this->notifyError(trans('cms::categories.destroy.error'));
         }
 
