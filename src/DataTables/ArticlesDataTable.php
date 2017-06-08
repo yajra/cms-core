@@ -96,7 +96,12 @@ class ArticlesDataTable extends DataTable
             [
                 'data'    => 'category',
                 'name'    => 'category.title',
-                'title'   => trans('cms::article.datatable.columns.category'),
+                'visible' => false,
+            ],
+            [
+                'data'  => 'category',
+                'name'  => 'category.id',
+                'title' => trans('cms::article.datatable.columns.category'),
             ],
             [
                 'data'  => 'published',
@@ -126,12 +131,7 @@ class ArticlesDataTable extends DataTable
                 'data'  => 'is_page',
                 'name'  => 'articles.is_page',
                 'title' => trans('cms::article.datatable.columns.is_page'),
-            ],
-            [
-                'data'  => 'updated_at',
-                'name'  => 'articles.updated_at',
-                'title' => trans('cms::article.datatable.columns.updated_at'),
-                'width' => '100px',
+                'class' => 'text-center',
             ],
             [
                 'data'       => 'action',

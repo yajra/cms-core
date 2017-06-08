@@ -8,4 +8,4 @@
 </a>
 <a href="{{ route('administrator.articles.edit', $article->id) }}">{{ $article->title }}</a>
 <br>
-<small>Slug: {{ $article->present()->slug }}</small>
+<small>{{ $article->present()->slug }}</small>
