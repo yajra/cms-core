@@ -14,7 +14,7 @@ class ArticlePresenter extends Presenter
      */
     public function editLink()
     {
-        return html()->linkRoute('administrator.articles.edit', $this->entity->title, $this->entity->id);
+        return html()->linkRoute('administrator.articles.edit', $this->introTitle(), $this->entity->id);
     }
 
     /**
@@ -109,5 +109,17 @@ class ArticlePresenter extends Presenter
     public function slug()
     {
         return implode('/', explode('.', $this->entity->getRouteName()));
+    }
+
+    /**
+     * Article's limited introduction title.
+     *
+     * @param int $limit
+     * @param string $end
+     * @return string
+     */
+    public function introTitle($limit = 50, $end = '...')
+    {
+        return str_limit($this->entity->title, $limit, $end);
     }
 }
