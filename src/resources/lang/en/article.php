@@ -172,7 +172,7 @@ return [
             'category'      => 'Category',
             'created_at'    => 'Created At',
             'updated_at'    => 'Updated At',
-            'is_page'       => 'Is Page',
+            'is_page'       => 'Page',
             'action'        => 'Action',
         ],
         'buttons' => [

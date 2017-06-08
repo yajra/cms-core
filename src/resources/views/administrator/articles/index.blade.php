@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('title')
-{{trans('cms::article.index.title')}} | @parent
+    {{trans('cms::article.index.title')}} | @parent
 @endsection
 
 @section('page-title')
@@ -19,11 +19,18 @@
             </div>
         </div>
         <div class="box-body">
-            {!! $dataTable->table(['class' => 'table table-hover margin-top-30']) !!}
+            {!! $dataTable->table(['id' => 'articles-table', 'class' => 'table table-hover margin-top-30'], true) !!}
         </div>
     </div>
 @stop
 
 @push('scripts')
 {!! $dataTable->scripts() !!}
+<script>
+    $(function(){
+        $("select.searchable").on('change', function() {
+            LaravelDataTables['articles-table'].draw();
+        })
+    });
+</script>
 @endpush

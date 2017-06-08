@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Article;
+use Yajra\CMS\Entities\Category;
 use Yajra\Datatables\Services\DataTable;
 
 class ArticlesDataTable extends DataTable
@@ -53,6 +54,16 @@ class ArticlesDataTable extends DataTable
     {
         $articles = Article::query()->with('category')->select('articles.*');
 
+        if ($this->request()->input('category')) {
+            $articles->whereHas('category', function ($query) {
+                $query->where('categories.id', request('category'));
+            });
+        }
+
+        if ($this->request()->input('is_page')) {
+            $articles->where('is_page', request('is_page'));
+        }
+
         return $this->applyScopes($articles);
     }
 
@@ -65,7 +76,13 @@ class ArticlesDataTable extends DataTable
     {
         return $this->builder()
                     ->columns($this->getColumns())
-                    ->ajax('')
+                    ->ajax([
+                        'url'  => '',
+                        'data' => 'function(d) {
+                            var formData = $("select.searchable").serializeArray();
+                            $.each(formData, function(i, data){d[data.name] = data.value;});
+                        }',
+                    ])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -76,6 +93,15 @@ class ArticlesDataTable extends DataTable
      */
     private function getColumns()
     {
+        $categories = Category::root()->getDescendants()->pluck('title', 'id');
+        $categories = collect(['' => 'All Category'])->union($categories);
+
+        $allYesNo = [
+            '' => 'All',
+            0  => 'No',
+            1  => 'Yes',
+        ];
+
         return [
             [
                 'data'  => 'id',
@@ -99,9 +125,11 @@ class ArticlesDataTable extends DataTable
                 'visible' => false,
             ],
             [
-                'data'  => 'category',
-                'name'  => 'category.id',
-                'title' => trans('cms::article.datatable.columns.category'),
+                'data'   => 'category',
+                'name'   => 'category.id',
+                'title'  => trans('cms::article.datatable.columns.category'),
+                'width'  => '100px',
+                'footer' => form()->select('category', $categories, null, ['class' => 'form-control searchable']),
             ],
             [
                 'data'  => 'published',
@@ -128,10 +156,11 @@ class ArticlesDataTable extends DataTable
                 'title' => '<i class="fa fa-eye" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.hits') . '"></i>',
             ],
             [
-                'data'  => 'is_page',
-                'name'  => 'articles.is_page',
-                'title' => trans('cms::article.datatable.columns.is_page'),
-                'class' => 'text-center',
+                'data'   => 'is_page',
+                'name'   => 'articles.is_page',
+                'title'  => trans('cms::article.datatable.columns.is_page'),
+                'class'  => 'text-center',
+                'footer' => form()->select('is_page', $allYesNo, null, ['class' => 'form-control searchable']),
             ],
             [
                 'data'       => 'action',
@@ -150,8 +179,7 @@ class ArticlesDataTable extends DataTable
     protected function getBuilderParameters()
     {
         return [
-            'stateSave' => true,
-            'buttons'   => [
+            'buttons' => [
                 [
                     'extend' => 'create',
                     'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::article.datatable.buttons.create'),
