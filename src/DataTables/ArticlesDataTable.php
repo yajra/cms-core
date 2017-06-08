@@ -160,6 +160,7 @@ class ArticlesDataTable extends DataTable
                 'name'   => 'articles.is_page',
                 'title'  => trans('cms::article.datatable.columns.is_page'),
                 'class'  => 'text-center',
+                'width' => '20px',
                 'footer' => form()->select('is_page', $allYesNo, null, ['class' => 'form-control searchable']),
             ],
             [
