@@ -16,17 +16,22 @@ class WidgetsDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->editColumn('published', function (Widget $widget) {
-                return dt_check($widget->published);
-            })
             ->editColumn('authenticated', function (Widget $widget) {
-                return dt_check($widget->authenticated);
+                return view('administrator.widgets.datatables.authenticated', $widget->toArray());
             })
             ->editColumn('template', function (Widget $widget) {
-                return implode('/', explode('.', $widget->present()->template)) . '.blade.php';
+                return '<code>' . implode('/', explode('.', $widget->present()->template)) . '.blade.php' . '</code>';
             })
-            ->addColumn('action', 'administrator.widgets.datatables.action')
-            ->rawColumns(['published', 'authenticated', 'action', 'template']);
+            ->editColumn('position', function (Widget $widget) {
+                return '<span class="badge bg-orange">' . $widget->position . '</span>';
+            })
+            ->editColumn('action', function (Widget $widget) {
+                return view('administrator.widgets.datatables.action', $widget->toArray());
+            })
+            ->editColumn('created_at', function (Widget $category) {
+                return $category->created_at->format('Y-m-d');
+            })
+            ->rawColumns(['published', 'authenticated', 'action', 'template', 'position']);
     }
 
     /**
@@ -58,7 +63,6 @@ class WidgetsDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '104px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -70,7 +74,13 @@ class WidgetsDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'id'             => ['width' => '20px', 'name' => 'widgets.id'],
+            'action'        => [
+                'width'      => '80px',
+                'title'      => trans('cms::widget.datatable.columns.action'),
+                'orderable'  => false,
+                'searchable' => false,
+            ],
+
             'title',
             'template',
             'position'       => ['width' => '80px'],
@@ -78,22 +88,20 @@ class WidgetsDataTable extends DataTable
                 'width' => '120px',
                 'title' => '<i class="fa fa-plug" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.extensionName') . '"></i> Ext.',
             ],
-            'published'      => [
-                'width' => '20px',
-                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.published') . '"></i>',
-            ],
             'authenticated'  => [
                 'width' => '20px',
                 'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.authenticated') . '"></i>',
             ],
-            'order'          => [
-                'width' => '20px',
-                'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.order') . '"></i>',
-                'name'  => 'widgets.order',
-            ],
-            'updated_at'     => [
+            'created_at'     => [
                 'searchable' => false,
                 'width'      => '100px',
+                'title' => trans('cms::widget.datatable.columns.created_at'),
+            ],
+            [
+                'data'  => 'id',
+                'name'  => 'widgets.id',
+                'title' => trans('cms::widget.datatable.columns.id'),
+                'width' => '10px',
             ],
         ];
     }
@@ -105,7 +113,7 @@ class WidgetsDataTable extends DataTable
     {
         return [
             'stateSave' => true,
-            'order'     => [0, 'desc'],
+            'order'     => [7, 'desc'],
             'buttons'   => [
                 [
                     'extend' => 'create',

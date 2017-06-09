@@ -14,10 +14,9 @@ return [
     */
 
     'index' => [
-        'title'       => 'Widget Manager',
-        'description' => 'Manage widget publication.',
+        'title'       => 'Widgets',
+        'description' => 'Manage widgets publication.',
         'icon'        => 'fa fa-plug',
-        'lists'       => 'Widget Lists',
     ],
 
     'edit' => [
@@ -136,6 +135,10 @@ return [
             'published'     => 'Published',
             'authenticated' => 'Authentication Required',
             'order'         => 'Sort/Order',
+            'id'            => 'ID',
+            'created_at'    => 'Date Created',
+            'updated_at'    => 'Last Updated',
+            'action'        => 'Status',
         ],
         'buttons' => [
             'create' => 'New Widget',
