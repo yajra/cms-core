@@ -39,7 +39,7 @@ return [
     'deleted'  => 'Extension :extension uninstalled!',
     'error'    => 'Error uninstalling :extension!',
     'enabled'  => 'Extension enabled!',
-    'disabled' => 'Extension disable!',
+    'disabled' => 'Extension disabled!',
 
     'button' => [
         'uninstall' => 'Uninstall',
