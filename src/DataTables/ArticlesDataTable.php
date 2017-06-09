@@ -37,6 +37,9 @@ class ArticlesDataTable extends DataTable
             ->addColumn('author', function (Article $article) {
                 return view('administrator.articles.datatables.author', compact('article'));
             })
+            ->addColumn('slug', function (Article $article) {
+                return $article->present()->slug;
+            })
             ->editColumn('title', function (Article $article) {
                 return view('administrator.articles.datatables.title', compact('article'));
             })
