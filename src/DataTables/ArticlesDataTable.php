@@ -22,6 +22,9 @@ class ArticlesDataTable extends DataTable
             ->editColumn('authenticated', function (Article $article) {
                 return view('administrator.articles.datatables.authenticated', $article->toArray());
             })
+            ->editColumn('published', function (Article $article) {
+                return dt_check($article->published);
+            })
             ->editColumn('is_page', function (Article $article) {
                 return view('administrator.articles.datatables.page', $article->toArray());
             })
@@ -129,7 +132,7 @@ class ArticlesDataTable extends DataTable
             ],
             [
                 'data'       => 'author',
-                'title'      => 'Author',
+                'title'      => trans('cms::article.datatable.columns.author'),
                 'searchable' => false,
                 'orderable'  => false,
             ],

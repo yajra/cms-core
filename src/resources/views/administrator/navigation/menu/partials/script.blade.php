@@ -34,11 +34,11 @@
                     {data: 'id', name: 'articles.id', width: '20px'},
                     {data: 'title', name: 'articles.title'},
                     {data: 'category', name: 'category.id'},
+                    {data: 'author', name: 'author'},
+                    {data: 'created_at', name: 'articles.created_at', width: '100px'},
                     {data: 'published', name: 'articles.published', width: '20px'},
                     {data: 'authenticated', name: 'articles.authenticated', width: '20px'},
-                    {data: 'order', name: 'articles.order', width: '20px'},
-                    {data: 'created_at', name: 'articles.created_at', width: '100px'},
-                    {data: 'updated_at', name: 'articles.updated_at', width: '100px'}
+                    {data: 'is_page', name: 'articles.is_page', width: '20px'}
                 ],
                 buttons: [
                     'export',

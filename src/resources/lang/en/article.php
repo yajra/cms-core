@@ -171,10 +171,11 @@ return [
             'order'         => 'Sort/Order',
             'hits'          => 'Hits',
             'category'      => 'Category',
-            'created_at'    => 'Date Created',
+            'created_at'    => 'Created At',
             'updated_at'    => 'Updated At',
             'is_page'       => 'Page',
             'action'        => 'Action',
+            'author'        => 'Author',
             'status'        => 'Status',
         ],
         'buttons' => [

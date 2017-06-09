@@ -9,26 +9,26 @@
                 <table class="table table-hover" id="articles-table">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>TITLE</th>
-                        <th>CATEGORY</th>
-                        <th><i class="fa fa-check-circle" data-toggle="tooltip" data-title="Published"></i></th>
-                        <th><i class="fa fa-key" data-toggle="tooltip" data-title="Authentication Required"></i></th>
-                        <th><i class="fa fa-list" data-toggle="tooltip" data-title="Sort/Order"></i></th>
-                        <th>CREATED AT</th>
-                        <th>UPDATED AT</th>
+                        <th>{{trans('cms::article.datatable.columns.id')}}</th>
+                        <th>{{trans('cms::article.datatable.columns.title')}}</th>
+                        <th>{{trans('cms::article.datatable.columns.category')}}</th>
+                        <th>{{trans('cms::article.datatable.columns.author')}}</th>
+                        <th>{{trans('cms::article.datatable.columns.created_at')}}</th>
+                        <th><i class="fa fa-check-circle" data-toggle="tooltip" data-title="{{trans('cms::article.datatable.columns.published')}}"></i></th>
+                        <th><i class="fa fa-key" data-toggle="tooltip" data-title="{{trans('cms::article.datatable.columns.authenticated')}}"></i></th>
+                        <th>{{trans('cms::article.datatable.columns.is_page')}}</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th><input class="form-control footer-text" style="width: 100%" placeholder="Search Id..." /></th>
                         <th><input class="form-control footer-text" style="width: 100%" placeholder="Search title..." /></th>
-                        <th>{{ form()->categories('category_id', null, ['class' => 'form-control select2', 'style' => 'width: 100%']) }}</th>
+                        <th>{{ form()->categories('category_id', null, ['class' => 'form-control select2', 'style' => 'width: 100%'], true) }}</th>
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th><input class="form-control footer-text" style="width: 100%" placeholder="Search date created..." /></th>
-                        <th><input class="form-control footer-text" style="width: 100%" placeholder="Search date updated..." /></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     </tfoot>
                 </table>
