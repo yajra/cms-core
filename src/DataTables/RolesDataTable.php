@@ -14,17 +14,7 @@ class RolesDataTable extends DataTable
     {
         return $this
             ->builder()
-            ->columns([
-                'id',
-                'name',
-                'slug',
-                'system'      => ['class' => 'text-center', 'width' => '30px', 'title' => 'Sys'],
-                'users'       => ['orderable' => false, 'searchable' => false, 'class' => 'text-center'],
-                'permissions' => ['orderable' => false, 'searchable' => false, 'class' => 'text-center'],
-                'created_at',
-                'updated_at',
-            ])
-            ->addAction(['width' => '60px'])
+            ->columns($this->getColumns())
             ->parameters([
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
@@ -39,6 +29,73 @@ class RolesDataTable extends DataTable
                     'reload',
                 ],
             ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getColumns()
+    {
+        return [
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => trans('cms::role.datatable.columns.id'),
+            ],
+            [
+                'data'  => 'name',
+                'name'  => 'name',
+                'title' => trans('cms::role.datatable.columns.name'),
+            ],
+            [
+                'data'  => 'slug',
+                'name'  => 'slug',
+                'title' => trans('cms::role.datatable.columns.slug'),
+            ],
+            [
+                'data'  => 'system',
+                'name'  => 'system',
+                'title' => trans('cms::role.datatable.columns.system'),
+                'class' => 'text-center',
+                'width' => '30px',
+            ],
+            [
+                'data'       => 'users',
+                'name'       => 'users',
+                'title'      => trans('cms::role.datatable.columns.users'),
+                'orderable'  => false,
+                'searchable' => false,
+                'class'      => 'text-center',
+            ],
+            [
+                'data'       => 'permissions',
+                'name'       => 'permissions',
+                'title'      => trans('cms::role.datatable.columns.permissions'),
+                'orderable'  => false,
+                'searchable' => false,
+                'class'      => 'text-center',
+            ],
+            [
+                'data'  => 'created_at',
+                'name'  => 'created_at',
+                'title' => trans('cms::role.datatable.columns.created_at'),
+                'width' => '100px',
+            ],
+            [
+                'data'  => 'updated_at',
+                'name'  => 'updated_at',
+                'title' => trans('cms::role.datatable.columns.updated_at'),
+                'width' => '100px',
+            ],
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'title'      => trans('cms::role.datatable.columns.action'),
+                'width'      => '60px',
+                'orderable'  => false,
+                'searchable' => false,
+            ],
+        ];
     }
 
     /**

@@ -16,8 +16,8 @@ return [
     'attached' => 'Attached Roles',
 
     'index' => [
-        'title'       => 'Role Manager',
-        'description' => 'Setup and Manage User Role.',
+        'title'       => 'Roles',
+        'description' => 'Manage roles and assign permissions.',
         'icon'        => 'fa fa-shield',
         'list'        => 'Role Lists',
     ],
@@ -35,17 +35,28 @@ return [
     ],
 
     'form' => [
-        'title'        => 'Role Information',
-        'help'         => '(please fill up all required fields.)',
-        'field'        => [
-            'name'                 => 'Name',
-            'name_placeholder'     => 'Enter permission name',
-            'slug'                 => 'Slug',
-            'slug_placeholder'     => 'Enter permission slug',
+        'title' => 'Role Information',
+        'help'  => '(please fill up all required fields.)',
+        'field' => [
+            'name'             => 'Name',
+            'name_placeholder' => 'Enter permission name',
+            'slug'             => 'Slug',
+            'slug_placeholder' => 'Enter permission slug',
         ],
     ],
 
     'datatable' => [
+        'columns' => [
+            'id'          => 'ID',
+            'name'        => 'Name',
+            'slug'        => 'Slug',
+            'system'      => 'System',
+            'users'       => 'Users',
+            'permissions' => 'Permissions',
+            'created_at'  => 'Created At',
+            'updated_at'  => 'Updated At',
+            'action'      => 'Actions',
+        ],
         'buttons' => [
             'create' => 'New Role',
         ],

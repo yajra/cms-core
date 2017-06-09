@@ -8,7 +8,7 @@
     </a>
     @if(! $system)
         <button data-remote="{!! route('administrator.roles.destroy', $id) !!}"
-            class="btn btn-danger btn-xs btn-delete"
+            class="btn btn-default text-red btn-xs btn-delete"
             data-toggle="tooltip"
             data-title="{{trans('cms::button.delete')}}"
             data-container="body"
