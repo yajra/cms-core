@@ -42,15 +42,10 @@ class ModulesDataTable extends DataTable
         return $this
             ->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '80px'])
             ->parameters([
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
-//                    [
-//                        'extend' => 'create',
-//                        'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp;' . trans('cms::module.table.buttons.create'),
-//                    ],
                     'export',
                     'print',
                     'reset',
@@ -65,10 +60,39 @@ class ModulesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name'   => ['title' => trans('cms::module.table.columns.name')],
-            'alias'  => ['title' => trans('cms::module.table.columns.alias')],
-            'active' => ['title' => trans('cms::module.table.columns.active')],
-            'order'  => ['title' => trans('cms::module.table.columns.order')],
+            [
+                'data'  => 'action',
+                'name'  => 'action',
+                'title' => trans('cms::module.table.columns.action'),
+                'width' => '60px',
+            ],
+            [
+                'data'  => 'name',
+                'name'  => 'name',
+                'title' => trans('cms::module.table.columns.name'),
+            ],
+            [
+                'data'  => 'alias',
+                'name'  => 'alias',
+                'title' => trans('cms::module.table.columns.alias'),
+            ],
+            [
+                'data'  => 'description',
+                'name'  => 'description',
+                'title' => trans('cms::module.table.columns.description'),
+            ],
+            [
+                'data'  => 'active',
+                'name'  => 'active',
+                'title' => trans('cms::module.table.columns.active'),
+                'width' => '60px',
+            ],
+            [
+                'data'  => 'order',
+                'name'  => 'order',
+                'title' => trans('cms::module.table.columns.order'),
+                'width' => '60px',
+            ],
         ];
     }
 }

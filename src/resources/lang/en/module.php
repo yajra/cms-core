@@ -45,11 +45,12 @@ return [
 
     'table' => [
         'columns' => [
-            'name'   => 'Name',
-            'alias'  => 'Alias',
-            'active' => 'Active',
-            'order'  => 'Sort/Order',
-            'action' => 'Action',
+            'name'        => 'Name',
+            'alias'       => 'Alias',
+            'active'      => 'Active',
+            'order'       => 'Sort/Order',
+            'action'      => 'Status',
+            'description' => 'Description',
         ],
         'buttons' => [
             'create' => 'New Module',

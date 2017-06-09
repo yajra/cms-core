@@ -15,9 +15,6 @@
                 <i class="fa fa-list"></i>&nbsp;
                 {{trans('cms::module.index.title')}}
             </h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            </div>
         </div>
         <div class="box-body">
           {!! $dataTable->table(['class' => 'table table-hover margin-top-30']) !!}
