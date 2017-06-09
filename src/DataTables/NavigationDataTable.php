@@ -16,9 +16,11 @@ class NavigationDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'administrator.navigation.datatables.action')
             ->addColumn('menus', function (Navigation $nav) {
                 return '<span class="badge label-primary">' . $nav->menus()->count() . '</span>';
+            })
+            ->addColumn('action', function (Navigation $nav) {
+                return view('administrator.navigation.datatables.action', $nav->toArray());
             })
             ->rawColumns(['menus', 'published', 'action'])
             ->editColumn('published', function (Navigation $row) {
@@ -48,7 +50,6 @@ class NavigationDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '150px', 'className' => 'text-center'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -60,23 +61,57 @@ class NavigationDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'id'         => ['width' => '20px'],
-            'title',
-            'type'       => ['width' => '80px'],
-            'menus'      => [
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'width'      => '100px',
+                'title'      => trans('cms::navigation.datatable.columns.action'),
                 'orderable'  => false,
+                'searchable' => false,
+            ],
+            [
+                'data'  => 'title',
+                'name'  => 'title',
+                'title' => trans('cms::navigation.datatable.columns.title'),
+            ],
+            [
+                'data'  => 'type',
+                'name'  => 'type',
+                'title' => trans('cms::navigation.datatable.columns.type'),
+                'width' => '80px',
+            ],
+            [
+                'data'       => 'menus',
                 'name'       => 'menus',
+                'orderable'  => false,
                 'searchable' => false,
                 'width'      => '25px',
                 'title'      => '<i class="fa fa-clone" data-toggle="tooltip" data-title="' . trans('cms::navigation.datatable.columns.menus') . '"></i>',
             ],
-            'published'  => [
+            [
+                'data'  => 'published',
                 'name'  => 'published',
                 'width' => '20px',
                 'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::navigation.datatable.columns.published') . '"></i>',
             ],
-            'created_at' => ['width' => '120px'],
-            'updated_at' => ['width' => '120px'],
+            [
+                'data'  => 'created_at',
+                'name'  => 'created_at',
+                'title' => trans('cms::navigation.datatable.columns.created_at'),
+                'width' => '100px',
+            ],
+            [
+                'data'  => 'updated_at',
+                'name'  => 'updated_at',
+                'title' => trans('cms::navigation.datatable.columns.updated_at'),
+                'width' => '100px',
+            ],
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => trans('cms::navigation.datatable.columns.id'),
+                'width' => '10px',
+            ],
         ];
     }
 
@@ -87,6 +122,9 @@ class NavigationDataTable extends DataTable
     {
         return [
             'stateSave' => true,
+            'order'     => [
+                [7, 'desc'],
+            ],
             'buttons'   => [
                 [
                     'extend' => 'create',

@@ -14,10 +14,9 @@ return [
     */
 
     'index' => [
-        'title'       => 'Navigation Manager',
+        'title'       => 'Navigation',
         'description' => 'Manage navigation group.',
         'icon'        => 'fa fa-link',
-        'lists'       => 'Navigation Lists',
     ],
 
     'edit' => [
@@ -64,11 +63,17 @@ return [
 
     'datatable' => [
         'columns' => [
-            'menus'     => 'Number of Menu Items',
-            'published' => 'Published',
+            'menus'      => '# of Menu Items',
+            'published'  => 'Published',
+            'id'         => 'ID',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'type'       => 'Type',
+            'title'      => 'Title',
+            'action'     => 'Status',
         ],
         'buttons' => [
-            'create' => 'New Navigation'
+            'create' => 'New Navigation',
         ],
     ],
 
