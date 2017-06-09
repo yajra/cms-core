@@ -17,32 +17,28 @@ class CategoriesDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())
             ->editColumn('lft', '<i class="fa fa-dot-circle-o"></i>')
-            ->editColumn('published', function (Category $category) {
-                $attr = 'label-danger" title="Unpublished" ><i class="fa fa-remove">';
-
-                if ($category->isPublished()) {
-                    $attr = 'label-success" title="Published" ><i class="fa fa-check">';
-                }
-
-                return '<span data-toggle="tooltip" data-placement="right" class="badge ' . $attr . '</i></span>';
+            ->addColumn('action', function (Category $category) {
+                return view('administrator.categories.datatables.action', $category->toArray());
             })
-            ->addColumn('action', 'administrator.categories.datatables.action')
             ->editColumn('authenticated', function (Category $category) {
-                return dt_check($category->authenticated);
+                return view('administrator.categories.datatables.authenticated', $category->toArray());
             })
             ->addColumn('pub', function (Category $category) {
-                return $category->countPublished();
+                return '<span class="badge bg-green">' . $category->countPublished() . '</span>';
             })
             ->addColumn('unpub', function (Category $category) {
-                return $category->countUnpublished();
+                return '<span class="badge bg-yellow">' . $category->countUnpublished() . '</span>';
             })
             ->editColumn('hits', function (Category $category) {
-                return '<span class="label bg-purple">' . $category->hits . '</span>';
+                return '<span class="badge bg-blue">' . $category->hits . '</span>';
             })
             ->editColumn('title', function (Category $category) {
-                return view('administrator.categories.datatables.title', compact('category'))->render();
+                return view('administrator.categories.datatables.title', compact('category'));
             })
-            ->rawColumns(['lft', 'published', 'authenticated', 'hits', 'title', 'action']);
+            ->editColumn('created_at', function (Category $category) {
+                return $category->created_at->format('Y-m-d');
+            })
+            ->rawColumns(['lft', 'published', 'authenticated', 'hits', 'title', 'action', 'pub', 'unpub']);
     }
 
     /**
@@ -52,7 +48,7 @@ class CategoriesDataTable extends DataTable
      */
     public function query()
     {
-        $category = Category::query()->whereNotNull('parent_id');
+        $category = Category::query()->whereNotNull('parent_id')->select('categories.*');
 
         return $this->applyScopes($category);
     }
@@ -67,7 +63,6 @@ class CategoriesDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '110px'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -83,14 +78,14 @@ class CategoriesDataTable extends DataTable
                 'width' => '20px',
                 'title' => '<i class="fa fa-tree" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.lft') . '"></i>',
             ],
-            'id'            => ['width' => '20px'],
+            'action'        => [
+                'width'      => '80px',
+                'title'      => trans('cms::categories.datatable.columns.action'),
+                'orderable'  => false,
+                'searchable' => false,
+            ],
             'title',
             'alias'         => ['visible' => false],
-            'published'     => [
-                'width'      => '20px',
-                'searchable' => false,
-                'title'      => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.status') . '"></i>',
-            ],
             'authenticated' => [
                 'width' => '20px',
                 'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.authenticated') . '"></i>',
@@ -111,8 +106,16 @@ class CategoriesDataTable extends DataTable
                 'width' => '20px',
                 'title' => '<i class="fa fa-eye" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.hits') . '"></i>',
             ],
-            'created_at'    => ['width' => '100px'],
-            'updated_at'    => ['width' => '100px'],
+            'created_at'    => [
+                'width' => '100px',
+                'title' => trans('cms::categories.datatable.columns.created_at'),
+            ],
+            [
+                'data'  => 'id',
+                'name'  => 'categories.id',
+                'title' => trans('cms::categories.datatable.columns.id'),
+                'width' => '10px',
+            ],
         ];
     }
 

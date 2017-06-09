@@ -1,16 +1,18 @@
-<a href="{{url($category->present()->alias)}}"
-   target="_blank"
+<a href="{{ route('administrator.categories.edit', $category->id) }}"
    data-toggle="tooltip"
-   title="Visit Page"
-   class="btn btn-primary btn-xs"
+   data-title="{{trans('cms::button.edit')}}"
 >
-    <i class="fa fa-link"></i>
-</a>
-<a href="{{ route('administrator.categories.edit', $category->id) }}">
     {{ $category->present()->name }}
 </a>
 <small>
-    (Slug: {{ $category->present()->alias }})
+    (Alias:
+    <a href="{{url($category->present()->alias)}}"
+       target="_blank"
+       data-toggle="tooltip"
+       title="{{trans('cms::button.preview')}}"
+       class="text-orange"
+    >
+        {{ $category->present()->alias }}
+    </a>
+    )
 </small>
-
-

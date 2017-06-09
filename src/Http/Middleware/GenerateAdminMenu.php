@@ -52,7 +52,7 @@ class GenerateAdminMenu
                              'append'     => route('administrator.articles.create'),
                          ]);
                 $contents->add('Categories', route('administrator.categories.index'))
-                         ->icon('file-text')
+                         ->icon('folder-open-o')
                          ->data([
                              'permission' => 'category.view',
                              'append'     => route('administrator.categories.create'),

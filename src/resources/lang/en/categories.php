@@ -14,10 +14,9 @@ return [
     */
 
     'index' => [
-        'title'      => 'Categories Manager',
-        'page-title' => 'Categories Manager',
+        'title'      => 'Articles: Categories',
+        'page-title' => 'Articles: Categories',
         'page-desc'  => 'Manage article categories publication.',
-        'box-title'  => 'Category Lists',
     ],
 
     'destroy' => [
@@ -92,6 +91,9 @@ return [
             'pub'           => '# Published Articles',
             'unpub'         => '# Unpublished Articles',
             'hits'          => 'Hits',
+            'id'            => 'ID',
+            'action'        => 'Status',
+            'created_at'    => 'Date Created',
         ],
         'buttons' => [
             'create' => 'New Category',
