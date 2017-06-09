@@ -37,6 +37,9 @@ class ArticlesDataTable extends DataTable
             ->editColumn('title', function (Article $article) {
                 return view('administrator.articles.datatables.title', compact('article'));
             })
+            ->editColumn('plain_title', function (Article $article) {
+                return $article->title;
+            })
             ->editColumn('created_at', function (Article $article) {
                 return $article->created_at->format('Y-m-d');
             })
