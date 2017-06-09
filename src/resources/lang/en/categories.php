@@ -102,4 +102,5 @@ return [
         ],
     ],
 
+    'empty' => 'WHOOPS, THERE ARE NO ARTICLES HERE YET :/',
 ];

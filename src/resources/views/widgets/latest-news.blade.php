@@ -4,9 +4,9 @@
             <li class="list-group-item list-group-item-heading"><i class="fa fa-newspaper-o"></i> {{$widget->title}}
             </li>
             @forelse($articles as $article)
-                <li><a href="{{$article->getUrl()}}">{{str_limit($article->title, 60)}}</a></li>
+                <li class="list-group-item"><a href="{{$article->getUrl()}}">{{$article->present()->introTitle(30) }}</a></li>
             @empty
-                <p>WHOOPS, THERE ARE NO ARTICLES HERE YET :/</p>
+                <li class="list-group-item">{{trans('cms::categories.empty')}}</li>
             @endforelse
         </ul>
     </div>
