@@ -93,7 +93,9 @@ return [
             'hits'          => 'Hits',
             'id'            => 'ID',
             'action'        => 'Status',
-            'created_at'    => 'Date Created',
+            'created_at'    => 'Created At',
+            'updated_at'    => 'Updated At',
+            'title'         => 'Title',
         ],
         'buttons' => [
             'create' => 'New Category',
