@@ -1,14 +1,17 @@
-<a href="{{url($menu->present()->url)}}"
-   target="_blank"
+<a href="{{ route('administrator.navigation.menu.edit', [$menu->navigation_id, $menu->id]) }}"
    data-toggle="tooltip"
-   title="Visit Page"
-   class="btn btn-primary btn-xs"
+   data-title="{{trans('cms::button.edit')}}"
 >
-    <i class="fa fa-link"></i>
-</a>
-<a href="{{ route('administrator.navigation.menu.edit', [$menu->navigation_id, $menu->id]) }}">
     {{ $menu->present()->name }}
 </a>
-<small>(URL: {{ $menu->present()->url }})</small>
-<br>
-<small><span class="label label-info">MENU TYPE:</span> <span class="label label-success">{{ $menu->extension->name }}</span></small>
+<small>
+    (URL:
+    <a href="{{$menu->present()->url}}"
+       target="_blank"
+       data-toggle="tooltip"
+       title="{{trans('cms::button.preview')}}"
+       class="text-orange"
+    >
+        {{ $menu->present()->url }})
+    </a>
+</small>

@@ -14,10 +14,10 @@ return [
     */
 
     'index' => [
-        'title'       => 'Menu Items Manager',
+        'title'       => 'Menu Items',
         'description' => 'Navigation',
         'icon'        => 'fa fa-link',
-        'back'        => 'Back to navigation lists',
+        'back'        => 'Back to Navigation',
     ],
 
     'edit' => [
@@ -99,6 +99,13 @@ return [
             'authenticated' => 'Authentication Required',
             'order'         => 'Display Order',
             'depth'         => 'Depth',
+            'action'        => 'Status',
+            'id'            => 'ID',
+            'title'         => 'Title',
+            'created_at'    => 'Created At',
+            'updated_at'    => 'Updated At',
+            'url'           => 'URL',
+            'type'          => 'Type',
         ],
         'buttons' => [
             'create' => 'New Menu',

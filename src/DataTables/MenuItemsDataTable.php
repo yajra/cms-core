@@ -29,10 +29,13 @@ class MenuItemsDataTable extends DataTable
                 return dt_check($menu->published);
             })
             ->editColumn('authenticated', function (Menu $menu) {
-                return dt_check($menu->authenticated);
+                return view('administrator.navigation.menu.datatables.authenticated', $menu->toArray());
             })
             ->editColumn('title', function (Menu $menu) {
                 return view('administrator.navigation.menu.datatables.title', compact('menu'))->render();
+            })
+            ->addColumn('type', function (Menu $menu) {
+                return $menu->extension->name;
             })
             ->editColumn('lft', '<i class="fa fa-dot-circle-o"></i>')
             ->addColumn('action', 'administrator.navigation.menu.datatables.action')
@@ -46,7 +49,10 @@ class MenuItemsDataTable extends DataTable
      */
     public function query()
     {
-        $users = Menu::query()->where('navigation_id', $this->navigation->id);
+        $users = Menu::query()
+                     ->with('extension')
+                     ->where('navigation_id', $this->navigation->id)
+                     ->select('menus.*');
 
         return $this->applyScopes($users);
     }
@@ -72,7 +78,6 @@ class MenuItemsDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '104px', 'className' => 'text-center'])
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -84,31 +89,60 @@ class MenuItemsDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'lft'           => [
-                'width' => '20px',
+            [
+                'data'  => 'lft',
+                'name'  => 'lft',
+                'width' => '10px',
                 'title' => '<i class="fa fa-tree" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.lft') . '"></i>',
             ],
-            'id'            => ['width' => '20px'],
-            'title',
-            'url'           => ['visible' => false],
-            'published'     => [
-                'width' => '20px',
-                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.published') . '"></i>',
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'width'      => '70px',
+                'title'      => trans('cms::menu.datatable.columns.action'),
+                'orderable'  => false,
+                'searchable' => false,
             ],
-            'authenticated' => [
+            [
+                'data'  => 'title',
+                'name'  => 'title',
+                'title' => trans('cms::menu.datatable.columns.title'),
+            ],
+            [
+                'data'  => 'type',
+                'name'  => 'menus.extension_id',
+                'title' => trans('cms::menu.datatable.columns.type'),
+            ],
+            [
+                'data'    => 'url',
+                'name'    => 'url',
+                'title'   => trans('cms::menu.datatable.columns.url'),
+                'visible' => false,
+            ],
+            [
+                'data'  => 'authenticated',
+                'name'  => 'authenticated',
                 'width' => '20px',
                 'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.authenticated') . '"></i>',
             ],
-            'order'         => [
+            [
+                'data'  => 'order',
+                'name'  => 'order',
                 'width' => '20px',
                 'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.order') . '"></i>',
             ],
-            'depth'         => [
+            [
+                'data'  => 'depth',
+                'name'  => 'depth',
                 'width' => '20px',
                 'title' => '<i class="fa fa-sitemap" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.depth') . '"></i>',
             ],
-            'created_at'    => ['width' => '100px'],
-            'updated_at'    => ['width' => '100px'],
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => trans('cms::menu.datatable.columns.id'),
+                'width' => '10px',
+            ],
         ];
     }
 

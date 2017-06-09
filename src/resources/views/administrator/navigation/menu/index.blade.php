@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('title')
-{{trans('cms::navigation.index.title')}} | @parent
+{{trans('cms::menu.index.title')}} | @parent
 @stop
 
 @section('page-title')
@@ -12,13 +12,13 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <a href="{{route('administrator.navigation.index')}}" style="font-size: 15px">
+                <i class="fa fa-table"></i> {{trans('cms::menu.index.title')}}
+            </h3>
+            <div class="box-tools pull-right">
+                <a href="{{route('administrator.navigation.index')}}">
                     <i class="fa fa-arrow-circle-left"></i>&nbsp;
                     {{trans('cms::menu.index.back')}}
                 </a>
-            </h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             </div>
         </div>
         <div class="box-body">
