@@ -16,10 +16,9 @@ return [
     'attached' => 'Attached Permissions',
 
     'index' => [
-        'title'       => 'Permission Manager',
-        'description' => 'Setup and Manage User Role Permissions.',
+        'title'       => 'Permissions',
+        'description' => 'Setup application permissions.',
         'icon'        => 'fa fa-tag',
-        'list'        => 'Permission Lists',
     ],
 
     'edit' => [
@@ -56,6 +55,16 @@ return [
     ],
 
     'datatable' => [
+        'columns' => [
+            'id'         => 'ID',
+            'resource'   => 'Resource',
+            'name'       => 'Name',
+            'slug'       => 'Slug',
+            'system'     => 'System',
+            'roles'      => 'Roles',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ],
         'buttons' => [
             'create' => 'New Permission',
         ],

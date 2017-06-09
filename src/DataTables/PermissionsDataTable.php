@@ -15,7 +15,6 @@ class PermissionsDataTable extends DataTable
         return $this
             ->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '60px'])
             ->parameters($this->getBuilderParameters());
     }
 
@@ -25,20 +24,63 @@ class PermissionsDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'id',
-            'resource',
-            'name',
-            'slug',
-            'system' => ['class' => 'text-center', 'width' => '30px', 'title' => 'Sys'],
-            'roles'  => [
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => trans('cms::permission.datatable.columns.id'),
+            ],
+            [
+                'data'  => 'resource',
+                'name'  => 'resource',
+                'title' => trans('cms::permission.datatable.columns.resource'),
+            ],
+            [
+                'data'  => 'name',
+                'name'  => 'name',
+                'title' => trans('cms::permission.datatable.columns.name'),
+            ],
+            [
+                'data'  => 'slug',
+                'name'  => 'slug',
+                'title' => trans('cms::permission.datatable.columns.slug'),
+            ],
+            [
+                'data'  => 'system',
+                'name'  => 'system',
+                'title' => trans('cms::permission.datatable.columns.system'),
+                'class' => 'text-center',
+                'width' => '30px',
+            ],
+            [
+                'data'       => 'roles',
+                'name'       => 'roles',
+                'title'      => trans('cms::permission.datatable.columns.roles'),
                 'class'      => 'text-center',
                 'width'      => '30px',
                 'searchable' => false,
                 'orderable'  => false,
                 'printable'  => false,
             ],
-            'created_at',
-            'updated_at',
+            [
+                'data'  => 'created_at',
+                'name'  => 'created_at',
+                'title' => trans('cms::permission.datatable.columns.created_at'),
+                'width' => '100px',
+            ],
+            [
+                'data'  => 'updated_at',
+                'name'  => 'updated_at',
+                'title' => trans('cms::permission.datatable.columns.updated_at'),
+                'width' => '100px',
+            ],
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'title'      => trans('cms::role.datatable.columns.action'),
+                'width'      => '60px',
+                'orderable'  => false,
+                'searchable' => false,
+            ],
         ];
     }
 
