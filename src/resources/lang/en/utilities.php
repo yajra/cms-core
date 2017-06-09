@@ -12,8 +12,8 @@ return [
     | language lines according to your application's requirements.
     |
     */
-   
-   'index' => [
+
+    'index' => [
         'title'       => 'Utilities',
         'description' => 'Site administration utilities.',
         'icon'        => 'fa fa-wrench',
@@ -27,6 +27,8 @@ return [
         'clear_views'  => 'Clear Views',
         'clear_config' => 'Clear Config',
         'cache_config' => 'Cache Config',
+        'clear_route'  => 'Clear Route',
+        'cache_route'  => 'Cache Route',
         'log_viewer'   => 'Log Viewer',
         'executed_by'  => 'Executed by: :name',
     ],
@@ -58,9 +60,15 @@ return [
     ],
 
     'config' => [
-        'not_allowed'   => 'Configuration task [{:task}] requested is not allowed! ',
-        'cache'         => 'Configuration cached successfully!',
-        'cache_cleared' => 'Configuration cache cleared!',
+        'not_allowed' => 'Configuration task [{:task}] requested is not allowed! ',
+        'cached'      => 'Configuration cached successfully!',
+        'cleared'     => 'Configuration cache cleared!',
+    ],
+
+    'route' => [
+        'not_allowed' => 'Route task [{:task}] requested is not allowed! ',
+        'cached'      => 'Route cached successfully!',
+        'cleared'     => 'Route cache cleared!',
     ],
 
     'views' => [
@@ -75,6 +83,6 @@ return [
     'category' => [
         'rebuild' => 'Rebuild Category',
         'success' => 'Category tree successfully rebuild!',
-    ]
+    ],
 
 ];

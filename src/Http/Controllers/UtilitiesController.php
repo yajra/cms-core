@@ -159,6 +159,36 @@ class UtilitiesController extends Controller
     }
 
     /**
+     * Clear routes manually.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function route($task)
+    {
+        if (! in_array($task, ['cache', 'clear'])) {
+            $this->log->info(sprintf("%s %s",
+                trans('cms::utilities.route.not_allowed', ['task' => $task]),
+                trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
+            ));
+
+            return $this->notifyError($message);
+        }
+
+        $message = $task == 'cache' ? trans('cms::utilities.route.cached') : trans('cms::utilities.route.cleared');
+        $this->log->info(sprintf("%s %s",
+            $message,
+            trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
+        ));
+        try {
+            Artisan::call('route:' . $task);
+        } catch (\Exception $e) {
+            return $this->notifyError($e->getMessage());
+        }
+
+        return $this->notifySuccess($message);
+    }
+
+    /**
      * Log viewer.
      *
      * @param \Illuminate\Http\Request $request

@@ -55,20 +55,39 @@
                     <h3 class="box-title"><i class="fa fa-files-o"></i> Cache</h3>
                 </div>
                 <div class="box-body">
-                    <button class="btn btn-app" data-post="{{ route('administrator.utilities.cache') }}">
-                        <i class="fa fa-database"></i> {{trans('cms::utilities.field.clear_cache')}}
-                    </button>
-                    <button class="btn btn-app" data-post="{{ route('administrator.utilities.views') }}">
-                        <i class="fa fa-files-o"></i> {{trans('cms::utilities.field.clear_views')}}
-                    </button>
-                    <button class="btn btn-app"
-                            data-post="{{ route('administrator.utilities.config', 'clear') }}">
-                        <i class="fa fa-gear"></i> {{trans('cms::utilities.field.clear_config')}}
-                    </button>
-                    <button class="btn btn-app"
-                            data-post="{{ route('administrator.utilities.config', 'cache') }}">
-                        <i class="fa fa-gear"></i> {{trans('cms::utilities.field.cache_config')}}
-                    </button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-app" data-post="{{ route('administrator.utilities.cache') }}">
+                                <i class="fa fa-database"></i> {{trans('cms::utilities.field.clear_cache')}}
+                            </button>
+                            <button class="btn btn-app" data-post="{{ route('administrator.utilities.views') }}">
+                                <i class="fa fa-files-o"></i> {{trans('cms::utilities.field.clear_views')}}
+                            </button>
+                            <button class="btn btn-app"
+                                    data-post="{{ route('administrator.utilities.config', 'clear') }}">
+                                <i class="fa fa-gear"></i> {{trans('cms::utilities.field.clear_config')}}
+                            </button>
+                            <button class="btn btn-app"
+                                    data-post="{{ route('administrator.utilities.route', 'clear') }}">
+                                <i class="fa fa-arrows"></i> {{trans('cms::utilities.field.clear_route')}}
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-app"
+                                    data-post="{{ route('administrator.utilities.config', 'cache') }}">
+                                <i class="fa fa-gear"></i> {{trans('cms::utilities.field.cache_config')}}
+                            </button>
+                            <button class="btn btn-app"
+                                    data-post="{{ route('administrator.utilities.route', 'cache') }}">
+                                <i class="fa fa-arrows"></i> {{trans('cms::utilities.field.cache_route')}}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
