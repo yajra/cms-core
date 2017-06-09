@@ -69,26 +69,7 @@ class UsersDataTable extends DataTable
     {
         return $this
             ->builder()
-            ->columns([
-                'id'            => ['width' => '20px'],
-                'first_name',
-                'last_name',
-                'email',
-                'roles'         => ['name' => 'roles.name', 'orderable' => false],
-                'administrator' => [
-                    'width' => '20px',
-                    'title' => '<i class="fa fa-shield" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.administrator') . '"></i>',
-                ],
-                'confirmed'     => [
-                    'width' => '20px',
-                    'title' => '<i class="fa fa-check" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.confirmed') . '"></i>',
-                ],
-                'blocked'       => [
-                    'width' => '20px',
-                    'title' => '<i class="fa fa-ban" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.blocked') . '"></i>',
-                ],
-                'created_at',
-            ])
+            ->columns($this->getColumns())
             ->addAction(['width' => '80px'])
             ->parameters([
                 'stateSave' => true,
@@ -104,5 +85,65 @@ class UsersDataTable extends DataTable
                     'reload',
                 ],
             ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getColumns()
+    {
+        return [
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => trans('cms::user.datatable.columns.id'),
+                'width' => '20px',
+            ],
+            [
+                'data'  => 'first_name',
+                'name'  => 'first_name',
+                'title' => trans('cms::user.datatable.columns.first_name'),
+            ],
+            [
+                'data'  => 'last_name',
+                'name'  => 'last_name',
+                'title' => trans('cms::user.datatable.columns.last_name'),
+            ],
+            [
+                'data'  => 'email',
+                'name'  => 'email',
+                'title' => trans('cms::user.datatable.columns.email'),
+            ],
+            [
+                'data'      => 'roles',
+                'name'      => 'roles',
+                'title'     => trans('cms::user.datatable.columns.roles'),
+                'orderable' => false,
+            ],
+            [
+                'data'  => 'administrator',
+                'name'  => 'administrator',
+                'width' => '20px',
+                'title' => '<i class="fa fa-shield" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.administrator') . '"></i>',
+            ],
+            [
+                'data'  => 'confirmed',
+                'name'  => 'confirmed',
+                'width' => '20px',
+                'title' => '<i class="fa fa-check" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.confirmed') . '"></i>',
+            ],
+            [
+                'data'  => 'blocked',
+                'name'  => 'blocked',
+                'width' => '20px',
+                'title' => '<i class="fa fa-ban" data-toggle="tooltip" data-title="' . trans('cms::user.datatable.columns.blocked') . '"></i>',
+            ],
+            [
+                'data'  => 'created_at',
+                'name'  => 'created_at',
+                'title' => trans('cms::user.datatable.columns.created_at'),
+                'width' => '100px',
+            ],
+        ];
     }
 }
