@@ -14,15 +14,13 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="fa fa-list"></i>&nbsp;{{trans('cms::article.index.lists')}}
+                <i class="fa fa-table"></i>&nbsp;{{trans('cms::article.index.title')}}
             </h3>
-            <div class="box-tools pull-right">
-                <div class="form-inline">
-                    <button type="button" class="btn btn-box-tool"><i class="fa fa-search"></i> Search Tools</button>
-                    {{form()->select('status', $statuses, null, ['class' => 'form-control searchable input-sm'])}}
-                    {{form()->select('category', $categories, null, ['class' => 'form-control searchable input-sm'])}}
-                    {{form()->select('is_page', $allYesNo, null, ['class' => 'form-control searchable input-sm'])}}
-                </div>
+            <div class="pull-right form-inline">
+                <span><i class="fa fa-search"></i> Search Tools: </span>
+                {{form()->select('status', $statuses, null, ['class' => 'form-control searchable input-sm'])}}
+                {{form()->select('category', $categories, null, ['class' => 'form-control searchable input-sm'])}}
+                {{form()->select('is_page', $allYesNo, null, ['class' => 'form-control searchable input-sm'])}}
             </div>
         </div>
         <div class="box-body">

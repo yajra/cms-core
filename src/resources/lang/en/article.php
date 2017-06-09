@@ -14,8 +14,8 @@ return [
     */
 
     'index' => [
-        'title'       => 'Articles Manager',
-        'description' => 'Manage articles publication.',
+        'title'       => 'Articles and Pages',
+        'description' => 'Manage articles/pages publication.',
         'icon'        => 'fa fa-files-o',
         'lists'       => 'Articles Lists',
     ],
