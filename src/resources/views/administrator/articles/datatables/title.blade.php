@@ -1,11 +1,17 @@
-<a href="{{url($article->getUrl())}}"
-   target="_blank"
+<a href="{{ route('administrator.articles.edit', $article->id) }}"
    data-toggle="tooltip"
-   title="Visit Page"
-   class="btn btn-primary btn-xs"
->
-    <i class="fa fa-link"></i>
-</a>
-<a href="{{ route('administrator.articles.edit', $article->id) }}">{{ $article->title }}</a>
+   data-title="{{trans('cms::button.edit')}}"
+>{{ $article->title }}</a>
 <br>
-<small>{{ $article->present()->slug }}</small>
+<small>
+    (Alias:
+    <a href="{{url($article->getUrl())}}"
+       target="_blank"
+       class="text-orange"
+       data-toggle="tooltip"
+       data-title="{{trans('cms::button.preview')}}"
+    >
+        {{ $article->present()->slug }}
+    </a>
+    )
+</small>

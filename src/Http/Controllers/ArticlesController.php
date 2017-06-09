@@ -4,6 +4,7 @@ namespace Yajra\CMS\Http\Controllers;
 
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\Entities\Article;
+use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Events\Articles\ArticleWasCreated;
 use Yajra\CMS\Events\Articles\ArticleWasUpdated;
 use Yajra\CMS\Http\Requests\ArticlesFormRequest;
@@ -35,7 +36,31 @@ class ArticlesController extends Controller
      */
     public function index(ArticlesDataTable $dataTable)
     {
-        return $dataTable->render('administrator.articles.index');
+        $categories = [];
+        $allYesNo   = [];
+        $statuses   = [];
+
+        if (! request()->wantsJson()) {
+            $categories = Category::root()->getDescendants()->map(function(Category $category) {
+                $category->title = $category->present()->name;
+                return $category;
+            })->pluck('title', 'id');
+            $categories = collect(['' => '- Select Category -'])->union($categories);
+
+            $allYesNo = [
+                '' => '- Select Article Type -',
+                0  => 'Article',
+                1  => 'Page',
+            ];
+
+            $statuses = [
+                '' => '- Select Status -',
+                0  => 'Unpublished',
+                1  => 'Published',
+            ];
+        }
+
+        return $dataTable->render('administrator.articles.index', compact('categories', 'allYesNo', 'statuses'));
     }
 
     /**
@@ -143,13 +168,30 @@ class ArticlesController extends Controller
      * @param \Yajra\CMS\Entities\Article $article
      * @return \Illuminate\Http\JsonResponse
      */
-    public function publish(Article $article)
+    public function published(Article $article)
     {
         $article->togglePublishedState();
 
         return $this->notifySuccess(trans(
-                'cms::article.update.publish', [
+                'cms::article.update.published', [
                 'task' => $article->published ? 'published' : 'unpublished',
+            ])
+        );
+    }
+
+    /**
+     * Publish/Unpublish a article.
+     *
+     * @param \Yajra\CMS\Entities\Article $article
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function featured(Article $article)
+    {
+        $article->toggleFeaturedState();
+
+        return $this->notifySuccess(trans(
+                'cms::article.update.featured', [
+                'task' => $article->published ? 'featured' : 'unfeatured',
             ])
         );
     }

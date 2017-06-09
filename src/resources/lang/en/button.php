@@ -23,7 +23,13 @@ return [
     'update'    => 'Update',
     'delete'    => 'Delete',
     'save'      => 'Save',
-    'publish'   => 'Publish',
-    'unpublish' => 'Unpublish',
+    'publish'   => 'Publish Item',
+    'unpublish' => 'Published',
+    'featured'  => 'Toggle featured status',
+    'action'    => 'Actions',
+    'yes'       => 'Yes',
+    'no'        => 'No',
+    'visit'     => 'Visit',
+    'preview'   => 'Preview',
 
 ];

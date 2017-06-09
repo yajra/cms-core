@@ -27,8 +27,9 @@ return [
     ],
 
     'update' => [
-        'success' => 'Article successfully updated!',
-        'publish' => 'Article successfully :task!',
+        'success'   => 'Article successfully updated!',
+        'published' => 'Article successfully :task!',
+        'featured'  => 'Article successfully :task!',
     ],
 
     'destroy' => [
@@ -170,10 +171,11 @@ return [
             'order'         => 'Sort/Order',
             'hits'          => 'Hits',
             'category'      => 'Category',
-            'created_at'    => 'Created At',
+            'created_at'    => 'Date Created',
             'updated_at'    => 'Updated At',
             'is_page'       => 'Page',
             'action'        => 'Action',
+            'status'        => 'Status',
         ],
         'buttons' => [
             'create' => 'New Article',

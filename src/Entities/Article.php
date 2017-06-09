@@ -202,4 +202,17 @@ class Article extends Model implements UrlGenerator, Cacheable
     {
         return $builder->where('is_page', false);
     }
+
+    /**
+     * Toggle featured state.
+     *
+     * @return $this
+     */
+    public function toggleFeaturedState()
+    {
+        $this->featured = ! $this->featured;
+        $this->save();
+
+        return $this;
+    }
 }

@@ -17,24 +17,20 @@ class ArticlesDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'administrator.articles.datatables.action')
-            ->editColumn('published', function (Article $article) {
-                return dt_check($article->published);
-            })
-            ->editColumn('authenticated', function (Article $article) {
-                return dt_check($article->authenticated);
-            })
-            ->editColumn('is_page', function (Article $article) {
-                return dt_check($article->is_page);
-            })
+            ->editColumn('status', 'administrator.articles.datatables.status')
+            ->editColumn('authenticated', 'administrator.articles.datatables.authenticated')
+            ->editColumn('is_page', 'administrator.articles.datatables.page')
             ->editColumn('hits', function (Article $article) {
-                return '<span class="label bg-purple">' . $article->hits . '</span>';
+                return '<span class="badge bg-blue">' . $article->hits . '</span>';
             })
             ->editColumn('category', function (Article $article) {
-                return $article->category->present()->name;
+                return $article->category->title;
+            })
+            ->addColumn('author', function (Article $article) {
+                return view('administrator.articles.datatables.author', compact('article'));
             })
             ->editColumn('title', function (Article $article) {
-                return view('administrator.articles.datatables.title', compact('article'))->render();
+                return view('administrator.articles.datatables.title', compact('article'));
             })
             ->addColumn('plain_title', function (Article $article) {
                 return $article->title;
@@ -42,7 +38,10 @@ class ArticlesDataTable extends DataTable
             ->addColumn('slug', function (Article $article) {
                 return $article->present()->slug;
             })
-            ->rawColumns(['is_page', 'hits', 'title', 'published', 'authenticated', 'action']);
+            ->editColumn('created_at', function (Article $article) {
+                return $article->created_at->format('Y-m-d');
+            })
+            ->rawColumns(['is_page', 'hits', 'title', 'published', 'authenticated', 'action', 'author', 'status']);
     }
 
     /**
@@ -52,7 +51,7 @@ class ArticlesDataTable extends DataTable
      */
     public function query()
     {
-        $articles = Article::query()->with('category')->select('articles.*');
+        $articles = Article::query()->with('category', 'creator')->select('articles.*');
 
         if ($this->request()->input('category')) {
             $articles->whereHas('category', function ($query) {
@@ -60,8 +59,12 @@ class ArticlesDataTable extends DataTable
             });
         }
 
-        if ($this->request()->input('is_page')) {
+        if ($this->request()->input('is_page') <> '') {
             $articles->where('is_page', request('is_page'));
+        }
+
+        if ($this->request()->input('status') <> '') {
+            $articles->where('published', request('status'));
         }
 
         return $this->applyScopes($articles);
@@ -93,21 +96,13 @@ class ArticlesDataTable extends DataTable
      */
     private function getColumns()
     {
-        $categories = Category::root()->getDescendants()->pluck('title', 'id');
-        $categories = collect(['' => 'All Category'])->union($categories);
-
-        $allYesNo = [
-            '' => 'All',
-            0  => 'No',
-            1  => 'Yes',
-        ];
-
         return [
             [
-                'data'  => 'id',
-                'name'  => 'articles.id',
-                'title' => trans('cms::article.datatable.columns.id'),
-                'width' => '20px',
+                'data'      => 'status',
+                'name'      => 'articles.published',
+                'width'     => '100px',
+                'title'     => trans('cms::article.datatable.columns.status'),
+                'orderable' => false,
             ],
             [
                 'data'  => 'title',
@@ -129,13 +124,18 @@ class ArticlesDataTable extends DataTable
                 'name'   => 'category.id',
                 'title'  => trans('cms::article.datatable.columns.category'),
                 'width'  => '100px',
-                'footer' => form()->select('category', $categories, null, ['class' => 'form-control searchable']),
             ],
             [
-                'data'  => 'published',
-                'name'  => 'articles.published',
-                'width' => '20px',
-                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.published') . '"></i>',
+                'data'       => 'author',
+                'title'      => 'Author',
+                'searchable' => false,
+                'orderable'  => false,
+            ],
+            [
+                'data'  => 'created_at',
+                'name'  => 'articles.created_at',
+                'title' => trans('cms::article.datatable.columns.created_at'),
+                'width' => '90px',
             ],
             [
                 'data'  => 'authenticated',
@@ -144,32 +144,22 @@ class ArticlesDataTable extends DataTable
                 'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.authenticated') . '"></i>',
             ],
             [
-                'data'  => 'order',
-                'name'  => 'articles.order',
-                'width' => '20px',
-                'title' => '<i class="fa fa-list" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.order') . '"></i>',
+                'data'   => 'is_page',
+                'name'   => 'articles.is_page',
+                'title'  => trans('cms::article.datatable.columns.is_page'),
+                'width'  => '20px',
             ],
             [
                 'data'  => 'hits',
                 'name'  => 'articles.hits',
                 'width' => '20px',
-                'title' => '<i class="fa fa-eye" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.hits') . '"></i>',
+                'title' => 'Hits',
             ],
             [
-                'data'   => 'is_page',
-                'name'   => 'articles.is_page',
-                'title'  => trans('cms::article.datatable.columns.is_page'),
-                'class'  => 'text-center',
-                'width' => '20px',
-                'footer' => form()->select('is_page', $allYesNo, null, ['class' => 'form-control searchable']),
-            ],
-            [
-                'data'       => 'action',
-                'title'      => trans('cms::article.datatable.columns.action'),
-                'width'      => '134px',
-                'searchable' => false,
-                'orderable'  => false,
-                'className'  => 'text-center',
+                'data'  => 'id',
+                'name'  => 'articles.id',
+                'title' => trans('cms::article.datatable.columns.id'),
+                'width' => '10px',
             ],
         ];
     }
@@ -180,6 +170,9 @@ class ArticlesDataTable extends DataTable
     protected function getBuilderParameters()
     {
         return [
+            'order'   => [
+                [10, 'desc'],
+            ],
             'buttons' => [
                 [
                     'extend' => 'create',
