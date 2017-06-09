@@ -19,6 +19,9 @@ class NavigationDataTable extends DataTable
             ->addColumn('menus', function (Navigation $nav) {
                 return '<span class="badge label-primary">' . $nav->menus()->count() . '</span>';
             })
+            ->editColumn('title', function (Navigation $navigation) {
+                return html()->linkRoute('administrator.navigation.edit', $navigation->title, $navigation);
+            })
             ->addColumn('action', function (Navigation $nav) {
                 return view('administrator.navigation.datatables.action', $nav->toArray());
             })

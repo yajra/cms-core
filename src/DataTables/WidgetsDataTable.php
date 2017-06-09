@@ -19,6 +19,9 @@ class WidgetsDataTable extends DataTable
             ->editColumn('authenticated', function (Widget $widget) {
                 return view('administrator.widgets.datatables.authenticated', $widget->toArray());
             })
+            ->editColumn('title', function (Widget $widget) {
+                return html()->linkRoute('administrator.widgets.edit', $widget->title, $widget);
+            })
             ->editColumn('template', function (Widget $widget) {
                 return '<code>' . implode('/', explode('.', $widget->present()->template)) . '.blade.php' . '</code>';
             })
