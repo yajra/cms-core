@@ -7,11 +7,11 @@
                 <li class="list-group-item">
                     <span class="label label-success"><i class="fa fa-eye"></i> {{$article->hits}}</span>
                     <a href="{{$article->getUrl()}}">
-                        {{str_limit($article->title, 25)}}
+                        {{$article->present()->introTitle(25)}}
                     </a>
                 </li>
             @empty
-                <p>WHOOPS, THERE ARE NO ARTICLES HERE YET :/</p>
+                <p>{{trans('cms::categories.empty')}}</p>
             @endforelse
         </ul>
     </div>
