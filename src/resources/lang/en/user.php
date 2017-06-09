@@ -108,6 +108,7 @@ return [
             'roles'         => 'Roles',
             'created_at'    => 'Created At',
             'updated_at'    => 'Updated At',
+            'action'        => 'Actions',
         ],
         'buttons' => [
             'create' => 'New User',

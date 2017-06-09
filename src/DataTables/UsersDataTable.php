@@ -70,7 +70,6 @@ class UsersDataTable extends DataTable
         return $this
             ->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '80px'])
             ->parameters([
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
@@ -143,6 +142,14 @@ class UsersDataTable extends DataTable
                 'name'  => 'created_at',
                 'title' => trans('cms::user.datatable.columns.created_at'),
                 'width' => '100px',
+            ],
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'title'      => trans('cms::user.datatable.columns.action'),
+                'width'      => '60px',
+                'orderable'  => false,
+                'searchable' => false,
             ],
         ];
     }
