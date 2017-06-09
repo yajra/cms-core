@@ -3,7 +3,6 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Article;
-use Yajra\CMS\Entities\Category;
 use Yajra\Datatables\Services\DataTable;
 
 class ArticlesDataTable extends DataTable
@@ -17,9 +16,15 @@ class ArticlesDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->editColumn('status', 'administrator.articles.datatables.status')
-            ->editColumn('authenticated', 'administrator.articles.datatables.authenticated')
-            ->editColumn('is_page', 'administrator.articles.datatables.page')
+            ->editColumn('status', function (Article $article) {
+                return view('administrator.articles.datatables.status', $article->toArray());
+            })
+            ->editColumn('authenticated', function (Article $article) {
+                return view('administrator.articles.datatables.authenticated', $article->toArray());
+            })
+            ->editColumn('is_page', function (Article $article) {
+                return view('administrator.articles.datatables.page', $article->toArray());
+            })
             ->editColumn('hits', function (Article $article) {
                 return '<span class="badge bg-blue">' . $article->hits . '</span>';
             })
@@ -31,12 +36,6 @@ class ArticlesDataTable extends DataTable
             })
             ->editColumn('title', function (Article $article) {
                 return view('administrator.articles.datatables.title', compact('article'));
-            })
-            ->addColumn('plain_title', function (Article $article) {
-                return $article->title;
-            })
-            ->addColumn('slug', function (Article $article) {
-                return $article->present()->slug;
             })
             ->editColumn('created_at', function (Article $article) {
                 return $article->created_at->format('Y-m-d');
@@ -120,10 +119,10 @@ class ArticlesDataTable extends DataTable
                 'visible' => false,
             ],
             [
-                'data'   => 'category',
-                'name'   => 'category.id',
-                'title'  => trans('cms::article.datatable.columns.category'),
-                'width'  => '100px',
+                'data'  => 'category',
+                'name'  => 'category.id',
+                'title' => trans('cms::article.datatable.columns.category'),
+                'width' => '100px',
             ],
             [
                 'data'       => 'author',
@@ -144,10 +143,10 @@ class ArticlesDataTable extends DataTable
                 'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::article.datatable.columns.authenticated') . '"></i>',
             ],
             [
-                'data'   => 'is_page',
-                'name'   => 'articles.is_page',
-                'title'  => trans('cms::article.datatable.columns.is_page'),
-                'width'  => '20px',
+                'data'  => 'is_page',
+                'name'  => 'articles.is_page',
+                'title' => trans('cms::article.datatable.columns.is_page'),
+                'width' => '20px',
             ],
             [
                 'data'  => 'hits',
