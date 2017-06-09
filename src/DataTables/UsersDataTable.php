@@ -34,7 +34,9 @@ class UsersDataTable extends DataTable
             ->editColumn('roles', function (User $user) {
                 return dt_render('administrator.users.datatables.roles', compact('user'));
             })
-            ->addColumn('action', 'administrator.users.datatables.action')
+            ->addColumn('action', function (User $user) {
+                return dt_render('administrator.users.datatables.action', $user->toArray());
+            })
             ->rawColumns(['email', 'blocked', 'confirmed', 'administrator', 'roles', 'action']);
     }
 

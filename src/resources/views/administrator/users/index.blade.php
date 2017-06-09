@@ -9,7 +9,7 @@
 @endpush
 
 @section('title')
-{{trans('cms::user.index.title')}} | @parent
+    {{trans('cms::user.index.title')}} | @parent
 @stop
 
 @section('page-title')
@@ -20,37 +20,21 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">
-                <i class="fa fa-search"></i>&nbsp;
-                {{trans('cms::user.index.search')}}
-                <small>search and filter records.</small>
+                <i class="fa fa-table"></i>&nbsp;{{trans('cms::user.index.title')}}
             </h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
+            <div class="pull-right">
+                <span><i class="fa fa-search"></i> Search Tools: </span>
+                <select name="activated" id="activated" multiple class="input-sm select2 form-control"
+                        data-placeholder="{{trans('cms::user.index.activation')}}">
+                    <option value=""></option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+                {{ form()->select('roles', $roles , null , ['class' => 'form-control select2 input-sm', 'multiple', 'data-placeholder' => trans('cms::user.index.role')]) }}
             </div>
         </div>
         <div class="box-body">
-            <div class="row">
-                <div class="col-md-6 col-xs-6">
-                    <select name="activated" id="activated" multiple class="select2 input-sm form-control"
-                            data-placeholder="{{trans('cms::user.index.activation')}}">
-                        <option value=""></option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6 col-xs-6">
-                    {!! form()->select('roles', $roles , null , ['class' => 'form-control select2 input-sm', 'multiple', 'data-placeholder' => trans('cms::user.index.role')]) !!}
-                </div>
-            </div>
-            <div style="margin-top: 20px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        {!! $dataTable->table(['id' => 'users-table', 'class' => 'table table-hover']) !!}
-                    </div>
-                </div>
-            </div>
+            {!! $dataTable->table(['id' => 'users-table', 'class' => 'table table-hover']) !!}
         </div>
     </div>
 @stop
