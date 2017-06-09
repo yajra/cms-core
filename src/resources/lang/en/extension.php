@@ -47,6 +47,14 @@ return [
         'disable'   => 'Disable',
     ],
 
-    'datatable' => [],
+    'datatable' => [
+        'columns' => [
+            'id'      => 'ID',
+            'name'    => 'Name',
+            'type'    => 'Type',
+            'enabled' => 'Enabled',
+            'action'  => 'Actions',
+        ],
+    ],
 
 ];

@@ -52,7 +52,6 @@ class ExtensionsDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->ajax('')
-                    ->addAction(['width' => '80px'])
                     ->parameters([
                         'order'   => [[0, 'desc']],
                         'buttons' => [
@@ -72,10 +71,37 @@ class ExtensionsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id'      => ['width' => '20px', 'title' => trans('cms::extension.table.id')],
-            'name'    => ['title' => trans('cms::extension.table.name')],
-            'type'    => ['width' => '60px', 'title' => trans('cms::extension.table.type')],
-            'enabled' => ['width' => '20px', 'title' => trans('cms::extension.table.enabled')],
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'width' => '20px',
+                'title' => trans('cms::extension.table.id'),
+            ],
+            [
+                'data'  => 'name',
+                'name'  => 'name',
+                'title' => trans('cms::extension.table.name'),
+            ],
+            [
+                'data'  => 'type',
+                'name'  => 'type',
+                'width' => '60px',
+                'title' => trans('cms::extension.table.type'),
+            ],
+            [
+                'data'  => 'enabled',
+                'name'  => 'enabled',
+                'width' => '20px',
+                'title' => trans('cms::extension.table.enabled'),
+            ],
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'title'      => trans('cms::extension.datatable.columns.action'),
+                'width'      => '60px',
+                'orderable'  => false,
+                'searchable' => false,
+            ],
         ];
     }
 
