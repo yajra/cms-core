@@ -100,7 +100,7 @@ return [
     'tab' => [
         'widget'     => 'Widget',
         'assignment' => 'Menu Assignment',
-        'permission' => 'Widget Permissions',
+        'permission' => 'Permissions',
         'advanced'   => 'Advanced',
     ],
 

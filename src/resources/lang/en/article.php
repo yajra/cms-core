@@ -153,7 +153,7 @@ return [
         'content'      => 'Content',
         'publishing'   => 'Publishing',
         'images_links' => 'Images and links',
-        'permission'   => 'Article Permissions',
+        'permission'   => 'Permissions',
         'options'      => 'Options',
     ],
 

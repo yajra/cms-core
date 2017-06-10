@@ -83,7 +83,7 @@ return [
         'details'    => 'Menu Details',
         'display'    => 'Page Display',
         'metadata'   => 'Metadata',
-        'permission' => 'Menu Permissions',
+        'permission' => 'Permissions',
         'widget'     => 'Widget Assignment',
     ],
 
