@@ -178,7 +178,7 @@ class MediaController extends Controller
 
             $item['filename'] = $filename;
             $item['size']     = $size;
-            $item['url']      = preg_replace("/^public/", '', $path);
+            $item['url']      = Storage::url($path);
             $item['path']     = $path;
             $item['delete']   = current_user()->can('media.delete');
             $item['select']   = current_user()->can('media.view');
@@ -264,6 +264,7 @@ class MediaController extends Controller
             $subParent = $parent . '/' . $dir;
             $url       = request()->url() . '?folder=' . $dir;
 
+            $dir = str_replace('public/', 'storage/', $dir);
             $html .= "<li>";
             $html .= "<a href='{$url}'>{$dir}</a>";
             if ($child = $this->scanDirectory($subParent)) {
