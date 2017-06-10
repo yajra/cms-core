@@ -94,7 +94,6 @@ class RolesController extends Controller
         $this->validate($this->request, [
             'name'        => 'required',
             'slug'        => 'required|unique:roles,slug,' . $role->id,
-            'permissions' => 'required',
         ]);
 
         $role->update($this->request->all());
