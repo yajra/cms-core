@@ -122,4 +122,20 @@ class ArticlePresenter extends Presenter
     {
         return str_limit($this->entity->title, $limit, $end);
     }
+
+    /**
+     * Get intro text.
+     *
+     * @return mixed
+     */
+    public function introText()
+    {
+        $body = explode('<hr id="system-readmore" />', $this->entity->body);
+
+        if ($body[0] === $this->entity->body) {
+            return false;
+        }
+
+        return $body[0];
+    }
 }
