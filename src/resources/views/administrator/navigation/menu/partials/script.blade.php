@@ -31,14 +31,14 @@
                 serverSide: true,
                 ajax: YajraCMS.adminPath + '/navigation/menu/articles',
                 columns: [
-                    {data: 'id', name: 'articles.id', width: '20px'},
-                    {data: 'title', name: 'articles.title'},
-                    {data: 'category', name: 'category.id'},
+                    {data: 'id', name: 'id', width: '20px'},
+                    {data: 'title', name: 'title'},
+                    {data: 'category', name: 'category_id'},
                     {data: 'author', name: 'author'},
-                    {data: 'created_at', name: 'articles.created_at', width: '100px'},
-                    {data: 'published', name: 'articles.published', width: '20px'},
-                    {data: 'authenticated', name: 'articles.authenticated', width: '20px'},
-                    {data: 'is_page', name: 'articles.is_page', width: '20px'}
+                    {data: 'created_at', name: 'created_at', width: '100px'},
+                    {data: 'published', name: 'published', width: '20px'},
+                    {data: 'authenticated', name: 'authenticated', width: '20px'},
+                    {data: 'is_page', name: 'is_page', width: '20px'}
                 ],
                 buttons: [
                     'export',

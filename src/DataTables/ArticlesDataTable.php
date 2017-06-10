@@ -49,6 +49,9 @@ class ArticlesDataTable extends DataTable
             ->editColumn('created_at', function (Article $article) {
                 return $article->created_at->format('Y-m-d');
             })
+            ->filterColumn('category_id', function ($query, $keyword) {
+                $query->where('category_id', $keyword);
+            })
             ->rawColumns(['is_page', 'hits', 'title', 'published', 'authenticated', 'action', 'author', 'status']);
     }
 
