@@ -40,7 +40,9 @@
     "intervention/image": "^2.3",
     "rap2hpoutre/laravel-log-viewer": "^0.6.1",
     "themsaid/laravel-mail-preview": "^1.1",
-    "rtconner/laravel-tagging": "^2.2"
+    "rtconner/laravel-tagging": "^2.2",
+    "joshbrw/laravel-module-installer": "^0.1.2",
+    "nwidart/laravel-modules": "^1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7",
