@@ -50,7 +50,9 @@ class ArticlesDataTable extends DataTable
                 return $article->created_at->format('Y-m-d');
             })
             ->filterColumn('category_id', function ($query, $keyword) {
-                $query->where('category_id', $keyword);
+                if (is_numeric($keyword)) {
+                    $query->where('category_id', $keyword);
+                }
             })
             ->rawColumns(['is_page', 'hits', 'title', 'published', 'authenticated', 'action', 'author', 'status']);
     }
