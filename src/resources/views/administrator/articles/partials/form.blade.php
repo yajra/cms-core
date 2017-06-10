@@ -119,8 +119,8 @@
                 allowedContent: true,
                 filebrowserBrowseUrl: YajraCMS.adminPath + '/media/browse',
                 filebrowserImageBrowseUrl: YajraCMS.adminPath + '/media/browse/images',
-                customConfig: '/plugins/ckeditor/plugins/justify/plugin.js',
-                extraPlugins: 'colorbutton,justify,colordialog',
+                customConfig: '/plugins/ckeditor/config.js',
+                extraPlugins: 'colorbutton,justify,colordialog,readmore',
             });
         }
     });
