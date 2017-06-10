@@ -45,7 +45,7 @@ class UsersDataTable extends DataTable
      */
     public function query()
     {
-        $users = User::with('roles');
+        $users = User::with('roles')->select('users.*');
 
         if ($this->datatables->getRequest()->get('deleted') == 'true') {
             $users->onlyTrashed();
@@ -114,10 +114,10 @@ class UsersDataTable extends DataTable
                 'title' => trans('cms::user.datatable.columns.email'),
             ],
             [
-                'data'      => 'roles',
-                'name'      => 'roles',
-                'title'     => trans('cms::user.datatable.columns.roles'),
-                'orderable' => false,
+                'data'       => 'roles',
+                'name'       => 'roles.name',
+                'title'      => trans('cms::user.datatable.columns.roles'),
+                'orderable'  => false,
             ],
             [
                 'data'  => 'administrator',
