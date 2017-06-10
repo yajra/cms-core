@@ -60,6 +60,12 @@
                         $('input', this.footer())
                             .on('change', function () {
                                 that.search($(this).val()).draw();
+                            })
+                            .on('keypress', function (e) {
+                                if (e.which == 13) {
+                                    that.search($(this).val()).draw();
+                                    return false
+                                }
                             });
                         $('select', this.footer())
                             .on('change', function () {
