@@ -35,12 +35,12 @@ class ImageBrowserController extends Controller
         $files = new Collection;
         $parts = explode('/', $currentPath);
         array_pop($parts);
-        if ($parts <> '' && $currentPath <> 'media') {
+        if ($parts <> '' && $currentPath <> '') {
             $files->push([
                 'name'    => '.. Up',
                 'relPath' => implode('/', $parts),
                 'type'    => 'dir',
-                'url'     => url($currentPath),
+                'url'     => \Storage::url($currentPath),
             ]);
         }
 
@@ -50,7 +50,7 @@ class ImageBrowserController extends Controller
                 'name'    => $file->getFilename(),
                 'relPath' => $path,
                 'type'    => $file->getType(),
-                'url'     => url($path),
+                'url'     => \Storage::url($path),
             ]);
         }
 
