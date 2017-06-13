@@ -68,6 +68,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapTagsRoutes($router);
         $this->mapAdministratorAuthenticationRoutes($router);
         $this->mapAdministratorRoutes($router);
+        $this->mapFrontendRoutes($router);
     }
 
     /**
@@ -204,7 +205,21 @@ class RouteServiceProvider extends ServiceProvider
             'prefix'     => admin_prefix(),
             'as'         => 'administrator.',
         ], function ($router) {
-            require __DIR__ . '/../Http/routes.php';
+            require __DIR__ . '/../Http/routes-backend.php';
+        });
+    }
+
+    /**
+     * Frontend specific routes.
+     *
+     * @param \Illuminate\Routing\Router $router
+     */
+    protected function mapFrontendRoutes($router) {
+        $router->group([
+            'middleware' => 'web',
+            'as'         => 'site.',
+        ], function ($router) {
+            require __DIR__ . '/../Http/routes-frontend.php';
         });
     }
 }

@@ -31,5 +31,7 @@ return [
     'no'        => 'No',
     'visit'     => 'Visit',
     'preview'   => 'Preview',
+    'submit'    => 'Submit',
+    'search'    => 'Search',
 
 ];

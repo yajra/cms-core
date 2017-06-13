@@ -18,6 +18,8 @@ use Spatie\Backup\BackupServiceProvider;
 use Spatie\EloquentSortable\SortableServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
 use Yajra\Acl\AclServiceProvider;
+use Yajra\CMS\Contracts\SearchEngine;
+use Yajra\CMS\Search\Engines\LocalSearch;
 use Yajra\CMS\Themes\ThemesServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
@@ -135,6 +137,7 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->app->singleton(PageHeaderDirective::class, PageHeaderDirective::class);
         $this->app->singleton(TooltipDirective::class, TooltipDirective::class);
+        $this->app->singleton(SearchEngine::class, LocalSearch::class);
     }
 
     /**
