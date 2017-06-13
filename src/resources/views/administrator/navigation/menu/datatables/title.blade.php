@@ -12,6 +12,6 @@
        title="{{trans('cms::button.preview')}}"
        class="text-orange"
     >
-        {{ $menu->present()->url }})
-    </a>
+        {{ $menu->present()->url }}
+    </a>)
 </small>
