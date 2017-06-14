@@ -19,7 +19,7 @@
         <h3 class="lead">{{trans('cms::search.results')}} <span class="keyword">{{$keyword}}</span></h3>
         @forelse($articles as $article)
             <li>
-                <a href="{{ $article->getUrl() }}">{{ $article->present()->title }}</a>
+                <a href="{{ $article->getUrl() }}">{{ $article->present()->introTitle(80) }}</a>
                 <small class="muted">({{$article->category->title}})</small>
                 <small class="pull-right"><i class="fa fa-calendar-o"></i> {{$article->created_at->format('F d, Y')}}
                 </small>
