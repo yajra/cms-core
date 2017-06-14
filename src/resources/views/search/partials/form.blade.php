@@ -1,6 +1,4 @@
 <form action="" method="get" role="form" class="form-inline">
-    <legend>{{trans('cms::search.title')}}</legend>
-
     <div class="form-group">
         <label for="q"></label>
         <input type="text" class="form-control" name="q" id="q" value="{{request('q')}}"

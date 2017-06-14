@@ -11,12 +11,14 @@
 @stop
 
 @section('content')
+    <h1>{{trans('cms::search.title')}}</h1>
+
     @include('search.partials.form')
 
     <hr>
 
     @if ($articles)
-        <h3 class="lead">{{trans('cms::search.results')}} <span class="keyword">{{$keyword}}</span></h3>
+        <h2 class="lead">{{trans('cms::search.results')}} <span class="keyword">{{$keyword}}</span></h2>
         @forelse($articles as $article)
             <li>
                 <a href="{{ $article->getUrl() }}">{{ $article->present()->introTitle(80) }}</a>
