@@ -35,6 +35,7 @@ class SearchController extends Controller
 
         if ($keyword) {
             $articles = $this->engine->search($keyword, 10);
+            $articles->appends('q', $keyword);
         }
 
         return view('search.show', compact('articles', 'keyword'));
