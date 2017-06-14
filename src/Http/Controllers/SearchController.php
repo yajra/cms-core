@@ -32,10 +32,17 @@ class SearchController extends Controller
     {
         $keyword  = request('q');
         $articles = [];
+        $limit    = (int) request('limit', config('site.limit', 10));
+
+        $max_limit = config('site.max_limit', 100);
+        if ($limit > $max_limit) {
+            $limit = $max_limit;
+        }
 
         if ($keyword) {
-            $articles = $this->engine->search($keyword, 10);
+            $articles = $this->engine->search($keyword, $limit);
             $articles->appends('q', $keyword);
+            $articles->appends('limit', $limit);
         }
 
         return view('search.show', compact('articles', 'keyword'));
