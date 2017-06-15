@@ -55,9 +55,6 @@ class Category extends Node implements UrlGenerator, Cacheable
         'updated_at',
     ];
 
-    /** @var bool */
-    public $generateSlugsOnUpdate = false;
-
     /**
      * Get lists of categories.
      *
@@ -176,7 +173,8 @@ class Category extends Node implements UrlGenerator, Cacheable
     {
         return SlugOptions::create()
                           ->generateSlugsFrom('title')
-                          ->saveSlugsTo('alias');
+                          ->saveSlugsTo('alias')
+                          ->doNotGenerateSlugsOnUpdate();
     }
 
     /**
