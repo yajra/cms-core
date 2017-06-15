@@ -55,6 +55,9 @@ class Category extends Node implements UrlGenerator, Cacheable
         'updated_at',
     ];
 
+    /** @var bool */
+    public $generateSlugsOnUpdate = false;
+
     /**
      * Get lists of categories.
      *
