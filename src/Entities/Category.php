@@ -82,12 +82,30 @@ class Category extends Node implements UrlGenerator, Cacheable
      */
     protected function recomputeSlug()
     {
-        $slug = $this->getAncestorsAndSelfWithoutRoot()->implode('alias', '/');
+        $slug = $this->computeSlug();
         $this->getConnection()->table($this->getTable())
              ->where($this->getKeyName(), $this->id)
              ->update(['slug' => $slug]);
 
         $this->articles()->get()->each->touch();
+    }
+
+    /**
+     * Compute category slug.
+     *
+     * @return string
+     */
+    public function computeSlug()
+    {
+        return $this->getAncestorsAndSelfWithoutRoot()->implode('alias', '/');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 
     /**
@@ -136,14 +154,6 @@ class Category extends Node implements UrlGenerator, Cacheable
     public function countPublished()
     {
         return $this->articles()->published()->count();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function articles()
-    {
-        return $this->hasMany(Article::class);
     }
 
     /**

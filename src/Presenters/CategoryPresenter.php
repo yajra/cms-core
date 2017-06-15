@@ -40,7 +40,7 @@ class CategoryPresenter extends Presenter
      */
     public function slug()
     {
-        return $this->entity->slug;
+        return $this->entity->slug ?: $this->entity->computeSlug();
     }
 
     /**
@@ -50,7 +50,7 @@ class CategoryPresenter extends Presenter
      */
     public function alias()
     {
-        return $this->entity->slug;
+        return $this->slug();
     }
 
     /**
