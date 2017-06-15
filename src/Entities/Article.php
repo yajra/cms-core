@@ -244,4 +244,20 @@ class Article extends Model implements UrlGenerator, Cacheable
 
         return $this;
     }
+
+    /**
+     * Update article hits without updating the timestamp.
+     *
+     * @return $this
+     */
+    public function visited()
+    {
+        $this->hits++;
+
+        $this->getConnection()->table($this->getTable())
+             ->where($this->getKeyName(), $this->id)
+             ->update(['hits' => $this->hits]);
+
+        return $this;
+    }
 }

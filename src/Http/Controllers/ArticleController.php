@@ -18,8 +18,9 @@ class ArticleController extends Controller
      */
     public function show($id, Request $request)
     {
+        /** @var Article $article */
         $article = Article::query()->findOrFail($id);
-        $article->increment('hits');
+        $article->visited();
 
         $template = $request->get('tmpl', 'master');
 
