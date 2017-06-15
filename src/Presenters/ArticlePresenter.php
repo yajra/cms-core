@@ -108,7 +108,7 @@ class ArticlePresenter extends Presenter
      */
     public function slug()
     {
-        return implode('/', explode('.', $this->entity->getRouteName()));
+        return $this->entity->slug;
     }
 
     /**

@@ -80,6 +80,41 @@ class Article extends Model implements UrlGenerator, Cacheable
         'author_alias',
     ];
 
+    /** @var bool */
+    public $generateSlugsOnUpdate = false;
+
+    /**
+     * Boot model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function (Article $article) {
+            $article->slug = $article->computeSlug();
+        });
+    }
+
+    /**
+     * Compute article slug.
+     *
+     * @return string
+     */
+    public function computeSlug()
+    {
+        if ($this->is_page) {
+            return $this->alias;
+        }
+
+        if (! $this->exists) {
+            $category = Category::query()->findOrFail($this->category_id);
+        } else {
+            $category = $this->category;
+        }
+
+        return $category->slug . '/' . $this->alias;
+    }
+
     /**
      * Find a published article by slug.
      *
@@ -159,11 +194,7 @@ class Article extends Model implements UrlGenerator, Cacheable
      */
     public function getUrl($args = null)
     {
-        if ($this->is_page) {
-            return url($this->alias);
-        }
-
-        return url($this->category->getUrl($args) . '/' . $this->alias);
+        return url($this->slug);
     }
 
     /**

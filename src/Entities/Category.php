@@ -66,6 +66,31 @@ class Category extends Node implements UrlGenerator, Cacheable
     }
 
     /**
+     * Boot model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::saved(function (Category $category) {
+            $category->recomputeSlug();
+        });
+    }
+
+    /**
+     * Recompute category slug and all articles.
+     */
+    protected function recomputeSlug()
+    {
+        $slug = $this->getAncestorsAndSelfWithoutRoot()->implode('alias', '/');
+        $this->getConnection()->table($this->getTable())
+             ->where($this->getKeyName(), $this->id)
+             ->update(['slug' => $slug]);
+
+        $this->articles()->get()->each->touch();
+    }
+
+    /**
      * Get list of possible parent node.
      *
      * @return array
@@ -151,7 +176,7 @@ class Category extends Node implements UrlGenerator, Cacheable
     {
         $layout = $layout ? '?layout=' . $layout : '';
 
-        return url($this->present()->alias) . $layout;
+        return url($this->slug) . $layout;
     }
 
     /**

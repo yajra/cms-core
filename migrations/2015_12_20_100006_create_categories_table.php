@@ -21,7 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->unsignedInteger('depth')->nullable();
 
             $table->string('title');
-            $table->string('alias');
+            $table->string('alias')->index();
             $table->string('note')->nullable();
             $table->boolean('published')->default(false)->index();
             $table->boolean('authenticated')->default(false)->index();
