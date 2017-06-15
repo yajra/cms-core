@@ -254,7 +254,8 @@ class Article extends Model implements UrlGenerator, Cacheable
     {
         $this->hits++;
 
-        $this->getConnection()->table($this->getTable())
+        $this->newQuery()
+             ->toBase()
              ->where($this->getKeyName(), $this->getKey())
              ->increment('hits');
 
