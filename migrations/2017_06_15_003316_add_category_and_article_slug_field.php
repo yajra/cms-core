@@ -26,4 +26,21 @@ class AddCategoryAndArticleSlugField extends Migration
 
         Category::all()->each->touch();
     }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('categories', function(Blueprint $table)
+        {
+            $table->dropColumn('slug');
+        });
+        Schema::table('articles', function(Blueprint $table)
+        {
+            $table->dropColumn('slug');
+        });
+    }
 }

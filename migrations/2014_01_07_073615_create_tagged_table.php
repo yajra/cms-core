@@ -5,6 +5,11 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateTaggedTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('tagging_tagged', function (Blueprint $table) {
@@ -20,6 +25,11 @@ class CreateTaggedTable extends Migration
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::drop('tagging_tagged');
