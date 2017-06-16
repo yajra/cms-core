@@ -14,8 +14,8 @@ class PermissionsDataTable extends DataTable
     {
         return $this
             ->builder()
-            ->columns(trans('cms::role.dataTable.columns'))
-            ->parameters(trans('cms::role.dataTable.parameters'));
+            ->columns(trans('cms::permission.dataTable.columns'))
+            ->parameters(trans('cms::permission.dataTable.parameters'));
     }
 
     /**

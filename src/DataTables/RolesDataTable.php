@@ -38,10 +38,10 @@ class RolesDataTable extends DataTable
                 return dt_check($role->system);
             })
             ->addColumn('users', function (Role $role) {
-                return view('administrator.roles.datatables.users', compact('role'))->render();
+                return view('administrator.roles.datatables.users', compact('role'));
             })
             ->addColumn('permissions', function (Role $role) {
-                return view('administrator.roles.datatables.permissions', compact('role'))->render();
+                return view('administrator.roles.datatables.permissions', compact('role'));
             })
             ->addColumn('action', 'administrator.roles.datatables.action')
             ->rawColumns(['system', 'users', 'permissions', 'action']);
@@ -52,6 +52,6 @@ class RolesDataTable extends DataTable
      */
     public function query()
     {
-        return $this->applyScopes(Role::query());
+        return $this->applyScopes(Role::query()->withCount('users')->withCount('permissions'));
     }
 }

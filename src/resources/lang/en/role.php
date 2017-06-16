@@ -65,7 +65,7 @@ return [
             [
                 'data'  => 'system',
                 'name'  => 'system',
-                'title' => trans('cms::role.datatable.columns.system'),
+                'title' => 'System',
                 'class' => 'text-center',
                 'width' => '30px',
             ],
@@ -107,19 +107,17 @@ return [
             ],
         ],
         'parameters' => [
-            [
-                'stateSave' => true,
-                'order'     => [[0, 'desc']],
-                'buttons'   => [
-                    [
-                        'extend' => 'create',
-                        'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp; New Role',
-                    ],
-                    'export',
-                    'print',
-                    'reset',
-                    'reload',
+            'stateSave' => true,
+            'order'     => [[0, 'desc']],
+            'buttons'   => [
+                [
+                    'extend' => 'create',
+                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp; New Role',
                 ],
+                'export',
+                'print',
+                'reset',
+                'reload',
             ],
         ],
         'filename'   => 'roles',
