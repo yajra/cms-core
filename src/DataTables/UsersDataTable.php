@@ -71,4 +71,12 @@ class UsersDataTable extends DataTable
                     ->columns(trans('cms::user.dataTable.columns'))
                     ->parameters(trans('cms::user.dataTable.parameters'));
     }
+
+    /**
+     * @return string
+     */
+    protected function filename()
+    {
+        return trans('cms::user.dataTable.filename');
+    }
 }
