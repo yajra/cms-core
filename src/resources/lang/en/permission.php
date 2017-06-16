@@ -54,19 +54,81 @@ return [
         ],
     ],
 
-    'datatable' => [
-        'columns' => [
-            'id'         => 'ID',
-            'resource'   => 'Resource',
-            'name'       => 'Name',
-            'slug'       => 'Slug',
-            'system'     => 'System',
-            'roles'      => 'Roles',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+    'dataTable' => [
+        'columns'    => [
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => 'Id',
+            ],
+            [
+                'data'  => 'resource',
+                'name'  => 'resource',
+                'title' => 'Resource',
+            ],
+            [
+                'data'  => 'name',
+                'name'  => 'name',
+                'title' => 'Name',
+            ],
+            [
+                'data'  => 'slug',
+                'name'  => 'slug',
+                'title' => 'Slug',
+            ],
+            [
+                'data'  => 'system',
+                'name'  => 'system',
+                'title' => 'System',
+                'class' => 'text-center',
+                'width' => '30px',
+            ],
+            [
+                'data'       => 'roles',
+                'name'       => 'roles',
+                'title'      => 'Roles',
+                'class'      => 'text-center',
+                'width'      => '30px',
+                'searchable' => false,
+                'orderable'  => false,
+                'printable'  => false,
+            ],
+            [
+                'data'  => 'created_at',
+                'name'  => 'created_at',
+                'title' => 'Created At',
+                'width' => '100px',
+            ],
+            [
+                'data'  => 'updated_at',
+                'name'  => 'updated_at',
+                'title' => 'Updated At',
+                'width' => '100px',
+            ],
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'title'      => 'Actions',
+                'width'      => '60px',
+                'orderable'  => false,
+                'searchable' => false,
+            ],
         ],
-        'buttons' => [
-            'create' => 'New Permission',
+        'parameters' => [
+            'order'     => [[0, 'desc']],
+            'buttons'   => [
+                'resource',
+                [
+                    'extend' => 'create',
+                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp; New Permission',
+                ],
+                'export',
+                'print',
+                'reset',
+                'reload',
+            ],
+            'stateSave' => true,
         ],
+        'filename'   => 'permissions',
     ],
 ];
