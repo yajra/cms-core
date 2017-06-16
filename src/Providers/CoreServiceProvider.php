@@ -46,7 +46,7 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../resources/lang' => resource_path('lang/vendor/cms'),
-        ]);
+        ], 'cms-core');
 
         if (config('app.debug') && config('app.debugbar')) {
             $this->app->registerDeferredProvider(DebugbarServiceProvider::class);
