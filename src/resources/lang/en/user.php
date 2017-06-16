@@ -16,8 +16,8 @@ return [
     'attached' => 'Attached Users',
 
     'index' => [
-        'title'       => 'User Manager',
-        'description' => 'Add / Edit / Delete / Activate / Deactivate / Block / Unblock user.',
+        'title'       => 'Users',
+        'description' => 'add / edit / delete / activate / deactivate / block / unblock user.',
         'icon'        => 'fa fa-users',
         'search'      => 'Search Tools',
         'activation'  => 'Filter by Activation',
@@ -96,22 +96,81 @@ return [
 
     'view' => 'View Profile',
 
-    'datatable' => [
-        'columns' => [
-            'administrator' => 'Is Administrator',
-            'confirmed'     => 'Is Activated',
-            'blocked'       => 'Is Blocked',
-            'id'            => 'Id',
-            'first_name'    => 'First Name',
-            'last_name'     => 'Last Name',
-            'email'         => 'Email',
-            'roles'         => 'Roles',
-            'created_at'    => 'Created At',
-            'updated_at'    => 'Updated At',
-            'action'        => 'Actions',
+    'dataTable' => [
+        'columns'    => [
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => 'Id',
+                'width' => '20px',
+            ],
+            [
+                'data'  => 'first_name',
+                'name'  => 'first_name',
+                'title' => 'First Name',
+            ],
+            [
+                'data'  => 'last_name',
+                'name'  => 'last_name',
+                'title' => 'Last Name',
+            ],
+            [
+                'data'  => 'email',
+                'name'  => 'email',
+                'title' => 'Email',
+            ],
+            [
+                'data'      => 'roles',
+                'name'      => 'roles.name',
+                'title'     => 'Roles',
+                'orderable' => false,
+            ],
+            [
+                'data'  => 'administrator',
+                'name'  => 'administrator',
+                'width' => '20px',
+                'title' => '<i class="fa fa-shield" data-toggle="tooltip" data-title="Is Administrator"></i>',
+            ],
+            [
+                'data'  => 'confirmed',
+                'name'  => 'confirmed',
+                'width' => '20px',
+                'title' => '<i class="fa fa-check" data-toggle="tooltip" data-title="Is Activated"></i>',
+            ],
+            [
+                'data'  => 'blocked',
+                'name'  => 'blocked',
+                'width' => '20px',
+                'title' => '<i class="fa fa-ban" data-toggle="tooltip" data-title="Is Blocked"></i>',
+            ],
+            [
+                'data'  => 'created_at',
+                'name'  => 'created_at',
+                'title' => 'Created At',
+                'width' => '100px',
+            ],
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'title'      => 'Updated At',
+                'width'      => '60px',
+                'orderable'  => false,
+                'searchable' => false,
+            ],
         ],
-        'buttons' => [
-            'create' => 'New User',
+        'parameters' => [
+            'stateSave' => true,
+            'order'     => [[0, 'desc']],
+            'buttons'   => [
+                [
+                    'extend' => 'create',
+                    'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp; New User',
+                ],
+                'export',
+                'print',
+                'reset',
+                'reload',
+            ],
         ],
     ],
 ];
