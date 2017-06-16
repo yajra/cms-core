@@ -18,6 +18,14 @@ class RolesDataTable extends DataTable
     }
 
     /**
+     * @return string
+     */
+    protected function filename()
+    {
+        return trans('cms::role.dataTable.filename');
+    }
+
+    /**
      * Build DataTable api response.
      *
      * @return \Yajra\Datatables\Engines\BaseEngine
