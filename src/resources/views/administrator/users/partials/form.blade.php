@@ -21,11 +21,6 @@
                 <i class="fa fa-shield"></i> {{trans('cms::user.tab.role')}}
             </a>
         </li>
-        <li>
-            <a href="#user-advanced" data-toggle="tab">
-                <i class="fa fa-recycle"></i> {{trans('cms::user.tab.advanced')}}
-            </a>
-        </li>
     </ul>
     <div class="tab-content">
         <div class="active tab-pane" id="user-content">
@@ -36,11 +31,6 @@
         <div class="tab-pane" id="user-role">
             <div class="content">
                 @include('administrator.users.partials.forms.roles')
-            </div>
-        </div>
-        <div class="tab-pane" id="user-advanced">
-            <div class="content">
-                @include('administrator.users.partials.parameters')
             </div>
         </div>
     </div>
