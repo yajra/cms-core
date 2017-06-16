@@ -152,7 +152,7 @@ return [
             [
                 'data'       => 'action',
                 'name'       => 'action',
-                'title'      => 'Updated At',
+                'title'      => 'Actions',
                 'width'      => '60px',
                 'orderable'  => false,
                 'searchable' => false,
