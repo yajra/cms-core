@@ -90,12 +90,12 @@ class UsersController extends Controller
     protected function getAllowedRoles()
     {
         if ($this->request->user('administrator')->isRole('super-administrator')) {
-            $roles = $this->role->get();
+            $roles = $this->role->newQuery()->get();
         } else {
-            $roles = $this->role->where('slug', '!=', 'super-administrator')->get();
+            $roles = $this->role->newQuery()->where('slug', '!=', 'super-administrator')->get();
         }
 
-        return $roles;
+        return $roles->pluck('name', 'id');
     }
 
     /**
@@ -130,7 +130,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $roles         = $this->getAllowedRoles();
-        $selectedRoles = $user->roles()->pluck('roles.id')->toArray();
+        $selectedRoles = $user->roles()->pluck('roles.id');
 
         return view('administrator.users.edit', compact('user', 'roles', 'selectedRoles'));
     }
