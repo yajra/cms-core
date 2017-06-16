@@ -8,7 +8,6 @@ use Barryvdh\Snappy\ServiceProvider as SnappyServiceProvider;
 use Baum\Providers\BaumServiceProvider;
 use Caffeinated\Menus\MenusServiceProvider;
 use Conner\Tagging\Providers\TaggingServiceProvider;
-use Yajra\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
@@ -18,13 +17,14 @@ use Spatie\Backup\BackupServiceProvider;
 use Spatie\EloquentSortable\SortableServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
 use Yajra\Acl\AclServiceProvider;
+use Yajra\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
 use Yajra\CMS\Contracts\SearchEngine;
 use Yajra\CMS\Search\Engines\LocalSearch;
 use Yajra\CMS\Themes\ThemesServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
-use Yajra\Datatables\DatatablesServiceProvider;
 use Yajra\Datatables\ButtonsServiceProvider;
+use Yajra\Datatables\DatatablesServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -37,20 +37,9 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->bootCustomValidations();
         $this->bootCustomBladeDirectives();
-
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
-
-        /** @var \Illuminate\View\Factory $view */
-        $view = $this->app['view'];
-        $view->addLocation(__DIR__ . '/../resources/views');
-
-        $this->publishes([
-            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/cms'),
-        ], 'cms-core');
-
-        if (config('app.debug') && config('app.debugbar')) {
-            $this->app->registerDeferredProvider(DebugbarServiceProvider::class);
-        }
+        $this->registerViews();
+        $this->bootTranslations();
+        $this->bootDebugbar();
     }
 
     /**
@@ -87,6 +76,37 @@ class CoreServiceProvider extends ServiceProvider
         $blade->directive('pageHeader', function ($expression) {
             return "<?php echo app('Yajra\\CMS\\View\\Directives\\PageHeaderDirective')->handle({$expression}); ?>";
         });
+    }
+
+    /**
+     * Register cms-core view path.
+     */
+    protected function registerViews()
+    {
+        /** @var \Illuminate\View\Factory $view */
+        $view = $this->app['view'];
+        $view->addLocation(__DIR__ . '/../resources/views');
+    }
+
+    /**
+     * Boot and publish translations.
+     */
+    protected function bootTranslations()
+    {
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
+        $this->publishes([
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/cms'),
+        ], 'cms-core');
+    }
+
+    /**
+     * Boot debugbar package.
+     */
+    protected function bootDebugbar()
+    {
+        if (config('app.debug') && config('app.debugbar')) {
+            $this->app->registerDeferredProvider(DebugbarServiceProvider::class);
+        }
     }
 
     /**
