@@ -45,20 +45,82 @@ return [
         ],
     ],
 
-    'datatable' => [
-        'columns' => [
-            'id'          => 'ID',
-            'name'        => 'Name',
-            'slug'        => 'Slug',
-            'system'      => 'System',
-            'users'       => 'Users',
-            'permissions' => 'Permissions',
-            'created_at'  => 'Created At',
-            'updated_at'  => 'Updated At',
-            'action'      => 'Actions',
+    'dataTable' => [
+        'columns'    => [
+            [
+                'data'  => 'id',
+                'name'  => 'id',
+                'title' => 'Id',
+            ],
+            [
+                'data'  => 'name',
+                'name'  => 'name',
+                'title' => 'Name',
+            ],
+            [
+                'data'  => 'slug',
+                'name'  => 'slug',
+                'title' => 'Slug',
+            ],
+            [
+                'data'  => 'system',
+                'name'  => 'system',
+                'title' => trans('cms::role.datatable.columns.system'),
+                'class' => 'text-center',
+                'width' => '30px',
+            ],
+            [
+                'data'       => 'users',
+                'name'       => 'users',
+                'title'      => 'Users',
+                'orderable'  => false,
+                'searchable' => false,
+                'class'      => 'text-center',
+            ],
+            [
+                'data'       => 'permissions',
+                'name'       => 'permissions',
+                'title'      => 'Permissions',
+                'orderable'  => false,
+                'searchable' => false,
+                'class'      => 'text-center',
+            ],
+            [
+                'data'  => 'created_at',
+                'name'  => 'created_at',
+                'title' => 'Created At',
+                'width' => '100px',
+            ],
+            [
+                'data'  => 'updated_at',
+                'name'  => 'updated_at',
+                'title' => 'Updated At',
+                'width' => '100px',
+            ],
+            [
+                'data'       => 'action',
+                'name'       => 'action',
+                'title'      => 'Actions',
+                'width'      => '60px',
+                'orderable'  => false,
+                'searchable' => false,
+            ],
         ],
-        'buttons' => [
-            'create' => 'New Role',
+        'parameters' => [
+            [
+                'stateSave' => true,
+                'order'     => [[0, 'desc']],
+                'buttons'   => [
+                    [
+                        'extend' => 'create',
+                        'text'   => '<i class="fa fa-plus"></i>&nbsp;&nbsp; New Role',
+                    ],
+                    'export',
+                    'print',
+                    'reset',
+                    'reload',
+                ],
+            ],
         ],
     ],
 ];
