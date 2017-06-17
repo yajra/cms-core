@@ -7,12 +7,14 @@
     >
         <i class="fa fa-{{ $active ? 'check' : 'close' }}"></i>
     </button>
-    <button type="button"
-            data-remote="{{route('administrator.modules.destroy', $alias)}}"
-            data-toggle="tooltip"
-            data-title="{{trans('cms::button.delete')}}"
-            class="btn btn-xs btn-default text-red btn-delete"
-    >
-        <i class="fa fa-trash"></i>
-    </button>
+    @if (isset($protected) && ! $protected)
+        <button type="button"
+                data-remote="{{route('administrator.modules.destroy', $alias)}}"
+                data-toggle="tooltip"
+                data-title="{{trans('cms::button.delete')}}"
+                class="btn btn-xs btn-default text-red btn-delete"
+        >
+            <i class="fa fa-trash"></i>
+        </button>
+    @endif
 </div>
