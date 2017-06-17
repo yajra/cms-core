@@ -6,7 +6,7 @@
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary text-bold">
-                    Update
+                    {{trans('cms::button.update')}}
                 </button>
             </div>
         </div>

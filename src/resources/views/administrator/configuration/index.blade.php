@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('title')
-    Global Configuration | @parent
+    {{trans('cms::config.title')}} | @parent
 @stop
 
 @push('styles')
@@ -25,7 +25,7 @@
 @endpush
 
 @section('page-title')
-    @pageHeader('Global Configuration', 'Manage Site Configurations.', 'fa fa-globe')
+    @pageHeader('cms::config.title', 'cms::config.description', 'fa fa-globe')
 @stop
 
 @section('content')
