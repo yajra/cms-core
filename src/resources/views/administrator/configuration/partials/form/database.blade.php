@@ -2,8 +2,8 @@
     <div class="col-md-12">
         <div class="form-group">
             <label class="form-label-style block" for="title">
-                Default Database
-                @tooltip('Here you may specify which of the database connections below you wish to use as your default connection for all database work. Of course you may use many connections at once using the Database library.')
+                {{trans('cms::config.database.default')}}
+                @tooltip('cms::config.database.default-info')
             </label>
             <select v-model="database.default" class="form-control">
                 <option value="sqlite">sqlite</option>

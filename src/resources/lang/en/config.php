@@ -74,6 +74,23 @@ return [
         ]
     ],
 
+    'database' => [
+        'default' => 'Default Database',
+        'default-info' => 'Here you may specify which of the database connections below you wish to use as your default connection for all database work. Of course you may use many connections at once using the Database library.',
+        'host' => 'Host',
+        'host-info' => 'Database Hostname.',
+        'username' => 'Username',
+        'username-info' => 'Database Username.',
+        'password' => 'Password',
+        'password-info' => 'Database Password.',
+        'database' => 'Database Name',
+        'database-info' => 'Database Name',
+        'schema' => 'Schema',
+        'schema-info' => 'Database Schema',
+        'x' => '',
+        'x-info' => '',
+    ],
+
     'setup' => [
         [
             'title' => 'Site Settings',

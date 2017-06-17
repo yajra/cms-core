@@ -1,7 +1,7 @@
 <div class="form-group">
     <label class="form-label-style block">
-        Host
-        @tooltip('PGSQL host name.')
+        {{trans('cms::config.database.host')}}
+        @tooltip('cms::config.database.host-info')
     </label>
     <input type="text" v-model="database.connections.pgsql.host" class="form-control">
 </div>
@@ -9,8 +9,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block">
-                Database Username
-                @tooltip('PGSQL database username.')
+                {{trans('cms::config.database.username')}}
+                @tooltip('cms::config.database.username-info')
             </label>
             <input type="text" v-model="database.connections.pgsql.username" class="form-control">
         </div>
@@ -18,8 +18,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block">
-                Database Password
-                @tooltip('PGSQL database password.')
+                {{trans('cms::config.database.password')}}
+                @tooltip('cms::config.database.password-info')
             </label>
             <input type="password" v-model="database.connections.pgsql.password" class="form-control">
         </div>
@@ -27,15 +27,15 @@
 </div>
 <div class="form-group">
     <label class="form-label-style block">
-        Database Name
-        @tooltip('PGSQL database name.')
+        {{trans('cms::config.database.database')}}
+        @tooltip('cms::config.database.database-info')
     </label>
     <input type="text" v-model="database.connections.pgsql.database" class="form-control">
 </div>
 <div class="form-group">
     <label class="form-label-style block">
-        Schema
-        @tooltip('PGSQL database scheme.')
+        {{trans('cms::config.database.schema')}}
+        @tooltip('cms::config.database.schema-info')
     </label>
     <input type="text" v-model="database.connections.pgsql.schema" class="form-control">
 </div>
