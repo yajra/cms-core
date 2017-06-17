@@ -32,7 +32,7 @@ class SearchController extends Controller
     {
         $keyword  = request('q');
         $articles = [];
-        $limit    = (int) request('limit', config('site.limit', 10));
+        $limit    = abs(request('limit', config('site.limit', 10)));
 
         $max_limit = config('site.max_limit', 100);
         if ($limit > $max_limit) {
