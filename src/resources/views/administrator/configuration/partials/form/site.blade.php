@@ -58,10 +58,3 @@
         <option value="yellow-light">Yellow Light</option>
     </select>
 </div>
-<div class="form-group">
-    <label class="form-label-style">
-        <input type="checkbox" v-model="site.registration" :checked="site.registration">
-        Enable Registration
-        @tooltip('Frontend registration flag. If set to true, registration will be allowed.')
-    </label>
-</div>
