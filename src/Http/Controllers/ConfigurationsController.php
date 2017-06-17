@@ -31,6 +31,13 @@ class ConfigurationsController extends Controller
     protected $hidden = ['password'];
 
     /**
+     * List of array key to be casted as boolean.
+     *
+     * @var array
+     */
+    protected $boolean = ['debug', 'debugbar', 'encrypt', 'secure', 'expire_on_close', 'http_only'];
+
+    /**
      * Site configuration setup page.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -105,6 +112,10 @@ class ConfigurationsController extends Controller
         $config = collect(array_dot($array))->map(function ($value, $key) {
             if (str_contains($key, $this->hidden)) {
                 return '';
+            }
+
+            if (in_array($key, $this->boolean)) {
+                return (bool) $value;
             }
 
             return $value;
