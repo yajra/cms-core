@@ -23,7 +23,7 @@
                 <label class="form-label-style" for="slug">
                     {{trans('cms::role.form.field.slug')}}
                 </label>
-                {!! form()->input('text', 'slug', null, ['id'=>'slug','class'=>'form-control','placeholder'=>trans('cms::role.form.field.slug_placeholder')]) !!}
+                {!! form()->input('text', 'slug', null, ['id'=>'slug','class'=>'form-control','placeholder'=>trans('cms::role.form.field.slug_placeholder'), $role->system ? 'readonly' : '']) !!}
                 {!! $errors->first('slug', '<span class="help-block">:message</span>') !!}
             </div>
         </div>

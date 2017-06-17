@@ -96,7 +96,12 @@ class RolesController extends Controller
             'slug'        => 'required|unique:roles,slug,' . $role->id,
         ]);
 
-        $role->update($this->request->all());
+        $role->name = $this->request->get('name');
+        if (! $role->system) {
+            $role->slug = $this->request->get('slug');
+        }
+        $role->save();
+
         $role->syncPermissions($this->request->get('permissions', []));
         flash()->success('Role ' . $role->name . ' successfully updated!');
 

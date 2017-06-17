@@ -2,11 +2,11 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Yajra\CMS\DataTables\PermissionsDataTable;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Yajra\Acl\Models\Permission;
 use Yajra\Acl\Models\Role;
+use Yajra\CMS\DataTables\PermissionsDataTable;
 
 class PermissionsController extends Controller
 {
@@ -139,7 +139,13 @@ class PermissionsController extends Controller
             'slug'     => 'required|unique:permissions,slug,' . $permission->id,
         ]);
 
-        $permission->update($this->request->all());
+        $permission->name     = $this->request->get('name');
+        $permission->resource = $this->request->get('resource');
+        if (! $permission->system) {
+            $permission->slug = $this->request->get('slug');
+        }
+        $permission->save();
+
         $permission->syncRoles($this->request->get('roles', []));
 
         return redirect()->route('administrator.permissions.index');
