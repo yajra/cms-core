@@ -18,6 +18,7 @@
             </label>
             <select class="form-control" v-model="app.env">
                 <option value="local">Local</option>
+                <option value="staging">Staging</option>
                 <option value="production">Production</option>
             </select>
         </div>
