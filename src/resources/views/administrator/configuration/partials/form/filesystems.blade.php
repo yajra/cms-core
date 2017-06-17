@@ -1,7 +1,7 @@
 <div class="form-group">
     <label class="form-label-style block">
-        Default File System
-        @tooltip('Here you may specify the default filesystem disk that should be used by the framework. A "local" driver, as well as a variety of cloud based drivers are available for your choosing. Just store away!')
+        {{trans('cms::config.filesystems.default')}}
+        @tooltip('cms::config.filesystems.default-info')
     </label>
     <select class="form-control" id="default-filesytem" v-model="filesystems.default">
         <option value="local">Local</option>
