@@ -2,8 +2,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block">
-                Default Driver
-                @tooltip('This option controls the default session "driver" that will be used on requests. By default, we will use the lightweight native driver but you may specify any of the other wonderful drivers provided here.')
+                {{trans('cms::config.session.driver')}}
+                @tooltip('cms::config.session.driver-info')
             </label>
             {!! form()->select('default', [
                     'file'          => 'File',
@@ -23,8 +23,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block">
-                Lifetime
-                @tooltip('Here you may specify the number of minutes that you wish the session to be allowed to remain idle before it expires. If you want them to immediately expire on the browser closing, set that option.')
+                {{trans('cms::config.session.lifetime')}}
+                @tooltip('cms::config.session.lifetime-info')
             </label>
             <input type="text" v-model="session.lifetime" class="form-control">
         </div>
@@ -34,8 +34,8 @@
     <div class="col-md-12">
         <div class="form-group">
             <label class="form-label-style block">
-                Files
-                @tooltip('When using the native session driver, we need a location where session files may be stored. A default has been set for you but a different location may be specified. This is only needed for file sessions.')
+                {{trans('cms::config.session.files')}}
+                @tooltip('cms::config.session.files-info')
             </label>
             <input type="text" v-model="session.files" class="form-control">
         </div>
@@ -45,8 +45,8 @@
     <div class="col-md-12">
         <div class="form-group">
             <label class="form-label-style block">
-                Database Table
-                @tooltip('When using the "database" session driver, you may specify the table we should use to manage the sessions. Of course, a sensible default is provided for you; however, you are free to change this as needed.')
+                {{trans('cms::config.session.table')}}
+                @tooltip('cms::config.session.table-info')
             </label>
             <input type="text" v-model="session.table" class="form-control">
         </div>
@@ -57,8 +57,8 @@
         <div class="form-group">
             <label class="form-label-style">
                 <input type="checkbox" v-model="session.expire_on_close" :checked="session.expire_on_close">
-                Expire On Close
-                @tooltip('If you want them to immediately expire on the browser closing, set that TRUE.')
+                {{trans('cms::config.session.expire_on_close')}}
+                @tooltip('cms::config.session.expire_on_close-info')
             </label>
         </div>
     </div>

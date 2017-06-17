@@ -129,6 +129,19 @@ return [
         'password-info'   => 'Here you may set the password required by your SMTP server to send out messages from your application. This will be given to the server on connection so that the application will be able to send messages.',
     ],
 
+    'session' => [
+        'driver' => 'Default Driver',
+        'driver-info' => 'This option controls the default session "driver" that will be used on requests. By default, we will use the lightweight native driver but you may specify any of the other wonderful drivers provided here.',
+        'lifetime' => 'Lifetime',
+        'lifetime-info' => 'Here you may specify the number of minutes that you wish the session to be allowed to remain idle before it expires. If you want them to immediately expire on the browser closing, set that option.',
+        'files' => 'Files',
+        'files-info' => 'When using the native session driver, we need a location where session files may be stored. A default has been set for you but a different location may be specified. This is only needed for file sessions.',
+        'table' => 'Database Table',
+        'table-info' => 'When using the "database" session driver, you may specify the table we should use to manage the sessions. Of course, a sensible default is provided for you; however, you are free to change this as needed.',
+        'expire_on_close' => 'Expire On Close',
+        'expire_on_close-info' => 'If you want them to immediately expire on the browser closing, set that TRUE.',
+    ],
+
     'setup' => [
         [
             'title' => 'Site Settings',
