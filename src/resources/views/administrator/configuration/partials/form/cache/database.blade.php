@@ -1,7 +1,7 @@
 <div class="form-group">
     <label class="form-label-style block">
-        Database Table Name
-        @tooltip('Database table name you wish to store cache.')
+        {{trans('cms::config.cache.database.table')}}
+        @tooltip('cms::config.cache.database.table-info')
     </label>
     {!! form()->input('text', 'database', config("cache.stores.database.table"), [
         'class'         => 'form-control',
@@ -11,8 +11,8 @@
 </div>
 <div class="form-group">
     <label class="form-label-style block">
-        Database Connection
-        @tooltip('Specify cache database connection.')
+        {{trans('cms::config.cache.database.connection')}}
+        @tooltip('cms::config.cache.database.connection-info')
     </label>
     {!! form()->input('text', 'connection', config("cache.stores.database.connection"), [
         'class'         => 'form-control',

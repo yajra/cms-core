@@ -1,7 +1,7 @@
 <div class="form-group">
     <label class="form-label-style block">
-        Default Cache Store
-        @tooltip('This option controls the default cache connection that gets used while using this caching library. This connection is used when another is not explicitly specified when executing a given caching function.')
+        {{trans('cms::config.cache.stores')}}
+        @tooltip('cms::config.cache.stores-info')
     </label>
     {!! form()->select('default',
         array_combine(

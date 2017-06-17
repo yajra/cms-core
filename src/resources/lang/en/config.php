@@ -33,18 +33,45 @@ return [
     ],
 
     'site' => [
-        'name' => 'Site Name',
-        'name-info' => 'Site registered name.',
-        'version' => 'Version',
-        'version-info' => 'Site version number.',
-        'keywords' => 'Keywords',
-        'keywords-info' => 'Default site meta keywords.',
-        'author' => 'Author',
-        'author-info' => 'Default site meta author name.',
-        'description' => 'Site Description',
+        'name'             => 'Site Name',
+        'name-info'        => 'Site registered name.',
+        'version'          => 'Version',
+        'version-info'     => 'Site version number.',
+        'keywords'         => 'Keywords',
+        'keywords-info'    => 'Default site meta keywords.',
+        'author'           => 'Author',
+        'author-info'      => 'Default site meta author name.',
+        'description'      => 'Site Description',
         'description-info' => 'Default site meta description.',
-        'color' => 'Administrator Template (AdminLTE Color Scheme)',
-        'color-info' => 'Administrator area AdminLTE color scheme.',
+        'color'            => 'Administrator Template (AdminLTE Color Scheme)',
+        'color-info'       => 'Administrator area AdminLTE color scheme.',
+    ],
+
+    'cache' => [
+        'stores'      => 'Default Cache Store',
+        'stores-info' => 'This option controls the default cache connection that gets used while using this caching library. This connection is used when another is not explicitly specified when executing a given caching function.',
+        'database'    => [
+            'table'           => 'Database Table Name',
+            'table-info'      => 'Database table name you wish to store cache.',
+            'connection'      => 'Database Connection',
+            'connection-info' => 'Specify cache database connection.',
+        ],
+        'file'        => [
+            'path'      => 'Path',
+            'path-info' => 'Local path you wish to store cache.',
+        ],
+        'memcached'   => [
+            'host'      => 'Host',
+            'host-info' => 'Memcache host name.',
+            'port'      => 'Port',
+            'port-info' => 'Memcached port.',
+            'weight'      => 'Weight',
+            'weight-info' => 'Memcached weight.',
+        ],
+        'redis' => [
+            'connection'      => 'Connection',
+            'connection-info' => 'Specify redis connection.',
+        ]
     ],
 
     'setup' => [
