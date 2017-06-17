@@ -24,6 +24,13 @@ class ConfigurationsController extends Controller
     ];
 
     /**
+     * List of array key where value should be hidden.
+     *
+     * @var array
+     */
+    protected $hidden = ['password'];
+
+    /**
      * Site configuration setup page.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -124,9 +131,35 @@ class ConfigurationsController extends Controller
         $config = config($key) ?? [];
 
         if (! isset($this->limits[$key])) {
-            return $config;
+            return $this->filter($config);
         }
 
-        return response()->json(array_only($config, $this->limits[$key]));
+        return response()->json(
+            $this->filter(array_only($config, $this->limits[$key]))
+        );
+    }
+
+    /**
+     * Filter array response.
+     *
+     * @param array $array
+     * @return array
+     */
+    protected function filter(array $array)
+    {
+        $config = collect(array_dot($array))->map(function ($value, $key) {
+            if (str_contains($key, $this->hidden)) {
+                return '';
+            }
+
+            return $value;
+        });
+
+        $array = [];
+        foreach ($config as $key => $value) {
+            array_set($array, $key, $value);
+        }
+
+        return $array;
     }
 }
