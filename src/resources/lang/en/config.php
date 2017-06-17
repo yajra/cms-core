@@ -93,7 +93,7 @@ return [
         'default'      => 'Default File System',
         'default-info' => 'Here you may specify the default filesystem disk that should be used by the framework. A "local" driver, as well as a variety of cloud based drivers are available for your choosing. Just store away!',
         'local'        => [
-            'root'       => 'Filesystem Disks',
+            'root'      => 'Filesystem Disks',
             'root-info' => 'Here you may configure as many filesystem "disks" as you wish, and you may even configure multiple disks of the same driver. Defaults have been setup for each driver as an example of the required options.',
         ],
         'public'       => [
@@ -112,6 +112,21 @@ return [
             'bucket'      => 'Bucket',
             'bucket-info' => 'S3 Bucket Key.',
         ],
+    ],
+
+    'mail' => [
+        'driver'          => 'Email Driver',
+        'driver-info'     => 'Laravel supports both SMTP and PHPs "mail" function as drivers for the sending of e-mail. You may specify which one youre using throughout your application here. By default, Laravel is setup for SMTP mail.',
+        'host'            => 'Host',
+        'host-info'       => 'Here you may provide the host address of the SMTP server used by your applications. A default option is provided that is compatible with the Mailgun mail service which will provide reliable deliveries.',
+        'port'            => 'Port',
+        'port-info'       => 'This is the SMTP port used by your application to deliver e-mails to users of the application. Like the host we have set this value to stay compatible with the Mailgun e-mail application by default.',
+        'encryption'      => 'Encryption',
+        'encryption-info' => 'Here you may specify the encryption protocol that should be used when the application send e-mail messages. A sensible default using the transport layer security protocol should provide great security.',
+        'username'        => 'Username',
+        'username-info'   => 'If your SMTP server requires a username for authentication, you should set it here. This will get used to authenticate with your server on connection. You may also set the "password" value below this one.',
+        'password'        => 'Password',
+        'password-info'   => 'Here you may set the password required by your SMTP server to send out messages from your application. This will be given to the server on connection so that the application will be able to send messages.',
     ],
 
     'setup' => [
