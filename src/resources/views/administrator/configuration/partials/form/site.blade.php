@@ -1,13 +1,14 @@
 <div class="form-group">
     <label class="form-label-style block">
-        Site Name
-        @tooltip('Site registered name.')
+        {{trans('cms::config.site.name')}}
+        @tooltip('cms::config.site.name-info')
     </label>
     <input type="text" v-model="site.name" class="form-control">
 </div>
 <div class="form-group">
-    <label class="form-label-style block">Version
-        @tooltip('Site version number.')
+    <label class="form-label-style block">
+        {{trans('cms::config.site.version')}}
+        @tooltip('cms::config.site.version-info')
     </label>
     <input type="text" v-model="site.version" class="form-control">
 </div>
@@ -15,8 +16,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block">
-                Keywords
-                @tooltip('Default site meta keywords.')
+                {{trans('cms::config.site.keywords')}}
+                @tooltip('cms::config.site.keywords-info')
             </label>
             <input type="text" v-model="site.keywords" class="form-control">
         </div>
@@ -24,8 +25,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block">
-                Author
-                @tooltip('Default site meta author name.')
+                {{trans('cms::config.site.author')}}
+                @tooltip('cms::config.site.author-info')
             </label>
             <input type="text" v-model="site.author" class="form-control">
         </div>
@@ -33,15 +34,15 @@
 </div>
 <div class="form-group">
     <label class="form-label-style block">
-        Site Description
-        @tooltip('Default site meta description.')
+        {{trans('cms::config.site.description')}}
+        @tooltip('cms::config.site.description-info')
     </label>
     <textarea cols="30" rows="4" class="form-control" v-model="site.description"></textarea>
 </div>
 <div class="form-group">
     <label class="form-label-style block">
-        Administrator Template (AdminLTE Color Scheme)
-        @tooltip('Administrator area AdminLTE color scheme.')
+        {{trans('cms::config.site.color')}}
+        @tooltip('cms::config.site.color-info')
     </label>
     <select v-model="site.admin_theme" class="form-control">
         <option value="blue">Blue</option>

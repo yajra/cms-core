@@ -2,8 +2,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block" for="title">
-                Application Name
-                @tooltip('This is your registered application name.')
+                {{trans('cms::config.app.name')}}
+                @tooltip('cms::config.app.name-info')
             </label>
             <input type="text" v-model="app.name" class="form-control">
         </div>
@@ -13,8 +13,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block" for="title">
-                Environment
-                @tooltip('This value determines the "environment" your application is currently running in. This may determine how you prefer to configure various services your application utilizes. Set this in your ".env" file.')
+                {{trans('cms::config.app.env')}}
+                @tooltip('cms::config.app.env-info')
             </label>
             <select class="form-control" v-model="app.env">
                 <option value="local">Local</option>
@@ -26,8 +26,8 @@
     <div class="col-md-6">
         <div class="form-group">
             <label class="form-label-style block" for="title">
-                Application URL
-                @tooltip('This URL is used by the console to properly generate URLs when using the Artisan command line tool. You should set this to the root of your application so that it is used when running Artisan tasks.')
+                {{trans('cms::config.app.url')}}
+                @tooltip('cms::config.app.url-info')
             </label>
             <input type="text" v-model="app.url" class="form-control">
         </div>
@@ -38,8 +38,8 @@
     <div class="col-md-4">
         <div class="form-group">
             <label class="form-label-style block" for="title">
-                Timezone
-                @tooltip('Here you may specify the default timezone for your application, which will be used by the PHP date and date-time functions. We have gone ahead and set this to a sensible default for you out of the box.')
+                {{trans('cms::config.app.timezone')}}
+                @tooltip('cms::config.app.timezone-info')
             </label>
             {!! form()->select('timezone',
                 array_combine(DateTimeZone::listIdentifiers(DateTimeZone::ALL),DateTimeZone::listIdentifiers(DateTimeZone::ALL)),
@@ -52,8 +52,8 @@
     <div class="col-md-4">
         <div class="form-group">
             <label class="form-label-style block" for="title">
-                Language
-                @tooltip('The application locale determines the default locale that will be used by the translation service provider. You are free to set this value to any of the locales which will be supported by the application.')
+                {{trans('cms::config.app.language')}}
+                @tooltip('cms::config.app.language-info')
             </label>
             <select class="form-control" v-model="app.locale">
                 <option value="en">English</option>
@@ -63,8 +63,8 @@
     <div class="col-md-4">
         <div class="form-group">
             <label class="form-label-style block" for="title">
-                Logging Configuration
-                @tooltip('Here you may configure the log settings for your application. Out of the box, Laravel uses the Monolog PHP logging library. This gives you a variety of powerful log handlers / formatters to utilize.')
+                {{trans('cms::config.app.log')}}
+                @tooltip('cms::config.app.log-info')
             </label>
             <select v-model="app.log" class="form-control">
                 <option value="single">Single</option>
@@ -81,15 +81,15 @@
         <div class="form-group">
             <label class="form-label-style">
                 <input type="checkbox" v-model="app.debug" :checked="app.debug">
-                Application Debug Mode
-                @tooltip('When your application is in debug mode, detailed error messages with stack traces will be shown on every error that occurs within your application. If disabled, a simple generic error page is shown.')
+                {{trans('cms::config.app.debug')}}
+                @tooltip('cms::config.app.debug-info')
             </label>
         </div>
         <div class="form-group">
             <label class="form-label-style">
                 <input type="checkbox" v-model="app.debugbar" :checked="app.debugbar">
-                Display Debug Bar
-                @tooltip('When your application is in debug mode and debugbar is set to true, DEBUGBAR component will be shown on every pages of the site.')
+                {{trans('cms::config.app.debugbar')}}
+                @tooltip('cms::config.app.debugbar-info')
             </label>
         </div>
     </div>
