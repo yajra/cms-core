@@ -37,61 +37,16 @@ class ConfigurationsController extends Controller
      */
     public function index()
     {
-        $config = $this->setupConfig();
+        $config = collect(trans('cms::config.setup'));
 
         return view('administrator.configuration.index', compact('config'));
-    }
-
-    /**
-     * Get configuration setup.
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    protected function setupConfig()
-    {
-        return collect([
-            [
-                'title' => 'Site Management',
-                'key'   => 'site',
-                'icon'  => 'fa-cog',
-            ],
-            [
-                'title' => 'Application Environment',
-                'key'   => 'app',
-                'icon'  => 'fa-laptop',
-            ],
-            [
-                'title' => 'Database Connection',
-                'key'   => 'database',
-                'icon'  => 'fa-database',
-            ],
-            [
-                'title' => 'Mail Driver',
-                'key'   => 'mail',
-                'icon'  => 'fa-envelope',
-            ],
-            [
-                'title' => 'Cache Store',
-                'key'   => 'cache',
-                'icon'  => 'fa-cloud-download',
-            ],
-            [
-                'title' => 'Session Driver',
-                'key'   => 'session',
-                'icon'  => 'fa-comment-o',
-            ],
-            [
-                'title' => 'File System',
-                'key'   => 'filesystems',
-                'icon'  => 'fa-briefcase',
-            ],
-        ]);
     }
 
     /**
      * Store submitted configurations.
      *
      * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -106,7 +61,7 @@ class ConfigurationsController extends Controller
             Configuration::create(['key' => $path, 'value' => $value]);
         }
 
-        return $this->notifySuccess("Configuation ($config) successfully saved! You may need to refresh the page to reflect some changes.");
+        return $this->notifySuccess(trans('cms::config.success', ['config' => $config]));
     }
 
     /**
