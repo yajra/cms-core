@@ -15,7 +15,7 @@
                 <i class="fa fa-table"></i> {{trans('cms::menu.index.title')}}
             </h3>
             <div class="box-tools pull-right">
-                <a href="{{route('administrator.navigation.index')}}">
+                <a href="{{route('administrator.navigation.index')}}" class="btn btn-sm btn-default">
                     <i class="fa fa-arrow-circle-left"></i>&nbsp;
                     {{trans('cms::menu.index.back')}}
                 </a>
