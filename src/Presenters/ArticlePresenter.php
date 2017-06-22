@@ -126,14 +126,14 @@ class ArticlePresenter extends Presenter
     /**
      * Get intro text.
      *
-     * @return mixed
+     * @return string
      */
     public function introText()
     {
         $body = explode('<hr id="system-readmore" />', $this->entity->body);
 
         if ($body[0] === $this->entity->body) {
-            return false;
+            return '';
         }
 
         return $body[0];
