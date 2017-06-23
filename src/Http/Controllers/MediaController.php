@@ -75,7 +75,7 @@ class MediaController extends Controller
      * Display a listing of the resource.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -84,7 +84,7 @@ class MediaController extends Controller
         $max_file_size    = $this->config->get('media.max_file_size', 3);
         $this->currentDir = $request->input('folder', $storage_root);
 
-        if (! Storage::exists($this->currentDir) && $request->has('folder')) {
+        if ($this->folderIsNotAccessible($request)) {
             return redirect()->route('administrator.media.index');
         }
 
@@ -113,6 +113,17 @@ class MediaController extends Controller
     protected function getRootDir()
     {
         return 'public/';
+    }
+
+    /**
+     * Check if current folder and folder being requested is accessible.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return bool
+     */
+    protected function folderIsNotAccessible(Request $request)
+    {
+        return ! Storage::exists($this->currentDir) && ! $request->get('folder') || $request->get('folder') === 'public';
     }
 
     /**
@@ -264,7 +275,7 @@ class MediaController extends Controller
             $subParent = $parent . '/' . $dir;
             $url       = request()->url() . '?folder=' . $dir;
 
-            $dir = str_replace('public/', 'storage/', $dir);
+            $dir  = str_replace('public/', 'storage/', $dir);
             $html .= "<li>";
             $html .= "<a href='{$url}'>{$dir}</a>";
             if ($child = $this->scanDirectory($subParent)) {
