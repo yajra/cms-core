@@ -1,9 +1,9 @@
 {!! form()->open(array('url' => 'administrator/media/delete-media', 'id' => 'delete-media-form')) !!}
 @can('media.delete')
-    {!! form()->button('<span class="fa fa-trash" aria-hidden="true"></span> Delete Selected Files', array('class'=>'btn pull-right btn-danger btn-delete-media', 'type'=>'button')) !!}
+    {!! form()->button('<span class="fa fa-trash" aria-hidden="true"></span> Delete Selected Files/Folders', array('class'=>'btn pull-right btn-sm btn-danger btn-delete-media', 'type'=>'button')) !!}
 @endcan
 
-<table id="media-table" class="table display" cellspacing="0" width="100%">
+<table id="media-table" class="table display">
     <thead>
     <tr>
         <th width="20px"><i class="fa fa-eye"></i></th>

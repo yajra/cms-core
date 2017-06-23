@@ -113,23 +113,17 @@
         }
 
         $('#media-table').DataTable({
-            paginate: false,
-            info: false,
             columnDefs: [
                 {orderable: false, targets: [3, 4]}
                 @cannot('media.delete')
                 , {visible: false, targets: [4]}
                 @endcannot
             ]
-        });
-
-        $('.img-preview').on('click', function (e) {
+        }).on('click', '.img-preview', function (e) {
             e.preventDefault();
             $('#imagePreviewSrc').attr('src', '');
             $('#imagePreviewSrc').attr('src', $(this).data('imagesrc'));
-        });
-
-        $('.delete-single').on('click', function () {
+        }).on('click', '.delete-single', function () {
             var fileName = $(this).data('name');
             var filePath = $(this).data('path');
             swal({
