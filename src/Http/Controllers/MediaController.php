@@ -82,7 +82,7 @@ class MediaController extends Controller
         $storage_root     = $this->getRootDir();
         $accepted_files   = $this->config->get('media.accepted_files');
         $max_file_size    = $this->config->get('media.max_file_size', 3);
-        $this->currentDir = $request->input('folder', $storage_root);
+        $this->currentDir = $request->get('folder', $storage_root);
 
         if ($this->folderIsNotAccessible($request)) {
             return redirect()->route('administrator.media.index');
@@ -123,7 +123,11 @@ class MediaController extends Controller
      */
     protected function folderIsNotAccessible(Request $request)
     {
-        return ! Storage::exists($this->currentDir) && ! $request->get('folder') || $request->get('folder') === 'public';
+        if (isset($request['folder']) && empty($request->get('folder'))) {
+            return true;
+        }
+
+        return ! Storage::exists($this->currentDir) && $request->has('folder') || $request->get('folder') === 'public';
     }
 
     /**
