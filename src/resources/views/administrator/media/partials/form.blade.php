@@ -3,7 +3,7 @@
     {!! form()->hidden('current_directory', $current_directory) !!}
     <div class="input-group">
             <span class="input-group-addon">
-                <i class="fa fa-folder-open"></i> {{ $current_directory }}
+                <i class="fa fa-folder-open"></i> {{ str_replace_first('public/','public/storage/', $current_directory) }}
             </span>
         {!! form()->text('new_directory', null, ['class'=>'form-control', 'style' => 'min-width: 220px', 'placeholder'=>'Enter folder name here']) !!}
     </div>
