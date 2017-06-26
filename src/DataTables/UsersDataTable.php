@@ -69,6 +69,7 @@ class UsersDataTable extends DataTable
     {
         return $this->builder()
                     ->columns(trans('cms::user.dataTable.columns'))
+                    ->minifiedAjax()
                     ->parameters(trans('cms::user.dataTable.parameters'));
     }
 

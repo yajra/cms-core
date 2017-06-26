@@ -90,15 +90,11 @@ class ArticlesDataTable extends DataTable
      */
     public function html()
     {
+        $script = "var formData = $(\"select.searchable\").serializeArray(); $.each(formData, function(i, o){data[o.name] = o.value;});";
+
         return $this->builder()
                     ->columns($this->getColumns())
-                    ->ajax([
-                        'url'  => '',
-                        'data' => 'function(d) {
-                            var formData = $("select.searchable").serializeArray();
-                            $.each(formData, function(i, data){d[data.name] = data.value;});
-                        }',
-                    ])
+                    ->minifiedAjax('', $script)
                     ->parameters($this->getBuilderParameters());
     }
 

@@ -62,7 +62,7 @@ class CategoriesDataTable extends DataTable
     {
         return $this->builder()
                     ->columns($this->getColumns())
-                    ->ajax('')
+                    ->minifiedAjax()
                     ->parameters($this->getBuilderParameters());
     }
 

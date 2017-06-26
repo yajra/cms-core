@@ -51,7 +51,7 @@ class ExtensionsDataTable extends DataTable
     {
         return $this->builder()
                     ->columns($this->getColumns())
-                    ->ajax('')
+                    ->minifiedAjax()
                     ->parameters([
                         'order'   => [[0, 'desc']],
                         'buttons' => [
