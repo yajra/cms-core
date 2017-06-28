@@ -20,7 +20,7 @@
             </h3>
         </div>
         <div class="box-body">
-            {!! $dataTable->table(['id' => 'permissions-table', 'class' => 'table table-hover']) !!}
+            {{ $dataTable->table(['id' => 'permissions-table', 'class' => 'table table-hover']) }}
         </div>
     </div>
 @stop
@@ -43,5 +43,5 @@
         };
     })(jQuery, jQuery.fn.dataTable);
 </script>
-{!! $dataTable->scripts() !!}
+{{ $dataTable->scripts() }}
 @endpush

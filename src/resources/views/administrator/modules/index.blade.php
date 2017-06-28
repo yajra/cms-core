@@ -17,11 +17,11 @@
             </h3>
         </div>
         <div class="box-body">
-          {!! $dataTable->table(['class' => 'table table-hover margin-top-30']) !!}
+          {{ $dataTable->table(['class' => 'table table-hover margin-top-30']) }}
         </div>
     </div>
 @stop
 
 @push('scripts')
-{!! $dataTable->scripts() !!}
+{{ $dataTable->scripts() }}
 @endpush

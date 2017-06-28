@@ -22,11 +22,11 @@
             </div>
         </div>
         <div class="box-body">
-            {!! $dataTable->table(['class' => 'table table-hover ']) !!}
+            {{ $dataTable->table(['class' => 'table table-hover ']) }}
         </div>
     </div>
 @stop
 
 @push('scripts')
-{!! $dataTable->scripts() !!}
+{{ $dataTable->scripts() }}
 @endpush

@@ -16,13 +16,13 @@
             </h3>
         </div>
         <div class="box-body">
-            {!! $dataTable->table() !!}
+            {{ $dataTable->table() }}
         </div>
     </div>
 @stop
 
 @push('scripts')
-{!! $dataTable->scripts() !!}
+{{ $dataTable->scripts() }}
 <script>
     $(function () {
         $('.btn-delete').on('click', function (e) {

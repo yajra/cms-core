@@ -24,13 +24,13 @@
             </div>
         </div>
         <div class="box-body">
-            {!! $dataTable->table(['id' => 'articles-table', 'class' => 'table table-hover margin-top-30']) !!}
+            {{ $dataTable->table(['id' => 'articles-table', 'class' => 'table table-hover margin-top-30']) }}
         </div>
     </div>
 @stop
 
 @push('scripts')
-{!! $dataTable->scripts() !!}
+{{ $dataTable->scripts() }}
 <script>
     $(function () {
         $("select.searchable").on('change', function () {

@@ -20,11 +20,11 @@
         </h3>
     </div>
     <div class="box-body">
-        {!! $dataTable->table(['id' => 'widgets-table', 'class' => 'table table-hover']) !!}
+        {{ $dataTable->table(['id' => 'widgets-table', 'class' => 'table table-hover']) }}
     </div>
 </div>
 @stop
 
 @push('scripts')
-{!! $dataTable->scripts() !!}
+{{ $dataTable->scripts() }}
 @endpush

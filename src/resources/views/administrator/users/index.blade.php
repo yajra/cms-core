@@ -34,13 +34,13 @@
             </div>
         </div>
         <div class="box-body">
-            {!! $dataTable->table(['id' => 'users-table', 'class' => 'table table-hover']) !!}
+            {{ $dataTable->table(['id' => 'users-table', 'class' => 'table table-hover']) }}
         </div>
     </div>
 @stop
 
 @push('scripts')
-{!! $dataTable->scripts() !!}
+{{ $dataTable->scripts() }}
 <script type="text/javascript">
     $(document).ready(function () {
         $('#users-table').on('preXhr.dt', function (e, settings, data) {
