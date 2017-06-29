@@ -23,7 +23,7 @@
     "yajra/laravel-acl": "^3.0.0",
     "yajra/laravel-auditable": "^1.0",
     "yajra/laravel-breadcrumbs": "^4.0",
-    "yajra/laravel-datatables-oracle": "^7.2",
+    "yajra/laravel-datatables-oracle": "^7.9",
     "yajra/laravel-datatables-buttons": "^2.0",
     "yajra/baum": "^1.1",
     "laracasts/flash": "^1.3",
