@@ -20,7 +20,7 @@ class UsersDataTable extends DataTable
                 return $user->created_at->diffForHumans();
             })
             ->editColumn('email', function (User $user) {
-                return $this->datatables->getHtmlBuilder()->html->mailto($user->email)->toHtml();
+                return html()->mailto($user->email);
             })
             ->editColumn('is_blocked', function (User $user) {
                 return dt_check($user->is_blocked);
