@@ -22,14 +22,14 @@ class UsersDataTable extends DataTable
             ->editColumn('email', function (User $user) {
                 return $this->datatables->getHtmlBuilder()->html->mailto($user->email)->toHtml();
             })
-            ->editColumn('blocked', function (User $user) {
-                return dt_check($user->blocked);
+            ->editColumn('is_blocked', function (User $user) {
+                return dt_check($user->is_blocked);
             })
-            ->editColumn('confirmed', function (User $user) {
-                return dt_check($user->confirmed);
+            ->editColumn('is_activated', function (User $user) {
+                return dt_check($user->is_activated);
             })
-            ->editColumn('administrator', function (User $user) {
-                return dt_check($user->administrator);
+            ->editColumn('is_admin', function (User $user) {
+                return dt_check($user->is_admin);
             })
             ->editColumn('roles', function (User $user) {
                 return dt_render('administrator.users.datatables.roles', compact('user'));
@@ -52,7 +52,7 @@ class UsersDataTable extends DataTable
         }
 
         if ($status = $this->datatables->getRequest()->get('status')) {
-            $users->whereIn('confirmed', $status);
+            $users->whereIn('is_activated', $status);
         }
 
         if ($roles = $this->datatables->getRequest()->get('roles')) {

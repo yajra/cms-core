@@ -106,13 +106,13 @@ class UsersController extends Controller
      */
     public function store(StoreUserValidator $request)
     {
-        $user                = new User($this->request->all());
-        $user->password      = bcrypt($this->request->get('password'));
-        $user->confirmed     = $this->request->get('confirmed', false);
-        $user->blocked       = $this->request->get('blocked', false);
-        $user->administrator = $this->request->get('administrator', false);
+        $user               = new User($request->all());
+        $user->password     = bcrypt($request->get('password'));
+        $user->is_activated = $request->get('is_activated', false);
+        $user->is_blocked   = $request->get('is_blocked', false);
+        $user->is_admin     = $request->get('is_admin', false);
         $user->save();
-        $user->syncRoles($this->request->get('roles'));
+        $user->syncRoles($request->get('roles'));
 
         event(new UserWasCreated($user));
 
@@ -184,16 +184,16 @@ class UsersController extends Controller
      */
     public function update(User $user, UpdateUserValidator $request)
     {
-        $user->fill($this->request->except('password'));
-        $password = $this->request->get('password');
+        $user->fill($request->except('password'));
+        $password = $request->get('password');
         if (! empty($password)) {
             $user->password = bcrypt($password);
         }
-        $user->confirmed     = $this->request->get('confirmed', false);
-        $user->blocked       = $this->request->get('blocked', false);
-        $user->administrator = $this->request->get('administrator', false);
+        $user->is_activated = $request->get('is_activated', false);
+        $user->is_blocked   = $request->get('is_blocked', false);
+        $user->is_admin     = $request->get('is_admin', false);
         $user->save();
-        $user->syncRoles($this->request->get('roles'));
+        $user->syncRoles($request->get('roles'));
 
         event(new UserWasUpdated($user));
 
@@ -260,10 +260,10 @@ class UsersController extends Controller
      */
     public function ban(User $user)
     {
-        $user->blocked = ! $user->blocked;
+        $user->is_blocked = ! $user->is_blocked;
         $user->save();
 
-        if ($user->blocked) {
+        if ($user->is_blocked) {
             return $this->notifySuccess('User ' . $user->name . ' blocked!');
         } else {
             return $this->notifySuccess('User ' . $user->name . ' un-blocked!');
@@ -278,10 +278,10 @@ class UsersController extends Controller
      */
     public function activate(User $user)
     {
-        $user->confirmed = ! $user->confirmed;
+        $user->is_activated = ! $user->is_activated;
         $user->save();
 
-        if ($user->confirmed) {
+        if ($user->is_activated) {
             return $this->notifySuccess('User ' . $user->name . ' activated!');
         } else {
             return $this->notifySuccess('User ' . $user->name . ' deactivated!');

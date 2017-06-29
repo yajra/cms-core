@@ -25,7 +25,7 @@
                 </button>
             </li>
             @if($id <> auth('administrator')->id())
-                @if(!$confirmed)
+                @if(!$is_activated)
                     <li>
                         <button data-ajax="{!! route('administrator.users.activate', $id) !!}"
                                 class="btn btn-link"
@@ -43,7 +43,7 @@
                     </li>
                 @endif
 
-                @if($blocked)
+                @if($is_blocked)
                     <li>
                         <button data-ajax="{!! route('administrator.users.block', $id) !!}"
                                 class="btn btn-link"

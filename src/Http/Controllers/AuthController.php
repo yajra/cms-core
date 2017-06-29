@@ -66,13 +66,13 @@ class AuthController extends Controller
      */
     public function authenticated(Request $request, User $user)
     {
-        if ($user->blocked || ! $user->confirmed) {
-            if ($user->blocked) {
+        if ($user->is_blocked || ! $user->is_activated) {
+            if ($user->is_blocked) {
                 $message = 'Your account is currently banned from accessing the site!';
             } else {
                 $message = 'Your account is not yet activated!';
             }
-            auth($this->getGuard())->logout();
+            $this->guard()->logout();
             flash()->error($message);
 
             return redirect()->route('administrator.login')->withErrors($message);
@@ -90,7 +90,7 @@ class AuthController extends Controller
     protected function credentials(Request $request)
     {
         $options = config('site.login.backend.options', [
-            'administrator' => true,
+            'is_admin' => true,
         ]);
 
         return array_merge($request->only($this->username(), 'password'), $options);

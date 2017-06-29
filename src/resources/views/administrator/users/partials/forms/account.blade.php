@@ -44,36 +44,36 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group {!! $errors->has('confirmed') || $errors->has('confirmed') ? 'has-error' : '' !!}">
+                <div class="form-group {!! $errors->has('is_activated') || $errors->has('is_activated') ? 'has-error' : '' !!}">
                     <label class="form-label-style">
-                        {{trans('cms::user.form.field.confirmed')}}
-                        @tooltip('cms::user.form.tooltip.confirmed')
+                        {{trans('cms::user.form.field.is_activated')}}
+                        @tooltip('cms::user.form.tooltip.is_activated')
                     </label>
                     <br>
-                    {!! form()->checkbox('confirmed', $value = 1, $checked = null, ['id'=>'confirmed','class'=>'bootstrap-checkbox']) !!}
-                    {!! $errors->first('confirmed', '<span class="help-block">:message</span>') !!}
+                    {!! form()->checkbox('is_activated', $value = 1, $checked = null, ['id'=>'is_activated','class'=>'bootstrap-checkbox']) !!}
+                    {!! $errors->first('is_activated', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-group {!! $errors->has('blocked') ? 'has-error' : '' !!}">
+                <div class="form-group {!! $errors->has('is_blocked') ? 'has-error' : '' !!}">
                     <label class="form-label-style">
-                        {{trans('cms::user.form.field.blocked')}}
-                        @tooltip('cms::user.form.tooltip.blocked')
+                        {{trans('cms::user.form.field.is_blocked')}}
+                        @tooltip('cms::user.form.tooltip.is_blocked')
                     </label>
                     <br>
-                    {!! form()->checkbox('blocked', $value = 1, $checked = null, ['id'=>'blocked','class'=>'bootstrap-checkbox']) !!}
-                    {!! $errors->first('blocked', '<span class="help-block">:message</span>') !!}
+                    {!! form()->checkbox('is_blocked', $value = 1, $checked = null, ['id'=>'is_blocked','class'=>'bootstrap-checkbox']) !!}
+                    {!! $errors->first('is_blocked', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-group {!! $errors->has('administrator') ? 'has-error' : '' !!}">
+                <div class="form-group {!! $errors->has('is_admin') ? 'has-error' : '' !!}">
                     <label class="form-label-style">
-                        {{trans('cms::user.form.field.administrator')}}
-                        @tooltip('cms::user.form.tooltip.administrator')
+                        {{trans('cms::user.form.field.is_admin')}}
+                        @tooltip('cms::user.form.tooltip.is_admin')
                     </label>
                     <br>
-                    {!! form()->checkbox('administrator', $value = 1, $checked = null, ['id'=>'administrator','class'=>'bootstrap-checkbox']) !!}
-                    {!! $errors->first('administrator', '<span class="help-block">:message</span>') !!}
+                    {!! form()->checkbox('is_admin', $value = 1, $checked = null, ['id'=>'is_admin','class'=>'bootstrap-checkbox']) !!}
+                    {!! $errors->first('is_admin', '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
         </div>
