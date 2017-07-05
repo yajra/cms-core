@@ -30,11 +30,14 @@ class RolesDataTable extends DataTable
     /**
      * Build DataTable api response.
      *
+     * @param \Yajra\Acl\Models\Role $role
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable()
+    public function dataTable(Role $role)
     {
-        return (new EloquentDataTable($this->query()))
+        $model = $role->newQuery()->withCount('users')->withCount('permissions');
+
+        return (new EloquentDataTable($model))
             ->editColumn('system', function (Role $role) {
                 return dt_check($role->system);
             })
@@ -46,13 +49,5 @@ class RolesDataTable extends DataTable
             })
             ->addColumn('action', 'administrator.roles.datatables.action')
             ->rawColumns(['system', 'users', 'permissions', 'action']);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function query()
-    {
-        return $this->applyScopes(Role::query()->withCount('users')->withCount('permissions'));
     }
 }
