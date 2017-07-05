@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\Acl\Models\Permission;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class PermissionsDataTable extends DataTable
@@ -26,8 +27,7 @@ class PermissionsDataTable extends DataTable
      */
     protected function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->addColumn('roles', function (Permission $permission) {
                 return view('administrator.permissions.datatables.roles', compact('permission'))->render();
             })

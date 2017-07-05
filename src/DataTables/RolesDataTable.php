@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\Acl\Models\Role;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class RolesDataTable extends DataTable
@@ -33,8 +34,7 @@ class RolesDataTable extends DataTable
      */
     protected function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->editColumn('system', function (Role $role) {
                 return dt_check($role->system);
             })

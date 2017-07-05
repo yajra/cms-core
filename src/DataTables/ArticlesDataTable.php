@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Article;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class ArticlesDataTable extends DataTable
@@ -14,8 +15,7 @@ class ArticlesDataTable extends DataTable
      */
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->editColumn('status', function (Article $article) {
                 return view('administrator.articles.datatables.status', $article->toArray());
             })

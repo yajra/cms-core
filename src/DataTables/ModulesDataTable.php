@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\DataTables;
 
+use Yajra\DataTables\CollectionDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class ModulesDataTable extends DataTable
@@ -13,8 +14,7 @@ class ModulesDataTable extends DataTable
      */
     public function dataTable()
     {
-        return $this->datatables
-            ->collection($this->query())
+        return (new CollectionDataTable($this->query()))
             ->editColumn('active', function ($module) {
                 return $module['active'] ? 'Yes' : 'No';
             })
@@ -22,16 +22,15 @@ class ModulesDataTable extends DataTable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Support\Collection
      */
     public function query()
     {
         $collections = app('modules')->toCollection()->toArray();
-        $modules     = collect($collections)->map(function ($module) {
+
+        return collect($collections)->map(function ($module) {
             return $module;
         });
-
-        return $this->applyScopes($modules);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Widget;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class WidgetsDataTable extends DataTable
@@ -14,8 +15,7 @@ class WidgetsDataTable extends DataTable
      */
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->editColumn('authenticated', function (Widget $widget) {
                 return view('administrator.widgets.datatables.authenticated', $widget->toArray());
             })

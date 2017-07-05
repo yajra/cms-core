@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Navigation;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class NavigationDataTable extends DataTable
@@ -14,8 +15,7 @@ class NavigationDataTable extends DataTable
      */
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->addColumn('menus', function (Navigation $nav) {
                 return '<span class="badge label-primary">' . $nav->menus()->count() . '</span>';
             })

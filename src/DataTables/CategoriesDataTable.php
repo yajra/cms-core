@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Category;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class CategoriesDataTable extends DataTable
@@ -14,8 +15,7 @@ class CategoriesDataTable extends DataTable
      */
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->editColumn('lft', '<i class="fa fa-dot-circle-o"></i>')
             ->addColumn('action', function (Category $category) {
                 return view('administrator.categories.datatables.action', $category->toArray());

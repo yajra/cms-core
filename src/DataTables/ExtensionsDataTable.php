@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Extension;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class ExtensionsDataTable extends DataTable
@@ -14,8 +15,7 @@ class ExtensionsDataTable extends DataTable
      */
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->addColumn('action', 'administrator.extensions.datatables.action')
             ->editColumn('name', function ($extension) {
                 return "<h3 class=\"lead no-margin text-blue\">{$extension->name} <small>{$extension->version}</small></h3>

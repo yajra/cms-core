@@ -4,6 +4,7 @@ namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class MenuItemsDataTable extends DataTable
@@ -20,8 +21,7 @@ class MenuItemsDataTable extends DataTable
      */
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->editColumn('alias', function (Menu $menu) {
                 return '<span class="label bg-primary">' . $menu->alias . '</span>';
             })

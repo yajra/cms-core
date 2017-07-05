@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use App\User;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class UsersDataTable extends DataTable
@@ -14,8 +15,7 @@ class UsersDataTable extends DataTable
      */
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return (new EloquentDataTable($this->query()))
             ->editColumn('created_at', function (User $user) {
                 return $user->created_at->diffForHumans();
             })
