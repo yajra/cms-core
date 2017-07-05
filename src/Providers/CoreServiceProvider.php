@@ -23,8 +23,8 @@ use Yajra\CMS\Search\Engines\LocalSearch;
 use Yajra\CMS\Themes\ThemesServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
-use Yajra\Datatables\ButtonsServiceProvider;
-use Yajra\Datatables\DatatablesServiceProvider;
+use Yajra\DataTables\ButtonsServiceProvider;
+use Yajra\DataTables\DataTablesServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
 {
