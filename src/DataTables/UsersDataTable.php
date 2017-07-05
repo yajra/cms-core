@@ -3,14 +3,14 @@
 namespace Yajra\CMS\DataTables;
 
 use App\User;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class UsersDataTable extends DataTable
 {
     /**
      * Build DataTable api response.
      *
-     * @return \Yajra\Datatables\Engines\BaseEngine
+     * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable()
     {
@@ -63,7 +63,7 @@ class UsersDataTable extends DataTable
     }
 
     /**
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {

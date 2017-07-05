@@ -3,14 +3,14 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Category;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class CategoriesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
      *
-     * @return \Yajra\Datatables\Engines\EloquentEngine
+     * @return \Yajra\DataTables\Engines\EloquentEngine
      */
     public function dataTable()
     {
@@ -56,7 +56,7 @@ class CategoriesDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {

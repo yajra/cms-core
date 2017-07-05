@@ -3,14 +3,14 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Widget;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class WidgetsDataTable extends DataTable
 {
     /**
      * Build DataTable api response.
      *
-     * @return \Yajra\Datatables\Engines\BaseEngine
+     * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable()
     {
@@ -59,7 +59,7 @@ class WidgetsDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {

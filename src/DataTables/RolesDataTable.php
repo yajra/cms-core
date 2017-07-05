@@ -3,12 +3,12 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\Acl\Models\Role;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class RolesDataTable extends DataTable
 {
     /**
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {
@@ -29,7 +29,7 @@ class RolesDataTable extends DataTable
     /**
      * Build DataTable api response.
      *
-     * @return \Yajra\Datatables\Engines\BaseEngine
+     * @return \Yajra\DataTables\DataTableAbstract
      */
     protected function dataTable()
     {

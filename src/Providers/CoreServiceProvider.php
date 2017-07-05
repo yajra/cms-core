@@ -144,7 +144,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(LaravelLogViewerServiceProvider::class);
         $this->app->register(ArrilotWidgetServiceProvider::class);
         $this->app->register(WidgetServiceProvider::class);
-        $this->app->register(DatatablesServiceProvider::class);
+        $this->app->register(DataTablesServiceProvider::class);
         $this->app->register(ButtonsServiceProvider::class);
         $this->app->register(SortableServiceProvider::class);
         $this->app->register(TaggingServiceProvider::class);

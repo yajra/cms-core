@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Menu;
-use Yajra\Datatables\Datatables;
+use Yajra\DataTables\Factory;
 
 class UtilitiesController extends Controller
 {
@@ -192,11 +192,11 @@ class UtilitiesController extends Controller
      * Log viewer.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Yajra\Datatables\Datatables $datatables
+     * @param \Yajra\DataTables\Factory $datatables
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View|\Symfony\Component\HttpFoundation\BinaryFileResponse
      * @throws \Exception
      */
-    public function logs(Request $request, Datatables $datatables)
+    public function logs(Request $request, Factory $datatables)
     {
         if ($request->input('l')) {
             LaravelLogViewer::setFile(base64_decode($request->input('l')));

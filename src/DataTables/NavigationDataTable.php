@@ -3,14 +3,14 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Navigation;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class NavigationDataTable extends DataTable
 {
     /**
      * Build DataTable api response.
      *
-     * @return \Yajra\Datatables\Engines\BaseEngine
+     * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable()
     {
@@ -46,7 +46,7 @@ class NavigationDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {

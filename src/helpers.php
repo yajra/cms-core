@@ -4,7 +4,7 @@ if (! function_exists('datatables')) {
     /**
      * Get datatables instance.
      *
-     * @return \Yajra\Datatables\Datatables
+     * @return \Yajra\DataTables\Factory
      */
     function datatables()
     {

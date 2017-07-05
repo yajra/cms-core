@@ -4,7 +4,7 @@ namespace Yajra\CMS\DataTables;
 
 use Yajra\CMS\Entities\Menu;
 use Yajra\CMS\Entities\Navigation;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class MenuItemsDataTable extends DataTable
 {
@@ -16,7 +16,7 @@ class MenuItemsDataTable extends DataTable
     /**
      * Build DataTable api response.
      *
-     * @return \Yajra\Datatables\Engines\BaseEngine
+     * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable()
     {
@@ -71,7 +71,7 @@ class MenuItemsDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {
