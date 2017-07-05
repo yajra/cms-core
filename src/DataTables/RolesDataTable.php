@@ -32,7 +32,7 @@ class RolesDataTable extends DataTable
      *
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    protected function dataTable()
+    public function dataTable()
     {
         return (new EloquentDataTable($this->query()))
             ->editColumn('system', function (Role $role) {
