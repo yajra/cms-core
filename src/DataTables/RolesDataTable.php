@@ -3,7 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\Acl\Models\Role;
-use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Factory;
 use Yajra\DataTables\Services\DataTable;
 
 class RolesDataTable extends DataTable
@@ -20,34 +20,44 @@ class RolesDataTable extends DataTable
     }
 
     /**
+     * Build DataTable api response.
+     *
+     * @param Factory $dataTable
+     * @param mixed   $builder
+     * @return \Yajra\DataTables\DataTableAbstract
+     */
+    public function dataTable(Factory $dataTable, $builder)
+    {
+        return $dataTable->eloquent($builder)
+                         ->editColumn('system', function (Role $role) {
+                             return dt_check($role->system);
+                         })
+                         ->addColumn('users', function (Role $role) {
+                             return view('administrator.roles.datatables.users', compact('role'));
+                         })
+                         ->addColumn('permissions', function (Role $role) {
+                             return view('administrator.roles.datatables.permissions', compact('role'));
+                         })
+                         ->addColumn('action', 'administrator.roles.datatables.action')
+                         ->rawColumns(['system', 'users', 'permissions', 'action']);
+    }
+
+    /**
+     * Get query source of dataTable.
+     *
+     * @param \Yajra\Acl\Models\Role $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(Role $model)
+    {
+        return $model->newQuery()->withCount('users')->withCount('permissions');
+    }
+
+    /**
      * @return string
      */
     protected function filename()
     {
         return trans('cms::role.dataTable.filename');
-    }
-
-    /**
-     * Build DataTable api response.
-     *
-     * @param \Yajra\Acl\Models\Role $role
-     * @return \Yajra\DataTables\DataTableAbstract
-     */
-    public function dataTable(Role $role)
-    {
-        $model = $role->newQuery()->withCount('users')->withCount('permissions');
-
-        return (new EloquentDataTable($model))
-            ->editColumn('system', function (Role $role) {
-                return dt_check($role->system);
-            })
-            ->addColumn('users', function (Role $role) {
-                return view('administrator.roles.datatables.users', compact('role'));
-            })
-            ->addColumn('permissions', function (Role $role) {
-                return view('administrator.roles.datatables.permissions', compact('role'));
-            })
-            ->addColumn('action', 'administrator.roles.datatables.action')
-            ->rawColumns(['system', 'users', 'permissions', 'action']);
     }
 }
