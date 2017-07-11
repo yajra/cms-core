@@ -16,7 +16,7 @@ $router->get('articles/create', ArticlesController::class . '@create')->name('ad
 $router->post('articles', ArticlesController::class . '@store')->name('administrator.articles.store');
 $router->get('articles/{article}/edit', ArticlesController::class . '@edit')->name('administrator.articles.edit');
 $router->put('articles/{article}', ArticlesController::class . '@update')->name('administrator.articles.update');
-$router->delete('articles/{article}', CategoriesController::class . '@destroy')->name('administrator.articles.destroy');
+$router->delete('articles/{article}', ArticlesController::class . '@destroy')->name('administrator.articles.destroy');
 
 // Categories Routes
 $router->post('categories/{category}/publish', CategoriesController::class . '@publish')
