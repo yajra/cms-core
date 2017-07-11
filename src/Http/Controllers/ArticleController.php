@@ -17,7 +17,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article, Request $request)
     {
-        $article->increment('hits');
+        $article->newQuery()->toBase()->increment('hits');
         $template = $request->get('tmpl', 'master');
 
         event(new ArticleWasViewed($article));
