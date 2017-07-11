@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category, Request $request)
     {
-        $category->increment('hits');
+        $category->newQuery()->toBase()->increment('hits');
 
         $layout   = $request->query('layout', 'blog');
         $limit    = $request->get('limit', $layout == 'list' ? 10 : 5);
