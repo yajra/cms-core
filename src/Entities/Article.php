@@ -233,6 +233,17 @@ class Article extends Model implements UrlGenerator, Cacheable
     }
 
     /**
+     * Query scope to get featured articles.
+     *
+     * @param Builder $builder
+     * @return Builder
+     */
+    public function scopeFeatured(Builder $builder)
+    {
+        return $builder->where('featured', true);
+    }
+
+    /**
      * Toggle featured state.
      *
      * @return $this
