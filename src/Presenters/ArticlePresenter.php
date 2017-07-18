@@ -2,7 +2,6 @@
 
 namespace Yajra\CMS\Presenters;
 
-use Carbon\Carbon;
 use Laracasts\Presenter\Presenter;
 
 class ArticlePresenter extends Presenter
@@ -15,6 +14,18 @@ class ArticlePresenter extends Presenter
     public function editLink()
     {
         return html()->linkRoute('administrator.articles.edit', $this->introTitle(), $this->entity->id);
+    }
+
+    /**
+     * Article's limited introduction title.
+     *
+     * @param int    $limit
+     * @param string $end
+     * @return string
+     */
+    public function introTitle($limit = 50, $end = '...')
+    {
+        return str_limit($this->entity->title, $limit, $end);
     }
 
     /**
@@ -67,7 +78,7 @@ class ArticlePresenter extends Presenter
      */
     public function author()
     {
-        return ! empty($this->entity->author_alias)
+        return !empty($this->entity->author_alias)
             ? $this->entity->author_alias
             : $this->entity->createdByName;
     }
@@ -112,18 +123,6 @@ class ArticlePresenter extends Presenter
     }
 
     /**
-     * Article's limited introduction title.
-     *
-     * @param int $limit
-     * @param string $end
-     * @return string
-     */
-    public function introTitle($limit = 50, $end = '...')
-    {
-        return str_limit($this->entity->title, $limit, $end);
-    }
-
-    /**
      * Get intro text.
      *
      * @return string
@@ -137,5 +136,25 @@ class ArticlePresenter extends Presenter
         }
 
         return $body[0];
+    }
+
+    /**
+     * Get article intro image.
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function introImage()
+    {
+        return $this->entity->param('intro_image') ? url($this->entity->param('intro_image')) : "";
+    }
+
+    /**
+     * Get article fulltext image.
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function articleImage()
+    {
+        return $this->entity->param('image_fulltext') ? url($this->entity->param('image_fulltext')) : "";
     }
 }
