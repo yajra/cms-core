@@ -24,6 +24,6 @@ class EloquentRepository extends RepositoryAbstract implements Repository
      */
     public function getAllPublished()
     {
-        return $this->getModel()->with('permissions', 'tagged')->published()->isNotPage()->get();
+        return $this->getModel()->with('permissions', 'tagged')->published()->get();
     }
 }
