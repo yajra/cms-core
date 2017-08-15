@@ -110,7 +110,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect($this->redirectAfterLogout);
+        return redirect(config('site.admin_logout_redirect', $this->redirectAfterLogout));
     }
 
     /**
