@@ -17,12 +17,6 @@
       "role": "Developer"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/yajra/menus"
-    }
-  ],
   "require": {
     "php": ">=7.0.0",
     "yajra/cms-themes": "^2.3",
