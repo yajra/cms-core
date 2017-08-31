@@ -11,7 +11,7 @@ class CategoriesDataTable extends DataTable
     /**
      * Build DataTable class.
      *
-     * @return \Yajra\DataTables\Engines\EloquentEngine
+     * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable()
     {
