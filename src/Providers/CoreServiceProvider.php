@@ -14,7 +14,6 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Laracasts\Flash\FlashServiceProvider;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
-use Spatie\EloquentSortable\SortableServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
 use Yajra\Acl\AclServiceProvider;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider;
@@ -146,7 +145,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(WidgetServiceProvider::class);
         $this->app->register(DataTablesServiceProvider::class);
         $this->app->register(ButtonsServiceProvider::class);
-        $this->app->register(SortableServiceProvider::class);
         $this->app->register(TaggingServiceProvider::class);
     }
 
