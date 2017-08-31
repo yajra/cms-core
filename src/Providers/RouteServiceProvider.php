@@ -6,7 +6,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Yajra\Acl\Models\Permission;
-use Yajra\Breadcrumbs\Generator;
+use DaveJamesMiller\Breadcrumbs\Generator;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Widget;
@@ -108,7 +108,7 @@ class RouteServiceProvider extends ServiceProvider
                         ]);
                     })->middleware($middleware)->name($article->getRouteName());
 
-                /** @var \Yajra\Breadcrumbs\Manager $breadcrumb */
+                /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($article->getRouteName(),
                     function (Generator $breadcrumbs) use ($article) {
@@ -150,7 +150,7 @@ class RouteServiceProvider extends ServiceProvider
                         ]);
                     })->middleware($middleware)->name($category->getRouteName());
 
-                /** @var \Yajra\Breadcrumbs\Manager $breadcrumb */
+                /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($category->getRouteName(),
                     function (Generator $breadcrumbs) use ($category) {
@@ -172,7 +172,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapTagsRoutes(Router $router)
     {
         $router->get('tags/{tag}', TagsController::class . '@show')->name('tags.show')->middleware('web');
-        /** @var \Yajra\Breadcrumbs\Manager $breadcrumb */
+        /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
         $breadcrumb = app('breadcrumbs');
         $breadcrumb->register('tags.show', function (Generator $breadcrumbs) {
             $breadcrumbs->parent('home');

@@ -1,7 +1,7 @@
 <?php
 
 use Yajra\CMS\Http\Controllers\SearchController;
-use Yajra\Breadcrumbs\Generator;
+use DaveJamesMiller\Breadcrumbs\Generator;
 
 /**
  * Register site specific routes.
