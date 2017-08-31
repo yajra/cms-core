@@ -172,7 +172,7 @@ class CoreServiceProvider extends ServiceProvider
         $loader->alias('Image', \Barryvdh\Snappy\Facades\SnappyImage::class);
         $loader->alias('Widget', \Arrilot\Widgets\Facade::class);
         $loader->alias('AsyncWidget', \Arrilot\Widgets\AsyncFacade::class);
-        $loader->alias('Module', \Pingpong\Modules\Facades\Module::class);
+        $loader->alias('Module', \Nwidart\Modules\Facades\Module::class);
     }
 
     /**
