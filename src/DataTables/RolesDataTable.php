@@ -3,6 +3,7 @@
 namespace Yajra\CMS\DataTables;
 
 use Yajra\Acl\Models\Role;
+use Yajra\DataTables\DataTables;
 use Yajra\DataTables\Factory;
 use Yajra\DataTables\Services\DataTable;
 
@@ -22,11 +23,11 @@ class RolesDataTable extends DataTable
     /**
      * Build DataTable api response.
      *
-     * @param Factory $dataTable
-     * @param mixed   $builder
+     * @param DataTables $dataTable
+     * @param mixed      $builder
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable(Factory $dataTable, $builder)
+    public function dataTable(DataTables $dataTable, $builder)
     {
         return $dataTable->eloquent($builder)
                          ->editColumn('system', function (Role $role) {
