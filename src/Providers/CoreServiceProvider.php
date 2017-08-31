@@ -164,7 +164,7 @@ class CoreServiceProvider extends ServiceProvider
     protected function registerAliases()
     {
         $loader = AliasLoader::getInstance();
-        $loader->alias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facade::class);
+        $loader->alias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class);
         $loader->alias('Form', \Collective\Html\FormFacade::class);
         $loader->alias('Html', \Collective\Html\HtmlFacade::class);
         $loader->alias('Excel', \Maatwebsite\Excel\Facades\Excel::class);
