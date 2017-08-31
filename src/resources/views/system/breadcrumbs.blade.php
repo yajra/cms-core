@@ -1,1 +1,1 @@
-{!! Breadcrumbs::renderIfExists() !!}
+{!! Breadcrumbs::render() !!}
