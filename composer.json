@@ -17,37 +17,40 @@
       "role": "Developer"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/yajra/menus"
+    }
+  ],
   "require": {
     "php": ">=7.0.0",
     "yajra/cms-themes": "^2.3",
-    "yajra/laravel-acl": "^3.0.0",
+    "yajra/laravel-acl": "^3.0",
     "yajra/laravel-auditable": "^1.0",
-    "yajra/laravel-breadcrumbs": "^4.0",
-    "yajra/laravel-datatables-oracle": "8.*",
-    "yajra/laravel-datatables-buttons": "3.*",
+    "yajra/laravel-datatables": "1.*",
     "yajra/baum": "^1.1",
     "laracasts/flash": "^1.3",
     "laracasts/presenter": "^0.2.1",
-    "barryvdh/laravel-snappy": "^0.3",
+    "barryvdh/laravel-snappy": "^0.4",
     "barryvdh/laravel-debugbar": "^2.2",
-    "spatie/laravel-fractal": "^3.0",
-    "spatie/laravel-backup": "^3.7",
-    "spatie/laravel-sluggable": "^1.1",
-    "spatie/eloquent-sortable": "^2.1",
+    "davejamesmiller/laravel-breadcrumbs": "^4.0",
+    "spatie/laravel-fractal": "^5.0",
+    "spatie/laravel-backup": "^5.0",
+    "spatie/laravel-sluggable": "^2.0",
+    "spatie/eloquent-sortable": "^3.0",
     "caffeinated/menus": "^3.0",
     "guzzlehttp/guzzle": "^6.1",
     "arrilot/laravel-widgets": "^3.4",
     "intervention/image": "^2.3",
     "rap2hpoutre/laravel-log-viewer": "^0.6.1",
-    "themsaid/laravel-mail-preview": "^1.1",
+    "themsaid/laravel-mail-preview": "^1.2.8",
     "rtconner/laravel-tagging": "^2.2",
     "joshbrw/laravel-module-installer": "^0.1.2",
-    "nwidart/laravel-modules": "^1.0"
+    "nwidart/laravel-modules": "^2.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.7",
-    "scrutinizer/ocular": "~1.1",
-    "squizlabs/php_codesniffer": "~2.3"
+    "phpunit/phpunit": "^6.0"
   },
   "autoload": {
     "psr-4": {
@@ -74,5 +77,6 @@
     "preferred-install": "dist",
     "sort-packages": true
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
