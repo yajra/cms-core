@@ -17,7 +17,7 @@ use Spatie\Backup\BackupServiceProvider;
 use Spatie\EloquentSortable\SortableServiceProvider;
 use Spatie\Fractal\FractalServiceProvider;
 use Yajra\Acl\AclServiceProvider;
-use DaveJamesMiller\Breadcrumbs\ServiceProvider as BreadcrumbsServiceProvider;
+use DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider;
 use Yajra\CMS\Contracts\SearchEngine;
 use Yajra\CMS\Search\Engines\LocalSearch;
 use Yajra\CMS\Themes\ThemesServiceProvider;
