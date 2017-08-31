@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Providers;
 
+use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
@@ -108,10 +109,10 @@ class RouteServiceProvider extends ServiceProvider
                         ]);
                     })->middleware($middleware)->name($article->getRouteName());
 
-                /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
+                /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($article->getRouteName(),
-                    function (Generator $breadcrumbs) use ($article) {
+                    function (BreadcrumbsGenerator $breadcrumbs) use ($article) {
                         if ($article->is_page) {
                             $breadcrumbs->parent('home');
                         } else {
@@ -150,10 +151,10 @@ class RouteServiceProvider extends ServiceProvider
                         ]);
                     })->middleware($middleware)->name($category->getRouteName());
 
-                /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
+                /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $breadcrumb */
                 $breadcrumb = app('breadcrumbs');
                 $breadcrumb->register($category->getRouteName(),
-                    function (Generator $breadcrumbs) use ($category) {
+                    function (BreadcrumbsGenerator $breadcrumbs) use ($category) {
                         if ($category->isChild() && $category->depth > 1) {
                             $parent = $category->ancestors()->where('depth', '<>', 0)->first();
                             $breadcrumbs->parent($parent->getRouteName());
@@ -172,9 +173,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapTagsRoutes(Router $router)
     {
         $router->get('tags/{tag}', TagsController::class . '@show')->name('tags.show')->middleware('web');
-        /** @var \DaveJamesMiller\Breadcrumbs\Manager $breadcrumb */
+        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $breadcrumb */
         $breadcrumb = app('breadcrumbs');
-        $breadcrumb->register('tags.show', function (Generator $breadcrumbs) {
+        $breadcrumb->register('tags.show', function (BreadcrumbsGenerator $breadcrumbs) {
             $breadcrumbs->parent('home');
         });
     }
