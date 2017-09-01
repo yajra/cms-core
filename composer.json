@@ -29,7 +29,6 @@
     "barryvdh/laravel-snappy": "^0.4",
     "barryvdh/laravel-debugbar": "^2.2",
     "davejamesmiller/laravel-breadcrumbs": "^4.0",
-    "spatie/laravel-fractal": "^5.0",
     "spatie/laravel-backup": "^5.0",
     "spatie/laravel-sluggable": "^2.0",
     "spatie/eloquent-sortable": "^3.0",
