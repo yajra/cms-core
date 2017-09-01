@@ -21,13 +21,22 @@ class PermissionsDataTable extends DataTable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query()
+    {
+        return Permission::query();
+    }
+
+    /**
      * Build DataTable api response.
      *
+     * @param  mixed $query
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    protected function dataTable()
+    public function dataTable($query)
     {
-        return (new EloquentDataTable($this->query()))
+        return (new EloquentDataTable($query))
             ->addColumn('roles', function (Permission $permission) {
                 return view('administrator.permissions.datatables.roles', compact('permission'))->render();
             })
@@ -39,14 +48,6 @@ class PermissionsDataTable extends DataTable
             })
             ->addColumn('action', 'administrator.permissions.datatables.action')
             ->rawColumns(['roles', 'system', 'slug', 'action']);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function query()
-    {
-        return $this->applyScopes(Permission::query());
     }
 
     /**
