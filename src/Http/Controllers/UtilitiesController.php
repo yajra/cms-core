@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Menu;
+use Yajra\DataTables\DataTables;
 use Yajra\DataTables\Factory;
 
 class UtilitiesController extends Controller
@@ -192,11 +193,11 @@ class UtilitiesController extends Controller
      * Log viewer.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Yajra\DataTables\Factory $datatables
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @param \Yajra\DataTables\DataTables $dataTables
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function logs(Request $request, Factory $datatables)
+    public function logs(Request $request, DataTables $dataTables)
     {
         if ($request->input('l')) {
             LaravelLogViewer::setFile(base64_decode($request->input('l')));
@@ -213,7 +214,7 @@ class UtilitiesController extends Controller
         $logs = LaravelLogViewer::all();
 
         if ($request->wantsJson()) {
-            return $datatables->collection(collect($logs))
+            return $dataTables->collection(collect($logs))
                               ->editColumn('stack', '{!! nl2br($stack) !!}')
                               ->editColumn('level', function ($log) {
                                   $content = $this->html->tag('span', '', [
@@ -239,7 +240,7 @@ class UtilitiesController extends Controller
                                   return $html;
                               })
                               ->rawColumns(['content'])
-                              ->make(true);
+                              ->toJson();
         }
 
         return view('administrator.utilities.log', [
