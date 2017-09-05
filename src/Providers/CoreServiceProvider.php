@@ -14,7 +14,6 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Laracasts\Flash\FlashServiceProvider;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider;
 use Spatie\Backup\BackupServiceProvider;
-use Spatie\Fractal\FractalServiceProvider;
 use Yajra\Acl\AclServiceProvider;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider;
 use Yajra\CMS\Contracts\SearchEngine;
@@ -134,7 +133,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(MenusServiceProvider::class);
         $this->app->register(BreadcrumbsServiceProvider::class);
         $this->app->register(FlashServiceProvider::class);
-        $this->app->register(FractalServiceProvider::class);
         $this->app->register(SnappyServiceProvider::class);
         $this->app->register(BaumServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
