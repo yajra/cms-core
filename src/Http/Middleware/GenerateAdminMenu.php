@@ -67,7 +67,7 @@ class GenerateAdminMenu
 
                 $modules = $menu->add('Modules', '#')->icon('cubes')->data('permission', 'module.view');
                 $modules->add('Manage', route('administrator.modules.index'))->icon('cogs')->data('permission', 'module.view');
-                event('admin.menu.build', $modules);
+                event('admin.menu.modules', $modules);
 
                 $menu->add('Themes', route('administrator.themes.index'))
                      ->icon('windows')
@@ -104,6 +104,9 @@ class GenerateAdminMenu
 
                 $menu->add('Utilities', route('administrator.utilities.index'))->icon('wrench')
                      ->data('permission', 'utilities.view');
+
+                $menu->divide(['class' => 'header text-uppercase', 'text' => 'Add-ons Menu']);
+                event('admin.menu.add-ons', $menu);
 
                 $menu->add('Logout', route('administrator.logout'))->icon('power-off')->attribute(['name' => 'logout']);
             })->filter(function ($item) {
