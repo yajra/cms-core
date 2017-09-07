@@ -93,7 +93,7 @@ class ArticlePresenter extends Presenter
     public function content()
     {
         return $this->entity->blade_template
-            ? view($this->entity->blade_template, compact('article', $this->entity))->render()
+            ? view($this->entity->blade_template, ['article' => $this->entity])->render()
             : $this->entity->body;
     }
 
