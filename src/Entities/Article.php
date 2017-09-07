@@ -24,22 +24,23 @@ use Yajra\CMS\Presenters\ArticlePresenter;
  * Class Article
  *
  * @package App
- * @property int id
- * @property string title
- * @property string body
- * @property string alias
- * @property boolean published
- * @property boolean featured
- * @property int category_id
- * @property bool authenticated
- * @property bool is_page
+ * @property int        id
+ * @property string     title
+ * @property string     body
+ * @property string     alias
+ * @property boolean    published
+ * @property boolean    featured
+ * @property int        category_id
+ * @property bool       authenticated
+ * @property bool       is_page
  * @property Collection permissions
- * @property int hits
- * @property int order
- * @property string parameters
- * @property string authorization
- * @property string author_alias
- * @property Category category
+ * @property int        hits
+ * @property int        order
+ * @property string     parameters
+ * @property string     authorization
+ * @property string     author_alias
+ * @property Category   category
+ * @property mixed      blade_template
  */
 class Article extends Model implements UrlGenerator, Cacheable
 {
@@ -271,5 +272,25 @@ class Article extends Model implements UrlGenerator, Cacheable
              ->increment('hits');
 
         return $this;
+    }
+
+    /**
+     * Check if article has custom blade template/layout.
+     *
+     * @return bool
+     */
+    public function hasTemplate()
+    {
+        return ! is_null($this->blade_template);
+    }
+
+    /**
+     * Get article's template.
+     *
+     * @return mixed|string
+     */
+    public function getTemplate()
+    {
+        return $this->hasTemplate() ? $this->blade_template : 'article.show';
     }
 }

@@ -26,6 +26,6 @@ class ArticleController extends Controller
 
         event(new ArticleWasViewed($article));
 
-        return view('article.show', compact('article', 'template'));
+        return view($article->getTemplate(), compact('article', 'template'));
     }
 }
