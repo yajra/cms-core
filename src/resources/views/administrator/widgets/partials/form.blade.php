@@ -95,7 +95,7 @@
             fetchTemplates: function () {
                 var url = '/administrator/widgets/' + this.widget.extension_id + '/templates';
                 this.$http.get(url, {}).then(function (response) {
-                    var json = response.data;
+                    var json = response.json();
                     this.templates = json.data;
                     this.widget.extension_id = json.selected;
                 });
