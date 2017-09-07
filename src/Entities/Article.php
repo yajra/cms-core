@@ -281,7 +281,7 @@ class Article extends Model implements UrlGenerator, Cacheable
      */
     public function hasTemplate()
     {
-        return ! is_null($this->blade_template);
+        return ! empty($this->blade_template);
     }
 
     /**
