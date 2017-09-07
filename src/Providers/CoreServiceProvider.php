@@ -2,27 +2,16 @@
 
 namespace Yajra\CMS\Providers;
 
-use Arrilot\Widgets\ServiceProvider as ArrilotWidgetServiceProvider;
 use Barryvdh\Debugbar\ServiceProvider as DebugbarServiceProvider;
-use Barryvdh\Snappy\ServiceProvider as SnappyServiceProvider;
 use Baum\Providers\BaumServiceProvider;
-use Caffeinated\Menus\MenusServiceProvider;
 use Conner\Tagging\Providers\TaggingServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
-use Laracasts\Flash\FlashServiceProvider;
-use Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider;
-use Spatie\Backup\BackupServiceProvider;
-use Yajra\Acl\AclServiceProvider;
-use DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider;
 use Yajra\CMS\Contracts\SearchEngine;
 use Yajra\CMS\Search\Engines\LocalSearch;
 use Yajra\CMS\Themes\ThemesServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
-use Yajra\DataTables\ButtonsServiceProvider;
-use Yajra\DataTables\DataTablesServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -116,7 +105,6 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->registerProviders();
         $this->registerBindings();
-        $this->registerAliases();
         $this->registerMigrations();
     }
 
@@ -129,20 +117,10 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(ThemesServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(ViewComposerServiceProvider::class);
-        $this->app->register(AclServiceProvider::class);
-        $this->app->register(MenusServiceProvider::class);
-        $this->app->register(BreadcrumbsServiceProvider::class);
-        $this->app->register(FlashServiceProvider::class);
-        $this->app->register(SnappyServiceProvider::class);
         $this->app->register(BaumServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
-        $this->app->register(BackupServiceProvider::class);
         $this->app->register(FormServiceProvider::class);
-        $this->app->register(LaravelLogViewerServiceProvider::class);
-        $this->app->register(ArrilotWidgetServiceProvider::class);
         $this->app->register(WidgetServiceProvider::class);
-        $this->app->register(DataTablesServiceProvider::class);
-        $this->app->register(ButtonsServiceProvider::class);
         $this->app->register(TaggingServiceProvider::class);
     }
 
@@ -154,23 +132,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->singleton(PageHeaderDirective::class, PageHeaderDirective::class);
         $this->app->singleton(TooltipDirective::class, TooltipDirective::class);
         $this->app->singleton(SearchEngine::class, LocalSearch::class);
-    }
-
-    /**
-     * Register application aliases.
-     */
-    protected function registerAliases()
-    {
-        $loader = AliasLoader::getInstance();
-        $loader->alias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class);
-        $loader->alias('Form', \Collective\Html\FormFacade::class);
-        $loader->alias('Html', \Collective\Html\HtmlFacade::class);
-        $loader->alias('Excel', \Maatwebsite\Excel\Facades\Excel::class);
-        $loader->alias('PDF', \Barryvdh\Snappy\Facades\SnappyPdf::class);
-        $loader->alias('Image', \Barryvdh\Snappy\Facades\SnappyImage::class);
-        $loader->alias('Widget', \Arrilot\Widgets\Facade::class);
-        $loader->alias('AsyncWidget', \Arrilot\Widgets\AsyncFacade::class);
-        $loader->alias('Module', \Nwidart\Modules\Facades\Module::class);
     }
 
     /**
