@@ -276,6 +276,21 @@ class Article extends Model implements UrlGenerator, Cacheable
     }
 
     /**
+     * Get article's template.
+     *
+     * @return mixed|string
+     */
+    public function getTemplate()
+    {
+        $view = str_replace('//', '.', $this->slug);
+        if (view()->exists($view)) {
+            return $view;
+        }
+
+        return $this->hasTemplate() ? $this->blade_template : 'article.show';
+    }
+
+    /**
      * Check if article has custom blade template/layout.
      *
      * @return bool
@@ -283,16 +298,6 @@ class Article extends Model implements UrlGenerator, Cacheable
     public function hasTemplate()
     {
         return ! empty($this->blade_template);
-    }
-
-    /**
-     * Get article's template.
-     *
-     * @return mixed|string
-     */
-    public function getTemplate()
-    {
-        return $this->hasTemplate() ? $this->blade_template : 'article.show';
     }
 
     /**
