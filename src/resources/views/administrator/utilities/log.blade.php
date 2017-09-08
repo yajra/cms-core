@@ -68,7 +68,7 @@
                             <thead>
                             <tr>
                                 <th>{{trans('cms::utilities.log.level')}}</th>
-                                <th>{{trans('cms::utilities.log.date')}}</th>
+                                <th width="110px">{{trans('cms::utilities.log.date')}}</th>
                                 <th>{{trans('cms::utilities.log.content')}}</th>
                             </tr>
                             </thead>
