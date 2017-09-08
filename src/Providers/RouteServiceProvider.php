@@ -102,6 +102,10 @@ class RouteServiceProvider extends ServiceProvider
                     }
                 }
 
+                if ($article->hasTheme()) {
+                    $middleware[] = 'theme:' . $article->getTheme();
+                }
+
                 $router->get($article->present()->slug,
                     function () use ($article, $router) {
                         return $this->app->call(ArticleController::class . '@show', [

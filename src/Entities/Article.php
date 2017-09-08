@@ -79,6 +79,7 @@ class Article extends Model implements UrlGenerator, Cacheable
         'authenticated',
         'authorization',
         'author_alias',
+        'theme',
     ];
 
     /**
@@ -292,5 +293,25 @@ class Article extends Model implements UrlGenerator, Cacheable
     public function getTemplate()
     {
         return $this->hasTemplate() ? $this->blade_template : 'article.show';
+    }
+
+    /**
+     * Check if article has custom theme.
+     *
+     * @return bool
+     */
+    public function hasTheme()
+    {
+        return ! empty($this->theme);
+    }
+
+    /**
+     * Get article's theme.
+     *
+     * @return mixed
+     */
+    public function getTheme()
+    {
+        return $this->theme;
     }
 }

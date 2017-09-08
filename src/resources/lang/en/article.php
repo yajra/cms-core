@@ -49,6 +49,7 @@ return [
     'form' => [
         'tooltip' => [
             'title'                        => 'Article title to be displayed on user.',
+            'theme'                        => 'Theme to be used by the article.',
             'alias'                        => 'The ALIAS will be used in SEF URL. Leave this blank and the system will automatically generate a unique slug for you based on the title.',
             'authorization'                => 'Article authorization will only apply if at least one permission was selected.',
             'category'                     => 'The category that this article is assigned to.',
@@ -88,6 +89,7 @@ return [
 
         'field' => [
             'title'                                    => 'Title',
+            'theme'                                    => 'Theme',
             'title_placeholder'                        => 'Enter title here',
             'alias'                                    => 'Alias',
             'alias_placeholder'                        => 'Enter alias here',

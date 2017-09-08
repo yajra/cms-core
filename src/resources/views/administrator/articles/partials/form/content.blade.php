@@ -14,6 +14,15 @@
     </div>
 
     <div class="col-md-4">
+        <div class="form-group {!! $errors->has('theme') ? 'has-error' : '' !!}">
+            <label for="theme" class="form-label-style block">
+                {{trans('cms::article.form.field.theme')}}
+                @tooltip('cms::article.form.tooltip.theme')
+            </label>
+            {!! form()->themes('theme', null, ['class' => 'form-control']) !!}
+            {!! $errors->first('theme', '<span class="help-block">:message</span>') !!}
+        </div>
+
         <div class="form-group {!! $errors->has('category_id') ? 'has-error' : '' !!}">
             <label for="category_id" class="form-label-style block">
                 {{trans('cms::article.form.field.category')}}
