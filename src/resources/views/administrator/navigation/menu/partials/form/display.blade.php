@@ -6,7 +6,7 @@
                     {{trans('cms::menu.field.page_title')}}
                     @tooltip('cms::menu.tooltip.page_title')
                 </label>
-                {!! form()->input('text', 'parameters[page_title]', $menu->fluentParameters()->page_title, ['id'=>'parameters[page_title]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.page_title_placeholder')]) !!}
+                {!! form()->input('text', 'parameters[page_title]', $menu->param('page_title'), ['id'=>'parameters[page_title]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.page_title_placeholder')]) !!}
                 {!! $errors->first('parameters[page_title]', '<span class="help-block">:message</span>') !!}
             </div>
 
@@ -15,7 +15,7 @@
                     {{trans('cms::menu.field.page_heading')}}
                     @tooltip('cms::menu.tooltip.page_heading')
                 </label>
-                {!! form()->input('text', 'parameters[page_heading]', $menu->fluentParameters()->page_heading, ['id'=>'parameters[page_heading]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.page_heading_placeholder')]) !!}
+                {!! form()->input('text', 'parameters[page_heading]', $menu->param('page_heading'), ['id'=>'parameters[page_heading]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.page_heading_placeholder')]) !!}
                 {!! $errors->first('parameters[page_title]', '<span class="help-block">:message</span>') !!}
             </div>
 
@@ -24,7 +24,7 @@
                     {{trans('cms::menu.field.page_class')}}
                     @tooltip('cms::menu.tooltip.page_class')
                 </label>
-                {!! form()->input('text', 'parameters[page_class]', $menu->fluentParameters()->page_class, ['id'=>'parameters[page_class]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.page_class_placeholder')]) !!}
+                {!! form()->input('text', 'parameters[page_class]', $menu->param('page_class'), ['id'=>'parameters[page_class]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.page_class_placeholder')]) !!}
                 {!! $errors->first('parameters[page_title]', '<span class="help-block">:message</span>') !!}
             </div>
         </div>
@@ -35,7 +35,7 @@
                     {{trans('cms::menu.field.link_title')}}
                     @tooltip('cms::menu.tooltip.link_title')
                 </label>
-                {!! form()->input('text', 'parameters[link_title]', $menu->fluentParameters()->link_title, ['id'=>'parameters[link_title]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.link_title_placeholder')]) !!}
+                {!! form()->input('text', 'parameters[link_title]', $menu->param('link_title'), ['id'=>'parameters[link_title]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.link_title_placeholder')]) !!}
                 {!! $errors->first('parameters[page_title]', '<span class="help-block">:message</span>') !!}
             </div>
 
@@ -44,7 +44,7 @@
                     {{trans('cms::menu.field.link_style')}}
                     @tooltip('cms::menu.tooltip.link_style')
                 </label>
-                {!! form()->input('text', 'parameters[link_style]', $menu->fluentParameters()->link_style, ['id'=>'parameters[link_style]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.link_style_placeholder')]) !!}
+                {!! form()->input('text', 'parameters[link_style]', $menu->param('link_style'), ['id'=>'parameters[link_style]','class'=>'form-control input-sm','placeholder'=>trans('cms::menu.field.link_style_placeholder')]) !!}
                 {!! $errors->first('parameters[page_title]', '<span class="help-block">:message</span>') !!}
             </div>
         </div>

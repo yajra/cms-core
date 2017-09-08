@@ -15,13 +15,13 @@ use Yajra\CMS\Entities\Traits\PublishableTrait;
 use Yajra\CMS\Presenters\CategoryPresenter;
 
 /**
- * @property int depth
+ * @property int    depth
  * @property string title
- * @property int id
- * @property bool published
- * @property bool authenticated
+ * @property int    id
+ * @property bool   published
+ * @property bool   authenticated
  * @property string alias
- * @property int hits
+ * @property int    hits
  */
 class Category extends Node implements UrlGenerator, Cacheable
 {
@@ -37,6 +37,15 @@ class Category extends Node implements UrlGenerator, Cacheable
      * @var string
      */
     protected $table = 'categories';
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'published'     => 'bool',
+        'authenticated' => 'bool',
+        'parameters'    => 'array',
+    ];
 
     /**
      * @var array

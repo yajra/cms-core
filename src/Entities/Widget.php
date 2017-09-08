@@ -16,22 +16,22 @@ use Yajra\CMS\Entities\Traits\HasParameters;
 use Yajra\CMS\Presenters\WidgetPresenter;
 
 /**
- * @property string title
- * @property string template
- * @property string custom_template
- * @property string position
- * @property int order
- * @property bool published
- * @property bool authenticated
- * @property string body
- * @property string parameter
- * @property string parameters
- * @property string type
- * @property int id
- * @property string authorization
+ * @property string                  title
+ * @property string                  template
+ * @property string                  custom_template
+ * @property string                  position
+ * @property int                     order
+ * @property bool                    published
+ * @property bool                    authenticated
+ * @property string                  body
+ * @property string                  parameter
+ * @property string                  parameters
+ * @property string                  type
+ * @property int                     id
+ * @property string                  authorization
  * @property Collection|Permission[] permissions
- * @property bool show_title
- * @property int extension_id
+ * @property bool                    show_title
+ * @property int                     extension_id
  */
 class Widget extends Model implements Cacheable
 {
@@ -45,6 +45,15 @@ class Widget extends Model implements Cacheable
      * @var \Yajra\CMS\Presenters\WidgetPresenter
      */
     protected $presenter = WidgetPresenter::class;
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'publishedcc'     => 'bool',
+        'authenticated' => 'bool',
+        'parameters'    => 'array',
+    ];
 
     /**
      * @var array
@@ -72,15 +81,15 @@ class Widget extends Model implements Cacheable
     {
         parent::boot();
 
-        static::addGlobalScope('menu_assignment', function(Builder $builder) {
+        static::addGlobalScope('menu_assignment', function (Builder $builder) {
             $connection = $builder->getModel()->getConnection();
             $assignment = [0];
             if (session()->has('active_menu')) {
                 $assignment[] = session('active_menu')->id;
             }
 
-            $widgets    = $connection->table('widget_menu');
-            $widgets    = $widgets->whereIn('menu_id', $assignment);
+            $widgets = $connection->table('widget_menu');
+            $widgets = $widgets->whereIn('menu_id', $assignment);
             $builder->whereIn('id', $widgets->pluck('widget_id'));
         });
     }
@@ -89,7 +98,7 @@ class Widget extends Model implements Cacheable
      * Query scope by widget position.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $position
+     * @param string                                $position
      * @return \Illuminate\Database\Eloquent\Builder $query
      */
     public function scopePosition($query, $position)
@@ -176,7 +185,7 @@ class Widget extends Model implements Cacheable
      * Sync widget menu assignment.
      *
      * @param array $menu
-     * @param int $assignment
+     * @param int   $assignment
      * @return $this
      */
     public function syncMenuAssignment($menu, $assignment)

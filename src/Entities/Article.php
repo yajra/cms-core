@@ -48,6 +48,9 @@ class Article extends Model implements UrlGenerator, Cacheable
     use CanRequireAuthentication, HasPermission, PresentableTrait;
     use HasParameters, SortableTrait, Taggable;
 
+    /**
+     * @var array
+     */
     public $sortable = [
         'order_column_name'  => 'order',
         'sort_when_creating' => true,
@@ -57,6 +60,15 @@ class Article extends Model implements UrlGenerator, Cacheable
      * @var \Yajra\CMS\Presenters\ArticlePresenter
      */
     protected $presenter = ArticlePresenter::class;
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'featured'   => 'bool',
+        'published'  => 'bool',
+        'parameters' => 'array',
+    ];
 
     /**
      * @var string

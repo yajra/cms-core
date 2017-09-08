@@ -15,22 +15,22 @@ use Yajra\CMS\Entities\Traits\PublishableTrait;
 use Yajra\CMS\Presenters\MenuPresenter;
 
 /**
- * @property int depth
- * @property string title
- * @property int id
- * @property mixed children
+ * @property int     depth
+ * @property string  title
+ * @property int     id
+ * @property mixed   children
  * @property boolean published
- * @property int order
- * @property string url
- * @property int target
- * @property bool authenticated
- * @property string type
- * @property string parameters
- * @property string authorization
- * @property mixed permissions
- * @property mixed widgets
- * @property int navigation_id
- * @property int extension_id
+ * @property int     order
+ * @property string  url
+ * @property int     target
+ * @property bool    authenticated
+ * @property string  type
+ * @property string  parameters
+ * @property string  authorization
+ * @property mixed   permissions
+ * @property mixed   widgets
+ * @property int     navigation_id
+ * @property int     extension_id
  */
 class Menu extends Node
 {
@@ -41,7 +41,7 @@ class Menu extends Node
      * @var array
      */
     public $sortable = [
-        'order_column_name' => 'order',
+        'order_column_name'  => 'order',
         'sort_when_creating' => true,
     ];
 
@@ -49,6 +49,15 @@ class Menu extends Node
      * @var array
      */
     protected $touches = ['navigation'];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'authenticated' => 'bool',
+        'published'     => 'bool',
+        'parameters'    => 'array',
+    ];
 
     /**
      * @var \Yajra\CMS\Presenters\MenuPresenter
@@ -96,7 +105,7 @@ class Menu extends Node
      */
     public function article()
     {
-        return Article::query()->findOrNew($this->fluentParameters()->get('article_id', 0));
+        return Article::query()->findOrNew($this->param('article_id', 0));
     }
 
     /**
@@ -106,7 +115,7 @@ class Menu extends Node
      */
     public function category()
     {
-        $category   = $this->fluentParameters()->get('category_id', 0);
+        $category   = $this->param('category_id', 0);
         $categoryId = explode(':', $category)[0];
 
         return Category::query()->findOrNew($categoryId);
@@ -140,7 +149,7 @@ class Menu extends Node
 
     /**
      * @param \Baum\Node $node
-     * @param array $items
+     * @param array      $items
      * @return array
      */
     protected function appendMenu($node, &$items)

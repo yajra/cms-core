@@ -10,9 +10,9 @@ use Yajra\CMS\Entities\Traits\HasParameters;
  * @property string name
  * @property string type
  * @property string parameters
- * @property bool enabled
+ * @property bool   enabled
  * @property string manifest
- * @property bool protected
+ * @property bool   protected
  */
 class Extension extends Model
 {
@@ -34,6 +34,15 @@ class Extension extends Model
     protected $fillable = ['name', 'type', 'enabled', 'parameters'];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'enabled'    => 'bool',
+        'parameters' => 'array',
+        'manifest'   => 'array',
+    ];
+
+    /**
      * Get a widget by name.
      *
      * @param string $name
@@ -46,16 +55,6 @@ class Extension extends Model
         return $builder->where('type', 'widget')
                        ->whereRaw('LOWER(name) = ?', [Str::lower($name)])
                        ->first();
-    }
-
-    /**
-     * Get manifest attribute.
-     *
-     * @return object
-     */
-    public function getManifestAttribute()
-    {
-        return json_decode($this->attributes['manifest'], true);
     }
 
     /**
