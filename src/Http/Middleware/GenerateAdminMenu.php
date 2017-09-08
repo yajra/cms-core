@@ -43,6 +43,7 @@ class GenerateAdminMenu
                     $menu->add('Navigation', route('administrator.navigation.index'))->icon('link')
                          ->data(['permission' => 'navigation.view']);
                 }
+                event('admin.menu.nav', $navs);
 
                 $contents = $menu->add('Contents', '#')->icon('files-o');
                 $contents->add('Articles', route('administrator.articles.index'))
@@ -64,6 +65,7 @@ class GenerateAdminMenu
                          ]);
                 $contents->add('Media', route('administrator.media.index'))->icon('image')
                          ->data('permission', 'media.view');
+                event('admin.menu.contents', $contents);
 
                 $modules = $menu->add('Modules', '#')->icon('cubes')->data('permission', 'module.view');
                 $modules->add('Manage', route('administrator.modules.index'))->icon('cogs')->data('permission', 'module.view');
@@ -92,6 +94,7 @@ class GenerateAdminMenu
                           'permission' => 'permission.view',
                           'append'     => route('administrator.permissions.create'),
                       ]);
+                event('admin.menu.users', $users);
 
                 $config = $menu->add('Configurations', '#')->icon('gears')
                                ->data([
@@ -101,6 +104,7 @@ class GenerateAdminMenu
                        ->data('permission', 'extension.view');
                 $config->add('Global', route('administrator.configuration.index'))->icon('globe')
                        ->data('permission', 'utilities.config');
+                event('admin.menu.config', $config);
 
                 $menu->add('Utilities', route('administrator.utilities.index'))->icon('wrench')
                      ->data('permission', 'utilities.view');
