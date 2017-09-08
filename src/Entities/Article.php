@@ -282,7 +282,7 @@ class Article extends Model implements UrlGenerator, Cacheable
      */
     public function getTemplate()
     {
-        $view = str_replace('//', '.', $this->slug);
+        $view = 'articles' . str_replace('//', '.', $this->slug);
         if (view()->exists($view)) {
             return $view;
         }
