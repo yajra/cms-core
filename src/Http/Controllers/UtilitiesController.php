@@ -2,7 +2,6 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Collective\Html\HtmlBuilder;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -19,11 +18,6 @@ class UtilitiesController extends Controller
      * @var \Illuminate\Contracts\Console\Kernel
      */
     protected $command;
-
-    /**
-     * @var \Collective\Html\HtmlBuilder
-     */
-    protected $html;
 
     /**
      * @var \Illuminate\Contracts\Logging\Log
@@ -49,13 +43,11 @@ class UtilitiesController extends Controller
      * UtilitiesController constructor.
      *
      * @param \Illuminate\Contracts\Logging\Log $log
-     * @param \Collective\Html\HtmlBuilder $html
+     * @param \Collective\Html\HtmlBuilder      $html
      */
-    public function __construct(Log $log, HtmlBuilder $html)
+    public function __construct(Log $log)
     {
-        $this->html = $html;
-        $this->log  = $log;
-
+        $this->log = $log;
         $this->authorizePermissionResource('utilities');
     }
 
@@ -193,7 +185,7 @@ class UtilitiesController extends Controller
     /**
      * Log viewer.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request     $request
      * @param \Yajra\DataTables\DataTables $dataTables
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
@@ -218,13 +210,13 @@ class UtilitiesController extends Controller
             return $dataTables->collection(collect($logs))
                               ->editColumn('stack', '{!! nl2br($stack) !!}')
                               ->editColumn('level', function ($log) {
-                                  $content = $this->html->tag('span', '', [
+                                  $content = html()->tag('span', '', [
                                       'class' => "glyphicon glyphicon-{$log['level_img']}-sign",
                                   ]);
 
                                   $content .= '&nbsp;' . $log['level'];
 
-                                  return $this->html->tag('span', $content, ['class' => "text-{$log['level_class']}"]);
+                                  return html()->tag('span', $content, ['class' => "text-{$log['level_class']}"]);
                               })
                               ->addColumn('content', function ($log) {
                                   $html = '';
