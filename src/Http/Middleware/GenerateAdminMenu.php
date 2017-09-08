@@ -71,10 +71,6 @@ class GenerateAdminMenu
                 $modules->add('Manage', route('administrator.modules.index'))->icon('cogs')->data('permission', 'module.view');
                 event('admin.menu.modules', $modules);
 
-                $menu->add('Themes', route('administrator.themes.index'))
-                     ->icon('windows')
-                     ->data(['permission' => 'theme.view']);
-
                 $users = $menu->add('Users', '#')->icon('key')
                               ->data([
                                   'permission' => ['user.view', 'role.view', 'permission.view']
@@ -98,12 +94,16 @@ class GenerateAdminMenu
 
                 $config = $menu->add('Configurations', '#')->icon('gears')
                                ->data([
-                                   'permission' => ['extension.view', 'utilities.config']
+                                   'permission' => ['extension.view', 'utilities.config', 'theme.view']
                                ]);
-                $config->add('Extensions', route('administrator.extension.index'))->icon('plug')
-                       ->data('permission', 'extension.view');
                 $config->add('Global', route('administrator.configuration.index'))->icon('globe')
                        ->data('permission', 'utilities.config');
+                $config->add('Extensions', route('administrator.extension.index'))->icon('plug')
+                       ->data('permission', 'extension.view');
+                $config->add('Themes', route('administrator.themes.index'))
+                     ->icon('windows')
+                     ->data(['permission' => 'theme.view']);
+
                 event('admin.menu.config', $config);
 
                 $menu->add('Utilities', route('administrator.utilities.index'))->icon('wrench')
