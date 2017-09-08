@@ -40,6 +40,7 @@ class UtilitiesController extends Controller
         'config' => 'view',
         'cache'  => 'view',
         'logs'   => 'view',
+        'info'   => 'view',
         'views'  => 'view',
         'index'  => 'view',
     ];
@@ -268,5 +269,21 @@ class UtilitiesController extends Controller
         Category::rebuild(true);
 
         return $this->notifySuccess(trans('cms::utilities.category.success'));
+    }
+
+    /**
+     * @return bool
+     */
+    public function info()
+    {
+        if (request()->has('dump')) {
+            ob_start();
+            phpinfo();
+            $phpinfo = ob_get_clean();
+            echo $phpinfo;
+            die();
+        }
+
+        return view('administrator.utilities.info');
     }
 }

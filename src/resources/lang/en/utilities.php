@@ -30,6 +30,7 @@ return [
         'clear_route'  => 'Clear Route',
         'cache_route'  => 'Cache Route',
         'log_viewer'   => 'Log Viewer',
+        'phpinfo'      => 'PHP Info',
         'executed_by'  => 'Executed by: :name',
     ],
 

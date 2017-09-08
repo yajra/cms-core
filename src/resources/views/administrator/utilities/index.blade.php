@@ -101,6 +101,9 @@
                     <a class="btn btn-app" href="{{ route('administrator.utilities.logs') }}">
                         <i class="fa fa-eye"></i> {{trans('cms::utilities.field.log_viewer')}}
                     </a>
+                    <a class="btn btn-app" href="{{ route('administrator.utilities.info') }}">
+                        <i class="fa fa-info"></i> {{trans('cms::utilities.field.phpinfo')}}
+                    </a>
                 </div>
             </div>
         </div>

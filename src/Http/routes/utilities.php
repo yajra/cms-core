@@ -32,3 +32,6 @@ $router->post('utilities/route/{task}', UtilitiesController::class . '@route')
 
 $router->get('utilities/logs', UtilitiesController::class . '@logs')
        ->name('utilities.logs');
+
+$router->get('utilities/info', UtilitiesController::class . '@info')
+       ->name('utilities.info');
