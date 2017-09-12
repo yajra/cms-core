@@ -9,7 +9,6 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Yajra\CMS\Contracts\SearchEngine;
 use Yajra\CMS\Search\Engines\LocalSearch;
-use Yajra\CMS\Themes\ThemesServiceProvider;
 use Yajra\CMS\View\Directives\PageHeaderDirective;
 use Yajra\CMS\View\Directives\TooltipDirective;
 
@@ -114,7 +113,6 @@ class CoreServiceProvider extends ServiceProvider
     protected function registerProviders()
     {
         $this->app->register(ConfigurationServiceProvider::class);
-        $this->app->register(ThemesServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(ViewComposerServiceProvider::class);
         $this->app->register(BaumServiceProvider::class);
