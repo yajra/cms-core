@@ -8,7 +8,6 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 use Yajra\Acl\Models\Permission;
-use DaveJamesMiller\Breadcrumbs\Generator;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Entities\Category;
 use Yajra\CMS\Entities\Widget;
