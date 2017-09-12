@@ -21,31 +21,10 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->bootCustomValidations();
         $this->bootCustomBladeDirectives();
         $this->registerViews();
         $this->bootTranslations();
         $this->bootDebugbar();
-    }
-
-    /**
-     * Boot custom app validations.
-     */
-    protected function bootCustomValidations()
-    {
-        $this->app['validator']->extend('view_exists', function ($attribute, $value, $parameters, $validator) {
-            return view()->exists($value);
-        });
-
-        $this->app['validator']->extend('slug', function ($attribute, $value) {
-            return preg_match('/^[\pL\.\-\_\d+]+$/u', $value);
-        });
-
-        $this->app['validator']->extend('json', function ($attribute, $value, $parameters, $validator) {
-            json_decode($value);
-
-            return (json_last_error() == JSON_ERROR_NONE);
-        });
     }
 
     /**

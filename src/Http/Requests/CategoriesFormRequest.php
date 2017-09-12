@@ -2,6 +2,8 @@
 
 namespace Yajra\CMS\Http\Requests;
 
+use Yajra\CMS\Rules\Slug;
+
 class CategoriesFormRequest extends Request
 {
     /**
@@ -23,7 +25,7 @@ class CategoriesFormRequest extends Request
     {
         return [
             'title' => 'required|max:255',
-            'alias' => 'max:255|slug',
+            'alias' => ['max:255', new Slug],
         ];
     }
 }
