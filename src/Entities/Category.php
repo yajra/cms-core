@@ -206,7 +206,7 @@ class Category extends Node implements UrlGenerator, Cacheable
      */
     public function getRouteName()
     {
-        return 'category-' . implode('.', explode('/', $this->present()->alias));
+        return 'category-' . $this->id . '-' . implode('.', explode('/', $this->present()->alias));
     }
 
     /**
