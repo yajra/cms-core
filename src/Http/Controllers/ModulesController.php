@@ -2,7 +2,6 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Nwidart\Modules\Repository;
 use Yajra\CMS\DataTables\ModulesDataTable;
 
 class ModulesController extends Controller
@@ -14,12 +13,10 @@ class ModulesController extends Controller
 
     /**
      * ModulesController constructor.
-     *
-     * @param \Nwidart\Modules\Repository $modules
      */
-    public function __construct(Repository $modules)
+    public function __construct()
     {
-        $this->modules = $modules;
+        $this->modules = app('modules');
         $this->authorizePermissionResource('module');
     }
 
