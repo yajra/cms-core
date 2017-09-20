@@ -135,7 +135,7 @@ class EloquentRepository extends RepositoryAbstract implements Repository
         if (isset($attributes['parameters'])) {
             $extension->parameters = $attributes['parameters'];
         }
-        $extension->manifest = json_encode($attributes);
+        $extension->manifest = $attributes;
         $extension->save();
 
         return $this;
