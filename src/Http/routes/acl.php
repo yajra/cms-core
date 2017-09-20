@@ -25,7 +25,7 @@ $router->post('users/{id}/restore', UsersController::class . '@restore')
 $router->resource('users', UsersController::class);
 
 // Roles Routes
-$router->resource('roles', RolesController::class);
+$router->resource('roles', RolesController::class)->except('show');
 
 // Permissions Routes
 $router->get('permissions/create-resource', PermissionsController::class . '@createResource')

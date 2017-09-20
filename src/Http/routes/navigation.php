@@ -16,9 +16,9 @@ $router->get('navigation/menu/extensions/{menu}', MenuItemsController::class . '
 $router->post('navigation/{navigation}/menu/{menu}/publish', MenuItemsController::class . '@publish')
        ->name('navigation.menu.publish');
 $router->get('navigation/menu/articles', MenuItemsController::class . '@articles')->name('navigation.menu.articles');
-$router->resource('navigation.menu', MenuItemsController::class, ['except' => ['show']]);
+$router->resource('navigation.menu', MenuItemsController::class)->except('show');
 
 // Navigation Routes
 $router->post('navigation/{navigation}/publish', NavigationController::class . '@publish')
        ->name('navigation.publish');
-$router->resource('navigation', NavigationController::class, ['except' => ['show']]);
+$router->resource('navigation', NavigationController::class)->except('show');

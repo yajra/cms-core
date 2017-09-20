@@ -13,9 +13,9 @@ $router->post('articles/{article}/published', ArticlesController::class . '@publ
        ->name('articles.published');
 $router->post('articles/{article}/featured', ArticlesController::class . '@featured')
        ->name('articles.featured');
-$router->resource('articles', ArticlesController::class, ['except' => ['show']]);
+$router->resource('articles', ArticlesController::class)->except('show');
 
 // Categories Routes
 $router->post('categories/{category}/publish', CategoriesController::class . '@publish')
        ->name('categories.publish');
-$router->resource('categories', CategoriesController::class, ['except' => ['show']]);
+$router->resource('categories', CategoriesController::class)->except('show');
