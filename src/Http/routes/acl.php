@@ -32,6 +32,6 @@ $router->get('permissions/create-resource', PermissionsController::class . '@cre
        ->name('permissions.create-resource');
 $router->post('permissions/create-resource', PermissionsController::class . '@storeResource')
        ->name('permissions.store-resource');
-$router->resource('permissions', PermissionsController::class);
+$router->resource('permissions', PermissionsController::class)->except('show');
 
 
