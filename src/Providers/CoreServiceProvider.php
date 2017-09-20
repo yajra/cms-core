@@ -21,10 +21,20 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->setDefaultTheme();
         $this->bootCustomBladeDirectives();
         $this->registerViews();
         $this->bootTranslations();
         $this->bootDebugbar();
+    }
+
+    /**
+     * Set default theme.
+     */
+    protected function setDefaultTheme()
+    {
+        $theme = config('themes.frontend', 'default');
+        $this->app['themes.view.finder']->use($theme);
     }
 
     /**
