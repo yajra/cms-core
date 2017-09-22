@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+@extends('layouts.master')
 
 @section('page-title')
     @pageHeader('View User Profile', 'There is where you can view a user\'s profile.', 'fa fa-user')

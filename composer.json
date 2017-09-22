@@ -19,7 +19,7 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "yajra/cms-themes": "^2.6",
+    "yajra/cms-themes": "^2.7",
     "yajra/laravel-acl": "^3.0",
     "yajra/laravel-auditable": "^1.0",
     "yajra/laravel-datatables": "1.*",

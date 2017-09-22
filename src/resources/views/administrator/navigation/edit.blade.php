@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+@extends('layouts.master')
 
 @section('title')
 {{trans('cms::navigation.edit.title')}} | @parent

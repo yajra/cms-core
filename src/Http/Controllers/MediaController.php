@@ -30,7 +30,7 @@ class MediaController extends Controller
      *
      * @var string
      */
-    protected $template = 'admin::layouts.master';
+    protected $template = 'layouts.master';
 
     /**
      * Files listing filter.
@@ -65,7 +65,7 @@ class MediaController extends Controller
      */
     public function browse(Request $request, $filter = null)
     {
-        $this->template = 'admin::layouts.component';
+        $this->template = 'layouts.component';
         $this->filter   = $filter;
 
         return $this->index($request);

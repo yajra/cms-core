@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+@extends('layouts.master')
 
 @section('page-title')
     <h1>{{trans('cms::backend.welcome.title', ['title' => config('site.name')])}}</h1>
