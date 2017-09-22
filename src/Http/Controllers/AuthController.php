@@ -30,7 +30,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $loginView = 'auth.login';
+    protected $loginView = 'administrator.auth.login';
 
     /**
      * Where to redirect users after logout.
