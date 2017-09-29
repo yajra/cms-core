@@ -18,7 +18,7 @@
 @stop
 
 @section('content')
-    @if($category->param('show_description'))
+    @if($category->description)
         <div class="row category-description">
             <div class="col-md-12">
                 {!! $category->description !!}
