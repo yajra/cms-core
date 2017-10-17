@@ -130,7 +130,7 @@ class ArticlePresenter extends Presenter
         $body = explode('<hr id="system-readmore" />', $this->entity->body);
 
         if ($body[0] === $this->entity->body) {
-            return '';
+            return $this->entity->body;
         }
 
         return $body[0];
