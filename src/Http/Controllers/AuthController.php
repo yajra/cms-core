@@ -106,11 +106,7 @@ class AuthController extends Controller
     {
         $this->guard()->logout();
 
-        $request->session()->flush();
-
-        $request->session()->regenerate();
-
-        return redirect($this->redirectAfterLogout);
+        return redirect(config('site.admin_logout_redirect', $this->redirectAfterLogout));
     }
 
     /**
