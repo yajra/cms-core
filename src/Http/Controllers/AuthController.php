@@ -101,7 +101,7 @@ class AuthController extends Controller
      */
     public function logoutToPath()
     {
-        return $this->redirectAfterLogout;
+        return config('site.admin_logout_redirect', $this->redirectAfterLogout);
     }
 
     /**
