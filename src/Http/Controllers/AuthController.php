@@ -2,14 +2,16 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use App\User;
-use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Yajra\CMS\Http\LogoutGuard;
 
 class AuthController extends Controller
 {
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, LogoutGuard {
+        LogoutGuard::logout insteadof AuthenticatesUsers;
+    }
 
     /**
      * Where to redirect users after login / registration.
@@ -61,10 +63,10 @@ class AuthController extends Controller
      * Handle event when the user was authenticated.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\User $user
+     * @param mixed                    $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function authenticated(Request $request, User $user)
+    public function authenticated(Request $request, $user)
     {
         if ($user->is_blocked || ! $user->is_activated) {
             if ($user->is_blocked) {
@@ -82,6 +84,27 @@ class AuthController extends Controller
     }
 
     /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard($this->guard);
+    }
+
+    /**
+     * Get the path that we should redirect once logged out.
+     * Adaptable to user needs.
+     *
+     * @return string
+     */
+    public function logoutToPath()
+    {
+        return $this->redirectAfterLogout;
+    }
+
+    /**
      * Get the needed authorization credentials from the request.
      *
      * @param  \Illuminate\Http\Request $request
@@ -94,28 +117,5 @@ class AuthController extends Controller
         ]);
 
         return array_merge($request->only($this->username(), 'password'), $options);
-    }
-
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        return redirect(config('site.admin_logout_redirect', $this->redirectAfterLogout));
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return Auth::guard($this->guard);
     }
 }
