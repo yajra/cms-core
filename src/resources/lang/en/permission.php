@@ -85,12 +85,11 @@ return [
             ],
             [
                 'data'       => 'roles',
-                'name'       => 'roles',
+                'name'       => 'roles_count',
                 'title'      => 'Roles',
                 'class'      => 'text-center',
                 'width'      => '30px',
                 'searchable' => false,
-                'orderable'  => false,
                 'printable'  => false,
             ],
             [

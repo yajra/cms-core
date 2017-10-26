@@ -25,7 +25,7 @@ class PermissionsDataTable extends DataTable
      */
     public function query()
     {
-        return Permission::query();
+        return Permission::query()->select('permissions.*')->withCount('roles');
     }
 
     /**
