@@ -43,7 +43,8 @@
                     <a href="{{ $item['url'] }}" {{$item['type']=='file' ? 'target="_blank"' : ''}}> {{ $item['filename'] }} </a>
                 @endif
             </td>
-            <td class="text-right" style="padding-right: 24px;">{{ $item['size'] ? bytesToHuman($item['size']) : '...'}}</td>
+            <td class="text-right"
+                style="padding-right: 24px;">{{ $item['size'] ? bytesToHuman($item['size']) : '...'}}</td>
             <td class="media-child-window">
                 @if($item['select'] && in_array($item['type'], ['file', 'image']))
                     <a href="#" class="btn btn-xs btn-default media-insert-link" data-path="{{$item['url']}}">
@@ -84,7 +85,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('cms::button.close')}}</button>
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">{{trans('cms::button.close')}}</button>
             </div>
         </div>
     </div>
