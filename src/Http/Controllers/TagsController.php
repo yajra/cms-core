@@ -14,7 +14,7 @@ class TagsController extends Controller
         })->paginate($limit);
 
         $path = null;
-        if (request()->has('limit')) {
+        if (request()->filled('limit')) {
             $path .= '&limit=' . $limit;
             $articles->setPath($path);
         }

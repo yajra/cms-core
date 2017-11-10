@@ -268,7 +268,7 @@ class UtilitiesController extends Controller
      */
     public function info()
     {
-        if (request()->has('dump')) {
+        if (request()->filled('dump')) {
             ob_start();
             phpinfo();
             $phpinfo = ob_get_clean();
