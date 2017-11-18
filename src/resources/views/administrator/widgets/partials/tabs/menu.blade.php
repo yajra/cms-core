@@ -1,7 +1,7 @@
 <div class="content no-padding">
     <div class="row">
         <div class="col-md-6">
-            <div class="form-group {!! $errors->has('assignment') ? 'has-error' : '' !!}">
+            <div class="form-group {{ hasError('assignment') }}">
                 <label class="form-label-style" for="assignment">
                     {{trans('cms::widget.menu.assignment')}}
                 </label>
@@ -11,7 +11,7 @@
                     1 => trans('cms::widget.menu.assignments.none'),
                     2 => trans('cms::widget.menu.assignments.selected')
                     ], null, ['class' => 'form-control']) }}
-                {!! $errors->first('assignment', '<span class="help-block">:message</span>') !!}
+                @error('assignment')
             </div>
         </div>
     </div>

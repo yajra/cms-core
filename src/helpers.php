@@ -201,3 +201,19 @@ if (! function_exists('file_ext_to_icon')) {
         return 'fa-file-o';
     }
 }
+
+if (! function_exists('hasError')) {
+    /**
+     * Check for the existence of an error message and return a class name.
+     *
+     * @param  mixed  $key
+     * @param  string $class
+     * @return string
+     */
+    function hasError($key, $class = 'has-error')
+    {
+        $errors = session()->get('errors') ?: new \Illuminate\Support\ViewErrorBag;
+
+        return $errors->has($key) ? $class : '';
+    }
+}

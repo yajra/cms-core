@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div class="row {!! $errors->has('url') ? 'has-error' : '' !!}" style="margin-top: 10px;">
+        <div class="row {{ hasError('url') }}" style="margin-top: 10px;">
             <label class="form-label-style col-md-3" for="url">URL
                 @tooltip('Link for this menu.')
             </label>
@@ -22,7 +22,7 @@
                     <span class="input-group-addon site-label">{{ url('/') }}/</span>
                     {{ form()->input('text', 'url', null, ['id'=>'url','class'=>'form-control','placeholder'=>'URL','readonly']) }}
                 </div>
-                {!! $errors->first('url', '<span class="help-block">:message</span>') !!}
+                @error('url')
             </div>
         </div>
     </div>

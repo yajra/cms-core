@@ -1,7 +1,7 @@
 <div id="app">
     <div class="row">
         <div class="col-md-8">
-            <div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
+            <div class="form-group {{ hasError('title') }}">
                 <label class="form-label-style block" for="title">
                     {{trans('cms::article.form.field.title')}}
                     @tooltip('cms::article.form.tooltip.title')
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group {!! $errors->has('alias') ? 'has-error' : '' !!}">
+            <div class="form-group {{ hasError('alias') }}">
                 <label class="form-label-style block" for="alias">
                     {{trans('cms::article.form.field.alias')}}
                     @tooltip('cms::article.form.tooltip.alias')
@@ -66,7 +66,7 @@
             <div class="tab-pane {{ $errors->has('permissions') ? 'has-error' : '' }}" id="article-permission">
                 <div class="content">
                     <div class="row">
-                        <div class="form-group {!! $errors->has('authorization') ? 'has-error' : '' !!}">
+                        <div class="form-group {{ hasError('authorization') }}">
                             <label class="form-label-style" for="authorization">
                                 {{trans('cms::article.form.field.authorization')}}
                                 @tooltip('cms::article.form.tooltip.authorization')

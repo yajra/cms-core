@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group {!! $errors->has('password') ? 'has-error' : '' !!}">
+                    <div class="form-group {{ hasError('password') }}">
                         <label for="password"
                                class="control-label col-md-3">
                             Password
@@ -41,11 +41,11 @@
                         <div class="input-control col-md-9">
                             <input type="password" class="form-control input-sm" name="password" id="password"
                                    placeholder="Enter password here">
-                            {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
+                            @error('password')
                         </div>
                     </div>
 
-                    <div class="form-group {!! $errors->has('password_confirmation') ? 'has-error' : '' !!}">
+                    <div class="form-group {{ hasError('password_confirmation') }}">
                         <label for="password"
                                class="control-label col-md-3">
                             Confirm Password
@@ -53,7 +53,7 @@
                         <div class="input-control col-md-9">
                             <input type="password" class="form-control input-sm" name="password_confirmation"
                                    id="password_confirmation" placeholder="Confirm Password">
-                            {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
+                            @error('password_confirmation')
                         </div>
                     </div>
 

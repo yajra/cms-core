@@ -13,12 +13,12 @@
     <div class="box-body">
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group {!! $errors->has('resource') ? 'has-error' : '' !!}">
+                <div class="form-group {{ hasError('resource') }}">
                     <label class="form-label-style" for="resource">
                         {{trans('cms::permission.form.field.resource')}}
                     </label>
                     {!! form()->input('text', 'resource', null, ['id'=>'resource','class'=>'form-control','placeholder'=>trans('cms::permission.form.field.resource_placeholder')]) !!}
-                    {!! $errors->first('resource', '<span class="help-block">:message</span>') !!}
+                    @error('resource')
                 </div>
             </div>
             <div class="col-md-6">
@@ -30,7 +30,7 @@
                         </h3>
                     </div>
                     <div class="box-body">
-                        <div class="form-group {!! $errors->has('roles') ? 'has-error' : '' !!}">
+                        <div class="form-group {{ hasError('roles') }}">
                             @foreach($roles->chunk(2) as $chunk)
                                 <fieldset>
                                     <div class="row">
@@ -48,7 +48,7 @@
                                     </div>
                                 </fieldset>
                             @endforeach
-                            {!! $errors->first('permissions', '<span class="help-block">:message</span>') !!}
+                            @error('permissions')
                         </div>
                     </div>
                 </div>

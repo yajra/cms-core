@@ -26,11 +26,11 @@
                 @tooltip('Link for this menu.')
                 @include('administrator.partials.icon-required')
             </label>
-            <div class="input-group {!! $errors->has('url') ? 'has-error' : '' !!}">
+            <div class="input-group {{ hasError('url') }}">
                 <span class="input-group-addon site-label">{{asset('/')}}</span>
                 {!! form()->input('text', 'url', old('url', $menu->url), ['id'=>'url','class'=>'form-control','placeholder'=>'URL','readonly']) !!}
             </div>
-            {!! $errors->first('url', '<span class="help-block text-danger">:message</span>') !!}
+            @error('url')
         </div>
     </div>
 </div>

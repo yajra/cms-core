@@ -51,6 +51,15 @@ class CoreServiceProvider extends ServiceProvider
         $blade->directive('pageHeader', function ($expression) {
             return "<?php echo app('Yajra\\CMS\\View\\Directives\\PageHeaderDirective')->handle({$expression}); ?>";
         });
+
+        $blade->directive('error', function ($key, $class = 'help-block') {
+            $key = str_replace(['\'', '"'], '', $key);
+            $errors = session()->get('errors') ?: new \Illuminate\Support\ViewErrorBag;
+
+            if ($message = $errors->first($key)) {
+                return "<?php echo '<div class=\"{$class}\">{$message}</div>'; ?>";
+            }
+        });
     }
 
     /**

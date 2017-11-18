@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="box-body" style="display: inline-block; width: 100%">
-        <div class="form-group {!! $errors->has('roles') ? 'has-error' : '' !!}">
+        <div class="form-group {{ hasError('roles') }}">
             <div class="input-control col-md-12">
                 @foreach($roles->chunk(2) as $chunk)
                     <fieldset>
@@ -28,7 +28,7 @@
                         </div>
                     </fieldset>
                 @endforeach
-                {!! $errors->first('roles', '<span class="help-block">:message</span>') !!}
+                @error('roles')
             </div>
         </div>
     </div>

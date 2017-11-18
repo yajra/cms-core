@@ -13,26 +13,26 @@
     <div class="box-body">
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
+                <div class="form-group {{ hasError('name') }}">
                     <label class="form-label-style" for="name">
                         {{trans('cms::permission.form.field.name')}}
                     </label>
                     {!! form()->input('text', 'name', null, ['id'=>'name','class'=>'form-control','placeholder'=>trans('cms::permission.form.field.name_placeholder')]) !!}
-                    {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                    @error('name')
                 </div>
-                <div class="form-group {!! $errors->has('slug') ? 'has-error' : '' !!}">
+                <div class="form-group {{ hasError('slug') }}">
                     <label class="form-label-style" for="slug">
                         {{trans('cms::permission.form.field.slug')}}
                     </label>
                     {!! form()->input('text', 'slug', null, ['id'=>'slug','class'=>'form-control','placeholder'=>trans('cms::permission.form.field.slug_placeholder'), $permission->system ? 'readonly' : '']) !!}
-                    {!! $errors->first('slug', '<span class="help-block">:message</span>') !!}
+                    @error('slug')
                 </div>
-                <div class="form-group {!! $errors->has('resource') ? 'has-error' : '' !!}">
+                <div class="form-group {{ hasError('resource') }}">
                     <label class="form-label-style" for="resource">
                         {{trans('cms::permission.form.field.resource')}}
                     </label>
                     {!! form()->input('text', 'resource', null, ['id'=>'resource','class'=>'form-control','placeholder'=>trans('cms::permission.form.field.resource_placeholder')]) !!}
-                    {!! $errors->first('resource', '<span class="help-block">:message</span>') !!}
+                    @error('resource')
                 </div>
             </div>
             <div class="col-md-6">

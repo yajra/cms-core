@@ -1,16 +1,16 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
+        <div class="form-group {{ hasError('title') }}">
             <label class="form-label-style" for="title">{{trans('cms::categories.form.fields.title')}}</label>
             {!! form()->input('text', 'title', null, ['id'=>'title','class'=>'form-control','placeholder'=>'Enter title here']) !!}
-            {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
+            @error('title')
         </div>
     </div>
     <div class="col-md-6">
-        <div class="form-group {!! $errors->has('alias') ? 'has-error' : '' !!}">
+        <div class="form-group {{ hasError('alias') }}">
             <label class="form-label-style" for="alias">{{trans('cms::categories.form.fields.alias')}}</label>
             {!! form()->input('text', 'alias', null, ['id'=>'alias','class'=>'form-control','placeholder'=>'Enter alias here']) !!}
-            {!! $errors->first('alias', '<span class="help-block">:message</span>') !!}
+            @error('alias')
         </div>
     </div>
 </div>

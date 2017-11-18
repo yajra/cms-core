@@ -33,7 +33,7 @@
             <input type="text" onkeypress="if (event.keyCode == 13) {return false;}" name="keyword" class="form-control input-sm" placeholder="Search keyword...">
         </div>
     </div>
-    <div class="box-body {!! $errors->has('permissions') ? 'has-error' : '' !!}">
+    <div class="box-body {{ hasError('permissions') }}">
         @foreach($permissions->groupBy('resource')->chunk(2) as $chunks)
             <div class="row">
             @foreach($chunks as $resource)

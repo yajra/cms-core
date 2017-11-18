@@ -36,14 +36,14 @@
             <div class="content no-padding">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group {!! $errors->has('authorization') ? 'has-error' : '' !!}">
+                        <div class="form-group {{ hasError('authorization') }}">
                             <label class="form-label-style" for="authorization">
                                 {{trans('cms::menu.field.authorization')}}
                                 @tooltip('cms::menu.tooltip.authorization')
                             </label>
 
                             {{ form()->select('authorization', ['can' => trans('cms::menu.authorization.can'), 'canAtLeast' => trans('cms::menu.authorization.canAtLeast')], null, ['class' => 'form-control']) }}
-                            {!! $errors->first('authorization', '<span class="help-block">:message</span>') !!}
+                            @error('authorization')
                         </div>
                     </div>
                 </div>

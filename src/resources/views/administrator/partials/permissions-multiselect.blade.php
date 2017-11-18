@@ -37,7 +37,7 @@
             {!! $errors->first('permissions', '<small class="help-inline text-red">:message</small>') !!}
         </h3>
     </div>
-    <div class="box-body {!! $errors->has('permissions') ? 'has-error' : '' !!}">
+    <div class="box-body {{ hasError('permissions') }}">
         <div>
             <select multiple="multiple" id="permissionsSelect" name="permissions[]">
                 @foreach($permissions->groupBy('resource')->chunk(2) as $chunks)

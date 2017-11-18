@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-8">
-        <div class="form-group {!! $errors->has('title') ? 'has-error' : '' !!}">
+        <div class="form-group {{ hasError('title') }}">
             <label class="form-label-style block" for="title">Menu Title
                 @tooltip('The title of menu that will display in menu.')
             </label>
             {!! form()->input('text', 'title', null, ['id'=>'title','class'=>'form-control','placeholder'=>'Enter title here']) !!}
-            {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
+            @error('title')
         </div>
 
         <div id="menu-item-container">
@@ -35,53 +35,53 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="form-group {!! $errors->has('parent_id') ? 'has-error' : '' !!}">
+        <div class="form-group {{ hasError('parent_id') }}">
             <label for="parent_id" class="form-label-style block">
                 Parent
                 @tooltip('Parent menu item.')
             </label>
             {!! form()->select('parent_id', $menu->getParentsList(), null, ['class' => 'select2 form-control']) !!}
-            {!! $errors->first('parent_id', '<span class="help-block">:message</span>') !!}
+            @error('parent_id')
         </div>
 
-        <div class="form-group {!! $errors->has('target') ? 'has-error' : '' !!}">
+        <div class="form-group {{ hasError('target') }}">
             <label class="form-label-style block" for="target">
                 On Click, Open in:
                 @tooltip('Target browser window when the menu item is selected.')
             </label>
             {!! form()->select('target', ['0' => 'Parent','1' => 'New Window'], null,['class'=> 'select2 form-control']) !!}
-            {!! $errors->first('target', '<span class="help-block">:message</span>') !!}
+            @error('target')
         </div>
-        <div class="form-group {!! $errors->has('order') ? 'has-error' : '' !!}">
+        <div class="form-group {{ hasError('order') }}">
             <label class="form-label-style block" for="order">
                 Order
                 @tooltip('Display order of the menu.')
             </label>
             {!! form()->text('order',null , ['class' => 'form-control']) !!}
-            {!! $errors->first('order', '<span class="help-block">:message</span>') !!}
+            @error('order')
         </div>
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group {!! $errors->has('authenticated') ? 'has-error' : '' !!}">
+                <div class="form-group {{ hasError('authenticated') }}">
                     <label class="form-label-style" for="authenticated">
                         Authenticated
                         @tooltip('Requires authentication to access the menu.')
                     </label>
                     <br>
                     {!! form()->checkbox('authenticated', $value = 1, $checked = null, ['name' =>'authenticated','id'=>'authenticated','class'=>'form-control bootstrap-checkbox']) !!}
-                    {!! $errors->first('authenticated', '<span class="help-block">:message</span>') !!}
+                    @error('authenticated')
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group {!! $errors->has('published') ? 'has-error' : '' !!}">
+                <div class="form-group {{ hasError('published') }}">
                     <label class="form-label-style" for="published">
                         Published
                         @tooltip('Set publication status.')
                     </label>
                     <br>
                     {!! form()->checkbox('published', $value = 1, $checked = null, ['name' =>'published','id'=>'published','class'=>'form-control bootstrap-checkbox']) !!}
-                    {!! $errors->first('published', '<span class="help-block">:message</span>') !!}
+                    @error('published')
                 </div>
             </div>
         </div>
