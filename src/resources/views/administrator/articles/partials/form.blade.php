@@ -7,7 +7,7 @@
                     @tooltip('cms::article.form.tooltip.title')
                 </label>
                 {!! form()->input('text', 'title', null, ['id'=>'title','class'=>'form-control','placeholder'=>trans('cms::article.form.field.title_placeholder')]) !!}
-                {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
+                @error('title')
             </div>
         </div>
         <div class="col-md-4">
@@ -17,7 +17,7 @@
                     @tooltip('cms::article.form.tooltip.alias')
                 </label>
                 {!! form()->input('text', 'alias', null, ['id'=>'alias','class'=>'form-control','placeholder'=>trans('cms::article.form.field.alias_placeholder')]) !!}
-                {!! $errors->first('alias', '<span class="help-block">:message</span>') !!}
+                @error('alias')
             </div>
         </div>
     </div>
@@ -73,12 +73,12 @@
                             </label>
 
                             {{ form()->select('authorization', ['can' => trans('cms::article.authorization.can'), 'canAtLeast' => trans('cms::article.authorization.canAtLeast')], null, ['class' => 'form-control']) }}
-                            {!! $errors->first('authorization', '<span class="help-block">:message</span>') !!}
+                            @error('authorization')
                         </div>
                     </div>
                     <div class="row">
                         @include('administrator.partials.permissions', ['model' => $article])
-                        {!! $errors->first('permissions', '<span class="help-block">:message</span>') !!}
+                        @error('permissions')
                     </div>
                 </div>
             </div>

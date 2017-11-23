@@ -1,15 +1,15 @@
 <div class="row">
     <div class="col-md-6">
         <image-browser name="parameters[intro_image]" value="{{$article->param('intro_image')}}">Intro Image</image-browser>
-        {!! $errors->first('parameters[intro_image]', '<span class="help-block">:message</span>') !!}
+        @error('parameters[intro_image]')
         <br>
-        <div class="form-group {{ $errors->has('parameters[image_float]') ? 'has-error' : '' }}">
+        <div class="form-group {{ hasError('parameters[image_float]') }}">
             <label class="form-label-style block" for="parameters[image_float]">
                 {{trans('cms::article.form.field.image_float')}}
                 @tooltip('cms::article.form.tooltip.image_float')
             </label>
             {!! form()->select('parameters[image_float]', ['Use Global','Right', 'Left','None'], $article->param('image_float', 0), ['id'=>'parameters[image_float]','class'=>'form-control']) !!}
-            {!! $errors->first('parameters[image_float]', '<span class="help-block">:message</span>') !!}
+            @error('parameters[image_float]')
         </div>
         <div class="form-group">
             <label class="form-label-style block" for="img_intro_alt">
@@ -28,16 +28,16 @@
         <hr>
         <div class="form-group">
             <image-browser name="parameters[image_fulltext]" value="{{$article->param('image_fulltext')}}">Article Image</image-browser>
-            {!! $errors->first('parameters[image_fulltext]', '<span class="help-block">:message</span>') !!}
+            @error('parameters[image_fulltext]')
         </div>
         <br>
-        <div class="form-group {{ $errors->has('parameters[image_float_fulltext]') ? 'has-error' : '' }}">
+        <div class="form-group {{ hasError('parameters[image_float_fulltext]') }}">
             <label class="form-label-style block" for="parameters[image_float_fulltext]">
                 {{trans('cms::article.form.field.image_float_fulltext')}}
                 @tooltip('cms::article.form.tooltip.image_float_fulltext')
             </label>
             {!! form()->select('parameters[image_float_fulltext]', ['Use Global','Right', 'Left','None'], $article->param('image_float_fulltext', 0), ['id'=>'parameters[image_float_fulltext]','class'=>'form-control']) !!}
-            {!! $errors->first('parameters[image_float_fulltext]', '<span class="help-block">:message</span>') !!}
+            @error('parameters[image_float_fulltext]')
         </div>
         <div class="form-group">
             <label class="form-label-style block" for="img_intro_alt_fulltext">
@@ -71,13 +71,13 @@
                 </label>
                 {!! form()->text('parameters[url_a_text]', $article->param('url_a_text'), ['placeholder' => trans('cms::article.form.field.url_a_text_placeholder'), 'class' => 'form-control']) !!}
             </div>
-            <div class="form-group {{ $errors->has('parameters[url_target_a]') ? 'has-error' : '' }}">
+            <div class="form-group {{ hasError('parameters[url_target_a]') }}">
                 <label class="form-label-style block" for="parameters[url_target_a]">
                     {{trans('cms::article.form.field.url_target_a')}}
                     @tooltip('cms::article.form.tooltip.url_target_a')
                 </label>
                 {!! form()->select('parameters[url_target_a]', ['Use Global','Open in parent window', 'Open in new window','Open in popup','Modal'], $article->param('url_target_a', 0), ['id'=>'parameters[url_target_a]','class'=>'form-control']) !!}
-                {!! $errors->first('parameters[url_target_a]', '<span class="help-block">:message</span>') !!}
+                @error('parameters[url_target_a]')
             </div>
         </div>
         <hr>
@@ -96,13 +96,13 @@
                 </label>
                 {!! form()->text('parameters[url_b_text]', $article->param('url_b_text'), ['placeholder' => trans('cms::article.form.field.url_b_text_placeholder'), 'class' => 'form-control']) !!}
             </div>
-            <div class="form-group {{ $errors->has('parameters[url_target_b]') ? 'has-error' : '' }}">
+            <div class="form-group {{ hasError('parameters[url_target_b]') }}">
                 <label class="form-label-style block" for="parameters[url_target_b]">
                     {{trans('cms::article.form.field.url_target_b')}}
                     @tooltip('cms::article.form.tooltip.url_target_b')
                 </label>
                 {!! form()->select('parameters[url_target_b]', ['Use Global','Open in parent window', 'Open in new window','Open in popup','Modal'], $article->param('url_target_b', 0), ['id'=>'parameters[url_target_b]','class'=>'form-control']) !!}
-                {!! $errors->first('parameters[url_target_b]', '<span class="help-block">:message</span>') !!}
+                @error('parameters[url_target_b]')
             </div>
         </div>
         <hr>

@@ -36,7 +36,7 @@
                             @tooltip('')
                         </label>
                         {{ form()->input('text', 'first_name', null, ['class' => 'form-control', 'required']) }}
-                        {!! $errors->first('first_name', '<small class="help-inline text-danger">:message</small>') !!}
+                        @error('first_name')
                     </div>
 
                     <div class="form-group">
@@ -45,7 +45,7 @@
                             @tooltip('')
                         </label>
                         {{ form()->input('text', 'last_name', null, ['class' => 'form-control', 'required']) }}
-                        {!! $errors->first('last_name', '<small class="help-inline text-danger">:message</small>') !!}
+                        @error('last_name')
                     </div>
                     <div class="form-group">
                         <label class="form-label-style" for="email">{{trans('cms::profile.form.field.email')}}
@@ -56,7 +56,7 @@
                             'placeholder' => 'Please enter e-mail',
                             'required'
                         ]) }}
-                        {!! $errors->first('email', '<small class="help-inline text-danger">:message</small>') !!}
+                        @error('email')
                     </div>
                 </div>
                 <div class="tab-pane" id="change-pass">
@@ -68,7 +68,7 @@
                             'class' => 'form-control',
                             'placeholder' => 'Enter new password'
                         ]) }}
-                        {!! $errors->first('password', '<small class="help-inline text-danger">:message</small>') !!}
+                        @error('password')
                     </div>
                     <div class="form-group">
                         <label class="form-label-style">{{trans('cms::profile.form.field.pass-conf')}}
@@ -85,7 +85,7 @@
                         {{ form()->file('avatar') }}
 
                         <p class="help-block">{{trans('cms::profile.form.require.avatar')}}</p>
-                        {!! $errors->first('avatar', '<small class="help-inline text-danger">:message</small>') !!}
+                        @error('avatar')
                     </div>
                 </div>
                 <div class="row">

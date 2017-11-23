@@ -17,7 +17,7 @@
             </a>
         </li>
         <li>
-            <a href="#user-role" data-toggle="tab" class="{!! $errors->first('roles', 'text-red') !!}">
+            <a href="#user-role" data-toggle="tab" class="{{ hasError('roles') }}">
                 <i class="fa fa-shield"></i> {{trans('cms::user.tab.role')}}
             </a>
         </li>

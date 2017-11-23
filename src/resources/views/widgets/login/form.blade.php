@@ -4,19 +4,19 @@
 <form class="form-vertical" role="form" method="POST" action="{{ url('/login') }}">
     {!! csrf_field() !!}
 
-    <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+    <div class="form-group {{ hasError('email') }}">
         <label class="control-label" for="email">Email</label>
 
         <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email">
-        {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+        @error('email')
     </div>
 
-    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+    <div class="form-group {{ hasError('password') }}">
         <label class="control-label" for="password">Password</label>
 
         <input type="password" id="password" class="form-control" name="password"/>
 
-        {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
+        @error('password')
     </div>
 
     <div class="form-group">

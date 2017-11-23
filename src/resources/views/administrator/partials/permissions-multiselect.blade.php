@@ -34,7 +34,7 @@
         <h3 class="box-title" style="font-size: 15px;">
             <i class="fa fa-tag"></i>
             {{trans('cms::permission.attached')}}
-            {!! $errors->first('permissions', '<small class="help-inline text-red">:message</small>') !!}
+            @error('permissions')
         </h3>
     </div>
     <div class="box-body {{ hasError('permissions') }}">

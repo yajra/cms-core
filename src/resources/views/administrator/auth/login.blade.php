@@ -211,23 +211,23 @@
                     <div class="form-bottom">
                         <form method="post" class="login-form" role="form">
                             {!! csrf_field() !!}
-                            <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+                            <div class="form-group has-feedback {{ hasError('email') }}">
                                 <input type="email"
                                        name="email"
                                        value="{{ old('email') }}"
                                        class="form-control"
                                        placeholder="{{trans('cms::auth.placeholder.email')}}">
                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+                                @error('email')
                             </div>
 
-                            <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+                            <div class="form-group has-feedback {{ hasError('password') }}">
                                 <input type="password"
                                        name="password"
                                        class="form-control"
                                        placeholder="{{trans('cms::auth.placeholder.password')}}">
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
+                                @error('password')
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">

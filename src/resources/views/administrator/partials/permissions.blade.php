@@ -12,7 +12,7 @@
         <h3 class="box-title" style="font-size: 15px;">
             <i class="fa fa-tag"></i>
             {{trans('cms::permission.attached')}}
-            {!! $errors->first('permissions', '<small class="help-inline text-red">:message</small>') !!}
+            @error('permissions')
         </h3>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-toggle="tooltip"
