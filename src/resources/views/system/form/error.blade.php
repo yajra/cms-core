@@ -1,1 +1,1 @@
-<span class="{{$class}}">{{$message}}</span>
+<small class="{{$class}}">{{$message}}</small>
