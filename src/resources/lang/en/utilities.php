@@ -53,7 +53,7 @@ return [
     'backup' => [
         'not_allowed'      => 'Backup task [{:task}] requested is not allowed! ',
         'cleanup_complete' => 'Backup cleanup completed!',
-        'complete'         => 'Backup completed!',
+        'complete'         => 'Backup job initiated!',
     ],
 
     'cache' => [

@@ -69,7 +69,7 @@ class UtilitiesController extends Controller
      */
     public function backup($task = 'run')
     {
-        if (! in_array($task, ['backup', 'clean'])) {
+        if (! in_array($task, ['run', 'clean'])) {
             $message = trans('cms::utilities.backup.not_allowed',
                     ['task' => $task]) . trans('cms::utilities.field.executed_by',
                     ['name' => $this->getCurrentUserName()]);
