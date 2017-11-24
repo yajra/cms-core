@@ -10,6 +10,7 @@ class ErrorDirective
      *
      * @param string $key
      * @param string $class
+     * @param string $tag
      * @return string
      */
     public function handle($key, $class = 'help-block', $tag = 'span')
