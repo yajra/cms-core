@@ -126,7 +126,7 @@ class UtilitiesController extends Controller
             return $this->notifyError($message);
         }
 
-        $message = $task == 'cache' ? trans('cms::utilities.config.cached') : trans('cms::utilities.config.cache_cleared');
+        $message = $task == 'cache' ? trans('cms::utilities.config.cached') : trans('cms::utilities.config.cleared');
         $this->log->info(sprintf("%s %s",
             $message,
             trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
