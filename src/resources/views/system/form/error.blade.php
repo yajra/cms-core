@@ -1,1 +1,1 @@
-<small class="{{$class}}">{{$message}}</small>
+{{ html()->tag($tag, $message, ['class' => $class]) }}

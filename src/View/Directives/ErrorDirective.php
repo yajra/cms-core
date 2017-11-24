@@ -12,13 +12,13 @@ class ErrorDirective
      * @param string $class
      * @return string
      */
-    public function handle($key, $class = 'help-block')
+    public function handle($key, $class = 'help-block', $tag = 'span')
     {
         $key = str_replace(['\'', '"'], '', $key);
         $errors = session('errors') ?? new \Illuminate\Support\ViewErrorBag;
         
         if ($message = $errors->first($key)) {
-            return view('system.form.error', compact('message', 'class'))->render();
+            return view('system.form.error', compact('message', 'class', 'tag'))->render();
         }
     }
 }
