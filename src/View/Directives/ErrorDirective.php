@@ -19,7 +19,7 @@ class ErrorDirective
         $errors = session('errors') ?? new \Illuminate\Support\ViewErrorBag;
         
         if ($message = $errors->first($key)) {
-            return view('system.form.error', compact('message', 'class', 'tag'))->render();
+            return view('system.directives.error', compact('message', 'class', 'tag'))->render();
         }
     }
 }

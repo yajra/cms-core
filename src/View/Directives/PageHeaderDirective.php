@@ -16,7 +16,7 @@ class PageHeaderDirective
      * @throws \Exception
      * @throws \Throwable
      */
-    public function handle($title, $description, $icon, $template = 'system.page-header-title')
+    public function handle($title, $description, $icon, $template = 'system.directives.page-title')
     {
         return view($template, compact('title', 'description', 'icon'))->render();
     }

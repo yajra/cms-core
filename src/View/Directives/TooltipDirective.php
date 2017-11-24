@@ -14,7 +14,7 @@ class TooltipDirective
      * @throws \Exception
      * @throws \Throwable
      */
-    public function handle($tooltip, $template = 'system.tooltip')
+    public function handle($tooltip, $template = 'system.directives.tooltip')
     {
         $tooltip = trans($tooltip);
 
