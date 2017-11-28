@@ -8,6 +8,7 @@ use Laracasts\Presenter\PresentableTrait;
 use Spatie\EloquentSortable\SortableTrait;
 use Yajra\Acl\Models\Permission;
 use Yajra\Auditable\AuditableTrait;
+use Yajra\CMS\Contracts\Cacheable;
 use Yajra\CMS\Entities\Traits\CanRequireAuthentication;
 use Yajra\CMS\Entities\Traits\HasOrder;
 use Yajra\CMS\Entities\Traits\HasParameters;
@@ -32,7 +33,7 @@ use Yajra\CMS\Presenters\MenuPresenter;
  * @property int     navigation_id
  * @property int     extension_id
  */
-class Menu extends Node
+class Menu extends Node implements Cacheable
 {
     use PresentableTrait, PublishableTrait, CanRequireAuthentication;
     use AuditableTrait, HasParameters, HasOrder, SortableTrait;
@@ -214,5 +215,18 @@ class Menu extends Node
     public function extension()
     {
         return $this->belongsTo(Extension::class);
+    }
+
+    /**
+     * Get list of keys used for caching.
+     *
+     * @return array
+     */
+    public function getCacheKeys()
+    {
+        return [
+            'navigation.published',
+            'navigation.all',
+        ];
     }
 }
