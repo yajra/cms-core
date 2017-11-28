@@ -24,6 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
         Menu::class,
         Article::class,
         Category::class,
+        Extension::class,
     ];
 
     /**
@@ -45,17 +46,6 @@ class RepositoryServiceProvider extends ServiceProvider
             $cachedModel::saved($closure);
             $cachedModel::deleted($closure);
         }
-
-        Extension::saved(function ($model) {
-            $this->app['cache.store']->forget('extension.' . $model->id);
-            $this->app['cache.store']->forget('extensions.widgets');
-            $this->app['cache.store']->forget('extensions.all');
-        });
-        Extension::deleted(function ($model) {
-            $this->app['cache.store']->forget('extension.' . $model->id);
-            $this->app['cache.store']->forget('extensions.widgets');
-            $this->app['cache.store']->forget('extensions.all');
-        });
     }
 
     /**

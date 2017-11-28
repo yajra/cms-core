@@ -4,9 +4,11 @@ namespace Yajra\CMS\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Yajra\CMS\Contracts\Cacheable;
 use Yajra\CMS\Entities\Traits\HasParameters;
 
 /**
+ * @property mixed  id
  * @property string name
  * @property string type
  * @property string parameters
@@ -14,7 +16,7 @@ use Yajra\CMS\Entities\Traits\HasParameters;
  * @property string manifest
  * @property bool   protected
  */
-class Extension extends Model
+class Extension extends Model implements Cacheable
 {
     use HasParameters;
     const WIDGET_MENU        = 1;
@@ -75,5 +77,19 @@ class Extension extends Model
     public function getDescriptionAttribute()
     {
         return $this->manifest['description'] ?? 'No description';
+    }
+
+    /**
+     * Get list of keys used for caching.
+     *
+     * @return array
+     */
+    public function getCacheKeys()
+    {
+        return [
+            'extension.' . $this->id,
+            'extensions.widgets',
+            'extensions.all',
+        ];
     }
 }
