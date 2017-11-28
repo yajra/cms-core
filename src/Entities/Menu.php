@@ -49,11 +49,6 @@ class Menu extends Node implements Cacheable
     /**
      * @var array
      */
-    protected $touches = ['navigation'];
-
-    /**
-     * @var array
-     */
     protected $casts = [
         'authenticated' => 'bool',
         'published'     => 'bool',
