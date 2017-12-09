@@ -78,7 +78,7 @@ class ArticlePresenter extends Presenter
      */
     public function author()
     {
-        return !empty($this->entity->author_alias)
+        return ! empty($this->entity->author_alias)
             ? $this->entity->author_alias
             : $this->entity->createdByName;
     }
@@ -141,9 +141,16 @@ class ArticlePresenter extends Presenter
      *
      * @return \Illuminate\Contracts\Routing\UrlGenerator|string
      */
-    public function introImage()
+    public function image()
     {
-        return $this->entity->param('intro_image') ? url($this->entity->param('intro_image')) : "";
+        if ($image = $this->articleImage()) {
+            return $image;
+        }
+        if ($image = $this->introImage()) {
+            return $image;
+        }
+
+        return config('article.image');
     }
 
     /**
@@ -154,5 +161,15 @@ class ArticlePresenter extends Presenter
     public function articleImage()
     {
         return $this->entity->param('image_fulltext') ? url($this->entity->param('image_fulltext')) : "";
+    }
+
+    /**
+     * Get article intro image.
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function introImage()
+    {
+        return $this->entity->param('intro_image') ? url($this->entity->param('intro_image')) : "";
     }
 }
