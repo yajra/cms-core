@@ -21,7 +21,7 @@ class CategoryController extends Controller
         $category->increment('hits');
 
         $layout   = $request->query('layout', 'blog');
-        $limit    = $request->get('limit', $layout == 'list' ? 10 : 5);
+        $limit    = $request->get('limit', $layout == 'list' ? 10 : 6);
         /** @var \Illuminate\Contracts\Pagination\Paginator $articles */
         $articles = $category->articles()->published()->isNotPage()->latest()->paginate($limit);
 
