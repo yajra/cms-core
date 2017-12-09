@@ -23,7 +23,7 @@ class CategoryController extends Controller
         $layout   = $request->query('layout', 'blog');
         $limit    = $request->get('limit', $layout == 'list' ? 10 : 5);
         /** @var \Illuminate\Contracts\Pagination\Paginator $articles */
-        $articles = $category->articles()->published()->isNotPage()->latest()->simplePaginate($limit);
+        $articles = $category->articles()->published()->isNotPage()->latest()->paginate($limit);
 
         if ($layout === 'list') {
             $articles->appends('layout', 'list');
