@@ -78,9 +78,11 @@ class ArticlePresenter extends Presenter
      */
     public function author()
     {
-        return ! empty($this->entity->author_alias)
+        $author = ! empty($this->entity->author_alias)
             ? $this->entity->author_alias
             : $this->entity->createdByName;
+
+        return $author ?? config('site.author');
     }
 
     /**
@@ -171,5 +173,25 @@ class ArticlePresenter extends Presenter
     public function introImage()
     {
         return $this->entity->param('intro_image') ? url($this->entity->param('intro_image')) : "";
+    }
+
+    /**
+     * Get article meta description.
+     *
+     * @return string
+     */
+    public function description()
+    {
+        return $this->entity->param('meta_description') ?? config('site.keywords');
+    }
+
+    /**
+     * Get article meta keywords.
+     *
+     * @return string
+     */
+    public function keywords()
+    {
+        return $this->entity->param('meta_keywords') ?? config('site.keywords');
     }
 }
