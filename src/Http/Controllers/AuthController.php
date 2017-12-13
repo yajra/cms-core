@@ -118,4 +118,14 @@ class AuthController extends Controller
 
         return array_merge($request->only($this->username(), 'password'), $options);
     }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return config('site.login.backend.username', 'email');
+    }
 }
