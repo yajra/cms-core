@@ -76,13 +76,6 @@
                     </li>
                 @endcan
                 <li>
-                    <button data-href="{!! route('administrator.users.show', $id) !!}"
-                            class="btn btn-link"
-                    >
-                        <i class="fa fa-eye"></i> {{trans('cms::user.view')}}
-                    </button>
-                </li>
-                <li>
                     <button data-ajax="{!! route('administrator.users.impersonate', $id) !!}"
                             class="btn btn-link"
                     >
@@ -90,6 +83,13 @@
                     </button>
                 </li>
             @endif
+            <li>
+                <button data-href="{!! route('administrator.users.show', $id) !!}"
+                        class="btn btn-link"
+                >
+                    <i class="fa fa-eye"></i> {{trans('cms::user.view')}}
+                </button>
+            </li>
         </ul>
     </div>
 </div>
