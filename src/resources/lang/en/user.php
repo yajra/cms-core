@@ -95,6 +95,8 @@ return [
 
     'view' => 'View Profile',
 
+    'impersonate' => 'Impersonate User',
+
     'dataTable' => [
         'columns'    => [
             [

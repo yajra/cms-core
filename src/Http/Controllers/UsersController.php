@@ -37,11 +37,12 @@ class UsersController extends Controller
         'restore'        => 'update',
         'password'       => 'update',
         'updatePassword' => 'update',
+        'impersonate'    => 'view',
     ];
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \Yajra\Acl\Models\Role $role
+     * @param \Yajra\Acl\Models\Role   $role
      */
     public function __construct(Request $request, Role $role)
     {
@@ -178,7 +179,7 @@ class UsersController extends Controller
     }
 
     /**
-     * @param \App\User $user
+     * @param \App\User                                           $user
      * @param \Yajra\CMS\Contracts\Validators\UpdateUserValidator $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -216,7 +217,7 @@ class UsersController extends Controller
     /**
      * Remove selected user.
      *
-     * @param \App\User $user
+     * @param \App\User  $user
      * @param bool|false $force
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
@@ -286,5 +287,18 @@ class UsersController extends Controller
         } else {
             return $this->notifySuccess('User ' . $user->name . ' deactivated!');
         }
+    }
+
+    /**
+     * Login on front-end as the given user.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function impersonate(User $user)
+    {
+        auth('web')->login($user);
+
+        return $this->notifySuccess("You are now logged in as {$user->first_name}. You can now visit the authenticated part of the site.");
     }
 }
