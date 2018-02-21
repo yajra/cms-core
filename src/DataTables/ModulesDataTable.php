@@ -41,7 +41,7 @@ class ModulesDataTable extends DataTable
         return $this
             ->builder()
             ->columns($this->getColumns())
-            ->minifiedAjax()
+            ->postAjax()
             ->parameters([
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],

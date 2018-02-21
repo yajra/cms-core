@@ -52,7 +52,7 @@ class NavigationDataTable extends DataTable
     {
         return $this->builder()
                     ->columns($this->getColumns())
-                    ->minifiedAjax()
+                    ->postAjax()
                     ->parameters($this->getBuilderParameters());
     }
 
@@ -148,6 +148,6 @@ class NavigationDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'navigation';
+        return 'navigation_' . date('Ymdhis');
     }
 }

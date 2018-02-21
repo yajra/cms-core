@@ -16,7 +16,7 @@ class RolesDataTable extends DataTable
     {
         return $this->builder()
                     ->columns(trans('cms::role.dataTable.columns'))
-                    ->minifiedAjax()
+                    ->postAjax()
                     ->parameters(trans('cms::role.dataTable.parameters'));
     }
 
