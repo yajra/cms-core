@@ -16,7 +16,7 @@ class PermissionsDataTable extends DataTable
         return $this
             ->builder()
             ->columns(trans('cms::permission.dataTable.columns'))
-            ->minifiedAjax()
+            ->postAjax()
             ->parameters(trans('cms::permission.dataTable.parameters'));
     }
 
