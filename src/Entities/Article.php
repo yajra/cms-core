@@ -24,23 +24,27 @@ use Yajra\CMS\Presenters\ArticlePresenter;
  * Class Article
  *
  * @package App
- * @property int        id
- * @property string     title
- * @property string     body
- * @property string     alias
- * @property boolean    published
- * @property boolean    featured
- * @property int        category_id
- * @property bool       authenticated
- * @property bool       is_page
+ * @property int id
+ * @property string title
+ * @property string body
+ * @property string alias
+ * @property boolean published
+ * @property boolean featured
+ * @property int category_id
+ * @property bool authenticated
+ * @property bool is_page
  * @property Collection permissions
- * @property int        hits
- * @property int        order
- * @property string     parameters
- * @property string     authorization
- * @property string     author_alias
- * @property Category   category
- * @property mixed      blade_template
+ * @property int hits
+ * @property int order
+ * @property string parameters
+ * @property string authorization
+ * @property string author_alias
+ * @property Category category
+ * @property mixed blade_template
+ * @method static Builder pages()
+ * @method static Builder articles()
+ * @method static Builder featured()
+ * @method static Builder isNotPage()
  */
 class Article extends Model implements UrlGenerator, Cacheable
 {
@@ -52,7 +56,7 @@ class Article extends Model implements UrlGenerator, Cacheable
      * @var array
      */
     public $sortable = [
-        'order_column_name'  => 'order',
+        'order_column_name' => 'order',
         'sort_when_creating' => true,
     ];
 
@@ -65,8 +69,8 @@ class Article extends Model implements UrlGenerator, Cacheable
      * @var array
      */
     protected $casts = [
-        'featured'   => 'bool',
-        'published'  => 'bool',
+        'featured' => 'bool',
+        'published' => 'bool',
         'parameters' => 'array',
     ];
 
@@ -173,9 +177,9 @@ class Article extends Model implements UrlGenerator, Cacheable
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-                          ->generateSlugsFrom('title')
-                          ->saveSlugsTo('alias')
-                          ->doNotGenerateSlugsOnUpdate();
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('alias')
+            ->doNotGenerateSlugsOnUpdate();
     }
 
     /**
@@ -247,6 +251,28 @@ class Article extends Model implements UrlGenerator, Cacheable
     }
 
     /**
+     * Query scope to get only articles that are page.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePages(Builder $builder)
+    {
+        return $builder->where('is_page', true);
+    }
+
+    /**
+     * Query scope to get only articles that are articles.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeArticles(Builder $builder)
+    {
+        return $builder->where('is_page', false);
+    }
+
+    /**
      * Query scope to get featured articles.
      *
      * @param Builder $builder
@@ -280,9 +306,9 @@ class Article extends Model implements UrlGenerator, Cacheable
         $this->hits++;
 
         $this->newQuery()
-             ->toBase()
-             ->where($this->getKeyName(), $this->getKey())
-             ->increment('hits');
+            ->toBase()
+            ->where($this->getKeyName(), $this->getKey())
+            ->increment('hits');
 
         return $this;
     }

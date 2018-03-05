@@ -2,6 +2,12 @@
 
 namespace Yajra\CMS\Entities\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
+
+/**
+ * @method static Builder published()
+ * @method static Builder unpublished()
+ */
 trait PublishableTrait
 {
     /**
