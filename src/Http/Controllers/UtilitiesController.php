@@ -2,7 +2,6 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
-use Illuminate\Contracts\Logging\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
@@ -18,11 +17,6 @@ class UtilitiesController extends Controller
      * @var \Illuminate\Contracts\Console\Kernel
      */
     protected $command;
-
-    /**
-     * @var \Illuminate\Contracts\Logging\Log
-     */
-    protected $log;
 
     /**
      * Controller specific permission ability map.
@@ -42,12 +36,10 @@ class UtilitiesController extends Controller
     /**
      * UtilitiesController constructor.
      *
-     * @param \Illuminate\Contracts\Logging\Log $log
      * @param \Collective\Html\HtmlBuilder      $html
      */
-    public function __construct(Log $log)
+    public function __construct()
     {
-        $this->log = $log;
         $this->authorizePermissionResource('utilities');
     }
 
@@ -73,14 +65,14 @@ class UtilitiesController extends Controller
             $message = trans('cms::utilities.backup.not_allowed',
                     ['task' => $task]) . trans('cms::utilities.field.executed_by',
                     ['name' => $this->getCurrentUserName()]);
-            $this->log->info($message);
+            \Log::info($message);
 
             return $this->notifyError($message);
         }
 
         Artisan::call('backup:' . $task);
         $message = $task == 'clean' ? trans('cms::utilities.backup.cleanup_complete') : trans('cms::utilities.backup.complete');
-        $this->log->info($message . trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()]));
+        \Log::info($message . trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()]));
 
         return $this->notifySuccess($message);
     }
@@ -103,7 +95,7 @@ class UtilitiesController extends Controller
     public function cache()
     {
         Artisan::call('cache:clear');
-        $this->log->info(trans('cms::utilities.cache.success') . trans('cms::utilities.field.executed_by',
+        \Log::info(trans('cms::utilities.cache.success') . trans('cms::utilities.field.executed_by',
                 ['name' => $this->getCurrentUserName()]));
 
         return $this->notifySuccess(trans('cms::utilities.cache.success'));
@@ -118,7 +110,7 @@ class UtilitiesController extends Controller
     public function config($task)
     {
         if (! in_array($task, ['cache', 'clear'])) {
-            $this->log->info(sprintf("%s %s",
+            \Log::info(sprintf("%s %s",
                 trans('cms::utilities.config.not_allowed', ['task' => $task]),
                 trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
             ));
@@ -127,7 +119,7 @@ class UtilitiesController extends Controller
         }
 
         $message = $task == 'cache' ? trans('cms::utilities.config.cached') : trans('cms::utilities.config.cleared');
-        $this->log->info(sprintf("%s %s",
+        \Log::info(sprintf("%s %s",
             $message,
             trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
         ));
@@ -144,7 +136,7 @@ class UtilitiesController extends Controller
     public function views()
     {
         Artisan::call('view:clear');
-        $this->log->info(sprintf("%s %s",
+        \Log::info(sprintf("%s %s",
             trans('cms::utilities.views.success'),
             trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
         ));
@@ -160,7 +152,7 @@ class UtilitiesController extends Controller
     public function route($task)
     {
         if (! in_array($task, ['cache', 'clear'])) {
-            $this->log->info(sprintf("%s %s",
+            \Log::info(sprintf("%s %s",
                 trans('cms::utilities.route.not_allowed', ['task' => $task]),
                 trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
             ));
@@ -169,7 +161,7 @@ class UtilitiesController extends Controller
         }
 
         $message = $task == 'cache' ? trans('cms::utilities.route.cached') : trans('cms::utilities.route.cleared');
-        $this->log->info(sprintf("%s %s",
+        \Log::info(sprintf("%s %s",
             $message,
             trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
         ));
