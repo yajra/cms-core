@@ -1,14 +1,8 @@
 @extends('layouts.master')
 
+@section('title', trans('cms::search.title'))
+@section('page-title', trans('cms::search.title'))
 @section('body', 'search')
-
-@section('title')
-    {{ trans('cms::search.title') }} | @parent
-@stop
-
-@section('page-title')
-    {{ trans('cms::search.title') }}
-@stop
 
 @section('content')
     <h1>{{trans('cms::search.title')}}</h1>
