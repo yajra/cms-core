@@ -1,21 +1,10 @@
 @extends('layouts.master')
 
-@section('body', '')
-
-@push('styles')
-@endpush
-
-@section('title')
-    {{ $category->title }} | @parent
-@stop
-
+@section('title', $category->title)
 @section('keywords', $category->param('meta_keywords') ?? config('site.keywords'))
 @section('description', $category->param('meta_description') ?? config('site.description'))
 @section('author', $category->param('author_alias') ?? config('site.author'))
-
-@section('page-title')
-    {{ $category->title }}
-@stop
+@section('page-title', $category->title)
 
 @section('content')
     @if($category->description)
