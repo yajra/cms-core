@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title'       => 'Search for Articles & Pages',
+    'title'       => 'Search for Articles and Pages',
     'empty'       => 'No matching records found!',
-    'placeholder' => 'Search for articles & pages',
+    'placeholder' => 'Search for articles and pages',
     'results'     => 'Search results for: ',
 
 ];
