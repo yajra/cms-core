@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Admin Dashboard')
+
 @section('page-title')
     <h1>{{trans('cms::backend.welcome.title', ['title' => config('site.name')])}}</h1>
     <p class="help-block">{{trans('cms::backend.welcome.description')}}</p>
