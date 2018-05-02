@@ -48,7 +48,7 @@ class MediaController extends Controller
 
     /**
      * @param \Intervention\Image\ImageManager $image
-     * @param \Illuminate\Config\Repository $config
+     * @param \Illuminate\Config\Repository    $config
      */
     public function __construct(ImageManager $image, Repository $config)
     {
@@ -60,7 +60,7 @@ class MediaController extends Controller
      * Display media browser from CKEditor.
      *
      * @param \Illuminate\Http\Request $request
-     * @param string|null $filter
+     * @param string|null              $filter
      * @return \Illuminate\Http\Response
      */
     public function browse(Request $request, $filter = null)
@@ -127,7 +127,7 @@ class MediaController extends Controller
             return true;
         }
 
-        return ! Storage::exists($this->currentDir) && $request->has('folder') || $request->get('folder') === 'public';
+        return !Storage::exists($this->currentDir) && $request->has('folder') || $request->get('folder') === 'public';
     }
 
     /**
@@ -263,7 +263,7 @@ class MediaController extends Controller
      * Build the directory lists.
      *
      * @param \Illuminate\Support\Collection $directories
-     * @param string $parent
+     * @param string                         $parent
      * @return string
      */
     protected function buildDirectory($directories, $parent)
@@ -345,7 +345,7 @@ class MediaController extends Controller
     public function addFolder(Request $request)
     {
         // check if alphanumeric and no space
-        if (! ctype_alnum($request->input('new_directory'))) {
+        if (!ctype_alnum($request->input('new_directory'))) {
             flash()->error('Invalid folder name! Folder name must be alphanumeric only and no space');
 
             return redirect()->back();
