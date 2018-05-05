@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
-@section('title')
-    {{trans('cms::module.index.title')}}| @parent
-@stop
+@section('title', trans('cms::module.index.title'))
 
 @section('page-title')
     @pageHeader('cms::module.index.title', 'cms::module.index.description', 'fa fa-cubes')
@@ -17,11 +15,11 @@
             </h3>
         </div>
         <div class="box-body">
-          {{ $dataTable->table(['class' => 'table table-hover margin-top-30']) }}
+            {{ $dataTable->table(['class' => 'table table-hover margin-top-30']) }}
         </div>
     </div>
 @stop
 
 @push('scripts')
-{{ $dataTable->scripts() }}
+    {{ $dataTable->scripts() }}
 @endpush

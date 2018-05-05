@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    @section('title', 'Administrator Login')
     @include('system.meta')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
