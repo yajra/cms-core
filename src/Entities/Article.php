@@ -138,8 +138,13 @@ class Article extends Model implements UrlGenerator, Cacheable
     {
         parent::boot();
 
-        static::saving(function (Article $article) {
+        static::updating(function (Article $article) {
             $article->slug = $article->computeSlug();
+        });
+
+        static::created(function (Article $article) {
+            $article->slug = $article->computeSlug();
+            $article->save();
         });
     }
 
