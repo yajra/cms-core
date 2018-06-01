@@ -77,28 +77,32 @@ class WidgetsDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'action'        => [
+            'action'         => [
                 'width'      => '80px',
                 'title'      => trans('cms::widget.datatable.columns.action'),
                 'orderable'  => false,
                 'searchable' => false,
+                'printable'  => false,
+                'exportable' => false,
             ],
 
             'title',
             'template',
-            'position'       => ['width' => '80px'],
+            'position'       => [
+                'width' => '80px',
+            ],
             'extension.name' => [
                 'width' => '120px',
                 'title' => '<i class="fa fa-plug" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.extensionName') . '"></i> Ext.',
             ],
             'authenticated'  => [
-                'width' => '20px',
-                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.authenticated') . '"></i>',
+                'width' => '60px',
+                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::widget.datatable.columns.authenticated') . '"></i> Auth',
             ],
             'created_at'     => [
                 'searchable' => false,
                 'width'      => '100px',
-                'title' => trans('cms::widget.datatable.columns.created_at'),
+                'title'      => trans('cms::widget.datatable.columns.created_at'),
             ],
             [
                 'data'  => 'id',

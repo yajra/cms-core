@@ -75,10 +75,12 @@ class CategoriesDataTable extends DataTable
     {
         return [
             [
-                'data'  => 'lft',
-                'name'  => 'lft',
-                'width' => '20px',
-                'title' => '<i class="fa fa-tree" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.lft') . '"></i>',
+                'data'       => 'lft',
+                'name'       => 'lft',
+                'width'      => '20px',
+                'title'      => '<i class="fa fa-tree" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.lft') . '"></i>',
+                'printable'  => false,
+                'exportable' => false,
             ],
             [
                 'data'       => 'action',
@@ -87,6 +89,8 @@ class CategoriesDataTable extends DataTable
                 'title'      => trans('cms::categories.datatable.columns.action'),
                 'orderable'  => false,
                 'searchable' => false,
+                'printable'  => false,
+                'exportable' => false,
             ],
             [
                 'data'  => 'title',
@@ -102,30 +106,34 @@ class CategoriesDataTable extends DataTable
             [
                 'data'  => 'authenticated',
                 'name'  => 'authenticated',
-                'width' => '20px',
-                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.authenticated') . '"></i>',
+                'width' => '60px',
+                'class' => 'text-center',
+                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.authenticated') . '"></i> Auth',
             ],
             [
                 'data'       => 'pub',
                 'name'       => 'pub',
-                'width'      => '20px',
-                'title'      => '<i class="fa fa-check-circle-o" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.pub') . '"></i>',
+                'width'      => '80px',
+                'class'      => 'text-center',
+                'title'      => '<i class="fa fa-check-circle-o" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.pub') . '"></i> Articles',
                 'orderable'  => false,
                 'searchable' => false,
             ],
             [
                 'data'       => 'unpub',
                 'name'       => 'unpub',
-                'width'      => '20px',
-                'title'      => '<i class="fa fa-close" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.unpub') . '"></i>',
+                'width'      => '80px',
+                'class'      => 'text-center',
+                'title'      => '<i class="fa fa-close" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.unpub') . '"></i> Articles',
                 'orderable'  => false,
                 'searchable' => false,
             ],
             [
                 'data'  => 'hits',
                 'name'  => 'hits',
-                'width' => '20px',
-                'title' => '<i class="fa fa-eye" data-toggle="tooltip" data-title="' . trans('cms::categories.datatable.columns.hits') . '"></i>',
+                'width' => '60px',
+                'class' => 'text-center',
+                'title' => trans('cms::categories.datatable.columns.hits'),
             ],
             [
                 'data'  => 'created_at',
@@ -170,6 +178,6 @@ class CategoriesDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'categories_' . time();
+        return 'categories';
     }
 }

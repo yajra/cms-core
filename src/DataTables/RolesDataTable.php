@@ -59,6 +59,6 @@ class RolesDataTable extends DataTable
      */
     protected function filename()
     {
-        return trans('cms::role.dataTable.filename');
+        return 'roles';
     }
 }

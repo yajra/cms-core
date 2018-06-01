@@ -142,6 +142,7 @@ return [
         'columns' => [
             'id'            => 'Id',
             'title'         => 'Title',
+            'alias'         => 'Alias',
             'published'     => 'Published',
             'authenticated' => 'Authentication Required',
             'order'         => 'Sort/Order',

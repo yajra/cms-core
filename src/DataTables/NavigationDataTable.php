@@ -71,6 +71,8 @@ class NavigationDataTable extends DataTable
                 'title'      => trans('cms::navigation.datatable.columns.action'),
                 'orderable'  => false,
                 'searchable' => false,
+                'printable'  => false,
+                'exportable' => false,
             ],
             [
                 'data'  => 'title',
@@ -88,14 +90,16 @@ class NavigationDataTable extends DataTable
                 'name'       => 'menus',
                 'orderable'  => false,
                 'searchable' => false,
-                'width'      => '25px',
-                'title'      => '<i class="fa fa-clone" data-toggle="tooltip" data-title="' . trans('cms::navigation.datatable.columns.menus') . '"></i>',
+                'width'      => '60px',
+                'class'      => 'text-center',
+                'title'      => '<i class="fa fa-clone" data-toggle="tooltip" data-title="' . trans('cms::navigation.datatable.columns.menus') . '"></i> Items',
             ],
             [
                 'data'  => 'published',
                 'name'  => 'published',
                 'width' => '20px',
-                'title' => '<i class="fa fa-check-circle" data-toggle="tooltip" data-title="' . trans('cms::navigation.datatable.columns.published') . '"></i>',
+                'class' => 'text-center',
+                'title' => trans('cms::navigation.datatable.columns.published'),
             ],
             [
                 'data'  => 'created_at',
@@ -148,6 +152,6 @@ class NavigationDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'navigation_' . date('Ymdhis');
+        return 'navigation';
     }
 }

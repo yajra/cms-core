@@ -44,7 +44,7 @@ class ModulesDataTable extends DataTable
             ->postAjax()
             ->parameters([
                 'stateSave' => true,
-                'order'     => [[0, 'desc']],
+                'order'     => [[1, 'asc']],
                 'buttons'   => [
                     'export',
                     'print',
@@ -61,10 +61,14 @@ class ModulesDataTable extends DataTable
     {
         return [
             [
-                'data'  => 'action',
-                'name'  => 'action',
-                'title' => trans('cms::module.table.columns.action'),
-                'width' => '60px',
+                'data'       => 'action',
+                'name'       => 'action',
+                'title'      => trans('cms::module.table.columns.action'),
+                'width'      => '60px',
+                'searchable' => false,
+                'orderable'  => false,
+                'exportable' => false,
+                'printable'  => false,
             ],
             [
                 'data'  => 'name',
@@ -94,5 +98,13 @@ class ModulesDataTable extends DataTable
                 'width' => '60px',
             ],
         ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function filename()
+    {
+        return 'modules';
     }
 }

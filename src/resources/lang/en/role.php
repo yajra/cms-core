@@ -102,6 +102,8 @@ return [
                 'width'      => '60px',
                 'orderable'  => false,
                 'searchable' => false,
+                'printable'  => false,
+                'exportable' => false,
             ],
         ],
         'parameters' => [

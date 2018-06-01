@@ -91,6 +91,7 @@ return [
             'pub'           => '# Published Articles',
             'unpub'         => '# Unpublished Articles',
             'hits'          => 'Hits',
+            'alias'         => 'Alias',
             'id'            => 'ID',
             'action'        => 'Status',
             'created_at'    => 'Created At',

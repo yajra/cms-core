@@ -90,10 +90,13 @@ class MenuItemsDataTable extends DataTable
     {
         return [
             [
-                'data'  => 'lft',
-                'name'  => 'lft',
-                'width' => '10px',
-                'title' => '<i class="fa fa-tree" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.lft') . '"></i>',
+                'data'       => 'lft',
+                'name'       => 'lft',
+                'width'      => '10px',
+                'title'      => '<i class="fa fa-tree" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.lft') . '"></i>',
+                'searchable' => false,
+                'printable'  => false,
+                'exportable' => false,
             ],
             [
                 'data'       => 'action',
@@ -102,6 +105,8 @@ class MenuItemsDataTable extends DataTable
                 'title'      => trans('cms::menu.datatable.columns.action'),
                 'orderable'  => false,
                 'searchable' => false,
+                'printable'  => false,
+                'exportable' => false,
             ],
             [
                 'data'  => 'title',
@@ -122,8 +127,8 @@ class MenuItemsDataTable extends DataTable
             [
                 'data'  => 'authenticated',
                 'name'  => 'authenticated',
-                'width' => '20px',
-                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.authenticated') . '"></i>',
+                'width' => '60px',
+                'title' => '<i class="fa fa-key" data-toggle="tooltip" data-title="' . trans('cms::menu.datatable.columns.authenticated') . '"></i> Auth',
             ],
             [
                 'data'  => 'order',
@@ -174,6 +179,6 @@ class MenuItemsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'menu_' . time();
+        return 'menus';
     }
 }

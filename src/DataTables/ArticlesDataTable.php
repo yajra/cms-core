@@ -107,11 +107,13 @@ class ArticlesDataTable extends DataTable
     {
         return [
             [
-                'data'      => 'status',
-                'name'      => 'articles.published',
-                'width'     => '100px',
-                'title'     => trans('cms::article.datatable.columns.status'),
-                'orderable' => false,
+                'data'       => 'status',
+                'name'       => 'articles.published',
+                'width'      => '100px',
+                'title'      => trans('cms::article.datatable.columns.status'),
+                'orderable'  => false,
+                'exportable' => false,
+                'printable'  => false,
             ],
             [
                 'data'  => 'title',
@@ -120,11 +122,13 @@ class ArticlesDataTable extends DataTable
             ],
             [
                 'data'    => 'alias',
+                'title'   => trans('cms::article.datatable.columns.alias'),
                 'name'    => 'articles.alias',
                 'visible' => false,
             ],
             [
                 'data'    => 'category',
+                'title'   => trans('cms::article.datatable.columns.category'),
                 'name'    => 'category.title',
                 'visible' => false,
             ],

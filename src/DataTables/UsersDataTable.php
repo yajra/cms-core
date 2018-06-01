@@ -78,6 +78,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename()
     {
-        return trans('cms::user.dataTable.filename');
+        return 'users';
     }
 }
