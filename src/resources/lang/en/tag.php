@@ -73,14 +73,14 @@ return [
     'datatable' => [
         'columns' => [
             'authenticated' => 'Authentication Required',
-            'action'        => 'ACTION',
-            'name'          => 'NAME',
-            'slug'          => 'SLUG',
-            'id'            => 'ID',
-            'action'        => 'Status',
+            'action'        => 'Action',
+            'name'          => 'Name',
+            'slug'          => 'Slug',
+            'suggest'       => 'Suggest',
+            'count'         => 'Count',
+            'id'            => 'Id',
             'created_at'    => 'Created At',
             'updated_at'    => 'Updated At',
-            'title'         => 'Title',
         ],
         'buttons' => [
             'create' => 'New Tag',

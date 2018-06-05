@@ -79,6 +79,16 @@ class TagsDataTable extends DataTable
                 'title' => trans('cms::tag.datatable.columns.slug'),
             ],
             [
+                'data'  => 'suggest',
+                'name'  => 'suggest',
+                'title' => trans('cms::tag.datatable.columns.suggest'),
+            ],
+            [
+                'data'  => 'count',
+                'name'  => 'count',
+                'title' => trans('cms::tag.datatable.columns.count'),
+            ],
+            [
                 'data'  => 'id',
                 'name'  => 'tagging_tags.id',
                 'title' => trans('cms::tag.datatable.columns.id'),
@@ -94,7 +104,7 @@ class TagsDataTable extends DataTable
     {
         return [
             'stateSave' => true,
-            'order'     => [[3, 'asc']],
+            'order'     => [[5, 'asc']],
             'buttons'   => [
                 [
                     'extend' => 'create',
