@@ -49,13 +49,13 @@ class GenerateAdminMenu
                 $contents->add('Articles', route('administrator.articles.index'))
                          ->icon('files-o')
                          ->data([
-                             'permission' => 'tag.view',
+                             'permission' => 'article.view',
                              'append'     => route('administrator.articles.create'),
                          ]);
                 $contents->add('Tags', route('administrator.tags.index'))
                          ->icon('tags')
                          ->data([
-                             'permission' => 'article.view',
+                             'permission' => 'tag.view',
                              'append'     => route('administrator.tags.create'),
                          ]);
                 $contents->add('Categories', route('administrator.categories.index'))
