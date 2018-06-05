@@ -2,6 +2,7 @@
 
 namespace Yajra\CMS\Http\Controllers;
 
+use Conner\Tagging\Model\Tag;
 use Yajra\CMS\DataTables\ArticlesDataTable;
 use Yajra\CMS\Entities\Article;
 use Yajra\CMS\Entities\Category;
@@ -73,7 +74,7 @@ class ArticlesController extends Controller
     {
         $article->published = true;
         $article->setHighestOrderNumber();
-        $tags = Article::existingTags()->pluck('name');
+        $tags = Tag::all()->pluck('name');
 
         return view('administrator.articles.create', compact('article', 'tags'));
     }
@@ -114,7 +115,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        $tags         = Article::existingTags()->pluck('name');
+        $tags         = Tag::all()->pluck('name');
         $selectedTags = implode(',', $article->tagNames());
 
         return view('administrator.articles.edit', compact('article', 'tags', 'selectedTags'));
