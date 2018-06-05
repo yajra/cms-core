@@ -4,7 +4,7 @@ namespace Yajra\CMS\Http\Requests;
 
 use Yajra\CMS\Rules\Slug;
 
-class EditTagsFormRequest extends Request
+class NewTagFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,9 @@ class EditTagsFormRequest extends Request
      */
     public function rules()
     {
-        /** @var \Conner\Tagging\Model\Tag $tag */
-        $tag = $this->route('tag');
-
         return [
             'name' => 'required|max:255',
-            'slug' => ['required', 'unique:tagging_tags,slug,' . $tag->id, 'max:255', new Slug],
+            'slug' => ['required', 'unique:tagging_tags', 'max:255', new Slug],
         ];
     }
 }
