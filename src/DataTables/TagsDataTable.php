@@ -94,7 +94,7 @@ class TagsDataTable extends DataTable
     {
         return [
             'stateSave' => true,
-            'order'     => [[2, 'asc']],
+            'order'     => [[3, 'asc']],
             'buttons'   => [
                 [
                     'extend' => 'create',

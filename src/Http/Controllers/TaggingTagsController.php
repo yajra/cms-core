@@ -4,7 +4,9 @@ namespace Yajra\CMS\Http\Controllers;
 
 use Conner\Tagging\Model\Tag;
 use Yajra\CMS\DataTables\TagsDataTable;
+use Yajra\CMS\Http\Requests\EditTagsFormRequest;
 use Yajra\CMS\Http\Requests\TagsFormRequest;
+use Illuminate\Support\Facades\DB;
 
 class TaggingTagsController extends Controller
 {
@@ -49,6 +51,7 @@ class TaggingTagsController extends Controller
     public function store(TagsFormRequest $request, Tag $tag)
     {
         $tag->fill($request->all());
+        $tag->slug = str_slug($request->get('tag'));
         $tag->save();
         flash()->success(trans('cms::tag.store.success'));
 
@@ -64,6 +67,7 @@ class TaggingTagsController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        DB::table('tagging_tagged')->where('tag_slug', $tag->slug)->delete();
         $tag->delete();
 
         return $this->notifySuccess(trans('cms::tag.destroy.success'));
@@ -83,12 +87,12 @@ class TaggingTagsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Yajra\CMS\Http\Requests\TagsFormRequest $request
-     * @param \Conner\Tagging\Model\Tag                $tag
+     * @param \Yajra\CMS\Http\Requests\EditTagsFormRequest $request
+     * @param \Conner\Tagging\Model\Tag                    $tag
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function update(TagsFormRequest $request, Tag $tag)
+    public function update(EditTagsFormRequest $request, Tag $tag)
     {
         $tag->fill($request->all());
         $tag->save();
