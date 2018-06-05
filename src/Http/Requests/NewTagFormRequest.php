@@ -24,8 +24,7 @@ class NewTagFormRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'slug' => ['required', 'unique:tagging_tags', 'max:255', new Slug],
+            'name' => 'required|max:255|unique:tagging_tags',
         ];
     }
 }

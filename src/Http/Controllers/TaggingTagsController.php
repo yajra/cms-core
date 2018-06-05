@@ -51,8 +51,8 @@ class TaggingTagsController extends Controller
     public function store(NewTagFormRequest $request, Tag $tag)
     {
         $tag->fill($request->all());
-        $tag->slug = str_slug($request->get('tag'));
         $tag->save();
+
         flash()->success(trans('cms::tag.store.success'));
 
         return redirect()->route('administrator.tags.index');
