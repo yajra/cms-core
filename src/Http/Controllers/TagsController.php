@@ -6,6 +6,12 @@ use Yajra\CMS\Entities\Article;
 
 class TagsController extends Controller
 {
+    /**
+     * Show tags.
+     *
+     * @param string $slug
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function show($slug)
     {
         $limit    = request()->get('limit', 10);
