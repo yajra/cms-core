@@ -2,8 +2,6 @@
 
 namespace Yajra\CMS\Http\Requests;
 
-use Yajra\CMS\Rules\Slug;
-
 class NewTagFormRequest extends Request
 {
     /**
