@@ -47,14 +47,14 @@ return [
     ],
 
     'edit' => [
-        'title'      => 'Edit Panel',
+        'title'      => 'Update Tag',
         'page-title' => 'Update Tag',
         'page-desc'  => 'Update tag publication details.',
         'require'    => 'Fill-up all the required fields.',
     ],
 
     'create' => [
-        'title'      => 'Create Panel',
+        'title'      => 'Create Tag',
         'page-title' => 'Create Tag',
         'page-desc'  => 'Create tag publication details.',
     ],
