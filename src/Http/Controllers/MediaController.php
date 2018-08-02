@@ -314,10 +314,7 @@ class MediaController extends Controller
             return response($filename . " already exists.", 500);
         }
 
-        Storage::put(
-            $request->input('current_directory') . '/' . $filename,
-            file_get_contents($request->file('file'))
-        );
+        $request->file('file')->move(storage_path('app/' . $request->input('current_directory') . '/' . $filename));
 
         return redirect()->back();
     }
