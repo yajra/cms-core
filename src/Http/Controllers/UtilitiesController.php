@@ -34,13 +34,19 @@ class UtilitiesController extends Controller
     ];
 
     /**
+     * @var LaravelLogViewer
+     */
+    protected $logViewer;
+
+    /**
      * UtilitiesController constructor.
      *
-     * @param \Collective\Html\HtmlBuilder      $html
+     * @param LaravelLogViewer $logViewer
      */
-    public function __construct()
+    public function __construct(LaravelLogViewer $logViewer)
     {
         $this->authorizePermissionResource('utilities');
+        $this->logViewer = $logViewer;
     }
 
     /**
@@ -109,6 +115,7 @@ class UtilitiesController extends Controller
      */
     public function config($task)
     {
+        $message = $task == 'cache' ? trans('cms::utilities.config.cached') : trans('cms::utilities.config.cleared');
         if (! in_array($task, ['cache', 'clear'])) {
             \Log::info(sprintf("%s %s",
                 trans('cms::utilities.config.not_allowed', ['task' => $task]),
@@ -118,7 +125,6 @@ class UtilitiesController extends Controller
             return $this->notifyError($message);
         }
 
-        $message = $task == 'cache' ? trans('cms::utilities.config.cached') : trans('cms::utilities.config.cleared');
         \Log::info(sprintf("%s %s",
             $message,
             trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
@@ -147,10 +153,13 @@ class UtilitiesController extends Controller
     /**
      * Clear routes manually.
      *
+     * @param $task
      * @return \Illuminate\Http\JsonResponse
      */
     public function route($task)
     {
+        $message = $task == 'cache' ? trans('cms::utilities.route.cached') : trans('cms::utilities.route.cleared');
+
         if (! in_array($task, ['cache', 'clear'])) {
             \Log::info(sprintf("%s %s",
                 trans('cms::utilities.route.not_allowed', ['task' => $task]),
@@ -160,7 +169,6 @@ class UtilitiesController extends Controller
             return $this->notifyError($message);
         }
 
-        $message = $task == 'cache' ? trans('cms::utilities.route.cached') : trans('cms::utilities.route.cleared');
         \Log::info(sprintf("%s %s",
             $message,
             trans('cms::utilities.field.executed_by', ['name' => $this->getCurrentUserName()])
@@ -185,18 +193,18 @@ class UtilitiesController extends Controller
     public function logs(Request $request, DataTables $dataTables)
     {
         if ($request->input('l')) {
-            LaravelLogViewer::setFile(base64_decode($request->input('l')));
+            $this->logViewer->setFile(base64_decode($request->input('l')));
         }
 
         if ($request->input('dl')) {
-            return response()->download(LaravelLogViewer::pathToLogFile(base64_decode($request->input('dl'))));
+            return response()->download($this->logViewer->pathToLogFile(base64_decode($request->input('dl'))));
         } elseif ($request->has('del')) {
-            File::delete(LaravelLogViewer::pathToLogFile(base64_decode($request->input('del'))));
+            File::delete($this->logViewer->pathToLogFile(base64_decode($request->input('del'))));
 
             return redirect()->to($request->url());
         }
 
-        $logs = LaravelLogViewer::all();
+        $logs = $this->logViewer->all();
 
         if ($request->wantsJson()) {
             return $dataTables->collection(collect($logs))
@@ -230,8 +238,8 @@ class UtilitiesController extends Controller
 
         return view('administrator.utilities.log', [
             'logs'         => $logs,
-            'files'        => LaravelLogViewer::getFiles(true),
-            'current_file' => LaravelLogViewer::getFileName(),
+            'files'        => $this->logViewer->getFiles(true),
+            'current_file' => $this->logViewer->getFileName(),
         ]);
     }
 
