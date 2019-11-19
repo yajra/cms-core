@@ -72,7 +72,7 @@
                                 @tooltip('cms::article.form.tooltip.authorization')
                             </label>
 
-                            {{ form()->select('authorization', ['can' => trans('cms::article.authorization.can'), 'canAtLeast' => trans('cms::article.authorization.canAtLeast')], null, ['class' => 'form-control']) }}
+                            {{ form()->select('authorization', ['can' => trans('cms::article.authorization.can'), 'canAtLeast' => trans('cms::article.authorization.canAtLeast')], $article->authorization, ['class' => 'form-control']) }}
                             {!! $errors->first('authorization', '<span class="help-block">:message</span>') !!}
                         </div>
                     </div>
